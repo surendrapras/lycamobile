@@ -12,7 +12,7 @@ export default function parse(element, { document }) {
   // Find all plan cards
   const planCards = element.querySelectorAll('.PlanCardFullWidth_planCardContainer__rx5TX');
 
-  planCards.forEach(card => {
+  planCards.forEach((card) => {
     const row = [];
 
     // Column 1: Images (badges)
@@ -20,7 +20,7 @@ export default function parse(element, { document }) {
     const badgeContainer = card.querySelector('.PlanCardFullWidth_containerItems__yT0yM');
     if (badgeContainer) {
       const imgs = badgeContainer.querySelectorAll('img');
-      imgs.forEach(img => {
+      imgs.forEach((img) => {
         if (img.src) {
           images.push(img.cloneNode(true));
         }
@@ -28,7 +28,7 @@ export default function parse(element, { document }) {
     }
 
     const imageCell = document.createElement('div');
-    images.forEach(img => imageCell.appendChild(img));
+    images.forEach((img) => imageCell.appendChild(img));
     row.push(imageCell);
 
     // Column 2: Card content
@@ -60,7 +60,7 @@ export default function parse(element, { document }) {
 
     // Data allowance
     const dataAllowance = card.querySelector('.PlanCardFullWidth_promotionPriceText__SPQl1');
-    if (dataAllowance && dataAllowance.textContent.includes('GB') || dataAllowance.textContent.includes('Unlimited')) {
+    if (dataAllowance && (dataAllowance.textContent.includes('GB') || dataAllowance.textContent.includes('Unlimited'))) {
       const dataP = document.createElement('p');
       const strong = document.createElement('strong');
       strong.textContent = dataAllowance.textContent.trim();
@@ -72,7 +72,7 @@ export default function parse(element, { document }) {
     const features = card.querySelectorAll('[id^="plan-has-detail-"]');
     if (features.length > 0) {
       const ul = document.createElement('ul');
-      features.forEach(feature => {
+      features.forEach((feature) => {
         const li = document.createElement('li');
         li.textContent = feature.textContent.trim();
         ul.appendChild(li);
