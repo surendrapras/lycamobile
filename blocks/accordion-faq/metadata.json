@@ -1,0 +1,42 @@
+{
+  "variantName": "accordion-faq",
+  "baseBlock": "accordion",
+  "version": "1.0.0",
+  "created": "2025-12-17T12:11:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.lycamobile.co.uk/paymonthly/en/bundles/sim-only-deals/#24-months",
+    "originPage": "SIM only deals pricing page",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "faq",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "expandable questions and answers",
+    "buttonCount": 0,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "FAQ sections",
+      "help documentation",
+      "product questions",
+      "support content"
+    ],
+    "notSuitableFor": [
+      "navigation menus",
+      "content with images",
+      "complex nested structures"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/paymonthly/en/bundles/sim-only-deals/index"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2025-12-17T12:11:00.000Z"
+  }
+}

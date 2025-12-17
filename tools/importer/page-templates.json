@@ -1,0 +1,37 @@
+{
+  "templates": [
+    {
+      "name": "sim-only-deals-page",
+      "urls": [
+        "https://www.lycamobile.co.uk/paymonthly/en/bundles/sim-only-deals/#24-months"
+      ],
+      "description": "SIM only deals pricing page with contract tabs, pricing cards, features, and FAQ",
+      "blocks": [
+        {
+          "name": "tabs-contract",
+          "instances": [
+            ".Tabs_tabPanelWrapper__rgJMa"
+          ]
+        },
+        {
+          "name": "cards-pricing",
+          "instances": [
+            ".PlanCardFullWidth_planCardContainer__rx5TX"
+          ]
+        },
+        {
+          "name": "columns-features",
+          "instances": [
+            ".MuiGrid-root:has(img[alt*='Unbeatable'])"
+          ]
+        },
+        {
+          "name": "accordion-faq",
+          "instances": [
+            ".MuiGrid-root:has(p:contains('Is roaming included'))"
+          ]
+        }
+      ]
+    }
+  ]
+}

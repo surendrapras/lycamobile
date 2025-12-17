@@ -10,63 +10,104 @@
  * governing permissions and limitations under the License.
  */
 
+/* Font family note: GT-Eesti-LC-Display is a commercial font used by Lycamobile.
+   Using system font stack for now. To use the actual fonts, purchase license from
+   Grilli Type and add @font-face declarations here. */
+
 :root {
-  /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
-  --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
+  /* Lycamobile Brand Colors */
+  --color-primary-green: #08dc7d; /* Main brand green (buttons) */
+  --color-primary-green-hover: #06c56e; /* Hover state for green */
+  --color-secondary-blue: #384c72; /* Dark blue (headings, text) */
+  --color-accent-blue: #5587ea; /* Light blue (links) */
+  --color-accent-blue-hover: #3b6cd9; /* Hover state for blue links */
 
-  /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  /* Text Colors */
+  --color-text-primary: #344054; /* Primary text (h1) */
+  --color-text-secondary: #667085; /* Secondary text (body, descriptions) */
+  --color-text-dark: #21264e; /* Dark text (button labels) */
 
-  /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+  /* Background Colors */
+  --background-color: #fff;
+  --background-light: #eff8ff; /* Light blue background for sections */
+  --background-gray: #f8f8f8; /* Light gray background */
 
-  /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
+  /* Additional Semantic Colors */
+  --color-success: #22c55e;
+  --color-warning: #fbbf24;
+  --color-error: #ef4444;
 
-  /* nav height */
+  /* Legacy color mappings for compatibility */
+  --light-color: var(--background-gray);
+  --dark-color: var(--color-secondary-blue);
+  --text-color: var(--color-text-secondary);
+  --link-color: var(--color-accent-blue);
+  --link-hover-color: var(--color-accent-blue-hover);
+
+  /* Typography - Font Families */
+  /* Using system fonts similar to GT-Eesti-LC-Display (geometric sans-serif) */
+  --body-font-family: -apple-system, blinkmacsystemfont, 'Segoe UI', 'Helvetica Neue', arial, sans-serif;
+  --body-font-family-medium: -apple-system, blinkmacsystemfont, 'Segoe UI', 'Helvetica Neue', arial, sans-serif;
+  --heading-font-family: -apple-system, blinkmacsystemfont, 'Segoe UI', 'Helvetica Neue', arial, sans-serif;
+  --font-family-light: -apple-system, blinkmacsystemfont, 'Segoe UI', 'Helvetica Neue', arial, sans-serif;
+
+  /* Typography - Font Sizes (Mobile First) */
+  --body-font-size-m: 18px;
+  --body-font-size-s: 16px;
+  --body-font-size-xs: 14px;
+
+  /* Typography - Heading Sizes (Mobile First) */
+  --heading-font-size-xxl: 42px; /* h1 on mobile */
+  --heading-font-size-xl: 32px; /* h2 on mobile */
+  --heading-font-size-l: 24px; /* h3 on mobile */
+  --heading-font-size-m: 20px; /* h4 on mobile */
+  --heading-font-size-s: 18px; /* h5 on mobile */
+  --heading-font-size-xs: 16px; /* h6 on mobile */
+
+  /* Typography - Line Heights */
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.6;
+
+  /* Spacing System */
+  --spacing-xs: 8px;
+  --spacing-s: 16px;
+  --spacing-m: 24px;
+  --spacing-l: 32px;
+  --spacing-xl: 40px;
+  --spacing-xxl: 48px;
+
+  /* Border Radius */
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 12px;
+  --border-radius-xl: 24px;
+  --border-radius-pill: 25px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+  /* Layout */
   --nav-height: 64px;
-}
-
-/* fallback fonts */
-@font-face {
-  font-family: roboto-condensed-fallback;
-  size-adjust: 88.82%;
-  src: local('Arial');
-}
-
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 99.529%;
-  src: local('Arial');
+  --max-width-content: 1200px;
 }
 
 @media (width >= 900px) {
   :root {
-    /* body sizes */
+    /* Typography - Desktop Sizes */
     --body-font-size-m: 18px;
     --body-font-size-s: 16px;
     --body-font-size-xs: 14px;
 
-    /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
-    --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
+    /* Heading sizes match original site (desktop) */
+    --heading-font-size-xxl: 48px; /* h1 on desktop */
+    --heading-font-size-xl: 36px; /* h2 on desktop */
+    --heading-font-size-l: 28px; /* h3 on desktop */
+    --heading-font-size-m: 22px; /* h4 on desktop */
+    --heading-font-size-s: 20px; /* h5 on desktop */
+    --heading-font-size-xs: 18px; /* h6 on desktop */
   }
 }
 
@@ -74,10 +115,11 @@ body {
   display: none;
   margin: 0;
   background-color: var(--background-color);
-  color: var(--text-color);
+  color: var(--color-text-secondary);
   font-family: var(--body-font-family);
-  font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  font-size: var(--body-font-size-s);
+  line-height: var(--line-height-normal);
+  font-weight: 400;
 }
 
 body.appear {
@@ -107,14 +149,23 @@ h6 {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
   font-family: var(--heading-font-family);
-  font-weight: 600;
-  line-height: 1.25;
+  font-weight: 700;
+  line-height: var(--line-height-tight);
   scroll-margin: 40px;
+  color: var(--color-text-primary);
 }
 
-h1 { font-size: var(--heading-font-size-xxl); }
-h2 { font-size: var(--heading-font-size-xl); }
-h3 { font-size: var(--heading-font-size-l); }
+h1 {
+  font-size: var(--heading-font-size-xxl);
+  line-height: 1.25;
+}
+h2 {
+  font-size: var(--heading-font-size-xl);
+  color: var(--color-secondary-blue);
+}
+h3 {
+  font-size: var(--heading-font-size-l);
+}
 h4 { font-size: var(--heading-font-size-m); }
 h5 { font-size: var(--heading-font-size-s); }
 h6 { font-size: var(--heading-font-size-xs); }
@@ -172,48 +223,76 @@ button {
   display: inline-block;
   max-width: 100%;
   margin: 12px 0;
-  border: 2px solid transparent;
-  border-radius: 2.4em;
-  padding: 0.5em 1.2em;
-  font-family: var(--body-font-family);
+  border: 1px solid var(--color-primary-green);
+  border-radius: var(--border-radius-sm);
+  padding: 10px 18px;
+  font-family: var(--body-font-family-medium);
   font-style: normal;
   font-weight: 500;
+  font-size: var(--body-font-size-s);
   line-height: 1.25;
   text-align: center;
   text-decoration: none;
-  background-color: var(--link-color);
-  color: var(--background-color);
+  background-color: var(--color-primary-green);
+  color: var(--color-text-dark);
   cursor: pointer;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: all 0.3s ease;
 }
 
 a.button:hover,
 a.button:focus,
 button:hover,
 button:focus {
-  background-color: var(--link-hover-color);
+  background-color: var(--color-primary-green-hover);
+  border-color: var(--color-primary-green-hover);
+  transform: translateY(-1px);
   cursor: pointer;
 }
 
 button:disabled,
 button:disabled:hover {
   background-color: var(--light-color);
-  cursor: unset;
+  border-color: var(--light-color);
+  color: var(--color-text-secondary);
+  cursor: not-allowed;
+  transform: none;
 }
 
 a.button.secondary,
 button.secondary {
-  background-color: unset;
-  border: 2px solid currentcolor;
-  color: var(--text-color);
+  background-color: transparent;
+  border: 2px solid var(--color-secondary-blue);
+  color: var(--color-secondary-blue);
+}
+
+a.button.secondary:hover,
+a.button.secondary:focus,
+button.secondary:hover,
+button.secondary:focus {
+  background-color: var(--color-secondary-blue);
+  color: white;
 }
 
 main img {
   max-width: 100%;
   width: auto;
   height: auto;
+}
+
+/* Promotional banner styling */
+main > .section:first-of-type p > picture {
+  display: block;
+  text-align: center;
+}
+
+main > .section:first-of-type p > picture img {
+  display: block;
+  width: 343px;
+  max-width: 100%;
+  margin: var(--spacing-m) auto;
 }
 
 .icon {
@@ -229,29 +308,57 @@ main img {
 
 /* sections */
 main > .section {
-  margin: 40px 0;
+  margin: var(--spacing-xl) 0;
 }
 
 main > .section > div {
-  max-width: 1200px;
+  max-width: var(--max-width-content);
   margin: auto;
-  padding: 0 24px;
+  padding: 0 var(--spacing-m);
 }
 
 main > .section:first-of-type {
   margin-top: 0;
+  text-align: center;
 }
 
 @media (width >= 900px) {
   main > .section > div {
-    padding: 0 32px;
+    padding: 0 var(--spacing-l);
   }
 }
 
 /* section metadata */
 main .section.light,
 main .section.highlight {
-  background-color: var(--light-color);
+  background-color: var(--background-light);
   margin: 0;
-  padding: 40px 0;
+  padding: var(--spacing-xl) 0;
+}
+
+main .section.dark {
+  background-color: var(--color-secondary-blue);
+  color: white;
+  margin: 0;
+  padding: var(--spacing-xl) 0;
+}
+
+main .section.dark h1,
+main .section.dark h2,
+main .section.dark h3,
+main .section.dark h4,
+main .section.dark h5,
+main .section.dark h6 {
+  color: white;
+}
+
+main .section.gray {
+  background-color: var(--background-gray);
+  margin: 0;
+  padding: var(--spacing-xl) 0;
+}
+
+/* Hide metadata block - page metadata should not be visible */
+main .metadata {
+  display: none;
 }

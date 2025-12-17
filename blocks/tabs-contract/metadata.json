@@ -1,0 +1,41 @@
+{
+  "variantName": "tabs-contract",
+  "baseBlock": "tabs",
+  "version": "1.0.0",
+  "created": "2025-12-17T12:11:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.lycamobile.co.uk/paymonthly/en/bundles/sim-only-deals/#24-months",
+    "originPage": "SIM only deals pricing page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "purpose": "contract-duration",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "3 tabs for contract durations",
+    "buttonCount": 3,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "contract duration selection",
+      "plan term switchers",
+      "pricing period toggles"
+    ],
+    "notSuitableFor": [
+      "content-heavy tabbed sections",
+      "documentation tabs",
+      "image galleries"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/paymonthly/en/bundles/sim-only-deals/index"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2025-12-17T12:11:00.000Z"
+  }
+}
