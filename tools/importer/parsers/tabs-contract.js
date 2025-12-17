@@ -12,7 +12,7 @@ export default function parse(element, { document }) {
   // Find all tab panels
   const tabPanels = element.querySelectorAll('.Tabs_innerPanelContainer__53f9Q');
 
-  tabPanels.forEach(panel => {
+  tabPanels.forEach((panel) => {
     const row = [];
 
     // Extract tab label

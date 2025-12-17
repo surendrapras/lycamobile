@@ -79,7 +79,7 @@ export default async function decorate(block) {
     const cardsBlocks = findCardsBlocks();
     // Check if all blocks have data-contract-duration attribute
     const allDecorated = cardsBlocks.length > 0
-      && Array.from(cardsBlocks).every((block) => block.hasAttribute('data-contract-duration'));
+      && Array.from(cardsBlocks).every((cardsBlock) => cardsBlock.hasAttribute('data-contract-duration'));
 
     if (allDecorated && !initialized) {
       initialized = true;

@@ -1,5 +1,3 @@
-/* global WebImporter */
-
 /**
  * Transformer for Lycamobile site-wide cleanup
  * Removes navigation, headers, footers, cookie banners, and non-content elements
