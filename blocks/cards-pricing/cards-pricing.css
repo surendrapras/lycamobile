@@ -11,7 +11,7 @@
   border: none;
   border-radius: var(--border-radius-lg);
   background-color: var(--background-color);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
   transition: all 0.3s ease;
   overflow: hidden;
   position: relative;
@@ -19,7 +19,7 @@
 }
 
 .cards-pricing > ul > li:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 8px 16px rgb(0 0 0 / 12%);
   transform: translateY(-4px);
 }
 

@@ -48,6 +48,7 @@
 }
 
 /* Handle case where date and author are in separate card-body divs */
+
 /* When there are multiple card-body divs, combine date and author on same line */
 .cards-blog > ul > li:has(.cards-blog-card-body + .cards-blog-card-body) {
   display: block;

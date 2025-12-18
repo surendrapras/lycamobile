@@ -142,6 +142,7 @@
 
   .carousel-hero .carousel-hero-slide .carousel-hero-slide-content {
     --slide-content-width: calc((100% - 184px) / 2);
+
     margin: 92px;
   }
 
