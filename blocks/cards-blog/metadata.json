@@ -1,0 +1,42 @@
+{
+  "variantName": "cards-blog",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2025-12-18T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.lycamobile.co.uk/en/",
+    "originPage": "Homepage",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "wide",
+    "purpose": "blog-preview",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "3 blog cards with featured images + titles + metadata",
+    "buttonCount": 0,
+    "imageCount": 3
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "blog post previews",
+      "article showcases",
+      "recent content sections",
+      "news highlights"
+    ],
+    "notSuitableFor": [
+      "product grids",
+      "pricing tables",
+      "icon-based navigation"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/en/index"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2025-12-18T00:00:00.000Z"
+  }
+}

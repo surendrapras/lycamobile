@@ -1,0 +1,70 @@
+.cards-action > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.cards-action > ul > li {
+  border: none;
+  background-color: var(--background-color);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.cards-action > ul > li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.cards-action .cards-action-card-body {
+  padding: 20px;
+  text-align: center;
+}
+
+.cards-action .cards-action-card-body p {
+  margin: 0;
+}
+
+.cards-action .cards-action-card-body a {
+  color: var(--color-secondary-blue);
+  font-size: var(--body-font-size-s);
+  font-weight: 500;
+  text-decoration: none;
+  display: block;
+}
+
+.cards-action .cards-action-card-body a:hover {
+  color: var(--color-accent-blue);
+  text-decoration: none;
+}
+
+.cards-action .cards-action-card-image {
+  line-height: 0;
+  background-color: #e0f2fe;
+  padding: var(--spacing-l);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+}
+
+.cards-action > ul > li img {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (width >= 900px) {
+  .cards-action > ul {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}

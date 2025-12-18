@@ -1,0 +1,42 @@
+{
+  "variantName": "form-newsletter",
+  "baseBlock": "form",
+  "version": "1.0.0",
+  "created": "2025-12-18T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.lycamobile.co.uk/en/",
+    "originPage": "Homepage",
+    "blockPosition": "bottom"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "purpose": "newsletter-signup",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "heading + description + email input + submit button + disclaimer",
+    "buttonCount": 1,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "newsletter signup forms",
+      "email subscription sections",
+      "simple contact forms",
+      "lead capture forms"
+    ],
+    "notSuitableFor": [
+      "complex multi-field forms",
+      "checkout forms",
+      "user registration forms"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/en/index"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2025-12-18T00:00:00.000Z"
+  }
+}

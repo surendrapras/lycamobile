@@ -10,26 +10,54 @@
 
 .columns-features > div > div {
   text-align: center;
-  padding: var(--spacing-m);
+  padding: var(--spacing-l);
+  background-color: var(--background-color);
+  border-radius: var(--border-radius-lg);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.columns-features h3 {
-  font-size: var(--heading-font-size-m);
+.columns-features > div > div:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.columns-features h3,
+.columns-features strong {
+  font-size: var(--body-font-size-m);
   color: var(--color-secondary-blue);
   margin-top: var(--spacing-s);
   margin-bottom: var(--spacing-s);
+  font-weight: 700;
+  display: block;
 }
 
 .columns-features p {
   color: var(--color-text-secondary);
   font-size: var(--body-font-size-s);
   line-height: var(--line-height-relaxed);
+  margin-bottom: var(--spacing-s);
+}
+
+.columns-features p:has(a) {
+  margin-top: var(--spacing-m);
+}
+
+.columns-features a {
+  color: var(--color-accent-blue);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.columns-features a:hover {
+  color: var(--color-accent-blue-hover);
+  text-decoration: underline;
 }
 
 .columns-features img {
-  width: 64px;
-  height: 64px;
-  margin: 0 auto var(--spacing-s);
+  width: 80px;
+  height: 80px;
+  margin: 0 auto var(--spacing-m);
   display: block;
 }
 
@@ -56,8 +84,8 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: white;
-  border: 1px solid #e5e7eb;
+  background-color: #9ca3af;
+  border: none;
   border-radius: 50%;
   width: 40px;
   height: 40px;
@@ -66,8 +94,8 @@
   justify-content: center;
   cursor: pointer;
   font-size: 20px;
-  color: var(--color-secondary-blue);
-  box-shadow: var(--shadow-md);
+  color: white;
+  box-shadow: none;
   transition: all 0.3s ease;
   z-index: 10;
 }

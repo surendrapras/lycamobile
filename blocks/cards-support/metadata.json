@@ -1,0 +1,42 @@
+{
+  "variantName": "cards-support",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2025-12-18T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.lycamobile.co.uk/en/",
+    "originPage": "Homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "purpose": "support-links",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "4 circular icon buttons with labels",
+    "buttonCount": 4,
+    "imageCount": 4
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "customer support sections",
+      "help link grids",
+      "service contact options",
+      "support navigation"
+    ],
+    "notSuitableFor": [
+      "product cards",
+      "blog posts",
+      "pricing tables"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/en/index"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2025-12-18T00:00:00.000Z"
+  }
+}

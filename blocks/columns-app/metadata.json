@@ -1,0 +1,42 @@
+{
+  "variantName": "columns-app",
+  "baseBlock": "columns",
+  "version": "1.0.0",
+  "created": "2025-12-18T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.lycamobile.co.uk/en/",
+    "originPage": "Homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light-gradient",
+    "density": "wide",
+    "purpose": "app-download",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "2 columns: phone mockup image + app info with bullet points + store buttons",
+    "buttonCount": 2,
+    "imageCount": 1
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "mobile app download sections",
+      "app feature showcases",
+      "product mockup displays",
+      "app store link sections"
+    ],
+    "notSuitableFor": [
+      "text-only layouts",
+      "multi-column comparisons",
+      "icon grids"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/en/index"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2025-12-18T00:00:00.000Z"
+  }
+}

@@ -1,0 +1,105 @@
+.cards-blog > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.cards-blog > ul > li {
+  border: none;
+  background-color: var(--background-color);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.cards-blog > ul > li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
+}
+
+.cards-blog .cards-blog-card-body {
+  padding: 20px;
+}
+
+.cards-blog .cards-blog-card-body p {
+  margin: 8px 0;
+}
+
+.cards-blog .cards-blog-card-body strong {
+  color: var(--color-secondary-blue);
+  font-size: var(--body-font-size-m);
+  font-weight: 600;
+  line-height: var(--line-height-tight);
+  display: block;
+  margin-bottom: var(--spacing-s);
+}
+
+.cards-blog .cards-blog-card-body p:last-child {
+  color: var(--color-text-secondary);
+  font-size: var(--body-font-size-xs);
+  margin-top: var(--spacing-s);
+}
+
+/* Handle case where date and author are in separate card-body divs */
+/* When there are multiple card-body divs, combine date and author on same line */
+.cards-blog > ul > li:has(.cards-blog-card-body + .cards-blog-card-body) {
+  display: block;
+}
+
+/* Keep first card-body block but remove bottom padding to bring elements closer */
+.cards-blog > ul > li:has(.cards-blog-card-body + .cards-blog-card-body) > div:nth-of-type(2) {
+  padding-bottom: 0;
+}
+
+/* Make the date paragraph (last p in first card-body, which is nth-of-type(2)) display inline */
+.cards-blog > ul > li:has(.cards-blog-card-body + .cards-blog-card-body) > div:nth-of-type(2) p:last-child {
+  display: inline;
+  margin: 0;
+}
+
+/* Make the second card-body (nth-of-type(3)) inline so it flows with the date */
+.cards-blog > ul > li:has(.cards-blog-card-body + .cards-blog-card-body) > div:nth-of-type(3) {
+  display: inline;
+  padding: 0;
+  padding-left: 20px;
+  margin: 0;
+  margin-top: -19px;
+  vertical-align: baseline;
+}
+
+/* Make paragraphs in the second card-body inline */
+.cards-blog > ul > li:has(.cards-blog-card-body + .cards-blog-card-body) > div:nth-of-type(3) p {
+  display: inline;
+  margin: 0;
+}
+
+/* Add the pipe separator before the author */
+.cards-blog > ul > li:has(.cards-blog-card-body + .cards-blog-card-body) > div:nth-of-type(3) p::before {
+  content: ' | ';
+}
+
+.cards-blog .cards-blog-card-image {
+  line-height: 0;
+  background-color: var(--background-gray);
+}
+
+.cards-blog > ul > li img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+
+@media (width >= 900px) {
+  .cards-blog > ul {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}

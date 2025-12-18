@@ -8,17 +8,18 @@
 }
 
 .cards-pricing > ul > li {
-  border: 1px solid #e5e7eb;
-  border-radius: var(--border-radius-md);
+  border: none;
+  border-radius: var(--border-radius-lg);
   background-color: var(--background-color);
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
   overflow: hidden;
   position: relative;
+  cursor: pointer;
 }
 
 .cards-pricing > ul > li:hover {
-  box-shadow: var(--shadow-lg);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12);
   transform: translateY(-4px);
 }
 
@@ -187,4 +188,12 @@
 .cards-pricing .cards-pricing-card-body p:first-of-type {
   margin-top: calc(var(--spacing-m) * -1);
   margin-bottom: var(--spacing-s);
+}
+
+/* Light background for title section (for 12 month and 1 month cards) */
+.cards-pricing > ul > li > p {
+  background-color: #faf8f3;
+  padding: var(--spacing-m);
+  margin: 0;
+  border-bottom: 1px solid #e5e7eb;
 }

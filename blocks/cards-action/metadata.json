@@ -1,0 +1,42 @@
+{
+  "variantName": "cards-action",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2025-12-18T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.lycamobile.co.uk/en/",
+    "originPage": "Homepage",
+    "blockPosition": "top"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "minimal",
+    "purpose": "action-links",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "heading + action buttons + icon links grid",
+    "buttonCount": 7,
+    "imageCount": 4
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "customer account action areas",
+      "quick link sections",
+      "icon-based navigation grids",
+      "service shortcuts"
+    ],
+    "notSuitableFor": [
+      "product listings",
+      "blog cards",
+      "pricing displays"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/en/index"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2025-12-18T00:00:00.000Z"
+  }
+}

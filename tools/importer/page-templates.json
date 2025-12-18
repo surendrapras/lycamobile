@@ -32,6 +32,98 @@
           ]
         }
       ]
+    },
+    {
+      "name": "lycamobile-homepage",
+      "urls": [
+        "https://www.lycamobile.co.uk/en/"
+      ],
+      "description": "Lycamobile UK homepage template with hero carousel, action cards, pricing cards, features, app download, support, country flags, blog posts, and newsletter signup",
+      "blocks": [
+        {
+          "name": "section-hero",
+          "instances": [
+            "#banner-slider-container"
+          ],
+          "section": "dark"
+        },
+        {
+          "name": "carousel-hero",
+          "instances": [
+            ".HomePage_bannerSlider__EN552"
+          ]
+        },
+        {
+          "name": "cards-action",
+          "instances": [
+            ".StartJoinLyca_mainContent__k_RPM",
+            ".AlreadyJoinedLyca_container__syBfK"
+          ]
+        },
+        {
+          "name": "cards-pricing",
+          "instances": [
+            ".OneByOneClickableBanner_main_div__t83nT"
+          ]
+        },
+        {
+          "name": "section-addons-banner",
+          "instances": [
+            "#free-sim-strip-container"
+          ],
+          "section": "light-blue"
+        },
+        {
+          "name": "columns-features",
+          "instances": [
+            ".WhyLycaUSA_main_container___5Q6R"
+          ]
+        },
+        {
+          "name": "section-app-download",
+          "instances": [
+            "#download-app-component"
+          ],
+          "section": "light-gradient"
+        },
+        {
+          "name": "columns-app",
+          "instances": [
+            ".MyLycaMobile_downloadContainer__byoah"
+          ]
+        },
+        {
+          "name": "cards-support",
+          "instances": [
+            ".HereToHelpYou_main_container__Nbebl"
+          ]
+        },
+        {
+          "name": "carousel-flags",
+          "instances": [
+            ".FooterCarousel_main_container__0Za_o"
+          ]
+        },
+        {
+          "name": "cards-blog",
+          "instances": [
+            ".HomeBlogPoster_main_container__eWSu0"
+          ]
+        },
+        {
+          "name": "section-newsletter",
+          "instances": [
+            ".EmailLeadCaptuare_main_container__jNey1"
+          ],
+          "section": "light"
+        },
+        {
+          "name": "form-newsletter",
+          "instances": [
+            ".EmailLeadCaptuare_main_div__bchfE"
+          ]
+        }
+      ]
     }
   ]
 }

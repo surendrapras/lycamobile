@@ -1,0 +1,42 @@
+{
+  "variantName": "carousel-flags",
+  "baseBlock": "carousel",
+  "version": "1.0.0",
+  "created": "2025-12-18T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.lycamobile.co.uk/en/",
+    "originPage": "Homepage",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "destination-showcase",
+    "imagePattern": "icon"
+  },
+  "contentPattern": {
+    "structure": "scrollable carousel of country flags with labels",
+    "buttonCount": 0,
+    "imageCount": 10
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "country/destination showcases",
+      "icon galleries",
+      "flag displays",
+      "location selectors"
+    ],
+    "notSuitableFor": [
+      "hero carousels",
+      "content-heavy sections",
+      "promotional banners"
+    ]
+  },
+  "usage": {
+    "pagesUsing": [
+      "/en/index"
+    ],
+    "reuseCount": 1,
+    "lastUsed": "2025-12-18T00:00:00.000Z"
+  }
+}
