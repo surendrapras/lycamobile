@@ -4,6 +4,7 @@ export default async function decorate(block) {
   const links = block.querySelectorAll('a[href]');
 
   if (links.length < 1) {
+    // eslint-disable-next-line no-console
     console.warn('Form block requires at least a form definition URL');
     return;
   }

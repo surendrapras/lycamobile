@@ -27,17 +27,17 @@ export default function transform(hookName, element) {
     if (footer) footer.remove();
 
     // Remove scripts and styles
-    element.querySelectorAll('script, style, link[rel="stylesheet"]').forEach(el => el.remove());
+    element.querySelectorAll('script, style, link[rel="stylesheet"]').forEach((el) => el.remove());
 
     // Remove empty divs that are just layout wrappers
-    element.querySelectorAll('div.MuiBox-root:empty, div.MuiGrid-root:empty').forEach(el => {
+    element.querySelectorAll('div.MuiBox-root:empty, div.MuiGrid-root:empty').forEach((el) => {
       if (!el.hasChildNodes()) el.remove();
     });
   }
 
   if (hookName === 'afterTransform') {
     // Clean up any remaining empty elements after transformation
-    element.querySelectorAll('div:empty, span:empty').forEach(el => {
+    element.querySelectorAll('div:empty, span:empty').forEach((el) => {
       if (!el.hasChildNodes() && !el.hasAttribute('class')) el.remove();
     });
   }

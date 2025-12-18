@@ -14,7 +14,7 @@ export default function parse(element, { document }) {
 
   if (faqItems.length > 0) {
     // Parse MUI accordion structure
-    faqItems.forEach(item => {
+    faqItems.forEach((item) => {
       const question = item.querySelector('.MuiAccordionSummary-content, [role="button"]');
       const answer = item.querySelector('.MuiAccordionDetails-root, .MuiCollapse-wrapper');
 
@@ -32,7 +32,7 @@ export default function parse(element, { document }) {
     const allParagraphs = element.querySelectorAll('p, h3, h4, strong');
     let currentQuestion = null;
 
-    allParagraphs.forEach(el => {
+    allParagraphs.forEach((el) => {
       const text = el.textContent.trim();
       // Questions typically end with "?" or are in headings
       if (text.endsWith('?') || el.matches('h3, h4, strong')) {

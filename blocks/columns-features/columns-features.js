@@ -111,11 +111,6 @@ export default function decorate(block) {
       touchStartX = e.changedTouches[0].screenX;
     });
 
-    track.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    });
-
     const handleSwipe = () => {
       const swipeThreshold = 50;
       const diff = touchStartX - touchEndX;
@@ -130,6 +125,11 @@ export default function decorate(block) {
         }
       }
     };
+
+    track.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
 
     // Initialize
     updateCarousel();
