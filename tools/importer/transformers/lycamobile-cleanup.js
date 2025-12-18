@@ -4,9 +4,8 @@
  *
  * @param {string} hookName - 'beforeTransform' or 'afterTransform'
  * @param {Element} element - Main document element
- * @param {object} payload - Import payload with url, document, etc.
  */
-export default function transform(hookName, element, payload) {
+export default function transform(hookName, element) {
   if (hookName === 'beforeTransform') {
     // Remove navigation and header elements
     const nav = element.querySelector('.Navbar_topContainer__MJq7l');

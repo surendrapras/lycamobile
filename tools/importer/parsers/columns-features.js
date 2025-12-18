@@ -12,7 +12,7 @@ export default function parse(element, { document }) {
   // Find the three feature columns
   const featureImages = ['7697ced76bdac3323d4310fcc9f05e73', 'f96428fcf72bbb1ee55e313f05ce8150', 'd1f013d5de20544c67d911ecf2ceebd0'];
 
-  featureImages.forEach(imageId => {
+  featureImages.forEach((imageId) => {
     const col = document.createElement('div');
 
     // Find the feature by image
@@ -45,7 +45,7 @@ export default function parse(element, { document }) {
   // Create the block using WebImporter
   const block = WebImporter.Blocks.createBlock(document, {
     name: 'Columns-Features',
-    cells
+    cells,
   });
 
   // Replace the element with the block

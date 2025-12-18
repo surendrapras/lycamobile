@@ -108,7 +108,7 @@ export default function parse(element, { document }) {
   // Create the block using WebImporter
   const block = WebImporter.Blocks.createBlock(document, {
     name: 'Cards-Pricing',
-    cells
+    cells,
   });
 
   // Replace the element with the block
