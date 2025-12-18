@@ -320,13 +320,6 @@ main > .section:first-of-type p > picture {
   text-align: center;
 }
 
-main > .section:first-of-type p > picture img {
-  display: block;
-  width: 343px;
-  max-width: 100%;
-  margin: var(--spacing-m) auto;
-}
-
 .icon {
   display: inline-block;
   height: 24px;
@@ -336,6 +329,13 @@ main > .section:first-of-type p > picture img {
 .icon img {
   height: 100%;
   width: 100%;
+}
+
+main > .section:first-of-type p > picture img {
+  display: block;
+  width: 343px;
+  max-width: 100%;
+  margin: var(--spacing-m) auto;
 }
 
 /* sections */
@@ -403,7 +403,7 @@ main .section.light-blue {
 }
 
 main .section.announcement {
-  background-color: rgb(255, 238, 178);
+  background-color: rgb(255 238 178);
   color: #000;
   margin: 0;
   padding: 12px 20px;

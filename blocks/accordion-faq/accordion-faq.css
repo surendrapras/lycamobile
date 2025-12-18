@@ -12,12 +12,12 @@
   transition: all 0.3s ease;
 }
 
-.accordion-faq details:hover {
-  box-shadow: var(--shadow-sm);
-}
-
 .accordion-faq details + details {
   margin-top: var(--spacing-m);
+}
+
+.accordion-faq details:hover {
+  box-shadow: var(--shadow-sm);
 }
 
 .accordion-faq details p {

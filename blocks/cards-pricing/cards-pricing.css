@@ -18,6 +18,14 @@
   cursor: pointer;
 }
 
+/* Light background for title section (for 12 month and 1 month cards) */
+.cards-pricing > ul > li > p {
+  background-color: #faf8f3;
+  padding: var(--spacing-m);
+  margin: 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
 .cards-pricing > ul > li:hover {
   box-shadow: 0 8px 16px rgb(0 0 0 / 12%);
   transform: translateY(-4px);
@@ -44,6 +52,11 @@
   color: var(--color-text-secondary);
   font-size: var(--body-font-size-s);
   line-height: var(--line-height-normal);
+}
+
+.cards-pricing .cards-pricing-card-body p:first-of-type {
+  margin-top: calc(var(--spacing-m) * -1);
+  margin-bottom: var(--spacing-s);
 }
 
 .cards-pricing .cards-pricing-card-body strong {
@@ -80,6 +93,15 @@
   font-size: 16px;
 }
 
+/* Container for badge icons - position in top right */
+.cards-pricing .cards-pricing-card-body > p:has(picture) {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  margin: 0;
+  line-height: 0;
+}
+
 /* Links container - position "View more" in top right, "Buy now" at bottom */
 .cards-pricing .cards-pricing-card-body > p:last-child {
   display: flex;
@@ -101,11 +123,6 @@
   z-index: 5;
 }
 
-.cards-pricing .cards-pricing-card-body > p:last-child a:first-child:hover {
-  color: var(--color-accent-blue-hover);
-  text-decoration: underline;
-}
-
 /* "Buy now" button - full width green button */
 .cards-pricing .cards-pricing-card-body > p:last-child a:last-child {
   display: block;
@@ -120,6 +137,11 @@
   font-weight: 500;
   text-decoration: none;
   transition: all 0.3s ease;
+}
+
+.cards-pricing .cards-pricing-card-body > p:last-child a:first-child:hover {
+  color: var(--color-accent-blue-hover);
+  text-decoration: underline;
 }
 
 .cards-pricing .cards-pricing-card-body > p:last-child a:last-child:hover {
@@ -162,15 +184,6 @@
   margin: 0;
 }
 
-/* Container for badge icons - position in top right */
-.cards-pricing .cards-pricing-card-body > p:has(picture) {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  margin: 0;
-  line-height: 0;
-}
-
 /* Promotional badges (Christmas Half Price, Free OPPO Voucher) */
 .cards-pricing .cards-pricing-card-body p:first-of-type em strong {
   display: inline-block;
@@ -183,17 +196,4 @@
   font-size: 14px;
   font-style: normal;
   margin: 0 0 var(--spacing-s) 0;
-}
-
-.cards-pricing .cards-pricing-card-body p:first-of-type {
-  margin-top: calc(var(--spacing-m) * -1);
-  margin-bottom: var(--spacing-s);
-}
-
-/* Light background for title section (for 12 month and 1 month cards) */
-.cards-pricing > ul > li > p {
-  background-color: #faf8f3;
-  padding: var(--spacing-m);
-  margin: 0;
-  border-bottom: 1px solid #e5e7eb;
 }
