@@ -26,11 +26,6 @@
   border-bottom: 1px solid #e5e7eb;
 }
 
-.cards-pricing > ul > li:hover {
-  box-shadow: 0 8px 16px rgb(0 0 0 / 12%);
-  transform: translateY(-4px);
-}
-
 .cards-pricing .cards-pricing-card-body {
   margin: var(--spacing-m);
 }
@@ -52,6 +47,15 @@
   color: var(--color-text-secondary);
   font-size: var(--body-font-size-s);
   line-height: var(--line-height-normal);
+}
+
+/* Container for badge icons - position in top right */
+.cards-pricing .cards-pricing-card-body > p:has(picture) {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  margin: 0;
+  line-height: 0;
 }
 
 .cards-pricing .cards-pricing-card-body p:first-of-type {
@@ -93,13 +97,9 @@
   font-size: 16px;
 }
 
-/* Container for badge icons - position in top right */
-.cards-pricing .cards-pricing-card-body > p:has(picture) {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  margin: 0;
-  line-height: 0;
+.cards-pricing > ul > li:hover {
+  box-shadow: 0 8px 16px rgb(0 0 0 / 12%);
+  transform: translateY(-4px);
 }
 
 /* Links container - position "View more" in top right, "Buy now" at bottom */
