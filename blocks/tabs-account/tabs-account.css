@@ -1,0 +1,130 @@
+.tabs-account {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.tabs-account-card {
+  background-color: white;
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+}
+
+.tabs-account-icon {
+  text-align: center;
+  margin-bottom: var(--spacing-m);
+}
+
+.tabs-account-icon img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+}
+
+.tabs-account h2 {
+  color: var(--color-secondary-blue);
+  font-size: var(--heading-font-size-l);
+  text-align: center;
+  margin-bottom: var(--spacing-xs);
+}
+
+.tabs-account-description {
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: var(--body-font-size-m);
+  margin-bottom: var(--spacing-l);
+}
+
+.tabs-account-tabs {
+  display: flex;
+  gap: var(--spacing-s);
+  margin-bottom: var(--spacing-l);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tabs-account-tab {
+  padding: 12px 24px;
+  border-radius: var(--border-radius-lg);
+  border: 1px solid #e5e7eb;
+  background-color: white;
+  color: var(--color-text-primary);
+  font-size: var(--body-font-size-m);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.tabs-account-tab.active {
+  background-color: var(--color-accent-blue);
+  color: white;
+  border-color: var(--color-accent-blue);
+}
+
+.tabs-account-tab:hover {
+  background-color: var(--color-accent-blue);
+  color: white;
+  border-color: var(--color-accent-blue);
+}
+
+.tabs-account-tab.active:hover {
+  background-color: var(--color-accent-blue-hover);
+  border-color: var(--color-accent-blue-hover);
+}
+
+.tabs-account-content {
+  margin-top: var(--spacing-m);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-m);
+}
+
+.tabs-account-content > p {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-s);
+  margin: 0;
+}
+
+.tabs-account-content img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.tabs-account-content p picture {
+  display: flex;
+  align-items: center;
+}
+
+.tabs-account-content a {
+  color: var(--color-accent-blue);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.tabs-account-content a:hover {
+  text-decoration: underline;
+}
+
+@media (width <= 768px) {
+  .tabs-account-card {
+    padding: var(--spacing-l);
+  }
+
+  .tabs-account-tabs {
+    flex-direction: column;
+  }
+
+  .tabs-account-tab {
+    width: 100%;
+    text-align: center;
+  }
+}

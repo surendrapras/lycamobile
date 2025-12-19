@@ -1,0 +1,202 @@
+{
+  "sections": [
+    {
+      "sectionNumber": 1,
+      "visualStyle": "Dark navy blue background",
+      "description": "Hero carousel with promotional offers",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Rotating carousel with multiple slides, each slide contains: large promotional text with percentage discount, price badge, data amount, descriptive text, and call-to-action button"
+        }
+      ]
+    },
+    {
+      "sectionNumber": 2,
+      "visualStyle": "White background",
+      "description": "Customer account login area",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Centered heading 'Already with Lyca?', three action buttons in a row (Top-up, Renew plan, Refer to friends), row of icon links below (My Account, Refer a Friend, Gift a plan, Find a store), and a promotional link at bottom"
+        }
+      ]
+    },
+    {
+      "sectionNumber": 3,
+      "visualStyle": "White background",
+      "description": "Plan selection cards",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Centered heading 'Choose a SIM only plan today'"
+        },
+        {
+          "sequenceNumber": 2,
+          "description": "Two large promotional cards displayed side-by-side, each with: decorative graphics, percentage discount badge, price indicator, data amount, promotional text, features list, and call-to-action button"
+        }
+      ]
+    },
+    {
+      "sectionNumber": 4,
+      "visualStyle": "Light blue background strip",
+      "description": "Add-ons banner",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Horizontal banner with icon, text 'New! 4 latest add-ons', and arrow link"
+        }
+      ]
+    },
+    {
+      "sectionNumber": 5,
+      "visualStyle": "White background",
+      "description": "Features/benefits section",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Centered heading 'Why Lyca?'"
+        },
+        {
+          "sequenceNumber": 2,
+          "description": "Three items displayed in a row, each with: circular icon, bold heading, and descriptive paragraph text"
+        }
+      ]
+    },
+    {
+      "sectionNumber": 6,
+      "visualStyle": "Light grey/blue gradient background",
+      "description": "Mobile app download section",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Two-column layout: left side has phone mockup image with decorative elements, right side has heading 'Download the Lyca Mobile and Rewards App', three feature bullet points with checkmarks, and two app store download buttons (Apple App Store and Google Play)"
+        }
+      ]
+    },
+    {
+      "sectionNumber": 7,
+      "visualStyle": "White background",
+      "description": "Customer support section",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Centered heading 'We are here to help you'"
+        },
+        {
+          "sequenceNumber": 2,
+          "description": "Four circular icon buttons in a row, each with icon and label text below (FAQ, Help, My Account, Live chat)"
+        }
+      ]
+    },
+    {
+      "sectionNumber": 8,
+      "visualStyle": "White background",
+      "description": "International calling destinations",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Centered heading 'Cheap international calls for everyone'"
+        },
+        {
+          "sequenceNumber": 2,
+          "description": "Horizontal scrollable carousel of country flags with labels, navigation arrows on both sides, showing multiple country options"
+        }
+      ]
+    },
+    {
+      "sectionNumber": 9,
+      "visualStyle": "White background",
+      "description": "Blog articles section",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Centered heading 'View our recent blogs'"
+        },
+        {
+          "sequenceNumber": 2,
+          "description": "Three blog cards displayed in a row, each with: feature image, article title, metadata (author, date, read time), and navigation arrows for carousel"
+        }
+      ]
+    },
+    {
+      "sectionNumber": 10,
+      "visualStyle": "Light background",
+      "description": "Email signup form",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Centered heading 'Sign up to get exclusive offers', descriptive text below, email input field with submit button, and disclaimer text"
+        }
+      ]
+    }
+  ],
+  "excludedElements": {
+    "header": "Top navigation bar with logo, menu items, account and cart icons",
+    "footer": "Bottom footer with multiple link columns and social media icons"
+  }
+}
+
+{
+  "blockInventory": {
+    "localBlocks": [
+      {
+        "name": "accordion-faq",
+        "purpose": "Expandable Q&A sections with questions and answers"
+      },
+      {
+        "name": "cards-pricing",
+        "purpose": "Grid of pricing cards with plans and features (variant of cards)"
+      },
+      {
+        "name": "cards",
+        "purpose": "Grid of content items with images, headings, and descriptions"
+      },
+      {
+        "name": "columns-features",
+        "purpose": "Side-by-side feature columns with icons and descriptions (variant of columns)"
+      },
+      {
+        "name": "columns",
+        "purpose": "Side-by-side content in 2-3 columns"
+      },
+      {
+        "name": "footer",
+        "purpose": "Page footer with links and information"
+      },
+      {
+        "name": "fragment",
+        "purpose": "Reusable content section"
+      },
+      {
+        "name": "header",
+        "purpose": "Page header with navigation"
+      },
+      {
+        "name": "hero",
+        "purpose": "Large heading, text, and buttons for page introduction"
+      },
+      {
+        "name": "tabs-contract",
+        "purpose": "Tabbed interface for contract duration options (variant of tabs)"
+      }
+    ],
+    "blockCollectionAvailable": [
+      {
+        "name": "carousel",
+        "purpose": "Rotating slideshow of images or content",
+        "liveExampleUrl": "https://main--aem-block-collection--adobe.aem.live/block-collection/carousel"
+      },
+      {
+        "name": "quote",
+        "purpose": "Highlighted testimonial or pullquote with attribution",
+        "liveExampleUrl": "https://main--aem-block-collection--adobe.aem.live/block-collection/quote"
+      },
+      {
+        "name": "form",
+        "purpose": "Forms with input fields and submission",
+        "liveExampleUrl": "https://main--aem-block-collection--adobe.aem.live/block-collection/form"
+      }
+    ]
+  }
+}

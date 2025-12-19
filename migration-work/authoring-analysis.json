@@ -1,0 +1,214 @@
+{
+  "url": "https://www.lycamobile.co.uk/en/",
+  "authoringDecisions": [
+    {
+      "sectionNumber": 1,
+      "visualStyle": "Dark navy blue background",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Rotating carousel with multiple slides, each slide contains: large promotional text with percentage discount, price badge, data amount, descriptive text, and call-to-action button",
+          "decision": "carousel-hero",
+          "reason": "Interactive slideshow with rotating slides, requires carousel functionality",
+          "blockSource": "Block Collection"
+        }
+      ]
+    },
+    {
+      "sectionNumber": 2,
+      "visualStyle": "White background",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Centered heading 'Already with Lyca?', three action buttons in a row (Top-up, Renew plan, Refer to friends), row of icon links below (My Account, Refer a Friend, Gift a plan, Find a store), and a promotional link at bottom",
+          "decision": "cards-action",
+          "reason": "Grid of interactive buttons and icon links with structured layout",
+          "blockSource": "Local"
+        }
+      ]
+    },
+    {
+      "sectionNumber": 3,
+      "visualStyle": "White background",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Centered heading 'Choose a SIM only plan today'",
+          "decision": "DEFAULT CONTENT",
+          "reason": "Simple centered heading, can be created with normal typing"
+        },
+        {
+          "sequenceNumber": 2,
+          "description": "Two large promotional cards displayed side-by-side, each with: decorative graphics, percentage discount badge, price indicator, data amount, promotional text, features list, and call-to-action button",
+          "decision": "cards-pricing",
+          "reason": "Side-by-side pricing cards with structured pricing information",
+          "blockSource": "Local"
+        }
+      ]
+    },
+    {
+      "sectionNumber": 4,
+      "visualStyle": "Light blue background strip",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Horizontal banner with icon, text 'New! 4 latest add-ons', and arrow link",
+          "decision": "DEFAULT CONTENT",
+          "reason": "Simple horizontal banner with text and link"
+        }
+      ]
+    },
+    {
+      "sectionNumber": 5,
+      "visualStyle": "White background",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Centered heading 'Why Lyca?'",
+          "decision": "DEFAULT CONTENT",
+          "reason": "Simple centered heading"
+        },
+        {
+          "sequenceNumber": 2,
+          "description": "Three items displayed in a row, each with: circular icon, bold heading, and descriptive paragraph text",
+          "decision": "columns-features",
+          "reason": "Three feature columns with circular icons and descriptions",
+          "blockSource": "Local"
+        }
+      ]
+    },
+    {
+      "sectionNumber": 6,
+      "visualStyle": "Light grey/blue gradient background",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Two-column layout: left side has phone mockup image with decorative elements, right side has heading 'Download the Lyca Mobile and Rewards App', three feature bullet points with checkmarks, and two app store download buttons (Apple App Store and Google Play)",
+          "decision": "columns-app",
+          "reason": "Two-column layout with image and app information",
+          "blockSource": "Local"
+        }
+      ]
+    },
+    {
+      "sectionNumber": 7,
+      "visualStyle": "White background",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Centered heading 'We are here to help you'",
+          "decision": "DEFAULT CONTENT",
+          "reason": "Simple centered heading"
+        },
+        {
+          "sequenceNumber": 2,
+          "description": "Four circular icon buttons in a row, each with icon and label text below (FAQ, Help, My Account, Live chat)",
+          "decision": "cards-support",
+          "reason": "Grid of circular icon buttons with labels",
+          "blockSource": "Local"
+        }
+      ]
+    },
+    {
+      "sectionNumber": 8,
+      "visualStyle": "White background",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Centered heading 'Cheap international calls for everyone'",
+          "decision": "DEFAULT CONTENT",
+          "reason": "Simple centered heading"
+        },
+        {
+          "sequenceNumber": 2,
+          "description": "Horizontal scrollable carousel of country flags with labels, navigation arrows on both sides, showing multiple country options",
+          "decision": "carousel-flags",
+          "reason": "Scrollable carousel of country flags with navigation",
+          "blockSource": "Block Collection"
+        }
+      ]
+    },
+    {
+      "sectionNumber": 9,
+      "visualStyle": "White background",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Centered heading 'View our recent blogs'",
+          "decision": "DEFAULT CONTENT",
+          "reason": "Simple centered heading"
+        },
+        {
+          "sequenceNumber": 2,
+          "description": "Three blog cards displayed in a row, each with: feature image, article title, metadata (author, date, read time), and navigation arrows for carousel",
+          "decision": "cards-blog",
+          "reason": "Grid of blog cards with images and metadata",
+          "blockSource": "Local"
+        }
+      ]
+    },
+    {
+      "sectionNumber": 10,
+      "visualStyle": "Light background",
+      "sequences": [
+        {
+          "sequenceNumber": 1,
+          "description": "Centered heading 'Sign up to get exclusive offers', descriptive text below, email input field with submit button, and disclaimer text",
+          "decision": "form-newsletter",
+          "reason": "Email signup form with input field and submission",
+          "blockSource": "Block Collection"
+        }
+      ]
+    }
+  ],
+  "blockUsage": {
+    "carousel-hero": 1,
+    "carousel-flags": 1,
+    "cards-action": 1,
+    "cards-support": 1,
+    "cards-blog": 1,
+    "cards-pricing": 1,
+    "columns-app": 1,
+    "columns-features": 1,
+    "form-newsletter": 1
+  },
+  "defaultContentCount": 6,
+  "blockStructures": {
+    "carousel-hero": {
+      "structure": "Each row = 1 slide. First column = image, subsequent columns = content (heading, text, buttons)",
+      "rowStructure": "[image | heading, paragraph(s), button(s)]"
+    },
+    "carousel-flags": {
+      "structure": "Each row = 1 slide. First column = image, subsequent columns = content (heading, text, buttons)",
+      "rowStructure": "[image | heading, paragraph(s), button(s)]"
+    },
+    "cards-action": {
+      "structure": "Each row = 1 card. Each card can have image column and/or content columns",
+      "rowStructure": "[image | heading, paragraph(s)] OR [heading, paragraph(s)]"
+    },
+    "cards-support": {
+      "structure": "Each row = 1 card. Each card can have image column and/or content columns",
+      "rowStructure": "[image | heading, paragraph(s)] OR [heading, paragraph(s)]"
+    },
+    "cards-blog": {
+      "structure": "Each row = 1 card. Each card can have image column and/or content columns",
+      "rowStructure": "[image | heading, paragraph(s)] OR [heading, paragraph(s)]"
+    },
+    "cards-pricing": {
+      "structure": "Variant of cards. Each row = 1 pricing card with image and structured content",
+      "rowStructure": "[image | heading, price, features, button]"
+    },
+    "columns-app": {
+      "structure": "Single row with 2-3 columns of content",
+      "rowStructure": "[column 1 content | column 2 content] OR [col 1 | col 2 | col 3]"
+    },
+    "columns-features": {
+      "structure": "Variant of columns. Single row with 3 columns, each with icon, heading, text",
+      "rowStructure": "[icon, heading, text | icon, heading, text | icon, heading, text]"
+    },
+    "form-newsletter": {
+      "structure": "Form block uses JSON endpoint for configuration. Block contains 2 links: form definition URL and submit URL",
+      "rowStructure": "[form definition link] [submit endpoint link]"
+    }
+  }
+}

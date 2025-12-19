@@ -1,0 +1,152 @@
+{
+  "url": "https://www.lycamobile.co.uk/en/",
+  "timestamp": "2025-12-18T03:46:24.264Z",
+  "paths": {
+    "documentPath": "/en/index",
+    "htmlFilePath": "/en/index.plain.html",
+    "mdFilePath": "/en/index.md",
+    "dirPath": "/en",
+    "filename": "index"
+  },
+  "screenshot": "migration-work/screenshot.png",
+  "html": {
+    "filePath": "migration-work/cleaned.html",
+    "size": 248226
+  },
+  "metadata": {
+    "title": "Low Cost, High Value plans from £2.50 p/m | Lyca Mobile UK",
+    "viewport": "initial-scale=1.0, width=device-width, maximum-scale=2.0, user-scalable=yes",
+    "description": "Value packed sim plans from Lycamobile UK. Explore our budget friendly, pay monthly SIM deals and no contract pay as you go sim only deals.",
+    "keywords": "Best SIM Only Deals, Pay monthly SIM, No contract sim only deals, eSIM Providers, eSIM UK",
+    "robots": "index, follow",
+    "og:title": "Low Cost, High Value plans from £2.50 p/m | Lyca Mobile UK",
+    "og:description": "Value packed sim plans from Lycamobile UK. Explore our budget friendly, pay monthly SIM deals and no contract pay as you go sim only deals.",
+    "og:locale": "en-gb",
+    "og:image": "https://cms-assets.ldsvcplatform.com/IRE/s3fs-public/2023-09/home_logo.png",
+    "og:height": "123",
+    "og:width": "314",
+    "og:sitename": "Lyca Mobile UK",
+    "og:type": "website",
+    "og:url": "https://www.lycamobile.co.uk/en/",
+    "canonical": "https://www.lycamobile.co.uk/en/",
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "name": "Lyca Mobile UK",
+          "url": "https://www.lycamobile.co.uk/en/",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.lycamobile.co.uk/en/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "Organization",
+          "name": "Lyca Mobile UK",
+          "url": "https://www.lycamobile.co.uk/en/",
+          "logo": "https://cms-assets.ldsvcplatform.com/IRE/s3fs-public/2023-09/home_logo.png",
+          "contactPoint": [
+            {
+              "@type": "ContactPoint",
+              "telephone": "+442071320322",
+              "contactType": "customer support"
+            }
+          ],
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "195 Marsh Wall",
+            "addressLocality": "London",
+            "postalCode": "E14 9SG",
+            "addressCountry": {
+              "@type": "Country",
+              "name": "GB"
+            }
+          },
+          "sameAs": [
+            "https://www.facebook.com/LycamobileUK/",
+            "https://www.instagram.com/lycamobile_uk/",
+            "https://x.com/lycamobileforuk",
+            "https://www.linkedin.com/company/lycamobile/",
+            "https://www.tiktok.com/@lycamobileuk"
+          ]
+        }
+      ]
+    }
+  },
+  "images": {
+    "count": 61,
+    "mapping": {
+      "https://dev.visualwebsiteoptimizer.com/eu01/v.gif?cd=0&a=785323&d=lycamobile.co.uk&u=DCD5B256DB4B29E82DDFA5E3A8E8D0D48&h=aa2e4307666df50a8f3a418f240483b8&t=false": "./images/ac4c6ecd55f14debdf92a39c23d8ff04.png",
+      "https://dev.visualwebsiteoptimizer.com/eu01/s.gif?account_id=785323&u=DCD5B256DB4B29E82DDFA5E3A8E8D0D48&s=1766029577&ed=%7B%22sr%22%3A%221280x720%22%2C%22sc%22%3A24%2C%22de%22%3A%22UTF-8%22%2C%22ul%22%3A%22en-us%22%2C%22r%22%3A%22%22%2C%22lt%22%3A1766029577745%2C%22tO%22%3A0%2C%22tz%22%3A%22Etc%2FUnknown%22%7D&cu=https%3A%2F%2Fwww.lycamobile.co.uk%2Fen%2F&r=0&p=1&cq=0&eTime=1766029577746&v=e052c78764": "./images/a7b990984d70dc5b7e97db34ecd010f6.png",
+      "https://www.lycamobile.co.uk/_next/static/media/Account.ec46a854.svg": "./images/3e15a7a1fee5e0c7846e99db6538d71d.png",
+      "https://www.lycamobile.co.uk/_next/static/media/Cart.c7614522.svg": "./images/32cd1bea8edab88545fa3e141346cb47.png",
+      "https://www.lycamobile.co.uk/_next/static/media/blueArrowDownIcon.b90ed1bc.svg": "./images/c0a075fa44d516d62bc23bbfb0a0c43f.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/inline-images/app_arrow.png": "./images/f93a19be4849b9284039aebd2f25ce2e.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/App%20Icon_1.webp?VersionId=TI_cpOqVhJwZwUFffPEYGxK2fRSMuwdX": "./images/9f8e1f95088e9d61601b39bdb1c3d8ae.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/inline-images/Icon_1_0.png": "./images/4496944ab31d733670b5027170411b43.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/inline-images/Icon_1_1.png": "./images/a71d6235641671c47a53f91eecdff09d.png",
+      "https://www.lycamobile.co.uk/_next/static/media/joinLycabackground.cbc78232.svg": "./images/a9b00f3105fc7aec069525a873bddefb.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/inline-images/Icon_1.png": "./images/82efc4b999048d119f49a5f36118e93d.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/icons_images.webp": "./images/0cdef3123ec6a56fb5e2a6ff1614512d.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/Prepay_0.webp?VersionId=sInE1BDLmOmmUxmAMe9TOVVZVhHsW8IL": "./images/6f974dc0ecfcfcf7b37450699a4e997a.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/Group%20383181829.webp?VersionId=lbZO10hXAeuPL0x8b6YSGRyrwAOUoY0j": "./images/6fc1dc2dc0f2283c6bf4b08806a92b91.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/Group%201321322285.svg": "./images/cbe016625e2166b625a13f8c951a33c5.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/Support.webp?VersionId=.hBw3mEZQGc6or8ypF7wzbJ6jUF98Xom": "./images/b46eca46e4286a02148e6a72340d3036.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/inline-images/image.png": "./images/72d5e619aa0a7668b47f6bd96ba35359.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/Group%20383180556%20%281%29%20%281%29.webp?VersionId=mqcj8GE.zMzy9RLs2KwUZB5OhwJ8k3AX": "./images/1199dceefe044165e8c248b979081c85.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/Prepay.webp?VersionId=IDNvh1yeN7pgmOnzEhjc8w5w0BH..8Tb": "./images/1217d3188269210f5781a4e14c824035.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/Group%20383180557%20%281%29%20%281%29.webp?VersionId=sBUFi8G7jk6lbCSdG.QIwj98Z6Ic48jx": "./images/d3c1e346143db8de6f295045a929a0ea.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/2025-07/Network.webp?VersionId=k3RteUPNXpB1cmfZ.RFOFEL_Lg67tiYB": "./images/396c98efd62893e46cd46d5fde70d24a.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/5g%20%281%29.webp?VersionId=womFD8Eib6oOH9oxe29.gE6GMQ1_xWsM": "./images/a65dd310b357dccda303c8541ce1877d.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/Group_image.webp?VersionId=Xnwc1ENqknnu7tIBt3r2Ui6di2I.4kXf": "./images/fec6d52bc098eeef6ce3c3d1a7178515.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/2025-07/iconeP.webp?VersionId=DbK3qLAGk2iba8kWSey3nr0q1rnKPwTw": "./images/2e7e38944e454a4414fbe2d8a5c95d24.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/pay_m.webp?VersionId=jnJ_0k8rtzW5LcdILIODfGra_7Lm4cuW": "./images/09365523c8ee36c9ca7f9959f1ac35bb.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/2025-12/506x638_paym_uld_visual_banner_web_2x.webp?VersionId=8BUpsZo1Xz8qaGK_ZxUILgjJB_akwBrZ": "./images/c95cdc54c1995eece4d1ea65ede5cd3c.png",
+      "https://www.lycamobile.co.uk/_next/static/media/slider_right_arrow.0d76d2f7.svg": "./images/219e751ac4650216ac8be011ae08a260.png",
+      "https://www.lycamobile.co.uk/_next/static/media/blueRightCircleArrow.f268c82d.svg": "./images/140d3e29d2594a9536a5d20f6467f92e.png",
+      "https://www.lycamobile.co.uk/_next/static/media/slider_left_arrow.e4901b64.svg": "./images/47225158386c7d3c0137c701755f3a84.png",
+      "https://s3-eu-west-2.amazonaws.com/ldcontentimages/lycamobileukweb/wp-content/uploads/2017/04/09132120/United-kingdom1.png": "./images/1dd426512db907c26ff3a52f9133698d.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/2025-12/506x638_payg_30gb_visual_banner_web_2x_0.webp?VersionId=3t3UAaviv6dO.maozUbvvYUO4fyb7s2z": "./images/fddd6937cff25f56256375b56c6f8ae0.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/2023-09/Menuhs.png": "./images/676cc2799a8e7d31f0b1e7a300543d24.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/2024-07/home_logo.webp?VersionId=xxi3TXeRjclbrO1Xl6vggyaU0Cvm8x7p": "./images/09e5387fc0cc3ff6561c8f84161688af.png",
+      "https://www.lycamobile.co.uk/_next/static/media/smallCircle.63ed6471.svg": "./images/a8b7be32222d135ce4b62adeeb82c128.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/2025-12/rewards_image_web.webp?VersionId=rrSF_KycQYJsb4_l9pZBUm1d1AV8VmNR": "./images/ff514a542d38deb44f1796df32fafe2f.png",
+      "https://s3.eu-central-1.amazonaws.com/blog-assets.ldsvcplatform.com/Blog/s3fs-public/2025-12/Celebrate%20the%20new%20year%20with%20lyca%20mobile%20s%20monthly%20subscription%20offers_UK_blog_banner_mob.webp?": "./images/429cfa1fa7f8af00ea29cae3376c43f1.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/inline-images/India.png": "./images/d30e730da13592e262ee3e61ac78e31f.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/inline-images/Flag%20%2811%29.png": "./images/c5d56c14f45ba4a446bbf1e385ecf2b9.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/inline-images/Flag%20%2812%29.png": "./images/ff5e2b956072643f92360a3b643411ff.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/inline-images/Flag%20%2813%29.png": "./images/bc18d8bf585bb7f08f453ae835a5db6b.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/Bulgeria.webp": "./images/cbde771667febabcaa19553f380b6e77.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/inline-images/usa_flags.png": "./images/2642385b28d9f9be5c779d811e005baf.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/inline-images/Flag%20%288%29.png": "./images/b992948a3bf45938bdf2b85ba33c9cb5.png",
+      "https://www.lycamobile.co.uk/_next/static/media/leftArrowBlue.4aabcacc.svg": "./images/da04ef7bc2307c00da600c9454e41078.png",
+      "https://www.lycamobile.co.uk/_next/static/media/rightArrowBlue.beb7ab20.svg": "./images/f318a5a033ef89fd8c137f85e7ad884f.png",
+      "https://s3.eu-central-1.amazonaws.com/blog-assets.ldsvcplatform.com/Blog/s3fs-public/2024-12/Dashing%20through%20data_UK_blog_banner_mob.webp": "./images/e224b04fec8c47372a2926abb3d559a4.png",
+      "https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/inline-images/googleplay_1_0.png": "./images/24a82e02f6cae1f73952e9892d15316d.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/2025-12/1920x500_hp_banner_paym_web_2x.webp?VersionId=Wx41034A1GJc8vWuRFxBx76iicnKYz4U": "./images/188350174e4f425945f159684f0d9114.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/2025-12/1920x500_hp_banner_payg_web_2x_0.webp?VersionId=aPeAdODN0A3pO9Vxv42woF24bSByXag2": "./images/195748a316319e3f5cf791b3d296b633.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/2025-07/apple_0_0.png": "./images/d2ec78a5597123cfc1af4116db7410f0.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/inline-images/Insta.png": "./images/bfd0048f3bec028d769bfc030a71d8ce.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/inline-images/fb_0.png": "./images/1308862b0ef6c6eda03a909b0be58c16.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/inline-images/twitter.png": "./images/f903a26f43b6acb6e34576a969acc147.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/2025-07/Store_0.png": "./images/e8caa535031b24ceb9b0784f8be3d642.png",
+      "https://dpm.demdex.net/ibs:dpid=411&dpuuid=aUN5CwAAADiKjAN-": "./images/700436c62d1c7267884b60baff7e47a5.png",
+      "https://cdn.cookielaw.org/logos/static/ot_company_logo.png": "./images/0a82704908bb1ee9f1f8e8a0196426e0.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/inline-images/logo_new1.png": "./images/848830cb76ba48de85439c89552f0711.png",
+      "https://cdn.cookielaw.org/logos/static/powered_by_logo.svg": "./images/a9584a367ebcccfac48987ce1fec5eae.png",
+      "https://s3.eu-central-1.amazonaws.com/blog-assets.ldsvcplatform.com/Blog/s3fs-public/2025-12/100gb%20monthly%20data%20plans_UK_blog_banner_mob.webp": "./images/3afa1f53921c86a96c75eadccd6297f1.png",
+      "https://cms-assets.ldsvcplatform.com/UK/s3fs-public/2025-10/ddr_751_uk_branded_homepage_1920x500_web_banner-LBPO-MAC-003%20%281%29.webp?VersionId=i7YYXL9aiZIcN6hV7btGFxH7DrA4TzRn": "./images/a60d3524d116f909410568bace175164.png",
+      "https://www.lycamobile.co.uk/_next/static/media/joinedAlreadyMobileBackground.a8e6818b.svg": "./images/fb36d017c5b0cd5794a3015abf5708eb.png"
+    },
+    "stats": {
+      "total": 62,
+      "converted": 58,
+      "skipped": 3,
+      "failed": 1,
+      "tooLarge": 0,
+      "limitReached": 0
+    }
+  }
+}
