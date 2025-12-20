@@ -10,19 +10,19 @@
 export default function parse(element, { document }) {
   // Extract blog cards
   const blogCards = element.querySelectorAll('[id^="mobile-blocks-content-"]');
-  
+
   if (!blogCards || blogCards.length === 0) {
     return;
   }
-  
+
   // Build cells array - one column per blog card
   const cells = [Array.from(blogCards)];
-  
+
   // Create block
-  const block = WebImporter.Blocks.createBlock(document, { 
-    name: 'Cards-Blog', 
-    cells 
+  const block = WebImporter.Blocks.createBlock(document, {
+    name: 'Cards-Blog',
+    cells,
   });
-  
+
   element.replaceWith(block);
 }

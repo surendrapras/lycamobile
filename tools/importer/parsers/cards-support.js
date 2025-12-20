@@ -10,19 +10,19 @@
 export default function parse(element, { document }) {
   // Extract support help icons
   const helpItems = element.querySelectorAll('[id^="help-icons-content-"]');
-  
+
   if (!helpItems || helpItems.length === 0) {
     return;
   }
-  
+
   // Build cells array - one column per help item
   const cells = [Array.from(helpItems)];
-  
+
   // Create block
-  const block = WebImporter.Blocks.createBlock(document, { 
-    name: 'Cards-Support', 
-    cells 
+  const block = WebImporter.Blocks.createBlock(document, {
+    name: 'Cards-Support',
+    cells,
   });
-  
+
   element.replaceWith(block);
 }
