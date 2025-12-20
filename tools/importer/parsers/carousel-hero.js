@@ -10,20 +10,20 @@
 export default function parse(element, { document }) {
   // Extract carousel images from slick slider
   const slides = element.querySelectorAll('.slick-slide:not(.slick-cloned) img');
-  
+
   if (!slides || slides.length === 0) {
     return;
   }
-  
+
   // Build cells array - one row per image
-  const cells = slides.length > 0 ? Array.from(slides).map(img => [img]) : [];
-  
+  const cells = slides.length > 0 ? Array.from(slides).map((img) => [img]) : [];
+
   // Create block using WebImporter
-  const block = WebImporter.Blocks.createBlock(document, { 
-    name: 'Carousel-Hero', 
-    cells 
+  const block = WebImporter.Blocks.createBlock(document, {
+    name: 'Carousel-Hero',
+    cells,
   });
-  
+
   // Replace element with block
   element.replaceWith(block);
 }
