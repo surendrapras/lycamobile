@@ -10,19 +10,19 @@
 export default function parse(element, { document }) {
   // Extract feature columns
   const features = element.querySelectorAll('[id^="static-mobile-block-content-"]');
-  
+
   if (!features || features.length === 0) {
     return;
   }
-  
+
   // Build cells array - one column per feature
   const cells = [Array.from(features)];
-  
+
   // Create block
-  const block = WebImporter.Blocks.createBlock(document, { 
-    name: 'Columns-Features', 
-    cells 
+  const block = WebImporter.Blocks.createBlock(document, {
+    name: 'Columns-Features',
+    cells,
   });
-  
+
   element.replaceWith(block);
 }
