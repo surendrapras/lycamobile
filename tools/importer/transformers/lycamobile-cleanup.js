@@ -1,44 +1,71 @@
+/* global WebImporter */
+
 /**
- * Transformer for Lycamobile site-wide cleanup
- * Removes navigation, headers, footers, cookie banners, and non-content elements
- *
- * @param {string} hookName - 'beforeTransform' or 'afterTransform'
- * @param {Element} element - Main document element
+ * Transformer for Lycamobile website cleanup
+ * Purpose: Remove accessibility widgets, cookie consent, and non-content elements
+ * Applies to: www.lycamobile.co.uk (all templates)
+ * Generated: 2025-12-20
+ * 
+ * SELECTORS EXTRACTED FROM:
+ * - Captured DOM during migration workflow (migration-work/cleaned.html)
+ * - Elements identified: access-widget-ui, onetrust-consent-sdk, announcement bar
  */
-export default function transform(hookName, element) {
-  if (hookName === 'beforeTransform') {
-    // Remove navigation and header elements
-    const nav = element.querySelector('.Navbar_topContainer__MJq7l');
-    if (nav) nav.remove();
 
-    const header = element.querySelector('#node-header');
-    if (header) header.remove();
+const TransformHook = {
+  beforeTransform: 'beforeTransform',
+  afterTransform: 'afterTransform'
+};
 
-    // Remove breadcrumbs
-    const breadcrumbs = element.querySelector('.Breadcrumbs_mainContainer__OViZh');
-    if (breadcrumbs) breadcrumbs.remove();
-
+export default function transform(hookName, element, payload) {
+  if (hookName === TransformHook.beforeTransform) {
+    // Remove accessibility widget
+    // EXTRACTED: Found multiple <access-widget-ui class="notranslate"> in captured DOM
+    WebImporter.DOMUtils.remove(element, [
+      'access-widget-ui'
+    ]);
+    
     // Remove cookie consent banner
-    const cookieBanner = element.querySelector('#onetrust-consent-sdk');
-    if (cookieBanner) cookieBanner.remove();
-
-    // Remove footer
-    const footer = element.querySelector('footer');
-    if (footer) footer.remove();
-
-    // Remove scripts and styles
-    element.querySelectorAll('script, style, link[rel="stylesheet"]').forEach((el) => el.remove());
-
-    // Remove empty divs that are just layout wrappers
-    element.querySelectorAll('div.MuiBox-root:empty, div.MuiGrid-root:empty').forEach((el) => {
-      if (!el.hasChildNodes()) el.remove();
-    });
+    // EXTRACTED: Found <div id="onetrust-consent-sdk"> in captured DOM at line 1024
+    // EXTRACTED: Found <div class="onetrust-pc-dark-filter"> in captured DOM
+    WebImporter.DOMUtils.remove(element, [
+      '#onetrust-consent-sdk',
+      '.onetrust-pc-dark-filter',
+      '#onetrust-banner-sdk'
+    ]);
+    
+    // Remove announcement bar (non-authorable content)
+    // EXTRACTED: Found <div class="FreeTrial_main_container__L_dGL" id="announcement-bar"> in captured DOM
+    WebImporter.DOMUtils.remove(element, [
+      '#announcement-bar',
+      '.FreeTrial_main_container__L_dGL'
+    ]);
+    
+    // Remove navigation (will use nav.md fragment)
+    // EXTRACTED: Found <div class="MuiGrid-root &quot;nav-bar-main&quot;"> and <header id="node-header"> in captured DOM
+    WebImporter.DOMUtils.remove(element, [
+      '#nav-bar-main',
+      '#node-header'
+    ]);
   }
-
-  if (hookName === 'afterTransform') {
-    // Clean up any remaining empty elements after transformation
-    element.querySelectorAll('div:empty, span:empty').forEach((el) => {
-      if (!el.hasChildNodes() && !el.hasAttribute('class')) el.remove();
+  
+  if (hookName === TransformHook.afterTransform) {
+    // Remove tracking scripts and styles
+    // Standard HTML elements - safe to use
+    WebImporter.DOMUtils.remove(element, [
+      'script',
+      'style',
+      'link',
+      'noscript',
+      'canvas'
+    ]);
+    
+    // Clean up tracking attributes
+    // Common tracking attributes found on various elements
+    const allElements = element.querySelectorAll('*');
+    allElements.forEach(el => {
+      el.removeAttribute('onclick');
+      el.removeAttribute('data-track');
+      el.removeAttribute('data-gtm');
     });
   }
 }

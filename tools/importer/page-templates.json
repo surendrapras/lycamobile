@@ -1,127 +1,92 @@
 {
   "templates": [
     {
-      "name": "sim-only-deals-page",
-      "urls": [
-        "https://www.lycamobile.co.uk/paymonthly/en/bundles/sim-only-deals/#24-months"
-      ],
-      "description": "SIM only deals pricing page with contract tabs, pricing cards, features, and FAQ",
-      "blocks": [
-        {
-          "name": "tabs-contract",
-          "instances": [
-            ".Tabs_tabPanelWrapper__rgJMa"
-          ]
-        },
-        {
-          "name": "cards-pricing",
-          "instances": [
-            ".PlanCardFullWidth_planCardContainer__rx5TX"
-          ]
-        },
-        {
-          "name": "columns-features",
-          "instances": [
-            ".MuiGrid-root:has(img[alt*='Unbeatable'])"
-          ]
-        },
-        {
-          "name": "accordion-faq",
-          "instances": [
-            ".MuiGrid-root:has(p:contains('Is roaming included'))"
-          ]
-        }
-      ]
-    },
-    {
       "name": "lycamobile-homepage",
       "urls": [
         "https://www.lycamobile.co.uk/en/"
       ],
-      "description": "Lycamobile UK homepage template with hero carousel, action cards, pricing cards, features, app download, support, country flags, blog posts, and newsletter signup",
+      "description": "Lycamobile UK homepage template with hero carousel, action cards, pricing cards, features, and support sections",
       "blocks": [
         {
-          "name": "section-hero",
-          "instances": [
-            "#banner-slider-container"
-          ],
-          "section": "dark"
+          "name": "carousel-hero",
+          "selector": ".HomePage_bannerSliderContainer__2y0DF"
         },
         {
-          "name": "carousel-hero",
-          "instances": [
-            ".HomePage_bannerSlider__EN552"
-          ]
+          "name": "section-already-with-lyca",
+          "section": true,
+          "selector": ".AlreadyJoinedLyca_container__syBfK"
         },
         {
           "name": "cards-action",
-          "instances": [
-            ".StartJoinLyca_mainContent__k_RPM",
-            ".AlreadyJoinedLyca_container__syBfK"
-          ]
+          "selector": ".AlreadyJoinedLyca_tabContainer__6QeQK"
+        },
+        {
+          "name": "section-choose-sim",
+          "section": true,
+          "selector": ".OneByOneClickableBanner_main_div__t83nT"
         },
         {
           "name": "cards-pricing",
-          "instances": [
-            ".OneByOneClickableBanner_main_div__t83nT"
-          ]
+          "selector": ".OneByOneClickableBanner_tab_container__cMULF"
         },
         {
-          "name": "section-addons-banner",
-          "instances": [
-            "#free-sim-strip-container"
-          ],
-          "section": "light-blue"
+          "name": "section-blue-banner",
+          "section": true,
+          "selector": ".FreeSimStrip_main_div__5vzEF"
+        },
+        {
+          "name": "section-why-lyca",
+          "section": true,
+          "selector": ".WhyLycaUSA_main_container___5Q6R"
         },
         {
           "name": "columns-features",
-          "instances": [
-            ".WhyLycaUSA_main_container___5Q6R"
-          ]
+          "selector": ".WhyLycaUSA_grid_container__hSMpt"
         },
         {
-          "name": "section-app-download",
-          "instances": [
-            "#download-app-component"
-          ],
-          "section": "light-gradient"
+          "name": "section-download-app",
+          "section": true,
+          "selector": ".MyLycaMobile_download_app_component__dvZSU"
         },
         {
           "name": "columns-app",
-          "instances": [
-            ".MyLycaMobile_downloadContainer__byoah"
-          ]
+          "selector": ".MyLycaMobile_downloadContainer__byoah"
+        },
+        {
+          "name": "section-help",
+          "section": true,
+          "selector": ".HereToHelpYou_main_container__Nbebl"
         },
         {
           "name": "cards-support",
-          "instances": [
-            ".HereToHelpYou_main_container__Nbebl"
-          ]
+          "selector": ".HereToHelpYou_field_section__l3Bda"
+        },
+        {
+          "name": "section-international-calls",
+          "section": true,
+          "selector": ".FooterCarousel_main_container__0Za_o"
         },
         {
           "name": "carousel-flags",
-          "instances": [
-            ".FooterCarousel_main_container__0Za_o"
-          ]
+          "selector": ".FooterCarousel_carouselContainer__BHhBY"
+        },
+        {
+          "name": "section-blogs",
+          "section": true,
+          "selector": ".HomeBlogPoster_main_container__eWSu0"
         },
         {
           "name": "cards-blog",
-          "instances": [
-            ".HomeBlogPoster_main_container__eWSu0"
-          ]
+          "selector": ".HomeBlogPoster_grid_container__hhSLW"
         },
         {
           "name": "section-newsletter",
-          "instances": [
-            ".EmailLeadCaptuare_main_container__jNey1"
-          ],
-          "section": "light"
+          "section": true,
+          "selector": ".EmailLeadCaptuare_main_container__jNey1"
         },
         {
           "name": "form-newsletter",
-          "instances": [
-            ".EmailLeadCaptuare_main_div__bchfE"
-          ]
+          "selector": ".EmailLeadCaptuare_main_div__bchfE"
         }
       ]
     }
