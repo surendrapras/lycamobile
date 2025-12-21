@@ -58,7 +58,8 @@
           "instances": [
             ".StartJoinLyca_mainContent__k_RPM",
             ".AlreadyJoinedLyca_container__syBfK"
-          ]
+          ],
+          "section": "dark"
         },
         {
           "name": "cards-pricing",
