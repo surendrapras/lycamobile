@@ -181,6 +181,12 @@ main .carousel-hero-container {
   }
 }
 
+@media (min-width: 320px) {
+  .carousel-hero .carousel-hero-slide {
+    height: 110px;
+  }
+}
+
 @media (min-width: 500px) {
   .carousel-hero .carousel-hero-slide {
     height: 180px;
@@ -190,5 +196,23 @@ main .carousel-hero-container {
 @media (min-width: 700px) {
   .carousel-hero .carousel-hero-slide {
     height: 300px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .carousel-hero .carousel-hero-slide {
+    height: 700px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .carousel-hero .carousel-hero-navigation-buttons button {
+    height: 34px;
+    width: 34px;
+  }
+
+  .carousel-hero .carousel-hero-navigation-buttons button::after {
+    height: 8px;
+    width: 8px;
   }
 }

@@ -475,7 +475,7 @@ main .metadata {
   font-size: 1rem;
   line-height: 1.16rem;
   color: #fff;
-  margin-bottom: 1.2rem;
+  margin-bottom: 1.5rem;
 }
 
 .cards-action-container.dark .cards-action-wrapper .cards-action>ul {
@@ -485,6 +485,11 @@ main .metadata {
 
 .cards-action-container .cards-action-wrapper .cards-action>ul>li {
   background-color: transparent;
+  box-shadow: none;
+}
+
+.cards-action-container .cards-action-wrapper .cards-action>ul>li:hover {
+  transform: none;
   box-shadow: none;
 }
 
@@ -500,11 +505,20 @@ main .section.dark.cards-action-container {
   position: relative;
   background-color: #fff;
   width: 80%;
-  max-width: 1078px;
+  max-width: var(--max-width-content);
   margin: -250px auto 0;
   padding: 2.5rem 0;
   box-shadow: 0 10px 20px 0 rgba(0, 0, 0, .15);
   z-index: 1;
+}
+
+.cards-pricing-container .cards-pricing-wrapper ul li {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.cards-pricing-container .cards-pricing-wrapper ul li:hover {
+  box-shadow: none;
 }
 
 .cards-action-container.lyca-section h2,
@@ -558,13 +572,13 @@ main .section.dark.cards-action-container {
 }
 
 .cards-pricing-container .cards-pricing-wrapper .cards-pricing {
-  max-width: 1078px;
+  max-width: var(--max-width-content);
   margin: 0 auto;
 }
 
 .cards-pricing-container .cards-pricing-wrapper .cards-pricing ul {
   grid-template-columns: repeat(2, 1fr);
-  gap: 0;
+  gap: 24px;
 }
 
 .cards-pricing-container .cards-pricing-wrapper .cards-pricing li:hover {
@@ -585,6 +599,7 @@ main .section.dark.cards-action-container {
 .refer-section .default-content-wrapper {
   margin: 0;
   padding: 0;
+  max-width: 100%;
 }
 
 .section.refer-section p {
@@ -604,4 +619,57 @@ main .section.dark.cards-action-container {
 .section.refer-section p img {
   width: 78px;
   height: auto;
+}
+
+@media only screen and (max-width: 768px) {
+  main .section.dark.cards-action-container {
+    padding: 30px 15px 65px;
+  }
+
+  .cards-action-container .default-content-wrapper h2 {
+    font-size: 1.25rem;
+    line-height: 1.758rem;
+  }
+
+  .cards-action-container .default-content-wrapper p {
+    font-size: 0.875rem;
+    line-height: 1rem;
+  }
+
+  .cards-action-container.lyca-section {
+    margin-top: -36px;
+    padding: 1.5rem 0;
+  }
+
+  .cards-action-container.lyca-section .cards-action-card-body a {
+    min-width: 80px;
+    font-size: 13px;
+    padding: 2px 8px;
+    min-height: 1.5rem;
+  }
+
+  .cards-pricing-container h2 {
+    font-size: 1.25rem;
+    line-height: 1.758rem;
+  }
+
+  .cards-pricing-container p {
+    font-size: 0.875rem;
+    line-height: 1rem;
+  }
+
+  .section.refer-section p {
+    padding: 12px 0;
+  }
+
+  .section.refer-section p img {
+    width: 50px;
+  }
+}
+
+@media only screen and (max-width: 576px)  {
+  .cards-pricing-container .cards-pricing-wrapper .cards-pricing ul {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 16px;
+  }
 }
