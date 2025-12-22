@@ -58,6 +58,11 @@ footer .footer > div > div:last-child {
   padding-top: 30px;
 }
 
+/* App store badges and store locator in 5th column */
+footer .footer > div > div:first-child > div:last-child p {
+  margin: 0 0 12px;
+}
+
 /* Target the default-content-wrapper inside the section */
 footer .footer > div > div:last-child .default-content-wrapper {
   display: flex;
@@ -91,11 +96,6 @@ footer .footer > div > div:last-child .default-content-wrapper > p:last-child {
   gap: 15px;
   justify-content: flex-end;
   align-items: center;
-}
-
-/* App store badges and store locator in 5th column */
-footer .footer > div > div:first-child > div:last-child p {
-  margin: 0 0 12px;
 }
 
 footer .footer > div > div:first-child > div:last-child img {
