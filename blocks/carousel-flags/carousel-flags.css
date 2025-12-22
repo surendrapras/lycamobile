@@ -21,7 +21,7 @@
 }
 
 .carousel-flags .carousel-flags-slide {
-  flex: 0 0 100%;
+  /* flex: 0 0 100%; */
   scroll-snap-align: start;
   display: flex;
   flex-direction: column;
@@ -73,7 +73,8 @@
 }
 
 .carousel-flags .carousel-flags-slide-indicators {
-  display: flex;
+  display: none;
+  /* display: flex; */
   flex-wrap: wrap;
   justify-content: center;
   gap: 6px 12px;
@@ -147,8 +148,8 @@
 
 @media (width >= 600px) {
   .carousel-flags .carousel-flags-navigation-buttons {
-    left: 24px;
-    right: 24px;
+    left: 0;
+    right: 0;
   }
 
   .carousel-flags .carousel-flags-slide {
