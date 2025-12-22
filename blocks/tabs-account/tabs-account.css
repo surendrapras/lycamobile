@@ -1,0 +1,130 @@
+.tabs-account {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.tabs-account .tabs-account-list {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.tabs-account .tabs-account-tab {
+  color: #344054;
+  background-color: #e8f4fe;
+  border: 1px solid #667085;
+  min-height: 2.06rem;
+  min-width: 130px;
+  border-radius: 50rem;
+  padding: 6px 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-weight: 600;
+  outline: none;
+}
+
+.tabs-account .tabs-account-tab:hover {
+  text-decoration: none;
+}
+
+.tabs-account .tabs-account-tab[aria-selected="true"] {
+  background-color: #006ae0;
+  border-color: #006ae0;
+  color: #fff;
+}
+
+.tabs-account .tabs-account-panels {
+  width: 100%;
+}
+
+.tabs-account .tabs-account-panel {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.tabs-account .lyca-phone {
+  display: flex;
+  align-items: center;
+  width: min(420px, 100%);
+  margin: 18px auto 0;
+  border: 1px solid #d0d5dd;
+  border-radius: 6px;
+  background: #fff;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.tabs-account .lyca-phone-prefix {
+  flex: 0 0 72px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #d0d5dd;
+  color: #344054;
+  font-weight: 600;
+}
+
+.tabs-account .lyca-phone-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+  height: 52px;
+  border: 0;
+  outline: 0;
+  padding: 0 16px;
+  background: transparent;
+  font-weight: 600;
+  color: #344054;
+}
+
+.tabs-account .lyca-phone-input::placeholder {
+  color: #98a2b3;
+  font-weight: 600;
+}
+
+.tabs-account .lyca-phone-submit {
+  flex: 0 0 52px;
+  width: 52px;
+  height: 52px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  appearance: none;
+}
+
+.tabs-account .lyca-phone-submit span {
+  width: 34px;
+  height: 34px;
+  border: 2px solid #384c72;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #384c72;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
