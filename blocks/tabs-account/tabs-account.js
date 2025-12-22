@@ -1,4 +1,5 @@
 import { toClassName } from '../../scripts/aem.js';
+
 function decorateLycaPhoneInput(block) {
   if (!block.closest('.lyca-section')) return;
 
@@ -122,4 +123,3 @@ export default function decorate(block) {
 
   decorateLycaPhoneInput(block);
 }
-
