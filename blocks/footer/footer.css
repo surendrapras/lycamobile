@@ -63,8 +63,8 @@ footer .footer > div > div:last-child > p:first-child {
   margin: 0 0 15px;
 }
 
-footer .footer > div > div:last-child > p:first-child img {
-  max-width: 120px;
+footer .footer img[alt="Lyca Mobile UK"] {
+  max-width: 80px;
   height: auto;
 }
 
