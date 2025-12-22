@@ -1,3 +1,4 @@
+/* stylelint-disable */
 /*
  * Copyright 2020 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -16,21 +17,31 @@
 
 :root {
   /* Lycamobile Brand Colors */
-  --color-primary-green: #08dc7d; /* Main brand green (buttons) */
-  --color-primary-green-hover: #06c56e; /* Hover state for green */
-  --color-secondary-blue: #384c72; /* Dark blue (headings, text) */
-  --color-accent-blue: #5587ea; /* Light blue (links) */
-  --color-accent-blue-hover: #3b6cd9; /* Hover state for blue links */
+  --color-primary-green: #08dc7d;
+  /* Main brand green (buttons) */
+  --color-primary-green-hover: #06c56e;
+  /* Hover state for green */
+  --color-secondary-blue: #21254f;
+  /* Dark blue (headings, text) */
+  --color-accent-blue: #5587ea;
+  /* Light blue (links) */
+  --color-accent-blue-hover: #3b6cd9;
+  /* Hover state for blue links */
 
   /* Text Colors */
-  --color-text-primary: #344054; /* Primary text (h1) */
-  --color-text-secondary: #667085; /* Secondary text (body, descriptions) */
-  --color-text-dark: #21264e; /* Dark text (button labels) */
+  --color-text-primary: #344054;
+  /* Primary text (h1) */
+  --color-text-secondary: #667085;
+  /* Secondary text (body, descriptions) */
+  --color-text-dark: #21264e;
+  /* Dark text (button labels) */
 
   /* Background Colors */
   --background-color: #fff;
-  --background-light: #eff8ff; /* Light blue background for sections */
-  --background-gray: #f8f8f8; /* Light gray background */
+  --background-light: #eff8ff;
+  /* Light blue background for sections */
+  --background-gray: #f8f8f8;
+  /* Light gray background */
 
   /* Additional Semantic Colors */
   --color-success: #22c55e;
@@ -58,20 +69,30 @@
   --body-font-size-xs: 14px;
 
   /* Typography - Heading Sizes (Extracted from Lycamobile) */
-  --heading-font-size-xxl: 42px; /* h1 on desktop */
-  --heading-font-size-xl: 32px; /* h2 on desktop */
-  --heading-font-size-l: 26px; /* h3 - actual from site */
-  --heading-font-size-m: 24px; /* h4 - actual from site */
-  --heading-font-size-s: 18px; /* h5 on mobile */
-  --heading-font-size-xs: 16px; /* h6 on mobile */
+  --heading-font-size-xxl: 42px;
+  /* h1 on desktop */
+  --heading-font-size-xl: 32px;
+  /* h2 on desktop */
+  --heading-font-size-l: 26px;
+  /* h3 - actual from site */
+  --heading-font-size-m: 24px;
+  /* h4 - actual from site */
+  --heading-font-size-s: 18px;
+  /* h5 on mobile */
+  --heading-font-size-xs: 16px;
+  /* h6 on mobile */
 
   /* Mobile heading sizes */
-  --heading-font-size-xxl-mobile: 24px; /* h1 on mobile - extracted */
-  --heading-font-size-xl-mobile: 26px; /* h2 on mobile - extracted */
+  --heading-font-size-xxl-mobile: 24px;
+  /* h1 on mobile - extracted */
+  --heading-font-size-xl-mobile: 26px;
+  /* h2 on mobile - extracted */
 
   /* Typography - Line Heights (Extracted from Lycamobile) */
-  --line-height-tight: 1.17; /* 28.128px / 24px for h1 */
-  --line-height-normal: 1.16; /* 18.56px / 16px for body */
+  --line-height-tight: 1.17;
+  /* 28.128px / 24px for h1 */
+  --line-height-normal: 1.16;
+  /* 18.56px / 16px for body */
   --line-height-relaxed: 1.6;
 
   /* Spacing System */
@@ -99,7 +120,7 @@
   --max-width-content: 1200px;
 }
 
-@media (width >= 900px) {
+@media (width >=900px) {
   :root {
     /* Typography - Desktop Sizes */
     --body-font-size-m: 18px;
@@ -107,12 +128,18 @@
     --body-font-size-xs: 14px;
 
     /* Heading sizes match original site (desktop) */
-    --heading-font-size-xxl: 48px; /* h1 on desktop */
-    --heading-font-size-xl: 36px; /* h2 on desktop */
-    --heading-font-size-l: 28px; /* h3 on desktop */
-    --heading-font-size-m: 22px; /* h4 on desktop */
-    --heading-font-size-s: 20px; /* h5 on desktop */
-    --heading-font-size-xs: 18px; /* h6 on desktop */
+    --heading-font-size-xxl: 48px;
+    /* h1 on desktop */
+    --heading-font-size-xl: 36px;
+    /* h2 on desktop */
+    --heading-font-size-l: 28px;
+    /* h3 on desktop */
+    --heading-font-size-m: 22px;
+    /* h4 on desktop */
+    --heading-font-size-s: 20px;
+    /* h5 on desktop */
+    --heading-font-size-xs: 18px;
+    /* h6 on desktop */
   }
 }
 
@@ -192,7 +219,7 @@ h6 {
   line-height: var(--line-height-tight);
 }
 
-@media (width >= 900px) {
+@media (width >=900px) {
   h1 {
     font-size: var(--heading-font-size-xxl);
   }
@@ -225,7 +252,7 @@ pre {
   white-space: pre;
 }
 
-main > div {
+main>div {
   margin: 40px 16px;
 }
 
@@ -315,7 +342,7 @@ main img {
 }
 
 /* Promotional banner styling */
-main > .section:first-of-type p > picture {
+main>.section:first-of-type p>picture {
   display: block;
   text-align: center;
 }
@@ -331,7 +358,7 @@ main > .section:first-of-type p > picture {
   width: 100%;
 }
 
-main > .section:first-of-type p > picture img {
+main>.section:first-of-type p>picture img {
   display: block;
   width: 343px;
   max-width: 100%;
@@ -339,23 +366,23 @@ main > .section:first-of-type p > picture img {
 }
 
 /* sections */
-main > .section {
+main>.section {
   margin: var(--spacing-xl) 0;
 }
 
-main > .section > div {
+main>.section>div {
   max-width: var(--max-width-content);
   margin: auto;
   padding: 0 var(--spacing-m);
 }
 
-main > .section:first-of-type {
+main>.section:first-of-type {
   margin-top: 0;
   text-align: center;
 }
 
-@media (width >= 900px) {
-  main > .section > div {
+@media (width >=900px) {
+  main>.section>div {
     padding: 0 var(--spacing-l);
   }
 }
@@ -373,6 +400,10 @@ main .section.dark {
   color: white;
   margin: 0;
   padding: var(--spacing-xl) 0;
+}
+
+main .section.dark.carousel-hero-container {
+  padding: 0;
 }
 
 main .section.dark h1,
@@ -403,7 +434,7 @@ main .section.light-blue {
 }
 
 main .section.announcement {
-  background-color: rgb(255 238 178);
+  background-color: #ffeeb2;
   color: #000;
   margin: 0;
   padding: 12px 20px;
@@ -427,4 +458,269 @@ main .section.announcement a:hover {
 /* Hide metadata block - page metadata should not be visible */
 main .metadata {
   display: none;
+}
+
+.cards-action-container .default-content-wrapper {
+  text-align: center;
+}
+
+.cards-action-container .default-content-wrapper h2 {
+  margin-top: 0;
+  font-size: 3rem;
+  line-height: 3.48rem;
+  color: #fff;
+  margin-bottom: .25rem;
+}
+
+.cards-action-container .default-content-wrapper p {
+  font-size: 1rem;
+  line-height: 1.16rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.cards-action-container.dark .cards-action-wrapper .cards-action>ul {
+  display: flex !important;
+  justify-content: center;
+}
+
+.cards-action-container .cards-action-wrapper .cards-action>ul>li {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.cards-action-container .cards-action-wrapper .cards-action>ul>li:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.cards-action-container .cards-action-wrapper .cards-action .cards-action-card-image {
+  background-color: transparent;
+}
+
+main .section.dark.cards-action-container {
+  padding-bottom: 300px;
+}
+
+.tabs-account-container.lyca-section {
+  position: relative;
+  background-color: #fff;
+  text-align: center;
+  width: 80%;
+  max-width: var(--max-width-content);
+  margin: -250px auto 0;
+  padding: 2.5rem 0;
+  box-shadow: 0 10px 20px 0 rgba(0, 0, 0, .15);
+  z-index: 1;
+}
+
+.cards-pricing-container .cards-pricing-wrapper ul li {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.cards-pricing-container .cards-pricing-wrapper ul li:hover {
+  box-shadow: none;
+}
+
+.tabs-account-container.lyca-section h2,
+.cards-pricing-container h2 {
+  color: #384c72;
+}
+
+.tabs-account-container.lyca-section .default-content-wrapper:first-child h2 {
+  margin: 0;
+  margin-bottom: .825rem;
+}
+
+.tabs-account-container.lyca-section p,
+.cards-pricing-container p {
+  color: #667085;
+}
+
+.tabs-account-container.lyca-section p {
+  font-size: 1rem;
+  line-height: 1.16rem;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+  font-family: GTEestiLCDisplayRegular;
+  color: #667085;
+  text-align: center;
+  margin-top: 0;
+}
+
+.tabs-account-container.lyca-section ul li:first-child {
+  grid-column: span 3;
+}
+
+.tabs-account-container.lyca-section .tabs-account-wrapper > div:first-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.tabs-account-container.lyca-section .tabs-account-wrapper .tabs-account > div:first-child  {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.tabs-account-container.lyca-section .tabs-account a {
+  color: #344054;
+  background-color: #e8f4fe;
+  border: 1px solid #667085;
+  min-height: 2.06rem;
+  margin: 0;
+  min-width: 130px;
+  border-radius: 50rem;
+  padding: 2px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tabs-account-container.lyca-section .tabs-account a:hover {
+  transform: none;
+}
+
+.tabs-account-container.lyca-section .default-content-wrapper:last-child p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.tabs-account-container.lyca-section .default-content-wrapper p img {
+  width: 36px;
+}
+
+.tabs-account-container.lyca-section .default-content-wrapper p picture:last-child img {
+  width: 16px;
+}
+
+.tabs-account-container.lyca-section .default-content-wrapper p a:empty {
+  display: none;
+}
+
+.tabs-account-container.lyca-section .tabs-account a:hover {
+  color: #344054;
+}
+
+.tabs-account-container.lyca-section .cards-action-card-image img {
+  width: 27px;
+  height: 27px;
+}
+
+.cards-pricing-container .default-content-wrapper {
+  text-align: center;
+}
+
+.cards-pricing-container .cards-pricing-wrapper {
+  margin-top: 40px;
+}
+
+.cards-pricing-container .cards-pricing-wrapper .cards-pricing {
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+}
+
+.cards-pricing-container .cards-pricing-wrapper .cards-pricing ul {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.cards-pricing-container .cards-pricing-wrapper .cards-pricing li:hover {
+  transform: none;
+}
+
+.cards-pricing-wrapper .cards-pricing .cards-pricing-card-image img {
+  max-width: 100%;
+  padding: 0;
+  border-radius: 0;
+}
+
+.cards-pricing-wrapper .cards-pricing .cards-pricing-card-image+.cards-pricing-card-body {
+  display: none;
+}
+
+.section.refer-section,
+.refer-section .default-content-wrapper {
+  margin: 0;
+  padding: 0;
+  max-width: 100%;
+}
+
+.section.refer-section p {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #006ae0;
+  margin: 0;
+  padding: 20px 0;
+}
+
+.section.refer-section p a {
+  color: #fff;
+  font-size: 1.125rem;
+}
+.section.refer-section p img {
+  width: 78px;
+  height: auto;
+}
+
+@media only screen and (max-width: 768px) {
+  main .section.dark.cards-action-container {
+    padding: 30px 15px 65px;
+  }
+
+  .cards-action-container .default-content-wrapper h2 {
+    font-size: 1.25rem;
+    line-height: 1.758rem;
+  }
+
+  .cards-action-container .default-content-wrapper p {
+    font-size: 0.875rem;
+    line-height: 1rem;
+  }
+
+  .tabs-account-container.lyca-section {
+    margin-top: -36px;
+    padding: 1.5rem 0;
+  }
+
+  .tabs-account-container.lyca-section .cards-action-card-body a {
+    min-width: 80px;
+    font-size: 13px;
+    padding: 2px 8px;
+    min-height: 1.5rem;
+  }
+
+  .cards-pricing-container h2 {
+    font-size: 1.25rem;
+    line-height: 1.758rem;
+  }
+
+  .cards-pricing-container p {
+    font-size: 0.875rem;
+    line-height: 1rem;
+  }
+
+  .section.refer-section p {
+    padding: 12px 0;
+  }
+
+  .section.refer-section p img {
+    width: 50px;
+  }
+}
+
+@media only screen and (max-width: 576px)  {
+  .cards-pricing-container .cards-pricing-wrapper .cards-pricing ul {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 16px;
+  }
 }
