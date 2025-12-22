@@ -1,166 +1,167 @@
 .carousel-flags .carousel-flags-slides-container {
-  position: relative;
+position: relative;
 }
 
 .carousel-flags .carousel-flags-slides,
 .carousel-flags .carousel-flags-slide-indicators {
-  list-style: none;
-  margin: 0;
-  padding: 0;
+list-style: none;
+margin: 0;
+padding: 0;
 }
 
 .carousel-flags .carousel-flags-slides {
-  display: flex;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  overflow: scroll clip;
+display: flex;
+scroll-behavior: smooth;
+scroll-snap-type: x mandatory;
+overflow: scroll clip;
 }
 
 .carousel-flags .carousel-flags-slides::-webkit-scrollbar {
-  display: none;
+display: none;
 }
 
 .carousel-flags .carousel-flags-slide {
-  flex: 0 0 100%;
-  scroll-snap-align: start;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-s);
-  position: relative;
-  width: 100%;
-  min-height: 160px;
-  padding: var(--spacing-l);
+/* flex: 0 0 100%; */
+scroll-snap-align: start;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: var(--spacing-s);
+position: relative;
+width: 100%;
+min-height: 160px;
+padding: var(--spacing-l);
 }
 
 .carousel-flags .carousel-flags-slide:has(.carousel-flags-slide-content[data-align='center']) {
-  align-items: center;
+align-items: center;
 }
 
 .carousel-flags .carousel-flags-slide:has(.carousel-flags-slide-content[data-align='right']) {
-  align-items: flex-end;
+align-items: flex-end;
 }
 
 .carousel-flags .carousel-flags-slide .carousel-flags-slide-image {
-  position: relative;
-  flex-shrink: 0;
+position: relative;
+flex-shrink: 0;
 }
 
 .carousel-flags .carousel-flags-slide .carousel-flags-slide-image picture {
-  position: relative;
-  display: block;
+position: relative;
+display: block;
 }
 
 .carousel-flags .carousel-flags-slide .carousel-flags-slide-image picture > img {
-  height: 80px;
-  width: 80px;
-  object-fit: contain;
-  border-radius: 50%;
-  display: block;
+height: 80px;
+width: 80px;
+object-fit: contain;
+border-radius: 50%;
+display: block;
 }
 
 .carousel-flags .carousel-flags-slide .carousel-flags-slide-content {
-  z-index: 1;
-  margin: 0;
-  padding: 0;
-  color: var(--color-text-primary);
-  background-color: transparent;
-  position: relative;
-  width: auto;
-  font-size: var(--body-font-size-l);
-  font-weight: 500;
+z-index: 1;
+margin: 0;
+padding: 0;
+color: var(--color-text-primary);
+background-color: transparent;
+position: relative;
+width: auto;
+font-size: var(--body-font-size-l);
+font-weight: 500;
 }
 
 .carousel-flags .carousel-flags-slide-indicators {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px 12px;
-  padding: 12px;
-  background-color: var(--light-color);
-  line-height: 0;
+display: none;
+/* display: flex; */
+flex-wrap: wrap;
+justify-content: center;
+gap: 6px 12px;
+padding: 12px;
+background-color: var(--light-color);
+line-height: 0;
 }
 
 .carousel-flags .carousel-flags-slide-indicator button {
-  width: 24px;
-  height: 24px;
-  margin: 0;
-  padding: 0;
-  border-radius: 50%;
-  background-color: #8F8F8F;
-  transition: background-color 0.2s;
+width: 24px;
+height: 24px;
+margin: 0;
+padding: 0;
+border-radius: 50%;
+background-color: #8F8F8F;
+transition: background-color 0.2s;
 }
 
 .carousel-flags .carousel-flags-navigation-buttons {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: 12px;
-  right: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  z-index: 1;
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+left: 12px;
+right: 12px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+z-index: 1;
 }
 
 .carousel-flags .carousel-flags-navigation-buttons button {
-  position: relative;
-  width: 44px;
-  height: 44px;
-  margin: 0;
-  border-radius: 50%;
-  padding: 0;
-  background-color: rgb(19 19 19 / 25%);
-  transition: background-color 0.2s;
+position: relative;
+width: 44px;
+height: 44px;
+margin: 0;
+border-radius: 50%;
+padding: 0;
+background-color: rgb(19 19 19 / 25%);
+transition: background-color 0.2s;
 }
 
 .carousel-flags .carousel-flags-navigation-buttons button:hover,
 .carousel-flags .carousel-flags-navigation-buttons button:focus-visible {
-  background-color: rgb(19 19 19 / 75%);
+background-color: rgb(19 19 19 / 75%);
 }
 
 .carousel-flags .carousel-flags-navigation-buttons button::after {
-  display: block;
-  content: '';
-  border: 2px solid;
-  border-bottom: 0;
-  border-left: 0;
-  height: 12px;
-  width: 12px;
-  position: absolute;
-  top: 50%;
-  left: calc(50% + 2px);
-  transform: translate(-50%, -50%) rotate(-135deg);
+display: block;
+content: '';
+border: 2px solid;
+border-bottom: 0;
+border-left: 0;
+height: 12px;
+width: 12px;
+position: absolute;
+top: 50%;
+left: calc(50% + 2px);
+transform: translate(-50%, -50%) rotate(-135deg);
 }
 
 .carousel-flags .carousel-flags-navigation-buttons button.slide-next::after {
-  transform: translate(-50%, -50%) rotate(45deg);
-  left: calc(50% - 2px);
+transform: translate(-50%, -50%) rotate(45deg);
+left: calc(50% - 2px);
 }
 
 .carousel-flags .carousel-flags-slide-indicator button:disabled,
 .carousel-flags .carousel-flags-slide-indicator button:hover,
 .carousel-flags .carousel-flags-slide-indicator button:focus-visible {
-  background-color: var(--text-color);
+background-color: var(--text-color);
 }
 
 @media (width >= 600px) {
-  .carousel-flags .carousel-flags-navigation-buttons {
-    left: 24px;
-    right: 24px;
-  }
+.carousel-flags .carousel-flags-navigation-buttons {
+left: 0;
+right: 0;
+}
 
-  .carousel-flags .carousel-flags-slide {
-    min-height: 180px;
-  }
+.carousel-flags .carousel-flags-slide {
+min-height: 180px;
+}
 
-  .carousel-flags .carousel-flags-slide .carousel-flags-slide-image picture > img {
-    height: 100px;
-    width: 100px;
-  }
+.carousel-flags .carousel-flags-slide .carousel-flags-slide-image picture > img {
+height: 100px;
+width: 100px;
+}
 
-  .carousel-flags .carousel-flags-slide .carousel-flags-slide-content {
-    font-size: var(--body-font-size-l);
-  }
+.carousel-flags .carousel-flags-slide .carousel-flags-slide-content {
+font-size: var(--body-font-size-l);
+}
 }

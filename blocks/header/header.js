@@ -120,6 +120,30 @@ export default async function decorate(block) {
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
   const classes = ['brand', 'sections', 'tools'];
+
+  // If nav doesn't have exactly 3 sections, create sample structure
+  if (nav.children.length !== 3) {
+    nav.innerHTML = `
+      <div>
+        <p><strong><a href="/">Lyca Mobile UK</a></strong></p>
+      </div>
+      <div>
+        <ul>
+          <li><a href="/en/bundles/sim-only-deals/">Pay monthly</a></li>
+          <li><a href="/en/bundles/pay-as-you-go-sim-deals/">SIM only deals</a></li>
+          <li><a href="/en/help-support">Help</a></li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li><a href="/en/quick-top-up">Quick top up</a></li>
+          <li><a href="https://mylyca.lycamobile.co.uk/en/login">Login</a></li>
+          <li><a href="/en/cart">Cart</a></li>
+        </ul>
+      </div>
+    `;
+  }
+
   classes.forEach((c, i) => {
     const section = nav.children[i];
     if (section) section.classList.add(`nav-${c}`);

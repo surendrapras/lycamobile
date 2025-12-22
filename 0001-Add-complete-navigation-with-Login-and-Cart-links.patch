@@ -1,0 +1,62 @@
+From 853d9c2ddc5a7c9d65051813737d67580d8c9ee3 Mon Sep 17 00:00:00 2001
+From: AEMY Studio <noreply@aemy.studio>
+Date: Sat, 20 Dec 2025 10:03:10 +0000
+Subject: [PATCH] Add complete navigation with Login and Cart links
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+- Update nav.md with 3-section structure (brand, sections, tools)
+- Add horizontal rule separators for proper header.js rendering
+- Include Login link to My Lyca account portal
+- Include Cart link for shopping cart
+- Add nav and footer metadata to en/index.md
+
+Fixes header not appearing on published site.
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>
+---
+ en/index.md |  4 ++++
+ nav.md      | 17 +++++++++++++----
+ 2 files changed, 17 insertions(+), 4 deletions(-)
+
+diff --git a/en/index.md b/en/index.md
+index ab10d7c..06be417 100644
+--- a/en/index.md
++++ b/en/index.md
+@@ -154,3 +154,7 @@ OR You can come on the [Download the Lyca Mobile app](#app)
+ +---------------------+--------------------------------+
+ | Image               | https://cms-assets.ldsvcplatform.com/IRE/s3fs-public/2023-09/home_logo.png |
+ +---------------------+--------------------------------+
++| nav                 | /nav                            |
+++---------------------+--------------------------------+
++| footer              | /footer                         |
+++---------------------+--------------------------------+
+diff --git a/nav.md b/nav.md
+index 28e7e60..91a0ed1 100644
+--- a/nav.md
++++ b/nav.md
+@@ -1,5 +1,14 @@
+-# Lyca Mobile
++[![Lyca Mobile UK](./en/images/09e5387fc0cc3ff6561c8f84161688af.png)](/)
+ 
+-- [Pay Monthly](/paymonthly/en/bundles/sim-only-deals/)
+-- [Pay As You Go](https://www.lycamobile.co.uk/en/)
+-- [My Account](https://www.lycamobile.co.uk/paymonthly/en/login)
++---
++
++- [Pay monthly](https://www.lycamobile.co.uk/paymonthly/en/bundles/sim-only-deals/)
++- [SIM only deals](/en/bundles/pay-as-you-go-sim-deals/#30-day-plans)
++- [Help](/en/help-support)
++- [Refer a friend](https://lycamobile.aklamio.com/?utm_source=aklamio&utm_medium=referafriend&utm_campaign=headernavigation&source=Lycaheadernavigation)
++
++---
++
++- [Quick top up](/en/quick-top-up)
++- [Login](https://mylyca.lycamobile.co.uk/en/login)
++- [Cart](/en/cart)
+-- 
+2.39.5
+

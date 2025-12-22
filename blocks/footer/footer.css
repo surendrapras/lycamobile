@@ -1,20 +1,135 @@
+/* Footer styles with dark navy blue background */
 footer {
-  background-color: var(--light-color);
+  background-color: #1e3a5f;
+  color: #fff;
   font-size: var(--body-font-size-xs);
+}
+
+footer .footer {
+  padding: 60px 24px 24px;
 }
 
 footer .footer > div {
   margin: auto;
   max-width: 1200px;
-  padding: 40px 24px 24px;
 }
 
-footer .footer p {
+/* First div contains the 5-column grid */
+footer .footer > div > div:first-child {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+
+footer .footer h2 {
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 16px;
+  text-transform: none;
+}
+
+footer .footer ul {
+  list-style: none;
   margin: 0;
+  padding: 0;
+}
+
+footer .footer li {
+  margin-bottom: 10px;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+footer .footer a {
+  color: #fff;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+footer .footer a:hover {
+  opacity: 0.8;
+}
+
+/* Second div contains bottom section with logo, copyright, social icons */
+footer .footer > div > div:last-child {
+  border-top: 1px solid rgb(255 255 255 / 20%);
+  padding-top: 30px;
+  text-align: center;
+}
+
+footer .footer > div > div:last-child > p:first-child {
+  margin: 0 0 15px;
+}
+
+footer .footer > div > div:last-child > p:first-child img {
+  max-width: 120px;
+  height: auto;
+}
+
+footer .footer > div > div:last-child > p:nth-child(2) {
+  margin: 0 0 15px;
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+/* Social media icons */
+footer .footer > div > div:last-child > p:last-child {
+  margin: 0;
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  align-items: center;
+}
+
+/* App store badges and store locator in 5th column */
+footer .footer > div > div:first-child > div:last-child p {
+  margin: 0 0 12px;
+}
+
+footer .footer > div > div:first-child > div:last-child img {
+  max-width: 135px;
+  width: 100%;
+  height: auto;
+}
+
+footer .footer > div > div:last-child > p:last-child picture {
+  display: inline-block;
+  line-height: 0;
+}
+
+footer .footer > div > div:last-child > p:last-child img {
+  width: 32px;
+  height: 32px;
+  transition: opacity 0.3s;
+}
+
+footer .footer > div > div:last-child > p:last-child img:hover {
+  opacity: 0.7;
+}
+
+@media (width >= 600px) {
+  footer .footer > div > div:first-child {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
+  footer .footer {
+    padding: 60px 32px 32px;
+  }
+
+  footer .footer > div > div:first-child {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 30px;
+  }
+
+  footer .footer h2 {
+    font-size: 15px;
+  }
+
+  footer .footer li {
+    font-size: 13px;
   }
 }
