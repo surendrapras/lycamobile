@@ -1,176 +1,59 @@
 .columns-features {
-  padding: var(--spacing-xl) 0;
+padding: var(--spacing-xl) 0;
+}
+
+.columns-features-container h2 {
+text-align: center;
 }
 
 .columns-features > div {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-l);
-}
-
-.columns-features-track > div {
-  flex: 0 0 100%;
-  width: 100%;
+display: flex;
+flex-direction: column;
+gap: var(--spacing-xl);
 }
 
 .columns-features > div > div {
-  text-align: center;
-  padding: var(--spacing-l);
-  background-color: var(--background-color);
-  border-radius: var(--border-radius-lg);
-  box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+text-align: center;
 }
 
-.columns-features > div > div:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgb(0 0 0 / 12%);
+.columns-features .button-container a.button:any-link, button {
+border: none;
+background-color: unset;
+
+&:hover {
+background-color: none;
+}
+}
+
+.columns-features img {
+width: 80px;
+height: 80px;
+margin: 0 auto var(--spacing-m);
+display: block;
 }
 
 .columns-features h3,
 .columns-features strong {
-  font-size: var(--body-font-size-m);
-  color: var(--color-secondary-blue);
-  margin-top: var(--spacing-s);
-  margin-bottom: var(--spacing-s);
-  font-weight: 700;
-  display: block;
+font-size: var(--body-font-size-m);
+color: var(--color-secondary-blue);
+margin: var(--spacing-s) 0;
+font-weight: 700;
+display: block;
 }
 
 .columns-features p {
-  color: var(--color-text-secondary);
-  font-size: var(--body-font-size-s);
-  line-height: var(--line-height-relaxed);
-  margin-bottom: var(--spacing-s);
+color: var(--color-text-secondary);
+font-size: var(--body-font-size-s);
+line-height: var(--line-height-relaxed);
 }
 
-.columns-features p:has(a) {
-  margin-top: var(--spacing-m);
-}
-
-.columns-features a {
-  color: var(--color-accent-blue);
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.columns-features a:hover {
-  color: var(--color-accent-blue-hover);
-  text-decoration: underline;
-}
-
-.columns-features img {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto var(--spacing-m);
-  display: block;
-}
-
-/* Carousel styles for mobile */
-.columns-features-carousel {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-}
-
-.columns-features-track {
-  display: flex;
-  transition: transform 0.3s ease-in-out;
-  width: 100%;
-}
-
-/* Navigation arrows */
-.columns-features-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: #9ca3af;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  font-size: 20px;
-  color: white;
-  box-shadow: none;
-  transition: all 0.3s ease;
-  z-index: 10;
-}
-
-.columns-features-nav:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.columns-features-nav:hover:not(:disabled) {
-  background-color: var(--color-secondary-blue);
-  color: white;
-  transform: translateY(-50%) scale(1.1);
-}
-
-.columns-features-nav-prev {
-  left: 8px;
-}
-
-.columns-features-nav-next {
-  right: 8px;
-}
-
-/* Pagination dots */
-.columns-features-pagination {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: var(--spacing-m);
-  padding-bottom: var(--spacing-s);
-}
-
-.columns-features-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background-color: #d1d5db;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.columns-features-dot.active {
-  background-color: var(--color-secondary-blue);
-  width: 24px;
-  border-radius: 5px;
-}
-
-.columns-features-dot:hover {
-  background-color: var(--color-accent-blue);
-}
-
+/* Desktop / Tablet */
 @media (width >= 900px) {
-  .columns-features > div {
-    flex-direction: row;
-    gap: var(--spacing-l);
-    text-align: center;
-  }
+.columns-features > div {
+flex-direction: row;
+}
 
-  .columns-features > div > div {
-    flex: 1;
-  }
-
-  /* Hide carousel controls on desktop */
-  .columns-features-carousel {
-    overflow: visible;
-  }
-
-  .columns-features-track {
-    display: contents;
-  }
-
-  .columns-features-nav,
-  .columns-features-pagination {
-    display: none;
-  }
+.columns-features > div > div {
+flex: 1;
+}
 }

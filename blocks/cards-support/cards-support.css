@@ -1,69 +1,72 @@
+.cards-support-container h2 {
+text-align: center;
+}
+
 .cards-support > ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
+list-style: none;
+margin: 0;
+padding: 0;
 }
 
 .cards-support > ul > li {
-  border: none;
-  background-color: var(--background-color);
-  border-radius: var(--border-radius-lg);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
-  text-align: center;
+background-color: var(--background-color);
+display: flex;
+overflow: hidden;
+cursor: pointer;
+text-align: center;
+justify-content: center;
 }
 
-.cards-support > ul > li:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgb(0 0 0 / 12%);
+.cards-support .button-container a.button:any-link, button {
+border: none;
+background-color: unset;
+
+&:hover {
+background-color: none;
+}
 }
 
 .cards-support .cards-support-card-body {
-  padding: 20px;
+padding: 20px;
 }
 
 .cards-support .cards-support-card-body p {
-  margin: 0;
+margin: 0;
 }
 
 .cards-support .cards-support-card-body a {
-  color: var(--color-secondary-blue);
-  font-size: var(--body-font-size-s);
-  font-weight: 500;
-  text-decoration: none;
-  display: block;
+color: var(--color-secondary-blue);
+font-size: var(--body-font-size-s);
+font-weight: 500;
+text-decoration: none;
+display: block;
 }
 
 .cards-support .cards-support-card-body a:hover {
-  color: var(--color-accent-blue);
-  text-decoration: none;
+color: var(--color-accent-blue);
+text-decoration: none;
 }
 
 .cards-support .cards-support-card-image {
-  line-height: 0;
-  background-color: #e0f2fe;
-  padding: var(--spacing-l);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+line-height: 0;
+background-color: #e0f2fe;
+padding: var(--spacing-l);
+display: flex;
+align-items: center;
+justify-content: center;
 }
 
 .cards-support > ul > li img {
-  width: 80px;
-  height: 80px;
-  object-fit: contain;
-  display: block;
-  margin: 0 auto;
+width: 80px;
+height: 80px;
+object-fit: contain;
+display: block;
+margin: 0 auto;
 }
 
 @media (width >= 900px) {
-  .cards-support > ul {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 24px;
-  }
+.cards-support > ul {
+grid-template-columns: repeat(4, 1fr);
+gap: 24px;
+}
 }
