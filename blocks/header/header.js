@@ -3,6 +3,9 @@ import { loadFragment } from '../fragment/fragment.js';
 
 const isDesktop = window.matchMedia('(min-width: 900px)');
 
+let closeOnEscape;
+let closeOnFocusLost;
+
 function toggleAllNavSections(sections, expanded = false) {
   if (!sections) return;
   sections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach((section) => {
@@ -58,11 +61,19 @@ function applyMenuState(nav, navSections, nextOpen) {
   }
 }
 
-function closeOnEscape(e) {
+function toggleMenu(nav, navSections, forceExpanded = null) {
+  const currentOpen = nav.getAttribute('aria-expanded') === 'true';
+  const nextOpen = forceExpanded === null ? !currentOpen : forceExpanded;
+  applyMenuState(nav, navSections, nextOpen);
+}
+
+closeOnEscape = (e) => {
   if (e.code !== 'Escape') return;
 
   const nav = document.getElementById('nav');
-  const navSections = nav?.querySelector('.nav-sections');
+  if (!nav) return;
+
+  const navSections = nav.querySelector('.nav-sections');
   const navSectionExpanded = navSections?.querySelector('[aria-expanded=\'true\']');
 
   if (navSectionExpanded && isDesktop.matches) {
@@ -71,13 +82,13 @@ function closeOnEscape(e) {
     return;
   }
 
-  if (!isDesktop.matches && nav) {
-    applyMenuState(nav, navSections, false);
+  if (!isDesktop.matches) {
+    toggleMenu(nav, navSections, false);
     nav.querySelector('button')?.focus();
   }
-}
+};
 
-function closeOnFocusLost(e) {
+closeOnFocusLost = (e) => {
   const nav = e.currentTarget;
   if (nav.contains(e.relatedTarget)) return;
 
@@ -90,15 +101,9 @@ function closeOnFocusLost(e) {
   }
 
   if (!isDesktop.matches) {
-    applyMenuState(nav, navSections, false);
+    toggleMenu(nav, navSections, false);
   }
-}
-
-function toggleMenu(nav, navSections, forceExpanded = null) {
-  const currentOpen = nav.getAttribute('aria-expanded') === 'true';
-  const nextOpen = forceExpanded === null ? !currentOpen : forceExpanded;
-  applyMenuState(nav, navSections, nextOpen);
-}
+};
 
 export default async function decorate(block) {
   const navMeta = getMetadata('nav');
