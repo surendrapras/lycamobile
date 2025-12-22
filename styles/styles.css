@@ -501,9 +501,10 @@ main .section.dark.cards-action-container {
   padding-bottom: 300px;
 }
 
-.cards-action-container.lyca-section {
+.tabs-account-container.lyca-section {
   position: relative;
   background-color: #fff;
+  text-align: center;
   width: 80%;
   max-width: var(--max-width-content);
   margin: -250px auto 0;
@@ -521,31 +522,55 @@ main .section.dark.cards-action-container {
   box-shadow: none;
 }
 
-.cards-action-container.lyca-section h2,
+.tabs-account-container.lyca-section h2,
 .cards-pricing-container h2 {
   color: #384c72;
 }
 
-.cards-action-container.lyca-section p,
+.tabs-account-container.lyca-section .default-content-wrapper:first-child h2 {
+  margin: 0;
+  margin-bottom: .825rem;
+}
+
+.tabs-account-container.lyca-section p,
 .cards-pricing-container p {
   color: #667085;
 }
 
-.cards-action-container.lyca-section ul li:first-child {
+.tabs-account-container.lyca-section p {
+  font-size: 1rem;
+  line-height: 1.16rem;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+  font-family: GTEestiLCDisplayRegular;
+  color: #667085;
+  text-align: center;
+  margin-top: 0;
+}
+
+.tabs-account-container.lyca-section ul li:first-child {
   grid-column: span 3;
 }
 
-.cards-action-container.lyca-section ul li:first-child p {
+.tabs-account-container.lyca-section .tabs-account-wrapper > div:first-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.tabs-account-container.lyca-section .tabs-account-wrapper .tabs-account > div:first-child  {
   display: flex;
   justify-content: center;
   gap: 1rem;
 }
 
-.cards-action-container.lyca-section .cards-action-card-body a {
+.tabs-account-container.lyca-section .tabs-account a {
   color: #344054;
   background-color: #e8f4fe;
   border: 1px solid #667085;
   min-height: 2.06rem;
+  margin: 0;
   min-width: 130px;
   border-radius: 50rem;
   padding: 2px 12px;
@@ -554,11 +579,36 @@ main .section.dark.cards-action-container {
   justify-content: center;
 }
 
-.cards-action-container.lyca-section .cards-action-card-body a:hover {
+.tabs-account-container.lyca-section .tabs-account a:hover {
+  transform: none;
+}
+
+.tabs-account-container.lyca-section .default-content-wrapper:last-child p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.tabs-account-container.lyca-section .default-content-wrapper p img {
+  width: 36px;
+}
+
+.tabs-account-container.lyca-section .default-content-wrapper p picture:last-child img {
+  width: 16px;
+}
+
+.tabs-account-container.lyca-section .default-content-wrapper p a:empty {
+  display: none;
+}
+
+.tabs-account-container.lyca-section .tabs-account a:hover {
   color: #344054;
 }
 
-.cards-action-container.lyca-section .cards-action-card-image img {
+.tabs-account-container.lyca-section .cards-action-card-image img {
   width: 27px;
   height: 27px;
 }
@@ -636,12 +686,12 @@ main .section.dark.cards-action-container {
     line-height: 1rem;
   }
 
-  .cards-action-container.lyca-section {
+  .tabs-account-container.lyca-section {
     margin-top: -36px;
     padding: 1.5rem 0;
   }
 
-  .cards-action-container.lyca-section .cards-action-card-body a {
+  .tabs-account-container.lyca-section .cards-action-card-body a {
     min-width: 80px;
     font-size: 13px;
     padding: 2px 8px;
