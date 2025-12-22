@@ -1,5 +1,4 @@
 .columns-app {
-  background: linear-gradient(135deg, #eff8ff 0%, #e0f2fe 100%);
   border-radius: var(--border-radius-xl);
   padding: var(--spacing-xl);
   margin: var(--spacing-xl) 0;
