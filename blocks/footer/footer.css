@@ -56,11 +56,15 @@ footer .footer a:hover {
 footer .footer > div > div:last-child {
   border-top: 1px solid rgb(255 255 255 / 20%);
   padding-top: 30px;
-  text-align: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
 }
 
 footer .footer > div > div:last-child > p:first-child {
-  margin: 0 0 15px;
+  margin: 0;
 }
 
 footer .footer img[alt="Lyca Mobile UK"] {
@@ -69,9 +73,11 @@ footer .footer img[alt="Lyca Mobile UK"] {
 }
 
 footer .footer > div > div:last-child > p:nth-child(2) {
-  margin: 0 0 15px;
+  margin: 0;
   font-size: 13px;
   opacity: 0.9;
+  flex: 1;
+  text-align: center;
 }
 
 /* Social media icons */
@@ -79,7 +85,7 @@ footer .footer > div > div:last-child > p:last-child {
   margin: 0;
   display: flex;
   gap: 15px;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
 }
 
