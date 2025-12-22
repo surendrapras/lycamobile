@@ -148,43 +148,83 @@ export default async function decorate(block) {
     const section = nav.children[i];
     if (section) section.classList.add(`nav-${c}`);
   });
+  const navTools = nav.querySelector('.nav-tools');
+  if (navTools) {
+    const ul = navTools.querySelector('ul');
+    if (ul) {
+      [...ul.children].forEach((li) => {
+        const a = li.querySelector('a');
+        if (!a) return;
 
-  const navBrand = nav.querySelector('.nav-brand');
-  const brandLink = navBrand.querySelector('.button');
-  if (brandLink) {
-    brandLink.className = '';
-    brandLink.closest('.button-container').className = '';
-  }
+        const text = a.textContent.trim().toLowerCase();
 
-  const navSections = nav.querySelector('.nav-sections');
-  if (navSections) {
-    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-      if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-      navSection.addEventListener('click', () => {
-        if (isDesktop.matches) {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          toggleAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+        if (text === 'quick top up') {
+          li.classList.add('nav-tools-cta');
+        }
+
+        if (text === 'login') {
+          li.classList.add('nav-tools-account');
+          a.setAttribute('aria-label', 'Account');
+          a.innerHTML = `<span class="nav-tools-icon-circle"><img src="https://www.lycamobile.co.uk/_next/static/media/Account.ec46a854.svg" alt="" loading="lazy"></span><span class="nav-tools-chevron" aria-hidden="true"></span>`;
+        }
+
+        if (text === 'cart') {
+          li.classList.add('nav-tools-cart');
+          a.setAttribute('aria-label', 'Cart');
+          a.innerHTML = `<span class="nav-tools-icon-circle"><img src="https://www.lycamobile.co.uk/_next/static/media/Cart.c7614522.svg" alt="" loading="lazy"></span>`;
         }
       });
-    });
-  }
 
-  // hamburger for mobile
-  const hamburger = document.createElement('div');
-  hamburger.classList.add('nav-hamburger');
-  hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
+      if (!ul.querySelector('.nav-tools-lang')) {
+        const li = document.createElement('li');
+        li.className = 'nav-tools-lang';
+
+        const a = document.createElement('a');
+        a.href = '/en/';
+        a.setAttribute('aria-label', 'Language');
+        a.innerHTML = `<span class="nav-tools-lang-code">EN</span><span class="nav-tools-flag" aria-hidden="true">🇬🇧</span>`;
+
+        li.appendChild(a);
+        ul.appendChild(li);
+      }
+    }
+    const navBrand = nav.querySelector('.nav-brand');
+    const brandLink = navBrand.querySelector('.button');
+    if (brandLink) {
+      brandLink.className = '';
+      brandLink.closest('.button-container').className = '';
+    }
+
+    const navSections = nav.querySelector('.nav-sections');
+    if (navSections) {
+      navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
+        if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
+        navSection.addEventListener('click', () => {
+          if (isDesktop.matches) {
+            const expanded = navSection.getAttribute('aria-expanded') === 'true';
+            toggleAllNavSections(navSections);
+            navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          }
+        });
+      });
+    }
+
+    // hamburger for mobile
+    const hamburger = document.createElement('div');
+    hamburger.classList.add('nav-hamburger');
+    hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
       <span class="nav-hamburger-icon"></span>
     </button>`;
-  hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
-  nav.prepend(hamburger);
-  nav.setAttribute('aria-expanded', 'false');
-  // prevent mobile nav behavior on window resize
-  toggleMenu(nav, navSections, isDesktop.matches);
-  isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, isDesktop.matches));
+    hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
+    nav.prepend(hamburger);
+    nav.setAttribute('aria-expanded', 'false');
+    // prevent mobile nav behavior on window resize
+    toggleMenu(nav, navSections, false);
+    isDesktop.addEventListener('change', () => toggleMenu(nav, navSections, false));
 
-  const navWrapper = document.createElement('div');
-  navWrapper.className = 'nav-wrapper';
-  navWrapper.append(nav);
-  block.append(navWrapper);
+    const navWrapper = document.createElement('div');
+    navWrapper.className = 'nav-wrapper';
+    navWrapper.append(nav);
+    block.append(navWrapper);
+  }
 }
