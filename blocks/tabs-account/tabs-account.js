@@ -1,4 +1,36 @@
 import { toClassName } from '../../scripts/aem.js';
+function decorateLycaPhoneInput(block) {
+  if (!block.closest('.lyca-section')) return;
+
+  const triggerP = [...block.querySelectorAll('p')]
+    .find((p) => p.textContent.trim().toLowerCase() === 'enter your mobile number');
+  if (!triggerP) return;
+
+  const uid = `lyca-phone-${Math.random().toString(16).slice(2)}`;
+
+  const form = document.createElement('form');
+  form.className = 'lyca-phone';
+  form.setAttribute('novalidate', '');
+  form.innerHTML = `
+    <span class="lyca-phone-prefix" aria-hidden="true">+44</span>
+    <label class="visually-hidden" for="${uid}">Enter your mobile number</label>
+    <input
+      id="${uid}"
+      class="lyca-phone-input"
+      type="tel"
+      inputmode="tel"
+      autocomplete="tel"
+      placeholder="Enter lyca number &amp; get started"
+    />
+    <button class="lyca-phone-submit" type="submit" aria-label="Continue">
+      <span aria-hidden="true">→</span>
+    </button>
+  `;
+
+  form.addEventListener('submit', (e) => e.preventDefault());
+
+  triggerP.replaceWith(form);
+}
 
 export default function decorate(block) {
   const rows = [...block.children].filter((r) => r.children && r.children.length);
@@ -91,35 +123,3 @@ export default function decorate(block) {
   decorateLycaPhoneInput(block);
 }
 
-function decorateLycaPhoneInput(block) {
-  if (!block.closest('.lyca-section')) return;
-
-  const triggerP = [...block.querySelectorAll('p')]
-    .find((p) => p.textContent.trim().toLowerCase() === 'enter your mobile number');
-  if (!triggerP) return;
-
-  const uid = `lyca-phone-${Math.random().toString(16).slice(2)}`;
-
-  const form = document.createElement('form');
-  form.className = 'lyca-phone';
-  form.setAttribute('novalidate', '');
-  form.innerHTML = `
-    <span class="lyca-phone-prefix" aria-hidden="true">+44</span>
-    <label class="visually-hidden" for="${uid}">Enter your mobile number</label>
-    <input
-      id="${uid}"
-      class="lyca-phone-input"
-      type="tel"
-      inputmode="tel"
-      autocomplete="tel"
-      placeholder="Enter lyca number &amp; get started"
-    />
-    <button class="lyca-phone-submit" type="submit" aria-label="Continue">
-      <span aria-hidden="true">→</span>
-    </button>
-  `;
-
-  form.addEventListener('submit', (e) => e.preventDefault());
-
-  triggerP.replaceWith(form);
-}
