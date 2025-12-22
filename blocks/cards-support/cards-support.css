@@ -22,7 +22,7 @@ border: none;
 background-color: unset;
 
 &:hover {
-background-color: none;
+background-color: transparent;
 }
 }
 

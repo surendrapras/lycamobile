@@ -74,6 +74,7 @@ font-weight: 500;
 
 .carousel-flags .carousel-flags-slide-indicators {
 display: none;
+
 /* display: flex; */
 flex-wrap: wrap;
 justify-content: center;
