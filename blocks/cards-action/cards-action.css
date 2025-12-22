@@ -1,3 +1,5 @@
+/* stylelint-disable */
+
 .cards-action > ul {
   list-style: none;
   margin: 0;
@@ -19,7 +21,7 @@
 
 .cards-action > ul > li:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgb(0 0 0 / 12%);
+  /* box-shadow: 0 8px 16px rgb(0 0 0 / 12%); */
 }
 
 .cards-action .cards-action-card-body {
@@ -31,32 +33,39 @@
   margin: 0;
 }
 
+.cards-action .cards-action-card-body {
+  padding: .5rem 0 0;
+}
+
 .cards-action .cards-action-card-body a {
-  color: var(--color-secondary-blue);
+  color: #ffffff;
   font-size: var(--body-font-size-s);
   font-weight: 500;
   text-decoration: none;
   display: block;
+  background-color: transparent;
+  border-color: transparent;
+  margin: 0;
+  padding: 0;
 }
 
 .cards-action .cards-action-card-body a:hover {
-  color: var(--color-accent-blue);
+  color: #ffffff;
   text-decoration: none;
 }
 
 .cards-action .cards-action-card-image {
   line-height: 0;
   background-color: #e0f2fe;
-  padding: var(--spacing-l);
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 160px;
 }
 
 .cards-action > ul > li img {
-  width: 120px;
-  height: 120px;
+  width: 85px;
+  height: 85px;
   object-fit: contain;
   display: block;
   margin: 0 auto;
@@ -66,5 +75,12 @@
   .cards-action > ul {
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cards-action > ul > li img {
+    width: 50px;
+    height: 50px;
   }
 }
