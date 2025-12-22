@@ -23,13 +23,17 @@ export default async function decorate(block) {
 
   if (divCount === 3) {
     // 3-div structure: merge first two divs
-    const firstDiv = fragment.children[0];
-    const appBadgesDiv = fragment.children[1];
-    const bottomDiv = fragment.children[2];
+    const firstSection = fragment.children[0];
+    const appBadgesSection = fragment.children[1];
+    const bottomSection = fragment.children[2];
+
+    // Get the wrapper div inside the section (added by decorateSections)
+    const firstWrapper = firstSection.querySelector('.default-content-wrapper, :scope > div');
+    const appBadgesWrapper = appBadgesSection.querySelector('.default-content-wrapper, :scope > div');
 
     // Restructure first div to have each column (h2 + ul/p) in its own div
     const columnsContainer = document.createElement('div');
-    const elements = Array.from(firstDiv.children);
+    const elements = firstWrapper ? Array.from(firstWrapper.children) : [];
 
     let currentColumn = null;
     elements.forEach((el) => {
@@ -45,8 +49,8 @@ export default async function decorate(block) {
     });
 
     // Add app badges to the last column (Lyca on the go)
-    if (currentColumn && appBadgesDiv) {
-      Array.from(appBadgesDiv.children).forEach((el) => {
+    if (currentColumn && appBadgesWrapper) {
+      Array.from(appBadgesWrapper.children).forEach((el) => {
         currentColumn.appendChild(el);
       });
     }
@@ -57,18 +61,21 @@ export default async function decorate(block) {
     footer.appendChild(columnsContainer);
 
     // Add bottom div (logo, copyright, social) as-is
-    if (bottomDiv) {
-      footer.appendChild(bottomDiv);
+    if (bottomSection) {
+      footer.appendChild(bottomSection);
     }
   } else {
     // 2-div structure: original logic
-    const firstDiv = fragment.children[0];
-    const secondDiv = fragment.children[1];
+    const firstSection = fragment.children[0];
+    const secondSection = fragment.children[1];
 
-    if (firstDiv) {
+    if (firstSection) {
+      // Get the wrapper div inside the section (added by decorateSections)
+      const firstWrapper = firstSection.querySelector('.default-content-wrapper, :scope > div');
+
       // Restructure first div to have each column (h2 + ul/p) in its own div
       const columnsContainer = document.createElement('div');
-      const elements = Array.from(firstDiv.children);
+      const elements = firstWrapper ? Array.from(firstWrapper.children) : [];
 
       let currentColumn = null;
       elements.forEach((el) => {
@@ -90,8 +97,8 @@ export default async function decorate(block) {
     }
 
     // Add second div (logo, copyright, social) as-is
-    if (secondDiv) {
-      footer.appendChild(secondDiv);
+    if (secondSection) {
+      footer.appendChild(secondSection);
     }
   }
 
