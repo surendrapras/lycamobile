@@ -234,6 +234,11 @@ header nav .nav-sections ul>li>ul>li {
     visibility: hidden;
   }
 
+  header nav .nav-tools ul {
+    gap: 18px;
+    flex-wrap: nowrap;
+  }
+
   header nav .nav-sections {
     display: block;
     visibility: visible;
@@ -317,11 +322,6 @@ header nav .nav-sections ul>li>ul>li {
     color: #21254f;
     font-weight: 600;
     text-decoration: none;
-  }
-
-  header nav .nav-tools ul {
-    gap: 18px;
-    flex-wrap: nowrap;
   }
 
   header nav .nav-tools .nav-tools-icon-circle img {
