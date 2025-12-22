@@ -10,16 +10,29 @@ function toggleAllNavSections(sections, expanded = false) {
   });
 }
 
-function toggleMenu(nav, navSections, forceExpanded = null) {
-  const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
+function openOnKeydown(e) {
+  const focused = document.activeElement;
+  const isNavDrop = focused?.className === 'nav-drop';
+  if (isNavDrop && (e.code === 'Enter' || e.code === 'Space')) {
+    const dropExpanded = focused.getAttribute('aria-expanded') === 'true';
+    toggleAllNavSections(focused.closest('.nav-sections'));
+    focused.setAttribute('aria-expanded', dropExpanded ? 'false' : 'true');
+  }
+}
+
+function focusNavSection() {
+  document.activeElement.addEventListener('keydown', openOnKeydown);
+}
+
+function applyMenuState(nav, navSections, nextOpen) {
   const button = nav.querySelector('.nav-hamburger button');
 
-  document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
-  nav.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+  document.body.style.overflowY = (nextOpen && !isDesktop.matches) ? 'hidden' : '';
+  nav.setAttribute('aria-expanded', nextOpen ? 'true' : 'false');
 
-  toggleAllNavSections(navSections, !(expanded || isDesktop.matches));
+  toggleAllNavSections(navSections, nextOpen && !isDesktop.matches);
 
-  button.setAttribute('aria-label', expanded ? 'Open navigation' : 'Close navigation');
+  button.setAttribute('aria-label', nextOpen ? 'Close navigation' : 'Open navigation');
 
   const navDrops = navSections?.querySelectorAll('.nav-drop') || [];
   if (isDesktop.matches) {
@@ -36,7 +49,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
     });
   }
 
-  if (!expanded || isDesktop.matches) {
+  if (nextOpen || isDesktop.matches) {
     window.addEventListener('keydown', closeOnEscape);
     nav.addEventListener('focusout', closeOnFocusLost);
   } else {
@@ -45,51 +58,47 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   }
 }
 
-function openOnKeydown(e) {
-  const focused = document.activeElement;
-  const isNavDrop = focused?.className === 'nav-drop';
-  if (isNavDrop && (e.code === 'Enter' || e.code === 'Space')) {
-    const dropExpanded = focused.getAttribute('aria-expanded') === 'true';
-    toggleAllNavSections(focused.closest('.nav-sections'));
-    focused.setAttribute('aria-expanded', dropExpanded ? 'false' : 'true');
-  }
-}
-
-function focusNavSection() {
-  document.activeElement.addEventListener('keydown', openOnKeydown);
-}
-
 function closeOnEscape(e) {
-  if (e.code === 'Escape') {
-    const nav = document.getElementById('nav');
-    const navSections = nav?.querySelector('.nav-sections');
-    const navSectionExpanded = navSections?.querySelector('[aria-expanded=\'true\']');
+  if (e.code !== 'Escape') return;
 
-    if (navSectionExpanded && isDesktop.matches) {
-      toggleAllNavSections(navSections);
-      navSectionExpanded.focus();
-    } else if (!isDesktop.matches) {
-      toggleMenu(nav, navSections);
-      nav.querySelector('button')?.focus();
-    }
+  const nav = document.getElementById('nav');
+  const navSections = nav?.querySelector('.nav-sections');
+  const navSectionExpanded = navSections?.querySelector('[aria-expanded=\'true\']');
+
+  if (navSectionExpanded && isDesktop.matches) {
+    toggleAllNavSections(navSections);
+    navSectionExpanded.focus();
+    return;
+  }
+
+  if (!isDesktop.matches && nav) {
+    applyMenuState(nav, navSections, false);
+    nav.querySelector('button')?.focus();
   }
 }
 
 function closeOnFocusLost(e) {
   const nav = e.currentTarget;
-  if (!nav.contains(e.relatedTarget)) {
-    const navSections = nav.querySelector('.nav-sections');
-    const navSectionExpanded = navSections?.querySelector('[aria-expanded=\'true\']');
+  if (nav.contains(e.relatedTarget)) return;
 
-    if (navSectionExpanded && isDesktop.matches) {
-      toggleAllNavSections(navSections, false);
-    } else if (!isDesktop.matches) {
-      toggleMenu(nav, navSections, false);
-    }
+  const navSections = nav.querySelector('.nav-sections');
+  const navSectionExpanded = navSections?.querySelector('[aria-expanded=\'true\']');
+
+  if (navSectionExpanded && isDesktop.matches) {
+    toggleAllNavSections(navSections, false);
+    return;
+  }
+
+  if (!isDesktop.matches) {
+    applyMenuState(nav, navSections, false);
   }
 }
 
-
+function toggleMenu(nav, navSections, forceExpanded = null) {
+  const currentOpen = nav.getAttribute('aria-expanded') === 'true';
+  const nextOpen = forceExpanded === null ? !currentOpen : forceExpanded;
+  applyMenuState(nav, navSections, nextOpen);
+}
 
 export default async function decorate(block) {
   const navMeta = getMetadata('nav');
