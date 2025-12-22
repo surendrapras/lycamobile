@@ -33,11 +33,11 @@ async function ensureTsParticles() {
 }
 
 export default async function decorate(block) {
-  if (window.__LYCA_SNOW__) {
+  if (window.lycaSnowInitialized) {
     block.textContent = '';
     return;
   }
-  window.__LYCA_SNOW__ = true;
+  window.lycaSnowInitialized = true;
 
   const engine = await ensureTsParticles();
   if (!engine) {
