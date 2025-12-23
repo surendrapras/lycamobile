@@ -1,0 +1,125 @@
+{
+  "url": "https://www.lycamobile.co.uk/paymonthly/en/checkout/",
+  "timestamp": "2025-12-23T06:13:33.791Z",
+  "paths": {
+    "documentPath": "/paymonthly/en/checkout/index",
+    "htmlFilePath": "/paymonthly/en/checkout/index.plain.html",
+    "mdFilePath": "/paymonthly/en/checkout/index.md",
+    "dirPath": "/paymonthly/en/checkout",
+    "filename": "index"
+  },
+  "screenshot": "migration-work/screenshot.png",
+  "html": {
+    "filePath": "migration-work/cleaned.html",
+    "size": 280523
+  },
+  "metadata": {
+    "title": "SIM only deals: View our best contract and plans",
+    "viewport": "initial-scale=1, width=device-width, maximum-scale=1.0, user-scalable=no",
+    "description": "View our SIM only deals with no mid-contract price increases! Get the best sim only deals with eSIM ready plans with international calling, EU roaming & more.",
+    "keywords": "Best SIM Only Deals, SIM only plans, SIM only contracts, SIM only offers, SIM only deals UK, cheap SIM only deals",
+    "robots": "index, follow",
+    "og:title": "SIM only deals: View our best contract and plans",
+    "og:description": "View our SIM only deals with no mid-contract price increases! Get the best sim only deals with eSIM ready plans with international calling, EU roaming & more.",
+    "og:locale": "en-gb",
+    "og:image": "https://cms-assets.ldsvcplatform.com/IRE/s3fs-public/2023-09/home_logo.png",
+    "og:height": "123",
+    "og:width": "314",
+    "og:sitename": "Lyca Mobile UK",
+    "og:type": "website",
+    "og:url": "https://www.lycamobile.co.uk/paymonthly/en/bundles/sim-only-deals/",
+    "canonical": "https://www.lycamobile.co.uk/paymonthly/en/bundles/sim-only-deals/",
+    "jsonLd": {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "url": "https://www.lycamobile.co.uk/en/",
+          "potentialAction": {
+            "@type": "SearchAction",
+            "target": "https://www.lycamobile.co.uk/en/search?q={search_term_string}",
+            "query-input": "required name=search_term_string"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://www.lycamobile.co.uk/en/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "SIM only deals: View our best contract and plans",
+              "item": "https://www.lycamobile.co.uk/paymonthly/en/bundles/sim-only-deals/"
+            }
+          ]
+        },
+        {
+          "@type": "Product",
+          "name": "SIM Only Deals & Pay Monthly SIM",
+          "sku": "SIM Only Deals & Pay Monthly SIM",
+          "image": "https://cms-assets.ldsvcplatform.com/IRE/s3fs-public/2023-09/home_logo.png",
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5",
+            "bestRating": "5",
+            "worstRating": "1",
+            "ratingCount": "13524"
+          }
+        }
+      ]
+    }
+  },
+  "images": {
+    "count": 35,
+    "mapping": {
+      "https://www.lycamobile.co.uk/paymonthly/_next/static/media/trash.d2556b6a.svg": "./images/b749a4aeb53851f481f5776a47ee1053.png",
+      "https://dpm.demdex.net/ibs:dpid=411&dpuuid=aUozCwAAADm2TgNv": "./images/d35c19ebe45501cbe9f4b7b1135a5c07.png",
+      "https://www.lycamobile.co.uk/paymonthly/_next/static/media/LycaLoader.6f6b236a.gif": "./images/b65640bb8919741578f15cf174233fdd.png",
+      "https://cdn.cookielaw.org/logos/static/ot_company_logo.png": "./images/0a82704908bb1ee9f1f8e8a0196426e0.png",
+      "https://cdn.cookielaw.org/logos/static/powered_by_logo.svg": "./images/a9584a367ebcccfac48987ce1fec5eae.png",
+      "https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/2024-07/image%204.png?VersionId=5TG4CWBbfGl12_XNGqSwqr_D7aQoh0Uq": "./images/66868271bc0fce5bb12350c7b733fdcc.png",
+      "https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/2024-07/home_logo_1.png?VersionId=VGDFC70pXBZI4AqvNYgzmWBYkstHYopt": "./images/88dab4fda56d850fa9127dec744282c0.png",
+      "https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/2024-07/Menuhs_2_0.png?VersionId=URDWbor5.2iEefvyGljrqm54Cnb2V2VD": "./images/d77bc34a3f25c7ea153fbe931ce0e1c9.png",
+      "https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/inline-images/apple_0_0.png?VersionId=RP5UXbqGU36Lidd6zaDGqe7q4mfEPxok": "./images/5f6f169537370f153a5610bb288753f2.png",
+      "https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/inline-images/googleplay_1_0.png?VersionId=ce4MoQVuhxTDl3u53F455gsnbZ0lggGo": "./images/b649690e5f39878b9755b0d51aaf7c5f.png",
+      "https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/inline-images/Store_0.png?VersionId=C5KMPgRGjScIM6paOhzVWmTorc8uxRuU": "./images/d18b1f29371d1d6b402aba53ac8c4dc0.png",
+      "https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/inline-images/fb_0_0.png?VersionId=JkJanxWWCBEQ9HvsURH9J8FNOUh2T2i_": "./images/421214d82242fd19dee62eb1c02ed9b8.png",
+      "https://www.lycamobile.co.uk/paymonthly/_next/static/media/Account.ec46a854.svg": "./images/50f2b65f53bf346195887d61cc50f578.png",
+      "https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/inline-images/twitter_0.png?VersionId=.slvdxu5TE4I5fKaOtuEqNI8x4TmT7EI": "./images/3577ff7052c9f5c2d54a27674b252f65.png",
+      "https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/inline-images/Insta_0.png?VersionId=GKA5ZwPBd_r6Uz1JV3_fUjPgwexUTzRs": "./images/ffa936590568c253663cf737bfa6ad38.png",
+      "https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/youtube-social-icon.svg?VersionId=vo0kca6nub.ap5viH6VGg4uDf9PYZEbA": "./images/ee0c3b1fe4227ba58b969f330c02d142.png",
+      "https://www.lycamobile.co.uk/paymonthly/_next/static/media/Cart.c7614522.svg": "./images/f2284f77d459d05f207e2cc321eca699.png",
+      "https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/stayconnected.svg?VersionId=T2YEEj5SzXixBzKoSVRmHs19ji57F9vH": "./images/d1f013d5de20544c67d911ecf2ceebd0.png",
+      "https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/flexibityat.svg?VersionId=Dk0rhT4ivieeI1LIl2EB6mwO9gzC_lT2": "./images/f96428fcf72bbb1ee55e313f05ce8150.png",
+      "https://s3-eu-west-2.amazonaws.com/ldcontentimages/lycamobileukweb/wp-content/uploads/2017/04/09132120/United-kingdom1.png": "./images/1dd426512db907c26ff3a52f9133698d.png",
+      "https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/unbeatablevalue.svg?VersionId=gquosoniSlURlVSo91hG_Szn1zd5Qd13": "./images/7697ced76bdac3323d4310fcc9f05e73.png",
+      "https://pim-assets-paym.globalldplatform.com/_default_upload_bucket/eSIM%201%20%285%29_9.png": "./images/5656ce1276b5faa4ea8479bc1339be4f.png",
+      "https://pim-assets-paym.globalldplatform.com/_default_upload_bucket/eSIM%201%20%285%29_8.png": "./images/a4b38df91aaf3a1da9968e10f7740fd9.png",
+      "https://pim-assets-paym.globalldplatform.com/_default_upload_bucket/5G%201%20%286%29_6.png": "./images/f73059b9457eacfc1617b43e90f83ff3.png",
+      "https://pim-assets-paym.globalldplatform.com/_default_upload_bucket/5G%201%20%286%29_8.png": "./images/6f4779712a6afe250567462fbed10061.png",
+      "https://pim-assets-paym.globalldplatform.com/_default_upload_bucket/5G%201%20%286%29_7.png": "./images/26c004a9929cca957bb48f4194617b56.png",
+      "https://www.lycamobile.co.uk/paymonthly/_next/static/media/filter-lines_purple.2d3f877a.svg": "./images/1cd282cdeb8b5b743061dc080e613721.png",
+      "https://www.lycamobile.co.uk/paymonthly/_next/static/media/star_purple.3c862d8f.svg": "./images/23274c9f428549dc9e500bbc9ab1e88c.png",
+      "https://pim-assets-paym.globalldplatform.com/_default_upload_bucket/eSIM%201%20%285%29_10.png": "./images/9bf97c95ff6db13f91f681eae3660848.png",
+      "https://www.lycamobile.co.uk/paymonthly/_next/static/media/greenTick2.ebb6f697.svg": "./images/0c8d64ed27ef6e0074f1d8fed65d0c3a.png",
+      "https://www.lycamobile.co.uk/paymonthly/_next/static/media/expandFAQIcon.6abd0d3e.svg": "./images/fcd4e63cd2a162e4f2a140944fe01b37.png",
+      "https://pim-assets-paym.globalldplatform.com/_default_upload_bucket/eSIM%201%20%285%29_17.png": "./images/474295b5c44fd08644bbdd87a4a6779a.png",
+      "https://pim-assets-paym.globalldplatform.com/_default_upload_bucket/5G%201%20%286%29_14.png": "./images/d30a9778b7fcdf113bbddd0c778fcfab.png",
+      "https://cms-pim-assets-dev.ldsvcplatform.com/IRE/s3fs-public/inline-images/logo_new1.png": "./images/09649e23cc1c059c16c73f2cd6a1a55b.png",
+      "https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/PLP_1248X156_1x_7_11zon.webp": "./images/d5c73090812f024100fccf6f5bee6a67.png"
+    },
+    "stats": {
+      "total": 36,
+      "converted": 16,
+      "skipped": 19,
+      "failed": 1,
+      "tooLarge": 0,
+      "limitReached": 0
+    }
+  }
+}

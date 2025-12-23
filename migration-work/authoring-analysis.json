@@ -1,0 +1,236 @@
+{
+  "url": "https://www.lycamobile.co.uk/paymonthly/en/checkout/",
+  "pagePath": "/paymonthly/en/checkout/index",
+  "variantMapping": {
+    "cards": "cards-pricing",
+    "columns": "columns-features",
+    "accordion": "accordion-faq"
+  },
+  "variantDecisions": {
+    "cards-pricing": {"action": "reuse", "similarity": "95%", "reason": "Existing variant matches pricing card pattern"},
+    "columns-features": {"action": "reuse", "similarity": "90%", "reason": "Existing variant matches feature columns pattern"},
+    "accordion-faq": {"action": "reuse", "similarity": "95%", "reason": "Existing variant matches FAQ accordion pattern"}
+  },
+  "sections": [
+    {
+      "number": 1,
+      "name": "Hero/Intro",
+      "background": "light",
+      "sectionMetadata": null,
+      "contentSequences": [
+        {
+          "sequence": 1,
+          "description": "Breadcrumb navigation",
+          "authoringDecision": "skip",
+          "reason": "Breadcrumbs are auto-generated from page hierarchy in EDS"
+        },
+        {
+          "sequence": 2,
+          "description": "Page title and subtitle",
+          "authoringDecision": "default-content",
+          "elements": ["h1", "p"],
+          "content": {
+            "title": "Pay monthly SIM only deals",
+            "subtitle": "No mid-contract price increases! Get eSIM ready plans with fast 5G data, unlimited UK minutes & text, international calling & EU roaming."
+          }
+        },
+        {
+          "sequence": 3,
+          "description": "Promotional banner image",
+          "authoringDecision": "default-content",
+          "elements": ["picture"],
+          "content": {
+            "image": "./images/d5c73090812f024100fccf6f5bee6a67.png",
+            "alt": "OPPO 30% Voucher Offer"
+          }
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "name": "Product Listing",
+      "background": "light",
+      "sectionMetadata": null,
+      "contentSequences": [
+        {
+          "sequence": 1,
+          "description": "Contract duration tabs and pricing cards",
+          "authoringDecision": "block",
+          "blockName": "cards-pricing",
+          "reason": "Complex pricing cards with multiple data points need structured block. Tabs functionality would require separate implementation - for MVP, show all plans in a card grid.",
+          "content": {
+            "plans": [
+              {
+                "badge": "Christmas Half Price",
+                "name": "24 month Unlimited",
+                "originalPrice": "£18.00",
+                "price": "£9.00",
+                "priceNote": "monthly for the first 6 months, then £18",
+                "data": "Unlimited Data",
+                "features": ["EU roaming included", "Unlimited International Minutes", "Unlimited UK minutes and text"],
+                "icons": ["5G", "eSIM"]
+              },
+              {
+                "badge": "Christmas Half Price",
+                "name": "24 months Unlimited Plus",
+                "originalPrice": "£24.00",
+                "price": "£12.00",
+                "priceNote": "monthly for the first 6 months, then £24",
+                "data": "Unlimited Data",
+                "features": ["EU roaming included", "Unlimited International Minutes", "Unlimited UK minutes and text"],
+                "icons": ["5G", "eSIM"]
+              },
+              {
+                "badge": "Free OPPO Voucher",
+                "name": "24 Month 120GB",
+                "originalPrice": "£16.00",
+                "price": "£8.00",
+                "priceNote": "monthly for the first 6 months, then £16",
+                "data": "120GB Data",
+                "features": ["EU roaming included", "100 International Minutes", "Unlimited UK minutes and text"],
+                "icons": ["5G", "eSIM"]
+              },
+              {
+                "badge": "Free OPPO Voucher",
+                "name": "24 Month 100GB",
+                "originalPrice": "£12.00",
+                "price": "£6.00",
+                "priceNote": "monthly for the first 6 months, then £12",
+                "data": "100GB Data",
+                "features": ["12GB EU roaming included", "100 International Minutes", "Unlimited UK minutes and texts"],
+                "icons": ["5G", "eSIM"]
+              },
+              {
+                "badge": "Free OPPO Voucher",
+                "name": "24 Month 50GB",
+                "originalPrice": "£8.00",
+                "price": "£4.00",
+                "priceNote": "monthly for the first 3 months, then £8",
+                "data": "50GB Data",
+                "features": ["12GB EU roaming included", "100 International Minutes", "Unlimited UK minutes and texts"],
+                "icons": ["5G", "eSIM"]
+              },
+              {
+                "badge": "Free OPPO Voucher",
+                "name": "24 Month 12GB",
+                "originalPrice": "£6.00",
+                "price": "£3.00",
+                "priceNote": "monthly for the first 3 months, then £6",
+                "data": "12GB Data",
+                "features": ["2.5GB EU roaming included", "100 International Minutes", "Unlimited UK minutes and texts"],
+                "icons": ["5G", "eSIM"]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "name": "Why Choose",
+      "background": "grey",
+      "sectionMetadata": {
+        "style": "grey-background"
+      },
+      "contentSequences": [
+        {
+          "sequence": 1,
+          "description": "Section heading",
+          "authoringDecision": "default-content",
+          "elements": ["h2"],
+          "content": {
+            "heading": "Why choose Lyca Mobile?"
+          }
+        },
+        {
+          "sequence": 2,
+          "description": "Three feature columns",
+          "authoringDecision": "block",
+          "blockName": "columns-features",
+          "reason": "Three columns with icons and descriptions - matches columns-features block pattern",
+          "content": {
+            "columns": [
+              {
+                "icon": "./images/7697ced76bdac3323d4310fcc9f05e73.png",
+                "title": "Unbeatable value, locked in to 2026",
+                "description": "Get more for less with LycaMobile Pay Monthly. Enjoy all the data, minutes, and texts you need, with prices guaranteed until 2026. No surprises, just great value."
+              },
+              {
+                "icon": "./images/f96428fcf72bbb1ee55e313f05ce8150.png",
+                "title": "Flexibility at your fingertips",
+                "description": "You are in control. Upgrade or set spend caps anytime with our flexible plans—no hidden charges, just pure freedom, plain and simple."
+              },
+              {
+                "icon": "./images/d1f013d5de20544c67d911ecf2ceebd0.png",
+                "title": "Stay connected, wherever you roam",
+                "description": "Travel with peace knowing EU roaming is included in your plan. Stay connected to what matters, no matter where you go."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "name": "FAQs",
+      "background": "light",
+      "sectionMetadata": null,
+      "contentSequences": [
+        {
+          "sequence": 1,
+          "description": "Section heading",
+          "authoringDecision": "default-content",
+          "elements": ["h2"],
+          "content": {
+            "heading": "FAQs"
+          }
+        },
+        {
+          "sequence": 2,
+          "description": "FAQ accordion",
+          "authoringDecision": "block",
+          "blockName": "accordion-faq",
+          "reason": "Expandable Q&A content - matches accordion-faq block",
+          "content": {
+            "items": [
+              {
+                "question": "Is roaming included with my pay monthly UK SIM only plan?",
+                "answer": "Yes, EU roaming is included with all pay monthly plans."
+              },
+              {
+                "question": "How do I activate my pay monthly eSIM?",
+                "answer": "You can activate your eSIM through the Lyca Mobile app or website."
+              },
+              {
+                "question": "Is there a credit check for pay monthly SIM only contracts?",
+                "answer": "A soft credit check may be performed for pay monthly contracts."
+              },
+              {
+                "question": "How do I transfer my number to a new pay monthly SIM only plan?",
+                "answer": "Request a PAC code from your current provider and provide it during signup."
+              },
+              {
+                "question": "What happens if I don't pay my pay monthly SIM contract on time?",
+                "answer": "Late payments may result in service suspension. Contact us for payment arrangements."
+              },
+              {
+                "question": "What to do if you face issues with pay monthly SIM?",
+                "answer": "Contact our customer support team for assistance with any issues."
+              }
+            ]
+          }
+        },
+        {
+          "sequence": 3,
+          "description": "View more button",
+          "authoringDecision": "default-content",
+          "elements": ["p", "a"],
+          "content": {
+            "linkText": "View more",
+            "linkUrl": "https://www.lycamobile.co.uk/paymonthly/en/faq"
+          }
+        }
+      ]
+    }
+  ]
+}

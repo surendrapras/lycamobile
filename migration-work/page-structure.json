@@ -1,0 +1,88 @@
+{
+  "url": "https://www.lycamobile.co.uk/paymonthly/en/checkout/",
+  "sections": [
+    {
+      "number": 1,
+      "name": "Hero/Intro",
+      "background": "light",
+      "contentSequences": [
+        {
+          "sequence": 1,
+          "description": "Breadcrumb navigation showing Home > Pay monthly SIM only deals"
+        },
+        {
+          "sequence": 2,
+          "description": "Large page title with subtitle describing offer features"
+        },
+        {
+          "sequence": 3,
+          "description": "Promotional banner image showing voucher offer"
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "name": "Product Listing",
+      "background": "light",
+      "contentSequences": [
+        {
+          "sequence": 1,
+          "description": "Tab navigation with three contract duration options"
+        },
+        {
+          "sequence": 2,
+          "description": "Sort/filter dropdown"
+        },
+        {
+          "sequence": 3,
+          "description": "List of 6 pricing plan cards with offer badges, plan details, prices, features, and buy buttons"
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "name": "Why Choose",
+      "background": "grey",
+      "contentSequences": [
+        {
+          "sequence": 1,
+          "description": "Centered heading"
+        },
+        {
+          "sequence": 2,
+          "description": "Three feature columns with icons and descriptions"
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "name": "FAQs",
+      "background": "light",
+      "contentSequences": [
+        {
+          "sequence": 1,
+          "description": "Centered heading"
+        },
+        {
+          "sequence": 2,
+          "description": "Six expandable accordion items with FAQ questions"
+        },
+        {
+          "sequence": 3,
+          "description": "View more button"
+        }
+      ]
+    }
+  ],
+  "blockInventory": {
+    "localBlocks": [
+      "accordion-faq",
+      "cards-pricing",
+      "columns-features",
+      "tabs-contract",
+      "hero",
+      "carousel-hero",
+      "fragment"
+    ]
+  }
+}

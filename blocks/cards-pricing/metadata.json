@@ -35,9 +35,10 @@
   "usage": {
     "pagesUsing": [
       "/paymonthly/en/bundles/sim-only-deals/index",
-      "/en/index"
+      "/en/index",
+      "/paymonthly/en/checkout/index"
     ],
-    "reuseCount": 2,
-    "lastUsed": "2025-12-18T00:00:00.000Z"
+    "reuseCount": 3,
+    "lastUsed": "2025-12-23T00:00:00.000Z"
   }
 }
