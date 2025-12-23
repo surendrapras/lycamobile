@@ -105,6 +105,7 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  // eslint-disable-next-line no-unused-vars
   const isConsentGiven = true;
 
   // Martech Plugin initialization
