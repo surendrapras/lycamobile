@@ -105,6 +105,7 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  const isConsentGiven = true;
 
   // Martech Plugin initialization
   const martechLoadedPromise = initMartech(
