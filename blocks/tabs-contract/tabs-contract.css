@@ -5,14 +5,12 @@ margin: var(--spacing-l) 0;
 .tabs-contract .tabs-contract-list {
 display: flex;
 gap: var(--spacing-xs);
-max-width: 100%;
+max-width: fit-content;
 font-size: var(--body-font-size-s);
 overflow-x: auto;
 justify-content: center;
-margin-bottom: var(--spacing-l);
 border: 1px solid var(--color-secondary-blue);
-max-width: fit-content;
-margin: auto;
+margin: auto auto var(--spacing-l);
 border-radius: var(--border-radius-pill);
 padding: 2px;
 }

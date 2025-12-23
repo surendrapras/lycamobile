@@ -2,6 +2,7 @@
 list-style: none;
 margin: 0;
 padding: 0;
+
 /* display: grid; */
 grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
 gap: var(--spacing-m);
@@ -31,9 +32,9 @@ margin: 30px;
 display: flex;
 justify-content: space-between;
 position: relative;
-border-radius: 0 8px 8px 8px;
+border-radius: 0 8px 8px;
 border: 2px solid #ededed;
-box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, .1019607843);
+box-shadow: 4px 4px 4px 0 rgb(0 0 0 / 10.2%);
 padding: 2px;
 }
 
