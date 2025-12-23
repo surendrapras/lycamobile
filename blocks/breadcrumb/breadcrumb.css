@@ -1,0 +1,48 @@
+main .section.breadcrumb-container {
+    margin: 0;
+    padding: 0;
+}
+
+main .section.breadcrumb-container > div {
+    max-width: 1248px;
+    margin: 0 auto;
+    padding: 14px 24px;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    color: #98a2b3;
+    font-size: 14px;
+}
+
+.breadcrumb-list {
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+}
+
+.breadcrumb-home {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: currentColor;
+    text-decoration: none;
+}
+
+.breadcrumb-sep {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    transform: rotate(-45deg);
+    opacity: 0.7;
+}
+
+.breadcrumb-current {
+    font-weight: 600;
+}
