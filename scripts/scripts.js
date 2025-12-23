@@ -19,7 +19,6 @@ import {
   martechEager,
   martechLazy,
   martechDelayed,
-  updateUserConsent,
   // eslint-disable-next-line import/no-relative-packages
 } from '../plugins/martech/src/index.js';
 
@@ -127,7 +126,7 @@ async function loadEager(doc) {
     },
     // 2. Library Configuration
     {
-      personalization: true,
+      personalization: !!getMetadata('target'),
       launchUrls: ['https://assets.adobedtm.com/0e9a0418089e/4efb62083c74/launch-7537c509f5f7-development.min.js'],
       // See the API Reference for all available options.
     },
@@ -142,15 +141,6 @@ async function loadEager(doc) {
       loadSection(main.querySelector('.section'), waitForFirstImage),
     ]);
   }
-
-  // Grant consent for tracking (remove this for production and use proper consent management)
-  await martechLoadedPromise;
-  updateUserConsent({
-    collect: true,
-    marketing: true,
-    personalize: true,
-    share: true,
-  });
 
   try {
     /* if desktop (proxy for fast connection) or fonts already loaded, load fonts.css */
