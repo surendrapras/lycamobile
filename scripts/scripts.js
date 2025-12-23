@@ -16,6 +16,7 @@ import {
 
 import {
   initMartech,
+  updateUserConsent,
   martechEager,
   martechLazy,
   martechDelayed,
