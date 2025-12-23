@@ -11,7 +11,7 @@ No mid-contract price increases! Get eSIM ready plans with fast 5G data, unlimit
 +------------------------------------------------------------------+------------------------------------------------------------------+
 | **Cards-Pricing**                                                                                                                   |
 +------------------------------------------------------------------+------------------------------------------------------------------+
-| ![5G](./images/f73059b9457eacfc1617b43e90f83ff3.png)             | **Christmas Half Price**                                         |
+| ![5G](./images/f73059b9457eacfc1617b43e90f83ff3.png)             | ***Christmas Half Price***                                       |
 |                                                                  |                                                                  |
 | ![eSIM](./images/5656ce1276b5faa4ea8479bc1339be4f.png)           | **24 month Unlimited**                                           |
 |                                                                  |                                                                  |
@@ -27,7 +27,7 @@ No mid-contract price increases! Get eSIM ready plans with fast 5G data, unlimit
 |                                                                  |                                                                  |
 |                                                                  | **[Buy Now](https://www.lycamobile.co.uk/paymonthly/en/cart)**   |
 +------------------------------------------------------------------+------------------------------------------------------------------+
-| ![5G](./images/6f4779712a6afe250567462fbed10061.png)             | **Christmas Half Price**                                         |
+| ![5G](./images/6f4779712a6afe250567462fbed10061.png)             | ***Christmas Half Price***                                       |
 |                                                                  |                                                                  |
 | ![eSIM](./images/a4b38df91aaf3a1da9968e10f7740fd9.png)           | **24 months Unlimited Plus**                                     |
 |                                                                  |                                                                  |
@@ -43,7 +43,7 @@ No mid-contract price increases! Get eSIM ready plans with fast 5G data, unlimit
 |                                                                  |                                                                  |
 |                                                                  | **[Buy Now](https://www.lycamobile.co.uk/paymonthly/en/cart)**   |
 +------------------------------------------------------------------+------------------------------------------------------------------+
-| ![5G](./images/26c004a9929cca957bb48f4194617b56.png)             | **Free OPPO Voucher**                                            |
+| ![5G](./images/26c004a9929cca957bb48f4194617b56.png)             | ***Free OPPO Voucher***                                          |
 |                                                                  |                                                                  |
 | ![eSIM](./images/9bf97c95ff6db13f91f681eae3660848.png)           | **24 Month 120GB**                                               |
 |                                                                  |                                                                  |
@@ -59,7 +59,7 @@ No mid-contract price increases! Get eSIM ready plans with fast 5G data, unlimit
 |                                                                  |                                                                  |
 |                                                                  | **[Buy Now](https://www.lycamobile.co.uk/paymonthly/en/cart)**   |
 +------------------------------------------------------------------+------------------------------------------------------------------+
-| ![5G](./images/d30a9778b7fcdf113bbddd0c778fcfab.png)             | **Free OPPO Voucher**                                            |
+| ![5G](./images/d30a9778b7fcdf113bbddd0c778fcfab.png)             | ***Free OPPO Voucher***                                          |
 |                                                                  |                                                                  |
 | ![eSIM](./images/474295b5c44fd08644bbdd87a4a6779a.png)           | **24 Month 100GB**                                               |
 |                                                                  |                                                                  |
@@ -75,7 +75,7 @@ No mid-contract price increases! Get eSIM ready plans with fast 5G data, unlimit
 |                                                                  |                                                                  |
 |                                                                  | **[Buy Now](https://www.lycamobile.co.uk/paymonthly/en/cart)**   |
 +------------------------------------------------------------------+------------------------------------------------------------------+
-| ![5G](./images/f73059b9457eacfc1617b43e90f83ff3.png)             | **Free OPPO Voucher**                                            |
+| ![5G](./images/f73059b9457eacfc1617b43e90f83ff3.png)             | ***Free OPPO Voucher***                                          |
 |                                                                  |                                                                  |
 | ![eSIM](./images/5656ce1276b5faa4ea8479bc1339be4f.png)           | **24 Month 50GB**                                                |
 |                                                                  |                                                                  |
@@ -91,7 +91,7 @@ No mid-contract price increases! Get eSIM ready plans with fast 5G data, unlimit
 |                                                                  |                                                                  |
 |                                                                  | **[Buy Now](https://www.lycamobile.co.uk/paymonthly/en/cart)**   |
 +------------------------------------------------------------------+------------------------------------------------------------------+
-| ![5G](./images/f73059b9457eacfc1617b43e90f83ff3.png)             | **Free OPPO Voucher**                                            |
+| ![5G](./images/f73059b9457eacfc1617b43e90f83ff3.png)             | ***Free OPPO Voucher***                                          |
 |                                                                  |                                                                  |
 | ![eSIM](./images/5656ce1276b5faa4ea8479bc1339be4f.png)           | **24 Month 12GB**                                                |
 |                                                                  |                                                                  |
