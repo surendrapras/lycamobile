@@ -116,6 +116,7 @@ async function loadEager(doc) {
     {
       datastreamId: 'c3040c2e-07d6-446c-8f3c-d3f500ff3113',
       orgId: '09CF60665F98CEF90A495FF8@AdobeOrg',
+      defaultConsent: 'in',
       // The `debugEnabled` flag is automatically set to true on localhost and .page URLs.
       // The `defaultConsent` is automatically set to "pending".
       // eslint-disable-next-line no-unused-vars
