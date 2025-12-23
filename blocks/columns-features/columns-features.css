@@ -17,7 +17,7 @@ gap: var(--spacing-xl);
 text-align: center;
 }
 
-.columns-features .button-container a.button:any-link, button {
+.columns-features .button-container a.button:any-link button {
 border: none;
 background-color: unset;
 

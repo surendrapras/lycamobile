@@ -1,199 +1,214 @@
 .cards-pricing > ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--spacing-m);
+list-style: none;
+margin: 0;
+padding: 0;
+/* display: grid; */
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+gap: var(--spacing-m);
 }
 
 .cards-pricing > ul > li {
-  border: none;
-  border-radius: var(--border-radius-lg);
-  background-color: var(--background-color);
-  box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
-  transition: all 0.3s ease;
-  overflow: hidden;
-  position: relative;
-  cursor: pointer;
+border: none;
+border-radius: var(--border-radius-lg);
+background-color: var(--background-color);
+box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
+transition: all 0.3s ease;
+overflow: hidden;
+position: relative;
+cursor: pointer;
 }
 
 /* Light background for title section (for 12 month and 1 month cards) */
 .cards-pricing > ul > li > p {
-  background-color: #faf8f3;
-  padding: var(--spacing-m);
-  margin: 0;
-  border-bottom: 1px solid #e5e7eb;
+background-color: #faf8f3;
+padding: var(--spacing-m);
+margin: 0;
+border-bottom: 1px solid #e5e7eb;
 }
 
 .cards-pricing .cards-pricing-card-body {
-  margin: var(--spacing-m);
+margin: 30px;
+display: flex;
+justify-content: space-between;
+position: relative;
+border-radius: 0 8px 8px 8px;
+border: 2px solid #ededed;
+box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, .1019607843);
+padding: 2px;
+}
+
+.cards-pricing-card-summary{
+background-color: #FFF7F2;
+border-radius: 0 0 0 8px;
+padding: 15px;
 }
 
 .cards-pricing .cards-pricing-card-body h2 {
-  font-size: var(--heading-font-size-m);
-  color: var(--color-secondary-blue);
-  margin-top: 0;
-  margin-bottom: var(--spacing-s);
+font-size: var(--heading-font-size-m);
+color: var(--color-secondary-blue);
+margin-top: 0;
+margin-bottom: var(--spacing-s);
 }
 
 .cards-pricing .cards-pricing-card-body h3 {
-  font-size: var(--heading-font-size-s);
-  color: var(--color-text-primary);
-  margin-bottom: var(--spacing-xs);
+font-size: var(--heading-font-size-s);
+color: var(--color-text-primary);
+margin-bottom: var(--spacing-xs);
 }
 
 .cards-pricing .cards-pricing-card-body p {
-  color: var(--color-text-secondary);
-  font-size: var(--body-font-size-s);
-  line-height: var(--line-height-normal);
+color: var(--color-text-secondary);
+font-size: var(--body-font-size-s);
+line-height: var(--line-height-normal);
 }
 
 /* Container for badge icons - position in top right */
 .cards-pricing .cards-pricing-card-body > p:has(picture) {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  margin: 0;
-  line-height: 0;
+position: absolute;
+top: 12px;
+right: 12px;
+margin: 0;
+line-height: 0;
 }
 
-.cards-pricing .cards-pricing-card-body p:first-of-type {
-  margin-top: calc(var(--spacing-m) * -1);
-  margin-bottom: var(--spacing-s);
+.cards-pricing .cards-pricing-card-body > p:first-of-type {
+margin-top: calc(var(--spacing-m) * -1);
+margin-bottom: var(--spacing-s);
+position: absolute;
+top: -4px;
+left: 0;
 }
 
 .cards-pricing .cards-pricing-card-body strong {
-  color: var(--color-text-primary);
-  font-weight: 700;
-  font-size: 28px;
+color: var(--color-text-primary);
+font-weight: 700;
+font-size: 28px;
 }
 
 .cards-pricing .cards-pricing-card-body del {
-  color: var(--color-text-secondary);
-  font-size: var(--body-font-size-s);
+color: var(--color-text-secondary);
+font-size: var(--body-font-size-s);
 }
 
 .cards-pricing .cards-pricing-card-body ul {
-  padding-left: var(--spacing-m);
-  margin: var(--spacing-s) 0;
-  list-style: none;
+padding-left: var(--spacing-m);
+margin: var(--spacing-s) 0;
+list-style: none;
 }
 
 .cards-pricing .cards-pricing-card-body li {
-  color: var(--color-text-secondary);
-  font-size: var(--body-font-size-s);
-  margin-bottom: var(--spacing-xs);
-  position: relative;
-  padding-left: 24px;
+color: var(--color-text-secondary);
+font-size: var(--body-font-size-s);
+margin-bottom: var(--spacing-xs);
+position: relative;
+padding-left: 24px;
 }
 
 .cards-pricing .cards-pricing-card-body li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: #08dc7d;
-  font-weight: 700;
-  font-size: 16px;
+content: '✓';
+position: absolute;
+left: 0;
+color: #08dc7d;
+font-weight: 700;
+font-size: 16px;
 }
 
 .cards-pricing > ul > li:hover {
-  box-shadow: 0 8px 16px rgb(0 0 0 / 12%);
-  transform: translateY(-4px);
+box-shadow: 0 8px 16px rgb(0 0 0 / 12%);
+transform: translateY(-4px);
 }
 
 /* Links container - position "View more" in top right, "Buy now" at bottom */
 .cards-pricing .cards-pricing-card-body > p:last-child {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  margin-top: var(--spacing-m);
+display: flex;
+flex-direction: column;
+gap: 0;
+margin-top: var(--spacing-m);
+padding-right: 15px;
 }
 
 /* "View more" link - position in top right corner below badges */
 .cards-pricing .cards-pricing-card-body > p:last-child a:first-child {
-  position: absolute;
-  top: 52px;
-  right: 12px;
-  color: var(--color-accent-blue);
-  text-decoration: none;
-  font-weight: 500;
-  font-size: var(--body-font-size-xs);
-  transition: color 0.3s ease;
-  z-index: 5;
+color: var(--color-accent-blue);
+text-decoration: none;
+text-align: right;
+padding-bottom: 10px;
+font-weight: 500;
+font-size: var(--body-font-size-xs);
+transition: color 0.3s ease;
+z-index: 5;
 }
 
 /* "Buy now" button - full width green button */
 .cards-pricing .cards-pricing-card-body > p:last-child a:last-child {
-  display: block;
-  width: 100%;
-  text-align: center;
-  padding: 12px 24px;
-  background-color: var(--color-primary-green);
-  color: var(--color-text-dark);
-  border: 1px solid var(--color-primary-green);
-  border-radius: var(--border-radius-sm);
-  font-family: var(--body-font-family-medium);
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.3s ease;
+display: block;
+text-align: center;
+padding: 12px 24px;
+background-color: var(--color-primary-green);
+color: var(--color-text-dark);
+border: 1px solid var(--color-primary-green);
+border-radius: var(--border-radius-sm);
+font-family: var(--body-font-family-medium);
+font-weight: 500;
+text-decoration: none;
+transition: all 0.3s ease;
 }
 
 .cards-pricing .cards-pricing-card-body > p:last-child a:first-child:hover {
-  color: var(--color-accent-blue-hover);
-  text-decoration: underline;
+color: var(--color-accent-blue-hover);
+text-decoration: underline;
 }
 
 .cards-pricing .cards-pricing-card-body > p:last-child a:last-child:hover {
-  background-color: var(--color-primary-green-hover);
-  border-color: var(--color-primary-green-hover);
-  transform: translateY(-2px);
-  text-decoration: none;
+background-color: var(--color-primary-green-hover);
+border-color: var(--color-primary-green-hover);
+transform: translateY(-2px);
+text-decoration: none;
 }
 
 .cards-pricing .cards-pricing-card-image {
-  line-height: 0;
-  background-color: var(--background-light);
+line-height: 0;
+background-color: var(--background-light);
 }
 
 .cards-pricing .cards-pricing-card-image img {
-  width: 100%;
-  max-width: 180px;
-  height: auto;
-  object-fit: contain;
-  padding: var(--spacing-m);
-  margin: 0 auto;
-  display: block;
+width: 100%;
+max-width: 180px;
+height: auto;
+object-fit: contain;
+padding: var(--spacing-m);
+margin: 0 auto;
+display: block;
 }
 
 /* Badge images (eSIM, 5G) within card body - position in top right corner */
 .cards-pricing .cards-pricing-card-body picture {
-  width: 32px;
-  height: 32px;
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: var(--spacing-xs);
+width: 32px;
+height: 32px;
+display: inline-block;
+vertical-align: middle;
+margin-left: var(--spacing-xs);
 }
 
 .cards-pricing .cards-pricing-card-body picture img {
-  width: 32px;
-  height: 32px;
-  aspect-ratio: 1 / 1;
-  object-fit: contain;
-  padding: 0;
-  margin: 0;
+width: 32px;
+height: 32px;
+aspect-ratio: 1 / 1;
+object-fit: contain;
+padding: 0;
+margin: 0;
 }
 
 /* Promotional badges (Christmas Half Price, Free OPPO Voucher) */
 .cards-pricing .cards-pricing-card-body p:first-of-type em strong {
-  display: inline-block;
-  background-color: #f0b429;
-  color: #1a1a1a;
-  padding: 6px 16px;
-  border-radius: var(--border-radius-sm);
-  font-family: var(--body-font-family-medium);
-  font-weight: 600;
-  font-size: 14px;
-  font-style: normal;
-  margin: 0 0 var(--spacing-s) 0;
+display: inline-block;
+background-color: #f0b429;
+color: #1a1a1a;
+padding: 6px 16px;
+border-radius: 8px 8px 0 0;
+font-family: var(--body-font-family-medium);
+font-weight: 600;
+font-size: 14px;
+font-style: normal;
+margin: 0 0 var(--spacing-s) 0;
 }
