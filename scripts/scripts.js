@@ -19,6 +19,7 @@ import {
   martechEager,
   martechLazy,
   martechDelayed,
+  updateUserConsent,
   // eslint-disable-next-line import/no-relative-packages
 } from '../plugins/martech/src/index.js';
 
@@ -141,6 +142,15 @@ async function loadEager(doc) {
       loadSection(main.querySelector('.section'), waitForFirstImage),
     ]);
   }
+
+  // Grant consent for tracking (remove this for production and use proper consent management)
+  await martechLoadedPromise;
+  updateUserConsent({
+    collect: true,
+    marketing: true,
+    personalize: true,
+    share: true,
+  });
 
   try {
     /* if desktop (proxy for fast connection) or fonts already loaded, load fonts.css */
