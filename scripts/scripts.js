@@ -126,7 +126,7 @@ async function loadEager(doc) {
     },
     // 2. Library Configuration
     {
-      personalization: !!getMetadata('target'),
+      personalization: true,
       launchUrls: ['https://assets.adobedtm.com/0e9a0418089e/4efb62083c74/launch-7537c509f5f7-development.min.js'],
       // See the API Reference for all available options.
     },
