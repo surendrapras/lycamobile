@@ -20,7 +20,7 @@
 
 .cards-pricing > ul > li:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
 }
 
 /* Base styles for card body */
@@ -61,6 +61,19 @@
 }
 
 /* Typography & Content Styling */
+
+/* Data Amount (6GB / 30GB) */
+.cards-pricing-card-body p:has(strong) {
+  font-size: 48px;
+  line-height: 1;
+  margin: 10px 0 5px;
+}
+
+.cards-pricing-card-body p:has(strong) strong {
+  font-size: 64px;
+  color: inherit;
+}
+
 /* "Merry Christmas" */
 .cards-pricing-card-body p strong {
   font-family: 'Cormorant Garamond', serif; /* Or similar decorative font if available */
@@ -79,27 +92,9 @@
   margin: 0 0 15px;
 }
 
-/* Large Data (6GB / 30GB) */
-.cards-pricing-card-body p strong {
-   /* This selector targets all strongs, check structure */
-}
 
-/* Specific targeting based on content flow in markdown -> JS output
-   JS flatters structure somewhat or creates summary wrapper.
-   Let's rely on standard paragraph order if possible.
-*/
 
-/* Data Amount (6GB / 30GB) */
-.cards-pricing-card-body p:has(strong) {
-  font-size: 48px;
-  line-height: 1;
-  margin: 10px 0 5px;
-}
 
-.cards-pricing-card-body p:has(strong) strong {
-  font-size: 64px;
-  color: inherit;
-}
 
 /* Features (Roaming, Mins) */
 .cards-pricing-card-body p em {
@@ -114,6 +109,7 @@
   display: inline-block;
   width: 16px;
   height: 16px;
+
   /* margin-right: 5px; background... */
 }
 
@@ -145,6 +141,7 @@
 .cards-pricing > ul > li:nth-child(2) .cards-pricing-card-body p {
   color: #e0e0e0;
 }
+
 .cards-pricing > ul > li:nth-child(2) .cards-pricing-card-body strong,
 .cards-pricing > ul > li:nth-child(2) .cards-pricing-card-body h2 {
   color: #fff;
