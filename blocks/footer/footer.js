@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
@@ -17,90 +15,61 @@ export default async function decorate(block) {
   block.textContent = '';
   const footer = document.createElement('div');
 
-  // Handle both 2-div and 3-div structures from Google Drive
-  // 2-div: [sections, bottom] or 3-div: [sections, app-badges, bottom]
-  const divCount = fragment.children.length;
+  // Collect all content from fragment sections
+  const allElements = [];
+  [...fragment.querySelectorAll('.default-content-wrapper')].forEach((wrapper) => {
+    allElements.push(...wrapper.children);
+  });
 
-  if (divCount === 3) {
-    // 3-div structure: merge first two divs
-    const firstSection = fragment.children[0];
-    const appBadgesSection = fragment.children[1];
-    const bottomSection = fragment.children[2];
+  // Create columns container
+  const columnsContainer = document.createElement('div');
 
-    // Get the wrapper div inside the section (added by decorateSections)
-    const firstWrapper = firstSection.querySelector('.default-content-wrapper, :scope > div');
-    const appBadgesWrapper = appBadgesSection.querySelector('.default-content-wrapper, :scope > div');
+  // Create bottom section container
+  const bottomSection = document.createElement('div');
+  const bottomWrapper = document.createElement('div');
+  bottomWrapper.className = 'default-content-wrapper';
 
-    // Restructure first div to have each column (h2 + ul/p) in its own div
-    const columnsContainer = document.createElement('div');
-    const elements = firstWrapper ? Array.from(firstWrapper.children) : [];
+  let currentColumn = null;
+  let isBottomSection = false;
 
-    let currentColumn = null;
-    elements.forEach((el) => {
-      if (el.tagName === 'H2') {
-        // Start new column
-        if (currentColumn) columnsContainer.appendChild(currentColumn);
-        currentColumn = document.createElement('div');
-        currentColumn.appendChild(el);
-      } else if (currentColumn) {
-        // Add to current column
-        currentColumn.appendChild(el);
-      }
-    });
+  // Process all elements
+  [...allElements].forEach((el) => {
+    // Check if this is the bottom section (starts after "Lyca on the go" app badges)
+    // Bottom section contains: logo (Lyca Mobile UK), copyright text, social icons
+    const isLogo = el.tagName === 'P' && el.querySelector('img[alt="Lyca Mobile UK"]');
+    const isCopyright = el.tagName === 'P' && el.textContent.includes('©');
+    const isSocialIcons = el.tagName === 'P'
+      && (el.querySelector('img[alt="Facebook"]')
+        || el.querySelector('img[alt="Twitter"]')
+        || el.querySelector('img[alt="Instagram"]'));
 
-    // Add app badges to the last column (Lyca on the go)
-    if (currentColumn && appBadgesWrapper) {
-      Array.from(appBadgesWrapper.children).forEach((el) => {
-        currentColumn.appendChild(el);
-      });
+    if (isLogo || isCopyright || isSocialIcons) {
+      isBottomSection = true;
     }
 
-    // Add last column
-    if (currentColumn) columnsContainer.appendChild(currentColumn);
-
-    footer.appendChild(columnsContainer);
-
-    // Add bottom div (logo, copyright, social) as-is
-    if (bottomSection) {
-      footer.appendChild(bottomSection);
-    }
-  } else {
-    // 2-div structure: original logic
-    const firstSection = fragment.children[0];
-    const secondSection = fragment.children[1];
-
-    if (firstSection) {
-      // Get the wrapper div inside the section (added by decorateSections)
-      const firstWrapper = firstSection.querySelector('.default-content-wrapper, :scope > div');
-
-      // Restructure first div to have each column (h2 + ul/p) in its own div
-      const columnsContainer = document.createElement('div');
-      const elements = firstWrapper ? Array.from(firstWrapper.children) : [];
-
-      let currentColumn = null;
-      elements.forEach((el) => {
-        if (el.tagName === 'H2') {
-          // Start new column
-          if (currentColumn) columnsContainer.appendChild(currentColumn);
-          currentColumn = document.createElement('div');
-          currentColumn.appendChild(el);
-        } else if (currentColumn) {
-          // Add to current column
-          currentColumn.appendChild(el);
-        }
-      });
-
-      // Add last column
+    if (isBottomSection) {
+      // Add to bottom section
+      bottomWrapper.appendChild(el.cloneNode(true));
+    } else if (el.tagName === 'H2') {
+      // Start new column
       if (currentColumn) columnsContainer.appendChild(currentColumn);
-
-      footer.appendChild(columnsContainer);
+      currentColumn = document.createElement('div');
+      currentColumn.appendChild(el.cloneNode(true));
+    } else if (currentColumn) {
+      // Add to current column
+      currentColumn.appendChild(el.cloneNode(true));
     }
+  });
 
-    // Add second div (logo, copyright, social) as-is
-    if (secondSection) {
-      footer.appendChild(secondSection);
-    }
-  }
+  // Add last column
+  if (currentColumn) columnsContainer.appendChild(currentColumn);
+
+  // Add bottom wrapper to bottom section
+  bottomSection.appendChild(bottomWrapper);
+
+  // Build footer structure
+  footer.appendChild(columnsContainer);
+  footer.appendChild(bottomSection);
 
   block.append(footer);
 }
