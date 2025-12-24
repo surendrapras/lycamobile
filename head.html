@@ -1,17 +1,13 @@
 <meta
   http-equiv="Content-Security-Policy"
-  content="script-src 'nonce-aem' 'strict-dynamic' 'unsafe-inline' http: https:; base-uri 'self'; object-src 'none';"
+  content="script-src 'self' 'unsafe-inline' 'unsafe-eval' https://assets.adobedtm.com https://edge.adobedc.net https://*.demdex.net; base-uri 'self'; object-src 'none'; connect-src 'self' https://edge.adobedc.net https://*.adobedc.net https://assets.adobedtm.com https://*.demdex.net;"
   move-to-http-header="true"
 >
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<script nonce="aem">
-!function(e,a,n,t){var i=e.head;if(i){
- if (a) return;
- var o=e.createElement("style");
-o.id="alloy-prehiding",o.innerText=n,i.appendChild(o),setTimeout(function(){o.parentNode&&o.parentNode.removeChild(o)},t)}}
-(document, document.location.href.indexOf("adobe_authoring_enabled") !== -1, ".personalization-container { opacity: 0 !important }", 3000);
-</script>
-<script nonce="aem" src="https://assets.adobedtm.com/0e9a0418089e/b569a9d9412e/launch-ec64502683e7-development.min.js" async></script>
+<meta name="target" content="true"/>
 <script nonce="aem" src="/scripts/aem.js" type="module"></script>
 <script nonce="aem" src="/scripts/scripts.js" type="module"></script>
 <link rel="stylesheet" href="/styles/styles.css"/>
+<link rel="preload" as="script" crossorigin="anonymous" href="/plugins/martech/src/index.js"/>
+<link rel="preload" as="script" crossorigin="anonymous" href="/plugins/martech/src/alloy.min.js"/>
+<link rel="preconnect" href="https://edge.adobedc.net"/>

@@ -11,7 +11,16 @@ import {
   loadSection,
   loadSections,
   loadCSS,
+  getMetadata,
 } from './aem.js';
+
+import {
+  initMartech,
+  martechEager,
+  martechLazy,
+  martechDelayed,
+  // eslint-disable-next-line import/no-relative-packages
+} from '../plugins/martech/src/index.js';
 
 /**
  * Builds hero block and prepends to main in a new section.
@@ -107,11 +116,44 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  // eslint-disable-next-line no-unused-vars
+  const isConsentGiven = true;
+
+  // Martech Plugin initialization
+  const martechLoadedPromise = initMartech(
+    // 1. WebSDK Configuration
+    // Docs: https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/commands/configure/overview#configure-js
+    {
+      datastreamId: 'c3040c2e-07d6-446c-8f3c-d3f500ff3113',
+      orgId: '09CF60665F98CEF90A495FF8@AdobeOrg',
+      defaultConsent: 'in',
+      // The `debugEnabled` flag is automatically set to true on localhost and .page URLs.
+      // The `defaultConsent` is automatically set to "pending".
+      // eslint-disable-next-line no-unused-vars
+      onBeforeEventSend: (payload) => {
+        // This callback allows you to modify the payload before it's sent.
+        // Return false to prevent the event from being sent.
+      },
+      edgeConfigOverrides: {
+        // Optional datastream overrides for different environments.
+      },
+    },
+    // 2. Library Configuration
+    {
+      personalization: !!getMetadata('target'),
+      launchUrls: ['https://assets.adobedtm.com/0e9a0418089e/4efb62083c74/launch-7537c509f5f7-development.min.js'],
+      // See the API Reference for all available options.
+    },
+  );
+
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
     document.body.classList.add('appear');
-    await loadSection(main.querySelector('.section'), waitForFirstImage);
+    await Promise.all([
+      martechLoadedPromise.then(martechEager),
+      loadSection(main.querySelector('.section'), waitForFirstImage),
+    ]);
   }
 
   try {
@@ -140,6 +182,8 @@ async function loadLazy(doc) {
 
   loadFooter(doc.querySelector('footer'));
 
+  await martechLazy();
+
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
 }
@@ -149,8 +193,11 @@ async function loadLazy(doc) {
  * without impacting the user experience.
  */
 function loadDelayed() {
-  // eslint-disable-next-line import/no-cycle
-  window.setTimeout(() => import('./delayed.js'), 3000);
+  window.setTimeout(() => {
+    martechDelayed();
+    // eslint-disable-next-line import/no-cycle
+    import('./delayed.js');
+  }, 3000);
   // load anything that can be postponed to the latest here
 }
 
