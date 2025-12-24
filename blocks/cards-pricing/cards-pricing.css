@@ -71,9 +71,6 @@
   margin-bottom: 5px;
 }
 
-.cards-pricing > ul > li:nth-child(1) p strong { color: #21254f; }
-.cards-pricing > ul > li:nth-child(2) p strong { color: #fff; }
-
 /* Data Amount (6GB / 30GB) */
 .cards-pricing-card-body p:has(strong) {
   font-size: 48px;
@@ -117,6 +114,7 @@
 }
 
 
+
 /* Price Circle */
 /* We need to detect the price block. It's tough with just CSS if structure is loose.
    Assuming price is in one of the lower paragraphs.
@@ -142,6 +140,8 @@
 }
 
 /* Specific text overrides */
+.cards-pricing > ul > li:nth-child(1) p strong { color: #21254f; }
+.cards-pricing > ul > li:nth-child(2) p strong { color: #fff; }
 .cards-pricing > ul > li:nth-child(2) .cards-pricing-card-body p {
   color: #e0e0e0;
 }
