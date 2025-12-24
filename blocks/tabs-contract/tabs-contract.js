@@ -34,10 +34,11 @@ export default async function decorate(block) {
     const cardsBlocks = findCardsBlocks();
     cardsBlocks.forEach((cardsBlock) => {
       const blockDuration = cardsBlock.getAttribute('data-contract-duration');
-      if (blockDuration === duration) {
-        cardsBlock.style.display = 'block';
-      } else {
-        cardsBlock.style.display = 'none';
+      const isMatch = blockDuration === duration;
+      cardsBlock.style.display = isMatch ? 'block' : 'none';
+      const section = cardsBlock.closest('.section');
+      if (section) {
+        section.style.display = isMatch ? '' : 'none';
       }
     });
   }

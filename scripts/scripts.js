@@ -116,6 +116,9 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  if (window.location.pathname.includes('/paymonthly/en/bundles/sim-only-deals')) {
+    document.body.classList.add('paymonthly-sim-only-deals');
+  }
   // eslint-disable-next-line no-unused-vars
   const isConsentGiven = true;
 

@@ -212,3 +212,183 @@
     align-items: flex-start;
   }
 }
+
+body.paymonthly-sim-only-deals .cards-pricing {
+  max-width: 1200px;
+}
+
+body.paymonthly-sim-only-deals .cards-pricing > ul {
+  gap: 22px;
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-item {
+  grid-template-columns: 280px 160px 1fr 190px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  box-shadow: 0 3px 8px rgb(15 23 42 / 8%);
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-item:hover {
+  border-color: #00d084;
+  box-shadow: 0 8px 18px rgb(15 23 42 / 12%);
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-promo {
+  top: -14px;
+  left: -1px;
+  background: #ffd85a;
+  color: #1f2937;
+  font-size: 12px;
+  padding: 6px 14px;
+  border-radius: 6px 6px 6px 0;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 8%);
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-left {
+  padding: 20px 22px;
+  background: #fff5ef;
+  border-right: 1px solid #f1e6dd;
+  border-radius: 10px 0 0 10px;
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-data,
+body.paymonthly-sim-only-deals .cards-pricing-features,
+body.paymonthly-sim-only-deals .cards-pricing-actions {
+  padding: 20px 20px;
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-data {
+  justify-content: center;
+  align-items: flex-start;
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #475467;
+  margin-bottom: 8px;
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-price {
+  gap: 8px;
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-price strong {
+  font-size: 30px;
+  line-height: 36px;
+  color: #1f2a5a;
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-price del {
+  font-size: 14px;
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-period {
+  font-size: 13px;
+  color: #475467;
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-data-value {
+  font-size: 28px;
+  line-height: 34px;
+  color: #5b6b7f;
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-data-label {
+  font-size: 13px;
+  color: #98a2b3;
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-subtext {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #667085;
+  line-height: 1.4;
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-features li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: #344054;
+  position: static;
+  padding-left: 0;
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-features li::before {
+  content: '';
+  width: 6px;
+  height: 12px;
+  border-right: 2px solid #12b76a;
+  border-bottom: 2px solid #12b76a;
+  transform: rotate(45deg);
+  margin-right: 6px;
+  display: inline-block;
+  position: static;
+  left: auto;
+  top: auto;
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-features li:last-child {
+  margin-bottom: 0;
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-actions {
+  justify-content: flex-end;
+  gap: 18px;
+  min-width: 170px;
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-icons {
+  gap: 10px;
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #1f2a5a;
+  border: 1px solid #1f2a5a;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-ctas {
+  align-items: flex-end;
+  gap: 8px;
+  text-align: right;
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-viewmore {
+  font-size: 13px;
+  font-weight: 600;
+  color: #2563eb;
+}
+
+body.paymonthly-sim-only-deals .cards-pricing-buynow {
+  font-size: 13px;
+  padding: 10px 20px;
+  border-radius: 6px;
+}
+
+@media (width <= 900px) {
+  body.paymonthly-sim-only-deals .cards-pricing-item {
+    grid-template-columns: 1fr;
+  }
+
+  body.paymonthly-sim-only-deals .cards-pricing-left,
+  body.paymonthly-sim-only-deals .cards-pricing-data,
+  body.paymonthly-sim-only-deals .cards-pricing-features,
+  body.paymonthly-sim-only-deals .cards-pricing-actions {
+    padding: 18px 20px;
+  }
+
+  body.paymonthly-sim-only-deals .cards-pricing-left {
+    border-radius: 10px 10px 0 0;
+    border-right: none;
+  }
+}
