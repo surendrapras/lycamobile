@@ -62,7 +62,6 @@
 
 /* Typography & Content Styling */
 
-
 /* "Merry Christmas" */
 .cards-pricing-card-body p strong {
   font-family: 'Cormorant Garamond', serif; /* Or similar decorative font if available */
@@ -83,18 +82,12 @@
   color: inherit;
 }
 
-
-
 /* 50% OFF Text */
 .cards-pricing-card-body p:nth-of-type(2) { /* Assuming order from markdown */
   font-size: 18px;
   font-weight: 700;
   margin: 0 0 15px;
 }
-
-
-
-
 
 /* Features (Roaming, Mins) */
 .cards-pricing-card-body p em {
@@ -112,14 +105,6 @@
 
   /* margin-right: 5px; background... */
 }
-
-
-
-
-/* Price Circle */
-/* We need to detect the price block. It's tough with just CSS if structure is loose.
-   Assuming price is in one of the lower paragraphs.
-*/
 
 /* Buttons */
 .cards-pricing-card-body p:last-child a {
