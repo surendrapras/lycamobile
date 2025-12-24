@@ -2,121 +2,117 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 
 const ICONS = ['eSIM', '5G'];
 
-function getText(el) {
-  return (el?.textContent || '').trim();
+function txt(node) {
+  return (node && node.textContent ? node.textContent : '').trim();
 }
 
-function isPromoLine(text) {
-  return /half price|voucher|offer/i.test(text) && text.length <= 40;
+function norm(s) {
+  return (s || '').replace(/\s+/g, ' ').trim();
 }
 
-function extractCtas(container) {
-  const links = [...container.querySelectorAll('a')];
-
-  const viewMore = links.find((a) => /view more/i.test(getText(a))) || null;
-  const buyNow = links.find((a) => /buy now/i.test(getText(a))) || null;
-
-  // If authoring doesn't have link texts, fallback to last two anchors
-  const fallback = links.slice(-2);
-  const view = viewMore || fallback[0] || null;
-  const buy = buyNow || fallback[1] || null;
-
-  if (view) view.remove();
-  if (buy) buy.remove();
-
-  return { view, buy };
+function isPromo(s) {
+  const t = norm(s).toLowerCase();
+  return (t.includes('half price') || t.includes('voucher') || t.includes('offer')) && t.length <= 50;
 }
 
-function parsePriceFromParagraph(p) {
-  const text = getText(p);
+function isSubtext(s) {
+  return /^for the first/i.test(norm(s));
+}
+
+function isDataLine(s) {
+  return /\bdata\b$/i.test(norm(s));
+}
+
+function isCtaLine(s) {
+  const t = norm(s).toLowerCase();
+  return t.includes('view more') || t.includes('buy now');
+}
+
+function isTitleLine(s) {
+  const t = norm(s);
+  return /month/i.test(t) && !/£/.test(t) && !isSubtext(t) && !isPromo(t) && !isCtaLine(t);
+}
+
+function splitTitleAndPrice(s) {
+  const raw = norm(s);
+  const cut = raw.split('£')[0];
+  return norm(cut.replace(/<\s*del\s*>/gi, '').replace(/<\s*\/\s*del\s*>/gi, ''));
+}
+
+function parsePrice(s) {
+  const text = norm(s);
   const prices = text.match(/£\s*\d+(?:\.\d{1,2})?/g) || [];
-  const monthly = /monthly/i.test(text) ? 'monthly' : '';
-
-  // If authoring is like: "<del> £9.00 monthly£18.00"
-  // we assume prices[0] is new, prices[1] is old.
   let newPrice = prices[0] || '';
   let oldPrice = prices[1] || '';
-
-  // If authoring is like: "<del> £18.00</del> £9.00 monthly"
-  // we can detect that by checking if the string starts with "<del>" (often in HTML),
-  // but after import we can’t reliably read raw HTML — so we use a safer heuristic:
-  // if the 2nd price is bigger, treat it as old; else keep as is.
   if (prices.length >= 2) {
     const n1 = parseFloat(prices[0].replace(/[£\s]/g, ''));
     const n2 = parseFloat(prices[1].replace(/[£\s]/g, ''));
     if (!Number.isNaN(n1) && !Number.isNaN(n2) && n2 > n1) {
       [newPrice, oldPrice] = prices;
     } else {
-      // if authored already in correct order, it will still work visually
-      // (worst case: both are shown, but still formatted)
       [oldPrice, newPrice] = prices;
     }
   }
-
+  const monthly = /monthly/i.test(text) ? 'monthly' : '';
   return { oldPrice, newPrice, monthly };
 }
 
-function buildPriceEl(priceP) {
-  const { oldPrice, newPrice, monthly } = parsePriceFromParagraph(priceP);
-
-  const price = document.createElement('p');
-  price.className = 'cards-pricing-price';
+function buildPriceEl(priceText) {
+  const { oldPrice, newPrice, monthly } = parsePrice(priceText);
+  const p = document.createElement('p');
+  p.className = 'cards-pricing-price';
 
   if (oldPrice) {
-    const del = document.createElement('del');
-    del.textContent = oldPrice;
-    price.append(del);
+    const d = document.createElement('del');
+    d.textContent = oldPrice;
+    p.append(d);
   }
 
   if (newPrice) {
-    const strong = document.createElement('strong');
-    strong.textContent = newPrice;
-    price.append(strong);
+    const s = document.createElement('strong');
+    s.textContent = newPrice;
+    p.append(s);
   }
 
   if (monthly) {
     const span = document.createElement('span');
     span.className = 'cards-pricing-period';
     span.textContent = monthly;
-    price.append(span);
+    p.append(span);
   }
 
-  return price;
+  return p;
 }
 
-function buildDataEl(dataP) {
-  const dataText = getText(dataP);
-  const value = dataText.replace(/data$/i, '').trim() || dataText;
-
+function buildDataEl(dataText) {
+  const value = norm(dataText).replace(/data$/i, '').trim() || norm(dataText);
   const wrap = document.createElement('div');
   wrap.className = 'cards-pricing-data';
 
-  const val = document.createElement('div');
-  val.className = 'cards-pricing-data-value';
-  val.textContent = value;
+  const v = document.createElement('div');
+  v.className = 'cards-pricing-data-value';
+  v.textContent = value;
 
-  const lbl = document.createElement('div');
-  lbl.className = 'cards-pricing-data-label';
-  lbl.textContent = 'Data';
+  const l = document.createElement('div');
+  l.className = 'cards-pricing-data-label';
+  l.textContent = 'Data';
 
-  wrap.append(val, lbl);
+  wrap.append(v, l);
   return wrap;
 }
 
-function buildFeaturesEl(featurePs) {
+function buildFeaturesEl(items) {
   const ul = document.createElement('ul');
   ul.className = 'cards-pricing-features';
-
-  featurePs.forEach((p) => {
+  items.forEach((t) => {
     const li = document.createElement('li');
-    li.textContent = getText(p);
+    li.textContent = t;
     ul.append(li);
   });
-
   return ul;
 }
 
-function buildActionsEl(ctas) {
+function buildActionsEl(viewLink, buyLink) {
   const wrap = document.createElement('div');
   wrap.className = 'cards-pricing-actions';
 
@@ -130,25 +126,48 @@ function buildActionsEl(ctas) {
     icons.append(s);
   });
 
-  const ctaWrap = document.createElement('div');
-  ctaWrap.className = 'cards-pricing-ctas';
+  const ctas = document.createElement('div');
+  ctas.className = 'cards-pricing-ctas';
 
-  if (ctas.view) {
-    ctas.view.classList.add('cards-pricing-viewmore');
-    ctaWrap.append(ctas.view);
+  if (viewLink) {
+    viewLink.classList.add('cards-pricing-viewmore');
+    ctas.append(viewLink);
   }
 
-  if (ctas.buy) {
-    ctas.buy.classList.add('cards-pricing-buynow');
-    ctaWrap.append(ctas.buy);
+  if (buyLink) {
+    buyLink.classList.add('cards-pricing-buynow');
+    ctas.append(buyLink);
   }
 
-  wrap.append(icons, ctaWrap);
+  wrap.append(icons, ctas);
   return wrap;
 }
 
+function pickLinks(row) {
+  const links = [...row.querySelectorAll('a')];
+  const view = links.find((a) => /view more/i.test(txt(a))) || null;
+  const buy = links.find((a) => /buy now/i.test(txt(a))) || null;
+
+  if (view || buy) {
+    return { view, buy };
+  }
+
+  const p = [...row.querySelectorAll('p')].find((x) => isCtaLine(txt(x)));
+  const t = p ? norm(txt(p)).toLowerCase() : '';
+  const mk = (label) => {
+    const a = document.createElement('a');
+    a.href = '#';
+    a.textContent = label;
+    return a;
+  };
+
+  return {
+    view: t.includes('view more') ? mk('View more') : null,
+    buy: t.includes('buy now') ? mk('Buy now') : null,
+  };
+}
+
 export default function decorate(block) {
-  // contract duration class -> view-list
   const durationMatch = block.className.match(/contract-duration-(\d+)/i);
   if (durationMatch) {
     [, block.dataset.contractDuration] = durationMatch;
@@ -157,58 +176,43 @@ export default function decorate(block) {
   const ul = document.createElement('ul');
 
   [...block.children].forEach((row) => {
-    const cells = [...row.children];
-    if (!cells.length) return;
+    const pTexts = [...row.querySelectorAll('p')].map((p) => norm(txt(p))).filter(Boolean);
+    const liTexts = [...row.querySelectorAll('ul li, ol li')].map((li) => norm(txt(li))).filter(Boolean);
 
-    const titleCell = cells[0];
-    const detailCell = cells[1] || cells[0];
-
-    const allPs = [...detailCell.querySelectorAll('p')].filter((p) => getText(p));
-    const used = new Set();
-
-    // Promo
     let promoText = '';
-    if (allPs[0] && isPromoLine(getText(allPs[0])) && !allPs[0].querySelector('a')) {
-      promoText = getText(allPs[0]);
-      used.add(allPs[0]);
+    const promoCandidate = pTexts.find((t) => isPromo(t));
+    if (promoCandidate) promoText = promoCandidate;
+
+    let titleText = '';
+    const titleCandidate = pTexts.find((t) => isTitleLine(t)) || pTexts.find((t) => /month/i.test(t) && !isSubtext(t) && !isPromo(t) && !isCtaLine(t)) || '';
+    if (titleCandidate) titleText = splitTitleAndPrice(titleCandidate);
+
+    let priceText = pTexts.find((t) => /£/.test(t) && /monthly/i.test(t)) || '';
+    if (!priceText && /£/.test(titleCandidate)) priceText = titleCandidate;
+
+    const subText = pTexts.find((t) => isSubtext(t)) || '';
+    const dataText = pTexts.find((t) => isDataLine(t)) || '';
+
+    let featureItems = [];
+    if (liTexts.length) {
+      featureItems = liTexts;
+    } else {
+      featureItems = pTexts
+        .filter((t) => !isPromo(t))
+        .filter((t) => !isSubtext(t))
+        .filter((t) => !isDataLine(t))
+        .filter((t) => !/£/.test(t))
+        .filter((t) => !isCtaLine(t))
+        .map((t) => t.replace(/^●\s*/, '').trim())
+        .filter(Boolean);
     }
 
-    // Title (prefer col-1 text)
-    let titleText = getText(titleCell);
-    let titleP = null;
-
-    if (!titleText) {
-      titleP = allPs.find((p) => !used.has(p) && /month/i.test(getText(p)) && !/^for the first/i.test(getText(p)));
-      if (titleP) {
-        titleText = getText(titleP).split('£')[0].trim();
-        // If title paragraph also contains prices, keep it for price parsing
-        if (!/£/.test(getText(titleP))) used.add(titleP);
-      }
-    }
-
-    // CTAs (View more / Buy now)
-    const ctas = extractCtas(detailCell);
-
-    // Price paragraph
-    let priceP = allPs.find((p) => /£/.test(getText(p)) && /monthly/i.test(getText(p)) && !used.has(p))
-      || allPs.find((p) => /£/.test(getText(p)) && !used.has(p))
-      || null;
-
-    if (!priceP && titleP && /£/.test(getText(titleP))) priceP = titleP;
-    if (priceP) used.add(priceP);
-
-    // Subtext (for the first...)
-    const subP = allPs.find((p) => !used.has(p) && /^for the first/i.test(getText(p))) || null;
-    if (subP) used.add(subP);
-
-    // Data paragraph (ends with Data)
-    const dataP = allPs.find((p) => !used.has(p) && /data$/i.test(getText(p))) || null;
-    if (dataP) used.add(dataP);
-
-    // Features = remaining non-empty, non-link paragraphs (usually 3)
-    const featurePs = allPs
-      .filter((p) => !used.has(p) && !p.querySelector('a'))
+    featureItems = featureItems
+      .map((t) => t.replace(/^●\s*/, '').trim())
+      .filter((t) => t && !isCtaLine(t))
       .slice(0, 3);
+
+    const { view, buy } = pickLinks(row);
 
     const li = document.createElement('li');
     li.className = 'cards-pricing-item';
@@ -220,43 +224,43 @@ export default function decorate(block) {
       li.append(badge);
     }
 
-    // Left panel
     const left = document.createElement('div');
     left.className = 'cards-pricing-left';
 
     if (titleText) {
-      const title = document.createElement('p');
-      title.className = 'cards-pricing-title';
-      title.textContent = titleText;
-      left.append(title);
+      const t = document.createElement('p');
+      t.className = 'cards-pricing-title';
+      t.textContent = titleText;
+      left.append(t);
     }
 
-    if (priceP) left.append(buildPriceEl(priceP));
-
-    if (subP) {
-      const sub = document.createElement('p');
-      sub.className = 'cards-pricing-subtext';
-      sub.textContent = getText(subP);
-      left.append(sub);
+    if (priceText) {
+      left.append(buildPriceEl(priceText));
     }
 
-    // Data panel
-    const data = dataP ? buildDataEl(dataP) : document.createElement('div');
-    if (!dataP) data.className = 'cards-pricing-data';
+    if (subText) {
+      const s = document.createElement('p');
+      s.className = 'cards-pricing-subtext';
+      s.textContent = subText;
+      left.append(s);
+    }
 
-    // Features
-    const feats = buildFeaturesEl(featurePs);
+    const data = dataText ? buildDataEl(dataText) : (() => {
+      const d = document.createElement('div');
+      d.className = 'cards-pricing-data';
+      return d;
+    })();
 
-    // Actions
-    const actions = buildActionsEl(ctas);
+    const feats = buildFeaturesEl(featureItems);
+    const actions = buildActionsEl(view, buy);
 
     li.append(left, data, feats, actions);
 
-    // Optimize any images inside card
     li.querySelectorAll('picture > img').forEach((img) => {
-      img.closest('picture').replaceWith(
-        createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]),
-      );
+      const pic = img.closest('picture');
+      if (pic) {
+        pic.replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]));
+      }
     });
 
     ul.append(li);
