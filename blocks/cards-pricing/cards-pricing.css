@@ -62,20 +62,24 @@
 }
 
 .cards-pricing-price del {
-  color: #9ca3af;
+  color: var(--gray200, #9ca3af);
   font-weight: 600;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .cards-pricing-price strong {
-  font-size: 20px;
-  font-weight: 800;
+  font-size: var(--font-size-32, 32px);
+  font-weight: 700;
+  font-family: GTEestiLCDisplayBold, sans-serif;
+  line-height: var(--lh40, 40px);
   color: #111827;
 }
 
 .cards-pricing-period {
-  font-size: 12px;
-  font-weight: 600;
+  font-size: var(--font-size-18, 18px);
+  font-weight: 500;
+  font-family: GTEestiLCDisplayMedium, sans-serif;
+  line-height: var(--lh24, 24px);
   color: #6b7280;
 }
 
@@ -93,10 +97,11 @@
 }
 
 .cards-pricing-data-value {
-  font-size: 26px;
-  font-weight: 800;
+  font-size: var(--font-size-32, 32px);
+  font-weight: 700;
+  font-family: GTEestiLCDisplayBold, sans-serif;
   color: #374151;
-  line-height: 1.1;
+  line-height: var(--lh40, 40px);
 }
 
 .cards-pricing-data-label {
@@ -115,7 +120,9 @@
   position: relative;
   margin: 0 0 8px;
   padding-left: 18px;
-  font-size: 12px;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.5;
   color: #374151;
 }
 
