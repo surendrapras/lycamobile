@@ -1,4 +1,4 @@
-.cards-pricing > ul {
+.cards-pricing>ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -7,7 +7,7 @@
   gap: 24px;
 }
 
-.cards-pricing > ul > li {
+.cards-pricing>ul>li {
   border-radius: 16px;
   overflow: hidden;
   position: relative;
@@ -18,7 +18,7 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.cards-pricing > ul > li:hover {
+.cards-pricing>ul>li:hover {
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
 }
@@ -47,15 +47,17 @@
 }
 
 /* Card 1: Pay Monthly (Light Theme) */
-.cards-pricing > ul > li:nth-child(1) {
-  background-color: #fff9f2; /* Cream/Beige */
+.cards-pricing>ul>li:nth-child(1) {
+  background-color: #fff9f2;
+  /* Cream/Beige */
   color: #21254f;
   border-color: #fff9f2;
 }
 
 /* Card 2: Pay As You Go (Dark Theme) */
-.cards-pricing > ul > li:nth-child(2) {
-  background-color: #17254e; /* Dark Blue */
+.cards-pricing>ul>li:nth-child(2) {
+  background-color: #17254e;
+  /* Dark Blue */
   color: #fff;
   border-color: #17254e;
 }
@@ -64,7 +66,8 @@
 
 /* "Merry Christmas" */
 .cards-pricing-card-body p strong {
-  font-family: 'Cormorant Garamond', serif; /* Or similar decorative font if available */
+  font-family: 'Cormorant Garamond', serif;
+  /* Or similar decorative font if available */
   font-size: 24px;
   display: block;
   margin-bottom: 5px;
@@ -83,7 +86,8 @@
 }
 
 /* 50% OFF Text */
-.cards-pricing-card-body p:nth-of-type(2) { /* Assuming order from markdown */
+.cards-pricing-card-body p:nth-of-type(2) {
+  /* Assuming order from markdown */
   font-size: 18px;
   font-weight: 700;
   margin: 0 0 15px;
@@ -98,7 +102,8 @@
 }
 
 .cards-pricing-card-body p em::before {
-  content: ''; /* Icons can go here */
+  content: '';
+  /* Icons can go here */
   display: inline-block;
   width: 16px;
   height: 16px;
@@ -127,13 +132,19 @@
 
 
 /* Specific text overrides */
-.cards-pricing > ul > li:nth-child(1) p strong { color: #21254f; }
-.cards-pricing > ul > li:nth-child(2) p strong { color: #fff; }
-.cards-pricing > ul > li:nth-child(2) .cards-pricing-card-body p {
+.cards-pricing>ul>li:nth-child(1) p strong {
+  color: #21254f;
+}
+
+.cards-pricing>ul>li:nth-child(2) p strong {
+  color: #fff;
+}
+
+.cards-pricing>ul>li:nth-child(2) .cards-pricing-card-body p {
   color: #e0e0e0;
 }
 
-.cards-pricing > ul > li:nth-child(2) .cards-pricing-card-body strong,
-.cards-pricing > ul > li:nth-child(2) .cards-pricing-card-body h2 {
+.cards-pricing>ul>li:nth-child(2) .cards-pricing-card-body strong,
+.cards-pricing>ul>li:nth-child(2) .cards-pricing-card-body h2 {
   color: #fff;
 }
