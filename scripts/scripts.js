@@ -69,6 +69,13 @@ function buildAutoBlocks(main) {
     }
 
     buildHeroBlock(main);
+
+    // auto block lyca-snow
+    if (!main.querySelector('.lyca-snow')) {
+      const snow = document.createElement('div');
+      snow.className = 'lyca-snow';
+      main.append(snow);
+    }
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
