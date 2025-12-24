@@ -7,7 +7,7 @@ function getFirstPicture(root) {
 }
 
 export default function decorate(block) {
-const rows = [...block.querySelectorAll(':scope > div')]
+  const rows = [...block.querySelectorAll(':scope > div')]
     .map((r) => r.firstElementChild)
     .filter(Boolean);
 
