@@ -54,7 +54,6 @@
   justify-content: center;
 }
 
-/* Theme Colors for Tiles */
 .cards-pricing:not(.view-list)>ul>li:nth-child(1) {
   background-color: #fff9f2;
   color: #21254f;
@@ -67,7 +66,6 @@
   border-color: #17254e;
 }
 
-/* Typography for Tiles */
 .cards-pricing:not(.view-list) .cards-pricing-card-body p strong {
   font-family: 'Cormorant Garamond', serif;
   font-size: 24px;
@@ -81,7 +79,6 @@
   margin: 0 0 15px;
 }
 
-/* Data Amount */
 .cards-pricing:not(.view-list) .cards-pricing-card-body p:has(strong) {
   font-size: 48px;
   line-height: 1;
@@ -92,10 +89,8 @@
   font-size: 64px;
   color: inherit;
   font-family: var(--body-font-family);
-  /* Reset if needed */
 }
 
-/* Features */
 .cards-pricing:not(.view-list) .cards-pricing-card-body p em {
   display: block;
   font-style: normal;
