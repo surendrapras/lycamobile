@@ -48,5 +48,5 @@ main .section.hero-banner-container > div {
 }
 
 .hero-banner-media img {
-    object-fit: content;
+    object-fit: cover;
 }
