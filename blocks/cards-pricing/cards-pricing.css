@@ -1,5 +1,3 @@
-/* blocks/cards-pricing/cards-pricing.css */
-
 .cards-pricing>ul {
   list-style: none;
   margin: 0;
@@ -25,7 +23,6 @@
   box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
 }
 
-/* Base styles for card body */
 .cards-pricing-card-body {
   padding: 24px;
   display: flex;
@@ -34,7 +31,6 @@
   flex: 1;
 }
 
-/* Image container */
 .cards-pricing-card-image {
   background: transparent;
   padding: 20px 20px 0;
@@ -48,34 +44,25 @@
   object-fit: contain;
 }
 
-/* Card 1: Pay Monthly (Light Theme) */
 .cards-pricing>ul>li:nth-child(1) {
   background-color: #fff9f2;
-  /* Cream/Beige */
   color: #21254f;
   border-color: #fff9f2;
 }
 
-/* Card 2: Pay As You Go (Dark Theme) */
 .cards-pricing>ul>li:nth-child(2) {
   background-color: #17254e;
-  /* Dark Blue */
   color: #fff;
   border-color: #17254e;
 }
 
-/* Typography & Content Styling */
-
-/* "Merry Christmas" */
 .cards-pricing-card-body p strong {
   font-family: 'Cormorant Garamond', serif;
-  /* Or similar decorative font if available */
   font-size: 24px;
   display: block;
   margin-bottom: 5px;
 }
 
-/* Data Amount (6GB / 30GB) */
 .cards-pricing-card-body p:has(strong) {
   font-size: 48px;
   line-height: 1;
@@ -87,15 +74,12 @@
   color: inherit;
 }
 
-/* 50% OFF Text */
 .cards-pricing-card-body p:nth-of-type(2) {
-  /* Assuming order from markdown */
   font-size: 18px;
   font-weight: 700;
   margin: 0 0 15px;
 }
 
-/* Features (Roaming, Mins) */
 .cards-pricing-card-body p em {
   display: block;
   font-style: normal;
@@ -105,14 +89,11 @@
 
 .cards-pricing-card-body p em::before {
   content: '';
-  /* Icons can go here */
   display: inline-block;
   width: 16px;
   height: 16px;
-  /* margin-right: 5px; background... */
 }
 
-/* Buttons */
 .cards-pricing-card-body p:last-child a {
   display: inline-block;
   background-color: #00d084;
@@ -130,8 +111,6 @@
 .cards-pricing-card-body p:last-child a:hover {
   background-color: #00a065;
 }
-
-/* Specific text overrides */
 
 .cards-pricing>ul>li:nth-child(1) p strong {
   color: #21254f;
