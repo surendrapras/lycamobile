@@ -117,14 +117,14 @@ export default async function decorate(block) {
 
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-  if (nav.children.length !== 3) {
+  if (nav.children.length === 0) {
     nav.innerHTML = `
       <div>
         <p><strong><a href="/">Lyca Mobile UK</a></strong></p>
       </div>
       <div>
         <ul>
-          <li><a href="/en/bundles/sim-only-deals/">Pay monthly</a></li>
+          <li><a href="/paymonthly/en/bundles/sim-only-deals/paymonthly">Pay monthly</a></li>
           <li><a href="/en/bundles/pay-as-you-go-sim-deals/">SIM only deals</a></li>
           <li><a href="/en/help-support">Help</a></li>
           <li><a href="/en/refer-a-friend">Refer a friend</a></li>
