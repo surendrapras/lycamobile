@@ -62,6 +62,18 @@
 
 /* Typography & Content Styling */
 
+
+/* "Merry Christmas" */
+.cards-pricing-card-body p strong {
+  font-family: 'Cormorant Garamond', serif; /* Or similar decorative font if available */
+  font-size: 24px;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.cards-pricing > ul > li:nth-child(1) p strong { color: #21254f; }
+.cards-pricing > ul > li:nth-child(2) p strong { color: #fff; }
+
 /* Data Amount (6GB / 30GB) */
 .cards-pricing-card-body p:has(strong) {
   font-size: 48px;
@@ -74,16 +86,7 @@
   color: inherit;
 }
 
-/* "Merry Christmas" */
-.cards-pricing-card-body p strong {
-  font-family: 'Cormorant Garamond', serif; /* Or similar decorative font if available */
-  font-size: 24px;
-  display: block;
-  margin-bottom: 5px;
-}
 
-.cards-pricing > ul > li:nth-child(1) p strong { color: #21254f; }
-.cards-pricing > ul > li:nth-child(2) p strong { color: #fff; }
 
 /* 50% OFF Text */
 .cards-pricing-card-body p:nth-of-type(2) { /* Assuming order from markdown */
@@ -112,6 +115,7 @@
 
   /* margin-right: 5px; background... */
 }
+
 
 /* Price Circle */
 /* We need to detect the price block. It's tough with just CSS if structure is loose.
