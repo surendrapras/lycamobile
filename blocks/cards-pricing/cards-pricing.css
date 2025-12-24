@@ -1,6 +1,3 @@
-/* =========================================
-   Base Styles (Shared)
-   ========================================= */
 .cards-pricing>ul {
   list-style: none;
   margin: 0;
@@ -14,7 +11,6 @@
   border: 1px solid #e5e7eb;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   background-color: #fff;
-  /* Default white */
 }
 
 .cards-pricing>ul>li:hover {
@@ -32,10 +28,6 @@
   object-fit: contain;
 }
 
-/* =========================================
-   Christmas Tile View (Default)
-   Applied when NOT in list view
-   ========================================= */
 .cards-pricing:not(.view-list)>ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -111,7 +103,6 @@
   margin-bottom: 4px;
 }
 
-/* Buttons */
 .cards-pricing:not(.view-list) .cards-pricing-card-body a {
   display: inline-block;
   background-color: #00d084;
@@ -130,7 +121,6 @@
   background-color: #00a065;
 }
 
-/* Specific text overrides for Dark Tile */
 .cards-pricing:not(.view-list)>ul>li:nth-child(2) .cards-pricing-card-body p {
   color: #e0e0e0;
 }
@@ -139,11 +129,6 @@
   color: #fff;
 }
 
-
-/* =========================================
-   List View (.view-list)
-   Restores horizontal card layout
-   ========================================= */
 .cards-pricing.view-list>ul {
   display: flex;
   flex-direction: column;
@@ -179,7 +164,6 @@
   gap: 20px;
 }
 
-/* Adjust standard typography for List */
 .cards-pricing.view-list h2,
 .cards-pricing.view-list h3,
 .cards-pricing.view-list p {
@@ -190,7 +174,6 @@
   margin-bottom: 4px;
 }
 
-/* Button in List */
 .cards-pricing.view-list .cards-pricing-card-body a {
   background-color: #00d084;
   color: #fff;
@@ -205,7 +188,6 @@
   background-color: #00a065;
 }
 
-/* Responsiveness for List */
 @media (width <=768px) {
   .cards-pricing.view-list>ul>li {
     flex-direction: column;
