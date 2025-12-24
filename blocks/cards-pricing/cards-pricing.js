@@ -168,6 +168,7 @@ function pickLinks(row) {
 }
 
 export default function decorate(block) {
+  const durationMatch = block.className.match(/contract-duration-(\d+)/i);
   if (durationMatch) {
     [, block.dataset.contractDuration] = durationMatch;
   }
