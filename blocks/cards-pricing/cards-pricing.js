@@ -45,13 +45,11 @@ function parsePriceFromParagraph(p) {
     const n1 = parseFloat(prices[0].replace(/[£\s]/g, ''));
     const n2 = parseFloat(prices[1].replace(/[£\s]/g, ''));
     if (!Number.isNaN(n1) && !Number.isNaN(n2) && n2 > n1) {
-      newPrice = prices[0];
-      oldPrice = prices[1];
+      [newPrice, oldPrice] = prices;
     } else {
       // if authored already in correct order, it will still work visually
       // (worst case: both are shown, but still formatted)
-      oldPrice = prices[0];
-      newPrice = prices[1];
+      [oldPrice, newPrice] = prices;
     }
   }
 
