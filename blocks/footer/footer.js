@@ -3,6 +3,66 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
+function buildColumns(section, appBadgesSection) {
+  if (!section) return null;
+  const wrapper = section.querySelector('.default-content-wrapper, :scope > div');
+  if (!wrapper) return null;
+
+  const columnsContainer = document.createElement('div');
+  columnsContainer.className = 'footer-columns';
+  const elements = Array.from(wrapper.children);
+
+  let currentColumn = null;
+  elements.forEach((el) => {
+    if (el.tagName === 'H2') {
+      if (currentColumn) columnsContainer.appendChild(currentColumn);
+      currentColumn = document.createElement('div');
+      currentColumn.className = 'footer-column';
+      currentColumn.appendChild(el);
+      return;
+    }
+    if (currentColumn) currentColumn.appendChild(el);
+  });
+
+  if (currentColumn) columnsContainer.appendChild(currentColumn);
+
+  if (appBadgesSection) {
+    const appBadgesWrapper = appBadgesSection.querySelector('.default-content-wrapper, :scope > div');
+    let lastColumn = columnsContainer.lastElementChild;
+    if (!lastColumn) {
+      lastColumn = document.createElement('div');
+      lastColumn.className = 'footer-column';
+      columnsContainer.appendChild(lastColumn);
+    }
+    if (appBadgesWrapper && lastColumn) {
+      lastColumn.classList.add('footer-apps');
+      Array.from(appBadgesWrapper.children).forEach((el) => {
+        lastColumn.appendChild(el);
+      });
+    }
+  }
+
+  const lastColumn = columnsContainer.lastElementChild;
+  if (lastColumn && lastColumn.querySelector('picture, img')) {
+    lastColumn.classList.add('footer-apps');
+  }
+
+  return columnsContainer;
+}
+
+function decorateBottomSection(section) {
+  if (!section) return;
+  section.classList.add('footer-bottom');
+  const wrapper = section.querySelector('.default-content-wrapper, :scope > div');
+  if (!wrapper) return;
+  wrapper.classList.add('footer-bottom-content');
+
+  const paragraphs = Array.from(wrapper.querySelectorAll(':scope > p'));
+  if (paragraphs[0]) paragraphs[0].classList.add('footer-logo');
+  if (paragraphs[1]) paragraphs[1].classList.add('footer-copy');
+  if (paragraphs[2]) paragraphs[2].classList.add('footer-social');
+}
+
 /**
  * loads and decorates the footer
  * @param {Element} block The footer block element
@@ -16,90 +76,26 @@ export default async function decorate(block) {
   // decorate footer DOM
   block.textContent = '';
   const footer = document.createElement('div');
+  footer.className = 'footer-inner';
+
+  if (!fragment) {
+    block.append(footer);
+    return;
+  }
 
   // Handle both 2-div and 3-div structures from Google Drive
   // 2-div: [sections, bottom] or 3-div: [sections, app-badges, bottom]
   const divCount = fragment.children.length;
+  const firstSection = fragment.children[0];
+  const appBadgesSection = divCount === 3 ? fragment.children[1] : null;
+  const bottomSection = fragment.children[divCount - 1];
 
-  if (divCount === 3) {
-    // 3-div structure: merge first two divs
-    const firstSection = fragment.children[0];
-    const appBadgesSection = fragment.children[1];
-    const bottomSection = fragment.children[2];
+  const columnsContainer = buildColumns(firstSection, appBadgesSection);
+  if (columnsContainer) footer.appendChild(columnsContainer);
 
-    // Get the wrapper div inside the section (added by decorateSections)
-    const firstWrapper = firstSection.querySelector('.default-content-wrapper, :scope > div');
-    const appBadgesWrapper = appBadgesSection.querySelector('.default-content-wrapper, :scope > div');
-
-    // Restructure first div to have each column (h2 + ul/p) in its own div
-    const columnsContainer = document.createElement('div');
-    const elements = firstWrapper ? Array.from(firstWrapper.children) : [];
-
-    let currentColumn = null;
-    elements.forEach((el) => {
-      if (el.tagName === 'H2') {
-        // Start new column
-        if (currentColumn) columnsContainer.appendChild(currentColumn);
-        currentColumn = document.createElement('div');
-        currentColumn.appendChild(el);
-      } else if (currentColumn) {
-        // Add to current column
-        currentColumn.appendChild(el);
-      }
-    });
-
-    // Add app badges to the last column (Lyca on the go)
-    if (currentColumn && appBadgesWrapper) {
-      Array.from(appBadgesWrapper.children).forEach((el) => {
-        currentColumn.appendChild(el);
-      });
-    }
-
-    // Add last column
-    if (currentColumn) columnsContainer.appendChild(currentColumn);
-
-    footer.appendChild(columnsContainer);
-
-    // Add bottom div (logo, copyright, social) as-is
-    if (bottomSection) {
-      footer.appendChild(bottomSection);
-    }
-  } else {
-    // 2-div structure: original logic
-    const firstSection = fragment.children[0];
-    const secondSection = fragment.children[1];
-
-    if (firstSection) {
-      // Get the wrapper div inside the section (added by decorateSections)
-      const firstWrapper = firstSection.querySelector('.default-content-wrapper, :scope > div');
-
-      // Restructure first div to have each column (h2 + ul/p) in its own div
-      const columnsContainer = document.createElement('div');
-      const elements = firstWrapper ? Array.from(firstWrapper.children) : [];
-
-      let currentColumn = null;
-      elements.forEach((el) => {
-        if (el.tagName === 'H2') {
-          // Start new column
-          if (currentColumn) columnsContainer.appendChild(currentColumn);
-          currentColumn = document.createElement('div');
-          currentColumn.appendChild(el);
-        } else if (currentColumn) {
-          // Add to current column
-          currentColumn.appendChild(el);
-        }
-      });
-
-      // Add last column
-      if (currentColumn) columnsContainer.appendChild(currentColumn);
-
-      footer.appendChild(columnsContainer);
-    }
-
-    // Add second div (logo, copyright, social) as-is
-    if (secondSection) {
-      footer.appendChild(secondSection);
-    }
+  if (bottomSection) {
+    decorateBottomSection(bottomSection);
+    footer.appendChild(bottomSection);
   }
 
   block.append(footer);
