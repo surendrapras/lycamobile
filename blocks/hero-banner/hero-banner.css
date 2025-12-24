@@ -6,7 +6,6 @@ main .section.hero-banner-container {
 main .section.hero-banner-container > div {
     max-width: 1248px;
     margin: 0 auto;
-    padding: 48px 24px 40px;
     text-align: center;
 }
 
@@ -49,5 +48,5 @@ main .section.hero-banner-container > div {
 }
 
 .hero-banner-media img {
-    object-fit: contain;
+    object-fit: cover;
 }

@@ -47,7 +47,9 @@ function buildHeroBlock(main) {
 async function loadFonts() {
   await loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
   try {
-    if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
+    if (!window.location.hostname.includes('localhost')) {
+      sessionStorage.setItem('fonts-loaded', 'true');
+    }
   } catch (e) {
     // do nothing
   }
@@ -78,6 +80,15 @@ function buildAutoBlocks(main) {
     }
 
     buildHeroBlock(main);
+
+    // auto block lyca-snow
+    if (!main.querySelector('.lyca-snow')) {
+      const section = document.createElement('div');
+      const snow = document.createElement('div');
+      snow.className = 'lyca-snow';
+      section.append(snow);
+      main.append(section);
+    }
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);

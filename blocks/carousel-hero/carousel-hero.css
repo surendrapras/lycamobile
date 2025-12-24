@@ -65,7 +65,7 @@ main .carousel-hero-container {
 .carousel-hero .carousel-hero-slide .carousel-hero-slide-image picture>img {
   height: 100%;
   width: 100%;
-  object-fit: cover;
+  object-fit: fill;
 }
 
 .carousel-hero .carousel-hero-slide .carousel-hero-slide-content {
@@ -182,27 +182,14 @@ main .carousel-hero-container {
   }
 }
 
-@media (min-width: 320px) {
-  .carousel-hero .carousel-hero-slide {
-    height: 110px;
-  }
+/* Mobile default height */
+.carousel-hero .carousel-hero-slide {
+  height: 202px;
 }
 
-@media (min-width: 500px) {
+@media (width >= 900px) {
   .carousel-hero .carousel-hero-slide {
-    height: 180px;
-  }
-}
-
-@media (min-width: 700px) {
-  .carousel-hero .carousel-hero-slide {
-    height: 300px;
-  }
-}
-
-@media (min-width: 1800px) {
-  .carousel-hero .carousel-hero-slide {
-    height: 700px;
+    height: 350px;
   }
 }
 
