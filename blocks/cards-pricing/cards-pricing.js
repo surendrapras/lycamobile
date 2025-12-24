@@ -5,6 +5,7 @@ export default function decorate(block) {
   const durationMatch = block.className.match(/contract-duration-(\d+)/i);
   if (durationMatch) {
     [, block.dataset.contractDuration] = durationMatch;
+    block.classList.add('view-list');
   }
 
   const ul = document.createElement('ul');

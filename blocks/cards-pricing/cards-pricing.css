@@ -1,41 +1,29 @@
+/* =========================================
+   Base Styles (Shared)
+   ========================================= */
 .cards-pricing>ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 24px;
 }
 
 .cards-pricing>ul>li {
   border-radius: 16px;
   overflow: hidden;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
   border: 1px solid #e5e7eb;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fff;
+  /* Default white */
 }
 
 .cards-pricing>ul>li:hover {
-  transform: translateY(-5px);
+  transform: translateY(-4px);
   box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
 }
 
 .cards-pricing-card-body {
   padding: 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-}
-
-.cards-pricing-card-image {
-  background: transparent;
-  padding: 20px 20px 0;
-  display: flex;
-  justify-content: center;
 }
 
 .cards-pricing-card-image img {
@@ -44,57 +32,87 @@
   object-fit: contain;
 }
 
-.cards-pricing>ul>li:nth-child(1) {
+/* =========================================
+   Christmas Tile View (Default)
+   Applied when NOT in list view
+   ========================================= */
+.cards-pricing:not(.view-list)>ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.cards-pricing:not(.view-list)>ul>li {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.cards-pricing:not(.view-list) .cards-pricing-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.cards-pricing:not(.view-list) .cards-pricing-card-image {
+  background: transparent;
+  padding: 20px 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+/* Theme Colors for Tiles */
+.cards-pricing:not(.view-list)>ul>li:nth-child(1) {
   background-color: #fff9f2;
   color: #21254f;
   border-color: #fff9f2;
 }
 
-.cards-pricing>ul>li:nth-child(2) {
+.cards-pricing:not(.view-list)>ul>li:nth-child(2) {
   background-color: #17254e;
   color: #fff;
   border-color: #17254e;
 }
 
-.cards-pricing-card-body p strong {
+/* Typography for Tiles */
+.cards-pricing:not(.view-list) .cards-pricing-card-body p strong {
   font-family: 'Cormorant Garamond', serif;
   font-size: 24px;
   display: block;
   margin-bottom: 5px;
 }
 
-.cards-pricing-card-body p:has(strong) {
-  font-size: 48px;
-  line-height: 1;
-  margin: 10px 0 5px;
-}
-
-.cards-pricing-card-body p:has(strong) strong {
-  font-size: 64px;
-  color: inherit;
-}
-
-.cards-pricing-card-body p:nth-of-type(2) {
+.cards-pricing:not(.view-list) .cards-pricing-card-body p:nth-of-type(2) {
   font-size: 18px;
   font-weight: 700;
   margin: 0 0 15px;
 }
 
-.cards-pricing-card-body p em {
+/* Data Amount */
+.cards-pricing:not(.view-list) .cards-pricing-card-body p:has(strong) {
+  font-size: 48px;
+  line-height: 1;
+  margin: 10px 0 5px;
+}
+
+.cards-pricing:not(.view-list) .cards-pricing-card-body p:has(strong) strong {
+  font-size: 64px;
+  color: inherit;
+  font-family: var(--body-font-family);
+  /* Reset if needed */
+}
+
+/* Features */
+.cards-pricing:not(.view-list) .cards-pricing-card-body p em {
   display: block;
   font-style: normal;
   font-size: 14px;
   margin-bottom: 4px;
 }
 
-.cards-pricing-card-body p em::before {
-  content: '';
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-}
-
-.cards-pricing-card-body p:last-child a {
+/* Buttons */
+.cards-pricing:not(.view-list) .cards-pricing-card-body a {
   display: inline-block;
   background-color: #00d084;
   color: #fff;
@@ -108,23 +126,101 @@
   box-sizing: border-box;
 }
 
-.cards-pricing-card-body p:last-child a:hover {
+.cards-pricing:not(.view-list) .cards-pricing-card-body a:hover {
   background-color: #00a065;
 }
 
-.cards-pricing>ul>li:nth-child(1) p strong {
-  color: #21254f;
-}
-
-.cards-pricing>ul>li:nth-child(2) p strong {
-  color: #fff;
-}
-
-.cards-pricing>ul>li:nth-child(2) .cards-pricing-card-body p {
+/* Specific text overrides for Dark Tile */
+.cards-pricing:not(.view-list)>ul>li:nth-child(2) .cards-pricing-card-body p {
   color: #e0e0e0;
 }
 
-.cards-pricing>ul>li:nth-child(2) .cards-pricing-card-body strong,
-.cards-pricing>ul>li:nth-child(2) .cards-pricing-card-body h2 {
+.cards-pricing:not(.view-list)>ul>li:nth-child(2) .cards-pricing-card-body p strong {
   color: #fff;
+}
+
+
+/* =========================================
+   List View (.view-list)
+   Restores horizontal card layout
+   ========================================= */
+.cards-pricing.view-list>ul {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cards-pricing.view-list>ul>li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0;
+  min-height: 120px;
+}
+
+.cards-pricing.view-list .cards-pricing-card-image {
+  width: 15%;
+  min-width: 100px;
+  padding: 16px;
+  border-right: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cards-pricing.view-list .cards-pricing-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  padding: 16px 24px;
+  gap: 20px;
+}
+
+/* Adjust standard typography for List */
+.cards-pricing.view-list h2,
+.cards-pricing.view-list h3,
+.cards-pricing.view-list p {
+  margin: 0;
+}
+
+.cards-pricing.view-list .cards-pricing-card-body>p {
+  margin-bottom: 4px;
+}
+
+/* Button in List */
+.cards-pricing.view-list .cards-pricing-card-body a {
+  background-color: #00d084;
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.cards-pricing.view-list .cards-pricing-card-body a:hover {
+  background-color: #00a065;
+}
+
+/* Responsiveness for List */
+@media (width <=768px) {
+  .cards-pricing.view-list>ul>li {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cards-pricing.view-list .cards-pricing-card-image {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .cards-pricing.view-list .cards-pricing-card-body {
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+  }
 }
