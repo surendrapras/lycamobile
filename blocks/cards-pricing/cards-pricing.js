@@ -48,11 +48,9 @@ function parsePrice(s) {
     const n1 = parseFloat(prices[0].replace(/[£\s]/g, ''));
     const n2 = parseFloat(prices[1].replace(/[£\s]/g, ''));
     if (!Number.isNaN(n1) && !Number.isNaN(n2) && n2 > n1) {
-      newPrice = prices[0];
-      oldPrice = prices[1];
+      [newPrice, oldPrice] = prices;
     } else {
-      oldPrice = prices[0];
-      newPrice = prices[1];
+      [oldPrice, newPrice] = prices;
     }
   }
   const monthly = /monthly/i.test(text) ? 'monthly' : '';
@@ -165,14 +163,13 @@ function pickLinks(row) {
 
   return {
     view: t.includes('view more') ? mk('View more') : null,
-    buy: t.includes('buy now') ? mk('Buy now') : null
+    buy: t.includes('buy now') ? mk('Buy now') : null,
   };
 }
 
 export default function decorate(block) {
-  const durationMatch = block.className.match(/contract-duration-(\d+)/i);
   if (durationMatch) {
-    block.dataset.contractDuration = durationMatch[1];
+    [, block.dataset.contractDuration] = durationMatch;
   }
 
   const ul = document.createElement('ul');
