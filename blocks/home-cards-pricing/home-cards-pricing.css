@@ -23,7 +23,6 @@
     box-shadow: 0 10px 20px rgb(0 0 0 / 10%);
 }
 
-/* Base styles for card body */
 .home-cards-pricing-card-body {
     padding: 24px;
     display: flex;
@@ -32,7 +31,6 @@
     flex: 1;
 }
 
-/* Image container */
 .home-cards-pricing-card-image {
     background: transparent;
     padding: 20px 20px 0;
@@ -46,34 +44,25 @@
     object-fit: contain;
 }
 
-/* Card 1: Pay Monthly (Light Theme) */
 .home-cards-pricing>ul>li:nth-child(1) {
     background-color: #fff9f2;
-    /* Cream/Beige */
     color: #21254f;
     border-color: #fff9f2;
 }
 
-/* Card 2: Pay As You Go (Dark Theme) */
 .home-cards-pricing>ul>li:nth-child(2) {
     background-color: #17254e;
-    /* Dark Blue */
     color: #fff;
     border-color: #17254e;
 }
 
-/* Typography & Content Styling */
-
-/* "Merry Christmas" */
 .home-cards-pricing-card-body p strong {
     font-family: 'Cormorant Garamond', serif;
-    /* Or similar decorative font if available */
     font-size: 24px;
     display: block;
     margin-bottom: 5px;
 }
 
-/* Data Amount (6GB / 30GB) */
 .home-cards-pricing-card-body p:has(strong) {
     font-size: 48px;
     line-height: 1;
@@ -85,16 +74,13 @@
     color: inherit;
 }
 
-/* 50% OFF Text */
 .home-cards-pricing-card-body p:nth-of-type(2) {
-    /* Assuming order from markdown */
     font-size: 18px;
     font-weight: 700;
     margin: 0 0 15px;
 }
 
 
-/* Features (Roaming, Mins) */
 .home-cards-pricing-card-body p em {
     display: block;
     font-style: normal;
@@ -104,21 +90,11 @@
 
 .home-cards-pricing-card-body p em::before {
     content: '';
-    /* Icons can go here */
     display: inline-block;
     width: 16px;
     height: 16px;
-
-    /* margin-right: 5px; background... */
 }
 
-
-/* Price Circle */
-/* We need to detect the price block. It's tough with just CSS if structure is loose.
-   Assuming price is in one of the lower paragraphs.
-*/
-
-/* Buttons */
 .home-cards-pricing-card-body p:last-child a {
     display: inline-block;
     background-color: #00d084;
@@ -137,8 +113,6 @@
     background-color: #00a065;
 }
 
-
-/* Specific text overrides */
 .home-cards-pricing>ul>li:nth-child(1) p strong {
     color: #21254f;
 }

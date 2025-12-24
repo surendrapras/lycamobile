@@ -1,21 +1,18 @@
-.cards-pricing>ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
 .cards-pricing {
   max-width: 980px;
   margin: 0 auto;
 }
 
 .cards-pricing>ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
 
-.cards-pricing>ul>li {
+.cards-pricing-item {
   position: relative;
   display: grid;
   grid-template-columns: 320px 170px 1fr 220px;
@@ -27,7 +24,7 @@
   overflow: visible;
 }
 
-.cards-pricing>ul>li:hover {
+.cards-pricing-item:hover {
   box-shadow: 0 8px 22px rgb(0 0 0 / 10%);
 }
 
@@ -191,7 +188,7 @@
 }
 
 @media (width <=768px) {
-  .cards-pricing>ul>li {
+  .cards-pricing-item {
     grid-template-columns: 1fr;
     overflow: hidden;
   }
