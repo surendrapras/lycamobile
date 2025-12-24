@@ -15,24 +15,23 @@
 }
 
 .form-newsletter .form-newsletter-main {
-    width: 100%;
+    width: fit-content;
     max-width: 920px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     gap: 14px;
 }
 
 .form-newsletter .form-newsletter-form {
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr auto;
+    display: flex;
     gap: 16px;
     align-items: center;
 }
 
 .form-newsletter .form-newsletter-input {
-    width: 100%;
+    width: 572px;
     height: 52px;
     border: 1px solid #d0d5dd;
     border-radius: 4px;
@@ -49,6 +48,7 @@
 }
 
 .form-newsletter .form-newsletter-button {
+    width: 270px;
     height: 52px;
     margin: 0;
     padding: 0 28px;
@@ -74,6 +74,7 @@
     margin: 0;
     color: #667085;
     font-weight: 500;
+    text-align: left;
 }
 
 .form-newsletter .form-newsletter-visually-hidden {
@@ -90,10 +91,14 @@
 
 @media (width < 900px) {
     .form-newsletter .form-newsletter-form {
-        grid-template-columns: 1fr;
+        flex-direction: column;
     }
 
     .form-newsletter .form-newsletter-button {
+        width: 100%;
+    }
+
+    .form-newsletter .form-newsletter-input {
         width: 100%;
     }
 }
