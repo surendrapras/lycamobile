@@ -68,17 +68,17 @@
 }
 
 .cards-pricing-price strong {
-  font-size: var(--fontSize32, 32px);
+  font-size: var(--font-size-32, 32px);
   font-weight: 700;
-  font-family: 'GTEestiLCDisplayBold', sans-serif;
+  font-family: GTEestiLCDisplayBold, sans-serif;
   line-height: var(--lh40, 40px);
   color: #111827;
 }
 
 .cards-pricing-period {
-  font-size: var(--fontSize18, 18px);
+  font-size: var(--font-size-18, 18px);
   font-weight: 500;
-  font-family: 'GTEestiLCDisplayMedium', sans-serif;
+  font-family: GTEestiLCDisplayMedium, sans-serif;
   line-height: var(--lh24, 24px);
   color: #6b7280;
 }
@@ -97,9 +97,9 @@
 }
 
 .cards-pricing-data-value {
-  font-size: var(--fontSize32, 32px);
+  font-size: var(--font-size-32, 32px);
   font-weight: 700;
-  font-family: 'GTEestiLCDisplayBold', sans-serif;
+  font-family: GTEestiLCDisplayBold, sans-serif;
   color: #374151;
   line-height: var(--lh40, 40px);
 }
