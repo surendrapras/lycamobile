@@ -152,6 +152,19 @@ export default async function decorate(block) {
     brandLink.closest('.button-container')?.classList.remove('button-container');
   }
 
+  const brandImg = navBrand?.querySelector('img');
+  const brandAnchor = navBrand?.querySelector('a');
+  if (brandAnchor) {
+    brandAnchor.href = '/';
+  } else if (brandImg) {
+    const anchor = document.createElement('a');
+    anchor.href = '/';
+    const picture = brandImg.closest('picture');
+    const target = picture || brandImg;
+    target.replaceWith(anchor);
+    anchor.appendChild(target);
+  }
+
   const navTools = nav.querySelector('.nav-tools');
   const toolsUl = navTools?.querySelector('ul');
 
