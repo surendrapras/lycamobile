@@ -29,11 +29,17 @@ OR You can come on the [Download the Lyca Mobile app](#app)
 +-------------------------------------------------------------+-------------------------------------------------------------+
 | ![Pay Monthly Plan](./images/c95cdc54c1995eece4d1ea65ede5cd3c.png) | ![Pay As You Go Plan](./images/fddd6937cff25f56256375b56c6f8ae0.png) |
 |                                                             |                                                             |
-| **Pay monthly SIM**                                         | **Pay as you go SIM**                                       |
+| **Merry Christmas**                                         | **Merry Christmas**                                         |
+| 50% OFF For the First 3 Months                              | 50% OFF For the First month                                 |
+| **6GB**                                                     | **30GB**                                                    |
+| *2.5GB EU roaming*                                          | *12GB EU roaming*                                           |
+| *100 International mins*                                    | *100 International mins*                                    |
 |                                                             |                                                             |
-| No mid-contract price increases                             | No contract, pure freedom                                   |
+| **£3**                                                      | **£5**                                                      |
+| £6                                                          | £10                                                         |
+| monthly                                                     | 30 days                                                     |
 |                                                             |                                                             |
-| [View deals](https://www.lycamobile.co.uk/paymonthly/en/bundles/sim-only-deals/) | [View deals](/bundles/pay-as-you-go-sim-deals/)            |
+| [Buy now](https://www.lycamobile.co.uk/paymonthly/en/bundles/sim-only-deals/) | [Buy now](/bundles/pay-as-you-go-sim-deals/)               |
 +-------------------------------------------------------------+-------------------------------------------------------------+
 
 ---

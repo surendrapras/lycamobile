@@ -1,215 +1,151 @@
 .cards-pricing > ul {
-list-style: none;
-margin: 0;
-padding: 0;
-
-/* display: grid; */
-grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-gap: var(--spacing-m);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
 }
 
 .cards-pricing > ul > li {
-border: none;
-border-radius: var(--border-radius-lg);
-background-color: var(--background-color);
-box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
-transition: all 0.3s ease;
-overflow: hidden;
-position: relative;
-cursor: pointer;
-}
-
-/* Light background for title section (for 12 month and 1 month cards) */
-.cards-pricing > ul > li > p {
-background-color: #faf8f3;
-padding: var(--spacing-m);
-margin: 0;
-border-bottom: 1px solid #e5e7eb;
-}
-
-.cards-pricing .cards-pricing-card-body {
-margin: 30px;
-display: flex;
-justify-content: space-between;
-position: relative;
-border-radius: 0 8px 8px;
-border: 2px solid #ededed;
-box-shadow: 4px 4px 4px 0 rgb(0 0 0 / 10.2%);
-padding: 2px;
-}
-
-.cards-pricing-card-summary{
-background-color: #FFF7F2;
-border-radius: 0 0 0 8px;
-padding: 15px;
-}
-
-.cards-pricing .cards-pricing-card-body h2 {
-font-size: var(--heading-font-size-m);
-color: var(--color-secondary-blue);
-margin-top: 0;
-margin-bottom: var(--spacing-s);
-}
-
-.cards-pricing .cards-pricing-card-body h3 {
-font-size: var(--heading-font-size-s);
-color: var(--color-text-primary);
-margin-bottom: var(--spacing-xs);
-}
-
-.cards-pricing .cards-pricing-card-body p {
-color: var(--color-text-secondary);
-font-size: var(--body-font-size-s);
-line-height: var(--line-height-normal);
-}
-
-/* Container for badge icons - position in top right */
-.cards-pricing .cards-pricing-card-body > p:has(picture) {
-position: absolute;
-top: 12px;
-right: 12px;
-margin: 0;
-line-height: 0;
-}
-
-.cards-pricing .cards-pricing-card-body > p:first-of-type {
-margin-top: calc(var(--spacing-m) * -1);
-margin-bottom: var(--spacing-s);
-position: absolute;
-top: -4px;
-left: 0;
-}
-
-.cards-pricing .cards-pricing-card-body strong {
-color: var(--color-text-primary);
-font-weight: 700;
-font-size: 28px;
-}
-
-.cards-pricing .cards-pricing-card-body del {
-color: var(--color-text-secondary);
-font-size: var(--body-font-size-s);
-}
-
-.cards-pricing .cards-pricing-card-body ul {
-padding-left: var(--spacing-m);
-margin: var(--spacing-s) 0;
-list-style: none;
-}
-
-.cards-pricing .cards-pricing-card-body li {
-color: var(--color-text-secondary);
-font-size: var(--body-font-size-s);
-margin-bottom: var(--spacing-xs);
-position: relative;
-padding-left: 24px;
-}
-
-.cards-pricing .cards-pricing-card-body li::before {
-content: '✓';
-position: absolute;
-left: 0;
-color: #08dc7d;
-font-weight: 700;
-font-size: 16px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  border: 1px solid #e5e7eb;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .cards-pricing > ul > li:hover {
-box-shadow: 0 8px 16px rgb(0 0 0 / 12%);
-transform: translateY(-4px);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-/* Links container - position "View more" in top right, "Buy now" at bottom */
-.cards-pricing .cards-pricing-card-body > p:last-child {
-display: flex;
-flex-direction: column;
-gap: 0;
-margin-top: var(--spacing-m);
-padding-right: 15px;
+/* Base styles for card body */
+.cards-pricing-card-body {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
 }
 
-/* "View more" link - position in top right corner below badges */
-.cards-pricing .cards-pricing-card-body > p:last-child a:first-child {
-color: var(--color-accent-blue);
-text-decoration: none;
-text-align: right;
-padding-bottom: 10px;
-font-weight: 500;
-font-size: var(--body-font-size-xs);
-transition: color 0.3s ease;
-z-index: 5;
+/* Image container */
+.cards-pricing-card-image {
+  background: transparent;
+  padding: 20px 20px 0;
+  display: flex;
+  justify-content: center;
 }
 
-/* "Buy now" button - full width green button */
-.cards-pricing .cards-pricing-card-body > p:last-child a:last-child {
-display: block;
-text-align: center;
-padding: 12px 24px;
-background-color: var(--color-primary-green);
-color: var(--color-text-dark);
-border: 1px solid var(--color-primary-green);
-border-radius: var(--border-radius-sm);
-font-family: var(--body-font-family-medium);
-font-weight: 500;
-text-decoration: none;
-transition: all 0.3s ease;
+.cards-pricing-card-image img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
-.cards-pricing .cards-pricing-card-body > p:last-child a:first-child:hover {
-color: var(--color-accent-blue-hover);
-text-decoration: underline;
+/* Card 1: Pay Monthly (Light Theme) */
+.cards-pricing > ul > li:nth-child(1) {
+  background-color: #fff9f2; /* Cream/Beige */
+  color: #21254f;
+  border-color: #fff9f2;
 }
 
-.cards-pricing .cards-pricing-card-body > p:last-child a:last-child:hover {
-background-color: var(--color-primary-green-hover);
-border-color: var(--color-primary-green-hover);
-transform: translateY(-2px);
-text-decoration: none;
+/* Card 2: Pay As You Go (Dark Theme) */
+.cards-pricing > ul > li:nth-child(2) {
+  background-color: #17254e; /* Dark Blue */
+  color: #fff;
+  border-color: #17254e;
 }
 
-.cards-pricing .cards-pricing-card-image {
-line-height: 0;
-background-color: var(--background-light);
+/* Typography & Content Styling */
+/* "Merry Christmas" */
+.cards-pricing-card-body p strong {
+  font-family: 'Cormorant Garamond', serif; /* Or similar decorative font if available */
+  font-size: 24px;
+  display: block;
+  margin-bottom: 5px;
 }
 
-.cards-pricing .cards-pricing-card-image img {
-width: 100%;
-max-width: 180px;
-height: auto;
-object-fit: contain;
-padding: var(--spacing-m);
-margin: 0 auto;
-display: block;
+.cards-pricing > ul > li:nth-child(1) p strong { color: #21254f; }
+.cards-pricing > ul > li:nth-child(2) p strong { color: #fff; }
+
+/* 50% OFF Text */
+.cards-pricing-card-body p:nth-of-type(2) { /* Assuming order from markdown */
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 0 15px;
 }
 
-/* Badge images (eSIM, 5G) within card body - position in top right corner */
-.cards-pricing .cards-pricing-card-body picture {
-width: 32px;
-height: 32px;
-display: inline-block;
-vertical-align: middle;
-margin-left: var(--spacing-xs);
+/* Large Data (6GB / 30GB) */
+.cards-pricing-card-body p strong {
+   /* This selector targets all strongs, check structure */
 }
 
-.cards-pricing .cards-pricing-card-body picture img {
-width: 32px;
-height: 32px;
-aspect-ratio: 1 / 1;
-object-fit: contain;
-padding: 0;
-margin: 0;
+/* Specific targeting based on content flow in markdown -> JS output
+   JS flatters structure somewhat or creates summary wrapper.
+   Let's rely on standard paragraph order if possible.
+*/
+
+/* Data Amount (6GB / 30GB) */
+.cards-pricing-card-body p:has(strong) {
+  font-size: 48px;
+  line-height: 1;
+  margin: 10px 0 5px;
 }
 
-/* Promotional badges (Christmas Half Price, Free OPPO Voucher) */
-.cards-pricing .cards-pricing-card-body p:first-of-type em strong {
-display: inline-block;
-background-color: #f0b429;
-color: #1a1a1a;
-padding: 6px 16px;
-border-radius: 8px 8px 0 0;
-font-family: var(--body-font-family-medium);
-font-weight: 600;
-font-size: 14px;
-font-style: normal;
-margin: 0 0 var(--spacing-s) 0;
+.cards-pricing-card-body p:has(strong) strong {
+  font-size: 64px;
+  color: inherit;
+}
+
+/* Features (Roaming, Mins) */
+.cards-pricing-card-body p em {
+  display: block;
+  font-style: normal;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.cards-pricing-card-body p em::before {
+  content: ''; /* Icons can go here */
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  /* margin-right: 5px; background... */
+}
+
+/* Price Circle */
+/* We need to detect the price block. It's tough with just CSS if structure is loose.
+   Assuming price is in one of the lower paragraphs.
+*/
+
+/* Buttons */
+.cards-pricing-card-body p:last-child a {
+  display: inline-block;
+  background-color: #00d084;
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 12px 32px;
+  border-radius: 4px;
+  margin-top: 20px;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.cards-pricing-card-body p:last-child a:hover {
+  background-color: #00a065;
+}
+
+/* Specific text overrides */
+.cards-pricing > ul > li:nth-child(2) .cards-pricing-card-body p {
+  color: #e0e0e0;
+}
+.cards-pricing > ul > li:nth-child(2) .cards-pricing-card-body strong,
+.cards-pricing > ul > li:nth-child(2) .cards-pricing-card-body h2 {
+  color: #fff;
 }
