@@ -115,6 +115,7 @@
 
 
 
+
 /* Price Circle */
 /* We need to detect the price block. It's tough with just CSS if structure is loose.
    Assuming price is in one of the lower paragraphs.
@@ -138,6 +139,7 @@
 .cards-pricing-card-body p:last-child a:hover {
   background-color: #00a065;
 }
+
 
 /* Specific text overrides */
 .cards-pricing > ul > li:nth-child(1) p strong { color: #21254f; }
