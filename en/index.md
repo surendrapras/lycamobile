@@ -25,7 +25,7 @@ OR You can come on the [Download the Lyca Mobile app](#app)
 ## Choose a SIM only plan today
 
 +-------------------------------------------------------------+-------------------------------------------------------------+
-| **Cards-Pricing**                                                                                                   |
+| **Home-Cards-Pricing**                                                                                                   |
 +-------------------------------------------------------------+-------------------------------------------------------------+
 | ![Pay Monthly Plan](./images/c95cdc54c1995eece4d1ea65ede5cd3c.png) | ![Pay As You Go Plan](./images/fddd6937cff25f56256375b56c6f8ae0.png) |
 |                                                             |                                                             |
