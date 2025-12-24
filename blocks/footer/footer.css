@@ -119,9 +119,10 @@ footer .footer-bottom {
 }
 
 footer .footer-bottom .footer-bottom-content {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   align-items: center;
+  justify-items: center;
   gap: 16px;
 }
 
@@ -180,15 +181,23 @@ footer .footer-social img:hover {
   }
 
   footer .footer-bottom .footer-bottom-content {
-    flex-direction: row;
-    justify-content: space-between;
+    grid-template-columns: auto 1fr auto;
+    column-gap: 24px;
   }
 
   footer .footer-copy {
     flex: 1;
+    justify-self: center;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  footer .footer-logo {
+    justify-self: start;
   }
 
   footer .footer-social {
     justify-content: flex-end;
+    justify-self: end;
   }
 }

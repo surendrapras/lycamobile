@@ -83,12 +83,15 @@ export default async function decorate(block) {
     return;
   }
 
+  const sections = Array.from(fragment.children)
+    .filter((section) => !section.querySelector('.lyca-snow'));
+
   // Handle both 2-div and 3-div structures from Google Drive
   // 2-div: [sections, bottom] or 3-div: [sections, app-badges, bottom]
-  const divCount = fragment.children.length;
-  const firstSection = fragment.children[0];
-  const appBadgesSection = divCount === 3 ? fragment.children[1] : null;
-  const bottomSection = fragment.children[divCount - 1];
+  const divCount = sections.length;
+  const firstSection = sections[0];
+  const appBadgesSection = divCount === 3 ? sections[1] : null;
+  const bottomSection = sections[divCount - 1];
 
   const columnsContainer = buildColumns(firstSection, appBadgesSection);
   if (columnsContainer) footer.appendChild(columnsContainer);
