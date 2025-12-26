@@ -1,33 +1,75 @@
-/* Footer styles with dark navy blue background */
 footer {
-  background-color: #1e3a5f;
-  color: #fff;
+  --footer-bg: var(--color-secondary-blue);
+  --footer-text: #fff;
+  --footer-muted: rgb(255 255 255 / 82%);
+  --footer-border: rgb(255 255 255 / 22%);
+  background-color: var(--footer-bg);
+  color: var(--footer-text);
   font-size: var(--body-font-size-xs);
+  position: relative;
+  overflow: hidden;
+}
+
+footer::before,
+footer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+footer::before {
+  background-size: 180px 180px;
+  opacity: 0.6;
+}
+
+footer::after {
+  background-size: 240px 220px;
+  opacity: 0.35;
 }
 
 footer .footer {
-  padding: 60px 24px 24px;
+  padding: 64px 24px 28px;
+  position: relative;
+  z-index: 1;
 }
 
-footer .footer > div {
-  margin: auto;
+footer .footer .footer-inner {
+  margin: 0 auto;
   max-width: 1200px;
 }
 
-/* First div contains the 5-column grid */
-footer .footer > div > div:first-child {
+footer .footer-columns {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 40px;
-  margin-bottom: 40px;
+  gap: 32px 24px;
+  margin-bottom: 36px;
+}
+
+footer .footer-column {
+  min-width: 0;
 }
 
 footer .footer h2 {
-  color: #fff;
-  font-size: 16px;
+  color: var(--footer-text);
+  font-size: 15px;
   font-weight: 700;
   margin: 0 0 16px;
+  padding-left: 14px;
+  position: relative;
   text-transform: none;
+}
+
+footer .footer h2::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: rgb(255 255 255 / 85%);
 }
 
 footer .footer ul {
@@ -37,109 +79,125 @@ footer .footer ul {
 }
 
 footer .footer li {
+  color: var(--footer-muted);
   margin-bottom: 10px;
-  font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.6;
 }
 
 footer .footer a {
-  color: #fff;
+  color: inherit;
   text-decoration: none;
   transition: opacity 0.3s;
 }
 
 footer .footer a:hover {
-  opacity: 0.8;
+  opacity: 0.85;
 }
 
-/* Second div contains bottom section with logo, copyright, social icons */
-footer .footer > div > div:last-child {
-  border-top: 1px solid rgb(255 255 255 / 20%);
-  padding-top: 30px;
-}
-
-/* App store badges and store locator in 5th column */
-footer .footer > div > div:first-child > div:last-child p {
+footer .footer-apps p {
   margin: 0 0 12px;
 }
 
-/* Target the default-content-wrapper inside the section */
-footer .footer > div > div:last-child .default-content-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
+footer .footer-apps p:last-child {
+  margin-bottom: 0;
 }
 
-footer .footer > div > div:last-child .default-content-wrapper > p:first-child {
-  margin: 0;
-}
-
-footer .footer img[alt="Lyca Mobile UK"] {
-  max-width: 80px;
-  height: auto;
-}
-
-footer .footer > div > div:last-child .default-content-wrapper > p:nth-child(2) {
-  margin: 0;
-  font-size: 13px;
-  opacity: 0.9;
-  flex: 1;
-  text-align: center;
-}
-
-/* Social media icons */
-footer .footer > div > div:last-child .default-content-wrapper > p:last-child {
-  margin: 0;
-  display: flex;
-  gap: 15px;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-footer .footer > div > div:first-child > div:last-child img {
-  max-width: 135px;
-  width: 100%;
-  height: auto;
-}
-
-footer .footer > div > div:last-child > p:last-child picture {
+footer .footer-apps picture {
   display: inline-block;
   line-height: 0;
 }
 
-footer .footer > div > div:last-child > p:last-child img {
+footer .footer-apps img {
+  max-width: 150px;
+  width: 100%;
+  height: auto;
+}
+
+footer .footer-bottom {
+  border-top: 1px solid var(--footer-border);
+  padding-top: 24px;
+}
+
+footer .footer-bottom .footer-bottom-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-items: center;
+  gap: 16px;
+}
+
+footer .footer-bottom p {
+  margin: 0;
+}
+
+footer .footer-logo img {
+  max-width: 90px;
+  height: auto;
+}
+
+footer .footer-copy {
+  color: var(--footer-muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+footer .footer-social {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+}
+
+footer .footer-social picture {
+  display: inline-block;
+  line-height: 0;
+}
+
+footer .footer-social img {
   width: 32px;
   height: 32px;
   transition: opacity 0.3s;
 }
 
-footer .footer > div > div:last-child > p:last-child img:hover {
+footer .footer-social img:hover {
   opacity: 0.7;
 }
 
 @media (width >= 600px) {
-  footer .footer > div > div:first-child {
+  footer .footer-columns {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (width >= 900px) {
   footer .footer {
-    padding: 60px 32px 32px;
+    padding: 70px 32px 32px;
   }
 
-  footer .footer > div > div:first-child {
-    grid-template-columns: repeat(5, 1fr);
-    gap: 30px;
+  footer .footer-columns {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 28px;
+    margin-bottom: 44px;
   }
 
-  footer .footer h2 {
-    font-size: 15px;
+  footer .footer-bottom .footer-bottom-content {
+    grid-template-columns: auto 1fr auto;
+    column-gap: 24px;
   }
 
-  footer .footer li {
-    font-size: 13px;
+  footer .footer-copy {
+    flex: 1;
+    justify-self: center;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  footer .footer-logo {
+    justify-self: start;
+  }
+
+  footer .footer-social {
+    justify-content: flex-end;
+    justify-self: end;
   }
 }
