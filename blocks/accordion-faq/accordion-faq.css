@@ -150,6 +150,46 @@ border-top: none;
 background-color: transparent;
 }
 
+.accordion-faq-container a.button,
+.accordion-faq-container a.button.secondary,
+.accordion-faq-container .FAQ_view_more_button__PVldP {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 16.25rem;
+height: 2.875rem;
+background: #fff;
+border: 1px solid var(--lightGrey, #bec6d5);
+border-radius: 4px;
+box-shadow: 0 1px 2px 0 var(--shadowGray, #1018280d);
+color: #2c5bd7;
+font-size: 14px;
+font-weight: 500;
+font-family: GTEestiLCDisplayMedium, sans-serif;
+line-height: var(--lh24, 24px);
+padding: 0 28px;
+text-decoration: none;
+margin: 28px auto 0;
+}
+
+.accordion-faq-container a.button:hover,
+.accordion-faq-container a.button:focus,
+.accordion-faq-container a.button.secondary:hover,
+.accordion-faq-container a.button.secondary:focus,
+.accordion-faq-container .FAQ_view_more_button__PVldP:hover,
+.accordion-faq-container .FAQ_view_more_button__PVldP:focus {
+background: #fff;
+border-color: var(--lightGrey, #bec6d5);
+color: #2c5bd7;
+box-shadow: 0 1px 2px 0 var(--shadowGray, #1018280d);
+text-decoration: none;
+}
+
+.accordion-faq-container .FAQ_flex_center__altAz {
+display: flex;
+justify-content: center;
+}
+
 body.paymonthly-sim-only-deals .accordion-faq details p {
 font-size: 14px;
 line-height: 1.6;
@@ -158,13 +198,4 @@ color: #475467;
 
 body.paymonthly-sim-only-deals .accordion-faq-container > div[style] {
 margin: 28px 0 0 !important;
-}
-
-body.paymonthly-sim-only-deals .accordion-faq-container a.button.secondary {
-background: #fff;
-border: 1px solid #cbd5e1;
-color: #2563eb;
-border-radius: 8px;
-padding: 10px 28px;
-font-weight: 600;
 }
