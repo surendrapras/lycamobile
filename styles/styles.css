@@ -122,6 +122,7 @@
     /* Layout */
     --nav-height: 80px;
     --max-width-content: 1200px;
+    --green100: #08dc7d;
 }
 
 @media (width >=900px) {
@@ -168,7 +169,7 @@ body.checkout-hide-chrome footer {
 }
 
 .checkout-page.simple {
-    /* max-width: 1200px; */
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px 48px;
 }
@@ -944,12 +945,14 @@ body.paymonthly-checkout main h1 {
     padding: 0 20px;
     color: #21254f;
 }
-
+/* 
 .checkout-page {
-    /* max-width: 1180px; */
+    max-width: 1180px;
     margin: 0 auto;
     padding: 0 20px 40px;
-}
+    box-sizing: border-box;
+    max-width: 1180px;
+} */
 
 .checkout-steps {
     display: flex;
@@ -1135,11 +1138,58 @@ body.paymonthly-checkout main h1 {
   width: auto;
   text-transform: unset;
   margin: 0; /* Fix vertical alignment */
+  background: transparent;
+  border: none;
+  color: #b3bac7;
+  font-weight: 700;
+}
+
+.email-verify-wrapper .verify-btn:hover,
+.email-verify-wrapper .verify-btn:focus {
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
 
 .email-verify-wrapper .verify-btn:disabled {
     color: #bec6d5; /* Mui disabled color */
     cursor: default;
+}
+
+.email-verify-wrapper .verify-btn:not(:disabled) {
+    color: #2563eb;
+}
+
+.email-verify-wrapper.invalid input {
+    border-color: #f43f5e;
+    box-shadow: 0 0 0 2px rgb(244 63 94 / 15%);
+}
+
+.email-error {
+    display: none;
+    margin-top: 0;
+    margin-bottom: 10px;
+    padding: 10px 12px;
+    background: #fef2f2;
+    border: 1px solid #fca5a5;
+    border-radius: 0 0 8px 8px;
+    color: #b91c1c;
+    font-size: 14px;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.email-error.visible {
+    display: flex;
+}
+
+.email-error::before {
+    content: "⚠";
+    font-size: 16px;
+    line-height: 1;
 }
 
 @media (width <= 768px) {
@@ -2024,14 +2074,21 @@ input:checked + .slider:before {
     font-size: 18px;
     font-weight: 700;
     padding: 16px;
-    border: none;
+    border: 1px solid transparent;
     border-radius: 8px;
     cursor: not-allowed;
     transition: all 0.2s ease;
 }
 
+.checkout-btn.disabled {
+    background: #cdfde8;
+    border-color: #cdfde8;
+    color: #a9b4c8;
+}
+
 .checkout-btn:not(.disabled) {
-    background: #00D775;
+    background: var(--green100);
+    border: 1px solid var(--green100);
     color: #fff;
     cursor: pointer;
 }

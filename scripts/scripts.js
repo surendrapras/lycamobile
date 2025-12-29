@@ -670,21 +670,66 @@ export function decorateCheckoutLayout(main) {
     }
   });
 
-  // Checkout Agreement Toggle Logic
+  // Checkout validation: email + contract agreement
   const contractToggle = page.querySelector('#contract-toggle');
   const checkoutBtn = page.querySelector('.checkout-btn');
-
-  if (contractToggle && checkoutBtn) {
-    contractToggle.addEventListener('change', (e) => {
-      if (e.target.checked) {
-        checkoutBtn.classList.remove('disabled');
-        checkoutBtn.disabled = false;
-      } else {
-        checkoutBtn.classList.add('disabled');
-        checkoutBtn.disabled = true;
-      }
-    });
+  const emailInput = page.querySelector('.email-verify-wrapper input[type="email"]');
+  const emailWrapper = page.querySelector('.email-verify-wrapper');
+  const verifyBtn = page.querySelector('.verify-btn');
+  let emailError = emailWrapper?.parentElement?.querySelector('.email-error');
+  if (!emailError && emailWrapper?.parentElement) {
+    emailError = document.createElement('div');
+    emailError.className = 'email-error';
+    emailError.textContent = 'Email is invalid';
+    const helperText = emailWrapper.parentElement.querySelector('small');
+    if (helperText) helperText.before(emailError);
+    else emailWrapper.parentElement.append(emailError);
   }
+
+  const isEmailValid = (val) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((val || '').trim());
+  const debounce = (fn, wait = 200) => {
+    let timer;
+    return (...args) => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => fn(...args), wait);
+    };
+  };
+
+  const updateCheckoutState = () => {
+    const emailOk = emailInput ? isEmailValid(emailInput.value) : false;
+    const ready = emailOk;
+
+    if (verifyBtn) {
+      verifyBtn.disabled = !emailOk;
+    }
+
+    if (emailWrapper) {
+      const showError = emailInput && emailInput.value.trim() && !emailOk;
+      emailWrapper.classList.toggle('invalid', showError);
+      if (emailError) emailError.classList.toggle('visible', showError);
+    }
+
+    if (!checkoutBtn) return;
+    checkoutBtn.disabled = !ready;
+    checkoutBtn.classList.toggle('disabled', !ready);
+  };
+
+  const debouncedUpdateCheckoutState = debounce(updateCheckoutState, 200);
+
+  if (emailInput) {
+    emailInput.addEventListener('input', () => {
+      updateCheckoutState();
+      debouncedUpdateCheckoutState();
+    });
+    emailInput.addEventListener('change', updateCheckoutState);
+    emailInput.addEventListener('blur', updateCheckoutState);
+  }
+
+  if (contractToggle) {
+    contractToggle.addEventListener('change', updateCheckoutState);
+  }
+
+  updateCheckoutState();
 
   // Date picker logic
   const dateWrapper = page.querySelector('.date-input-wrapper');
