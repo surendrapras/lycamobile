@@ -1,0 +1,42 @@
+.links .download-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 8px 0 10px;
+}
+
+.links .download {
+    display: inline-flex;
+    gap: 10px;
+    align-items: center;
+    padding: 12px 14px;
+    border: 1px solid #d1d9e6;
+    border-radius: 8px;
+    background: #f8fafc;
+    color: #1f2a5a;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.links .download:hover {
+    border-color: #2563eb;
+}
+
+.links .icon-download {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    border: 2px solid #2563eb;
+    border-radius: 3px;
+    position: relative;
+}
+
+.links .icon-download::after {
+    content: "";
+    position: absolute;
+    left: 3px;
+    right: 3px;
+    bottom: 3px;
+    height: 2px;
+    background: #2563eb;
+}

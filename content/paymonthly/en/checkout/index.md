@@ -1,134 +1,178 @@
-<!-- source: https://www.lycamobile.co.uk/paymonthly/en/checkout/ -->
+# My basket: Add-ons & more
 
-# Checkout
+<div class="checkout-page">
+  <div class="checkout-steps">
+    <div class="step active">Basket</div>
+    <div class="step next">Credit check</div>
+    <div class="step">Delivery and payment</div>
+    <div class="step-progress"><span></span></div>
+  </div>
 
----
+  <div class="checkout-layout">
+    <div class="checkout-main">
+      <section class="checkout-card">
+        <div class="card-header">
+          <h2>Your Details</h2>
+        </div>
+        <div class="field-grid three">
+          <label class="field">
+            <span class="field-label">Title</span>
+            <select aria-label="Title">
+              <option value="">Select title</option>
+              <option>Mr</option>
+              <option>Mrs</option>
+              <option>Ms</option>
+              <option>Miss</option>
+              <option>Dr</option>
+            </select>
+          </label>
+          <label class="field">
+            <span class="field-label">First name *</span>
+            <input type="text" placeholder="Enter first name">
+          </label>
+          <label class="field">
+            <span class="field-label">Last name *</span>
+            <input type="text" placeholder="Enter last name">
+          </label>
+        </div>
+        <div class="field-grid">
+          <label class="field full">
+            <span class="field-label">Enter your e-mail address *</span>
+            <div class="field-inline">
+              <input type="email" placeholder="Enter your e-mail address">
+              <button class="ghost-button" type="button">Verify</button>
+            </div>
+            <small>We need this to send you the order confirmation and dispatch updates.</small>
+          </label>
+        </div>
+      </section>
 
-## My basket
+      <section class="checkout-card">
+        <div class="card-header">
+          <h2>Do you have a number to bring?</h2>
+          <a class="link-action" href="#">Change</a>
+        </div>
+        <label class="field full select-line">
+          <select aria-label="Number choice">
+            <option>I have a number to transfer</option>
+            <option>No, I want a new number</option>
+          </select>
+        </label>
+        <div class="pill-options">
+          <label class="pill active">
+            <input type="radio" name="provider" checked>
+            <span>Lyca Mobile</span>
+          </label>
+          <label class="pill">
+            <input type="radio" name="provider">
+            <span>Other service provider</span>
+          </label>
+        </div>
+        <div class="field-grid three">
+          <label class="field">
+            <span class="field-label">Number you want to keep</span>
+            <div class="field-inline compact">
+              <input class="prefix" type="text" value="+44" aria-label="Country code">
+              <input type="text" placeholder="Enter a Lyca Mobile number">
+            </div>
+            <small>You will receive one time passcode to this number</small>
+          </label>
+          <label class="field">
+            <span class="field-label">Porting authorisation code (PAC)</span>
+            <input type="text" placeholder="PAC e.g. ABC123456">
+          </label>
+          <label class="field">
+            <span class="field-label">Port in date</span>
+            <input type="text" placeholder="DD/MM/YYYY">
+            <small>Your number will be transferred on the requested day and not before</small>
+          </label>
+        </div>
+        <button class="primary-button disabled" type="button">Confirm mobile number</button>
+      </section>
 
-| **Cart-Summary** | |
-|---|---|
-| ![5G](./images/f73059b9457eacfc1617b43e90f83ff3.png) | **24 Month Unlimited Plan** |
-| ![eSIM](./images/5656ce1276b5faa4ea8479bc1339be4f.png) | Unlimited Data |
-| | Unlimited UK Minutes & Texts |
-| | EU Roaming Included |
-| | |
-| | ~~£18.00~~ **£9.00**/month |
-| | for the first 6 months, then £18/month |
-| | |
-| | [Remove](#) |
+      <section class="checkout-card">
+        <div class="card-header">
+          <h2>SIM type</h2>
+          <p class="muted">Choose your preferred type of SIM</p>
+        </div>
+        <div class="option-list">
+          <label class="option active">
+            <input type="radio" name="sim-type" checked>
+            <div class="option-body">
+              <div class="option-title">eSIM</div>
+              <small>Your Lyca Mobile SIM must be activated in the UK, once your SIM is activated in the UK, you can use it internationally according to your mobile plan.</small>
+            </div>
+          </label>
+          <label class="option">
+            <input type="radio" name="sim-type">
+            <div class="option-body">
+              <div class="option-title">SIM card</div>
+            </div>
+          </label>
+          <a class="link-action" href="#">What's eSIM/Check compatibility</a>
+        </div>
+      </section>
 
----
+      <section class="checkout-card">
+        <div class="card-header">
+          <h2>Review contract details</h2>
+          <p class="muted">We have also sent these to</p>
+        </div>
+        <div class="download-list">
+          <a class="download" href="#"><span class="icon-download"></span>Download contract information</a>
+          <a class="download" href="#"><span class="icon-download"></span>Download contract summary</a>
+        </div>
+        <a class="link-action" href="#">View other formats</a>
+      </section>
 
-## Add-ons & more
+      <section class="checkout-card checkout-agreement">
+        <div class="card-header">
+          <h2>Contract agreement</h2>
+        </div>
+        <label class="toggle">
+          <input type="checkbox">
+          <span>Please confirm that you're happy with the contract summary and information before you proceed. View full <a href="#">Terms and conditions</a></span>
+        </label>
+        <button class="primary-button disabled" type="button">Checkout now</button>
+      </section>
+    </div>
 
-| **Columns** | | |
-|---|---|---|
-| **International Calling** | **Data Boost** | **Insurance** |
-| Add international minutes to call abroad | Need more data? Top up anytime | Protect your device |
-| From £5/month | From £3 | From £4/month |
-| [Add to basket](#) | [Add to basket](#) | [Add to basket](#) |
+    <aside class="checkout-sidebar">
+      <div class="summary-card pricing">
+        <div class="summary-row">
+          <div>
+            <div class="summary-label">Monthly cost</div>
+            <div class="summary-note">for the first 6 months, then &pound;18</div>
+          </div>
+          <div class="summary-price"><del>&pound;18.00</del> <strong>&pound;9.00</strong></div>
+        </div>
+        <div class="summary-divider"></div>
+        <ul class="summary-features">
+          <li>24 month Unlimited</li>
+          <li>30GB EU roaming included</li>
+          <li>100 International minutes</li>
+          <li>Unlimited UK mins and text</li>
+          <li>Unlimited EU mins and text when roaming in EU (fair use policy applies)</li>
+        </ul>
+      </div>
 
----
-
-## Order Summary
-
-| **Order-Summary** | |
-|---|---|
-| Monthly Cost | **£9.00** |
-| (£18.00/month after 6 months) | |
-| | |
-| One-off Cost | **£0.00** |
-| | |
-| **Total Due Today** | **£0.00** |
-| **Monthly Total** | **£9.00** |
-
----
-
-## SIM Type
-
-Choose your SIM type:
-
-| **Sim-Selector** | |
-|---|---|
-| ![eSIM](./images/7d2445eb2328c6a9b4a171d77ea951c5.png) | **eSIM** |
-| | Instant activation. Download directly to your device. |
-| ![Physical SIM](./images/8a77fa3372284720f231b6001c5e0f2d.png) | **Physical SIM** |
-| | Free delivery. Arrives in 2-3 business days. |
-
----
-
-## Your Details
-
-| **Form-Checkout** | | |
-|---|---|---|
-| **Title** | select | Mr, Mrs, Ms, Miss, Dr |
-| **First name \*** | text | First name |
-| **Last name \*** | text | Last name |
-| **Enter your e-mail address \*** | email | Enter your e-mail address |
-| | | We need this to send you the order confirmation and dispatch updates. |
-| **Mobile number \*** | tel | Mobile number |
-| | | We'll use this to contact you about your order. |
-| **Date of birth \*** | date | DD/MM/YYYY |
-| | | You must be 18 or over to purchase this plan. |
-
----
-
-## Delivery Address
-
-| **Form-Checkout** | | |
-|---|---|---|
-| **Postcode \*** | text | Enter postcode |
-| | | [Find address](#) |
-| **Address line 1 \*** | text | Address line 1 |
-| **Address line 2** | text | Address line 2 (optional) |
-| **City \*** | text | City |
-| **County** | text | County (optional) |
-
----
-
-## Payment
-
-| **Columns** | |
-|---|---|
-| ![Secure Payment](./images/4d07dbb0f63d2f7231c4864be4fb935d.png) | **Secure Payment** |
-| | Your payment details are encrypted and secure. We accept Visa, Mastercard, and American Express. |
-
-| **Form-Checkout** | | |
-|---|---|---|
-| **Card number \*** | text | 1234 5678 9012 3456 |
-| **Expiry date \*** | text | MM/YY |
-| **Security code (CVV) \*** | text | 123 |
-| | | 3 digits on the back of your card |
-| **Name on card \*** | text | Name as shown on card |
-
----
-
-## Keep your number
-
-Want to keep your existing mobile number? You can transfer it after your order is complete.
-
-| **Columns** | |
-|---|---|
-| ![Info](./images/2500761e3f7a8d1996213afb7bb8029b.png) | Request your PAC code from your current provider and we'll transfer your number within 1 working day. |
-
----
-
-## Terms & Conditions
-
-By proceeding, you confirm that:
-
-- You are 18 years or older
-- You agree to our [Terms and Conditions](https://www.lycamobile.co.uk/en/termscondition)
-- You have read our [Privacy Policy](https://www.lycamobile.co.uk/en/privacy-notice)
-- You consent to a credit check being performed
-
-[Complete Order](#)
-
----
+      <div class="summary-card secure">
+        <div class="summary-label">Secure checkout</div>
+        <p class="muted"><a href="#">How to activate eSIM?</a></p>
+        <ul class="summary-notes">
+          <li>Spend cap is set to &pound;0.00. You can change this later on Lyca mobile app</li>
+          <li>Please note the cost of other services you take from us may increase or decrease while you are a Lyca customer.</li>
+        </ul>
+        <p class="muted">Need help? Find our <a href="#">FAQ</a> related to order checkout</p>
+      </div>
+    </aside>
+  </div>
+</div>
 
 | **Metadata** | |
 |---|---|
-| Title | Checkout - Lyca Mobile |
-| Description | Complete your Lyca Mobile order. Secure checkout for pay monthly SIM plans. |
-| robots | noindex, nofollow |
+| title | Checkout - My Basket |
+| description | Complete your order for Lycamobile SIM only deals |
+| og:title | Checkout - Lycamobile |
+| og:type | website |
+| template | checkout |

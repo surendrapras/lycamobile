@@ -1,0 +1,20 @@
+.button .primary-button {
+    width: 100%;
+    padding: 12px 16px;
+    background: #c7f2d4;
+    color: #1d7a45;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: not-allowed;
+}
+
+.button .primary-button:not(.disabled) {
+    background: #08dc7d;
+    color: #fff;
+    cursor: pointer;
+}
+
+.button .primary-button:not(.disabled):hover {
+    transform: translateY(-1px);
+}
