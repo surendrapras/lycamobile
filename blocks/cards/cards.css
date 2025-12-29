@@ -25,3 +25,45 @@
   aspect-ratio: 4 / 3;
   object-fit: cover;
 }
+.cards.pricing-summary .cards-card-body del,
+.cards.pricing-summary del {
+  text-decoration: line-through;
+  color: #98a2b3;
+  font-weight: 600;
+  font-size: 14px;
+  margin-right: 8px;
+}
+
+.cards.pricing-summary .cards-card-body strong,
+.cards.pricing-summary strong {
+  font-weight: 800;
+  font-size: 16px;
+  color: #101828;
+}
+
+.cards.pricing-summary .cards-card-body p {
+  display: flex;
+  align-items: baseline;
+  justify-content: flex-end;
+  gap: 8px;
+  margin: 0;
+}
+
+.cards.pricing-summary .cards-card-body p + p {
+  margin-top: 6px;
+  justify-content: flex-start;
+  color: #667085;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.cards.pricing-summary .cards-card-body p:first-child {
+  justify-content: space-between;
+}
+
+.cards.pricing-summary .cards-card-body p:first-child::before {
+  content: 'Monthly cost';
+  color: #344054;
+  font-size: 13px;
+  font-weight: 700;
+}

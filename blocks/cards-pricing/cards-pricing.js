@@ -1,6 +1,7 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
 const ICONS = ['eSIM', '5G'];
+const STORAGE_KEY = 'lyca.checkout.selectedPlan';
 
 function txt(node) {
   return (node && node.textContent ? node.textContent : '').trim();
@@ -42,8 +43,10 @@ function splitTitleAndPrice(s) {
 function parsePrice(s) {
   const text = norm(s);
   const prices = text.match(/£\s*\d+(?:\.\d{1,2})?/g) || [];
+
   let newPrice = prices[0] || '';
   let oldPrice = prices[1] || '';
+
   if (prices.length >= 2) {
     const n1 = parseFloat(prices[0].replace(/[£\s]/g, ''));
     const n2 = parseFloat(prices[1].replace(/[£\s]/g, ''));
@@ -53,8 +56,17 @@ function parsePrice(s) {
       [oldPrice, newPrice] = prices;
     }
   }
+
   const monthly = /monthly/i.test(text) ? 'monthly' : '';
-  return { oldPrice, newPrice, monthly };
+  return { oldPrice: norm(oldPrice), newPrice: norm(newPrice), monthly };
+}
+
+function setSelection(data) {
+  try {
+    sessionStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+  } catch (e) {
+    /* noop */
+  }
 }
 
 function buildPriceEl(priceText) {
@@ -112,7 +124,7 @@ function buildFeaturesEl(items) {
   return ul;
 }
 
-function buildActionsEl(viewLink, buyLink) {
+function buildActionsEl(viewLink, buyLink, selection) {
   const wrap = document.createElement('div');
   wrap.className = 'cards-pricing-actions';
 
@@ -136,6 +148,14 @@ function buildActionsEl(viewLink, buyLink) {
 
   if (buyLink) {
     buyLink.classList.add('cards-pricing-buynow');
+
+    const href = buyLink.getAttribute('href') || '';
+    if (!href || href === '#') buyLink.setAttribute('href', '/paymonthly/en/checkout/checkout');
+
+    buyLink.addEventListener('click', () => {
+      if (selection) setSelection(selection);
+    });
+
     ctas.append(buyLink);
   }
 
@@ -148,12 +168,11 @@ function pickLinks(row) {
   const view = links.find((a) => /view more/i.test(txt(a))) || null;
   const buy = links.find((a) => /buy now/i.test(txt(a))) || null;
 
-  if (view || buy) {
-    return { view, buy };
-  }
+  if (view || buy) return { view, buy };
 
   const p = [...row.querySelectorAll('p')].find((x) => isCtaLine(txt(x)));
   const t = p ? norm(txt(p)).toLowerCase() : '';
+
   const mk = (label) => {
     const a = document.createElement('a');
     a.href = '#';
@@ -179,13 +198,13 @@ export default function decorate(block) {
     const pTexts = [...row.querySelectorAll('p')].map((p) => norm(txt(p))).filter(Boolean);
     const liTexts = [...row.querySelectorAll('ul li, ol li')].map((li) => norm(txt(li))).filter(Boolean);
 
-    let promoText = '';
-    const promoCandidate = pTexts.find((t) => isPromo(t));
-    if (promoCandidate) promoText = promoCandidate;
+    const promoText = pTexts.find((t) => isPromo(t)) || '';
 
-    let titleText = '';
-    const titleCandidate = pTexts.find((t) => isTitleLine(t)) || pTexts.find((t) => /month/i.test(t) && !isSubtext(t) && !isPromo(t) && !isCtaLine(t)) || '';
-    if (titleCandidate) titleText = splitTitleAndPrice(titleCandidate);
+    const titleCandidate = pTexts.find((t) => isTitleLine(t))
+      || pTexts.find((t) => /month/i.test(t) && !isSubtext(t) && !isPromo(t) && !isCtaLine(t))
+      || '';
+
+    const titleText = titleCandidate ? splitTitleAndPrice(titleCandidate) : '';
 
     let priceText = pTexts.find((t) => /£/.test(t) && /monthly/i.test(t)) || '';
     if (!priceText && /£/.test(titleCandidate)) priceText = titleCandidate;
@@ -209,10 +228,20 @@ export default function decorate(block) {
 
     featureItems = featureItems
       .map((t) => t.replace(/^●\s*/, '').trim())
-      .filter((t) => t && !isCtaLine(t))
-      .slice(0, 3);
+      .filter((t) => t && !isCtaLine(t));
 
     const { view, buy } = pickLinks(row);
+
+    const { oldPrice, newPrice } = parsePrice(priceText);
+
+    const selection = {
+      title: titleText,
+      oldPrice,
+      newPrice,
+      subText,
+      features: featureItems,
+      contractDuration: block.dataset.contractDuration || '',
+    };
 
     const li = document.createElement('li');
     li.className = 'cards-pricing-item';
@@ -234,9 +263,7 @@ export default function decorate(block) {
       left.append(t);
     }
 
-    if (priceText) {
-      left.append(buildPriceEl(priceText));
-    }
+    if (priceText) left.append(buildPriceEl(priceText));
 
     if (subText) {
       const s = document.createElement('p');
@@ -251,16 +278,14 @@ export default function decorate(block) {
       return d;
     })();
 
-    const feats = buildFeaturesEl(featureItems);
-    const actions = buildActionsEl(view, buy);
+    const feats = buildFeaturesEl(featureItems.slice(0, 4));
+    const actions = buildActionsEl(view, buy, selection);
 
     li.append(left, data, feats, actions);
 
     li.querySelectorAll('picture > img').forEach((img) => {
       const pic = img.closest('picture');
-      if (pic) {
-        pic.replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]));
-      }
+      if (pic) pic.replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }]));
     });
 
     ul.append(li);
