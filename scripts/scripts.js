@@ -514,85 +514,90 @@ export function decorateCheckoutLayout(main) {
       <h1>My basket: Add-ons &amp; more</h1>
       <div class="checkout-layout">
         <div class="checkout-main">
-        <section class="checkout-card">
-          <div class="card-header">
-            <h2>Your Details</h2>
-          </div>
-          <div class="field-grid three">
-            <label class="field">
-              <span class="field-label">Title</span>
-              <select aria-label="Title">
-                <option value="">Select title</option>
-                ${config.titles.map((t) => `<option>${t}</option>`).join("")}
-              </select>
-            </label>
-            <label class="field">
-              <span class="field-label">First name *</span>
-              <input type="text" placeholder="Enter first name">
-            </label>
-            <label class="field">
-              <span class="field-label">Last name *</span>
-              <input type="text" placeholder="Enter last name">
-            </label>
-          </div>
-          <div class="field-grid">
-            <label class="field full">
-              <span class="field-label">Enter your e-mail address *</span>
-              <div class="field-inline">
-                <input type="email" placeholder="Enter your e-mail address">
-                <button class="ghost-button" type="button">${config.emailVerifyLabel}</button>
-              </div>
-              <small>We need this to send you the order confirmation and dispatch updates.</small>
-            </label>
-          </div>
-        </section>
-
-        <section class="checkout-card">
-          <div class="card-header">
-            <h2>Do you have a number to bring?</h2>
-            <a class="link-action" href="#">Change</a>
-          </div>
-          <label class="field full select-line">
-            <select aria-label="Number choice" id="number-choice">
-              ${config.numberOptions
-                .map(
-                  (opt, idx) => `<option ${idx === 0 ? "selected" : ""}>${opt}</option>`
-                )
-                .join("")}
-            </select>
-          </label>
-          <div class="pill-options provider-options">
-            ${config.providers
-              .map(
-                (prov, idx) => `
-            <label class="pill ${idx === 0 ? "active" : ""}">
-              <input type="radio" name="provider" ${idx === 0 ? "checked" : ""}>
-              <span>${prov}</span>
-            </label>`
-              )
-              .join("")}
-          </div>
-          <div class="transfer-fields">
-            <div class="field-grid three">
+          <section class="checkout-card">
+            <div class="card-header">
+              <h2>Your Details</h2>
+            </div>
+            <div class="field-grid three name-row">
               <label class="field">
-                <span class="field-label">Number you want to keep</span>
-                <div class="field-inline compact">
-                  <input class="prefix" type="text" value="+44" aria-label="Country code">
-                  <input type="text" placeholder="Enter a Lyca Mobile number">
-                </div>
-                <small>You will receive one time passcode to this number</small>
+                <select aria-label="Title">
+                  <option value="" disabled selected>Select title</option>
+                  ${config.titles.map((t) => `<option>${t}</option>`).join("")}
+                </select>
               </label>
               <label class="field">
-                <span class="field-label">Porting authorisation code (PAC)</span>
-                <input type="text" placeholder="PAC e.g. ABC123456">
+                <input type="text" placeholder="Enter first name" aria-label="First name">
               </label>
               <label class="field">
-                <span class="field-label">Port in date</span>
-                <input type="text" placeholder="DD/MM/YYYY">
-                <small>Your number will be transferred on the requested day and not before</small>
+                <input type="text" placeholder="Enter last name" aria-label="Last name">
               </label>
             </div>
-            <button class="primary-button disabled" type="button">Confirm mobile number</button>
+            <div class="field-grid email-row">
+              <label class="field full">
+                <div class="field-inline email-verify-wrapper">
+                  <input type="email" placeholder="Enter your e-mail address" aria-label="Enter your e-mail address">
+                  <button class="ghost-button verify-btn" type="button" disabled>${config.emailVerifyLabel}</button>
+                </div>
+                <small>We need this to send you the order confirmation and dispatch updates.</small>
+              </label>
+            </div>
+          </section>
+
+        <section class="checkout-card number-transfer-card">
+          <div class="card-header">
+            <h2>Do you have a number to bring?</h2>
+          </div>
+          
+          <div class="number-transfer-options">
+             <label class="transfer-option">
+                <input type="radio" name="transfer-choice" value="yes">
+                <div class="option-content">
+                    <span>I have a number to transfer</span>
+                    <span class="change-link hidden">Change</span>
+                </div>
+             </label>
+             <label class="transfer-option">
+                <input type="radio" name="transfer-choice" value="no">
+                <div class="option-content">
+                    <span>No, I want a new number</span>
+                </div>
+             </label>
+          </div>
+
+          <div class="transfer-flow hidden">
+            <div class="pill-options provider-options">
+                ${config.providers.map((prov, idx) => `
+                <label class="pill ${idx === 0 ? "active" : ""}">
+                <input type="radio" name="provider" ${idx === 0 ? "checked" : ""}>
+                <span>${prov}</span>
+                </label>`).join("")}
+            </div>
+            <div class="transfer-fields">
+                <div class="field-grid">
+                    <label class="field full">
+                        <div class="field-inline compact phone-input-row">
+                        <input class="prefix" type="text" value="+44" aria-label="Country code" readonly>
+                        <input class="phone-input" type="text" placeholder="Number you want to keep">
+                        </div>
+                        <small class="passcode-text hidden">You will receive one time passcode to this number</small>
+                    </label>
+                </div>
+                <div class="field-grid pac-row">
+                    <label class="field full">
+                        <input type="text" placeholder="Porting authorisation code (PAC)">
+                    </label>
+                </div>
+                <div class="field-grid date-row">
+                    <label class="field full">
+                        <div class="date-input-wrapper">
+                             <input type="text" placeholder="Port in date (DD/MM/YYYY)">
+                             <span class="icon-calendar"></span>
+                        </div>
+                        <small>Your number will be transferred on the requested day and not before</small>
+                    </label>
+                </div>
+                <button class="primary-button disabled confirm-mobile-btn" type="button">Confirm mobile number</button>
+            </div>
           </div>
         </section>
 
@@ -685,27 +690,75 @@ export function decorateCheckoutLayout(main) {
   main.replaceChildren(page);
 
   // interactions
-  const numberChoice = page.querySelector("#number-choice");
-  const transferFields = page.querySelector(".transfer-fields");
+  const transferOptions = [...page.querySelectorAll('input[name="transfer-choice"]')];
+  const transferFlow = page.querySelector(".transfer-flow");
   const providerPills = [...page.querySelectorAll(".provider-options .pill")];
   const simOptions = [...page.querySelectorAll(".option-list .option")];
+  
+  // Elements for dynamic visibility
+  const pacRow = page.querySelector(".pac-row");
+  const dateRow = page.querySelector(".date-row");
+  const passcodeText = page.querySelector(".passcode-text");
+  const phoneInput = page.querySelector(".phone-input");
 
-  const toggleTransferFields = () => {
-    const val = numberChoice?.value?.toLowerCase() || "";
-    const show = val.includes("transfer");
-    if (transferFields) transferFields.style.display = show ? "" : "none";
+  const toggleTransferFlow = () => {
+    const selected = page.querySelector('input[name="transfer-choice"]:checked');
+    const isTransfer = selected && selected.value === "yes";
+    
+    // Update active classes on main options
+    transferOptions.forEach(input => {
+        const label = input.closest('.transfer-option');
+        if (label) {
+            if (input.checked) label.classList.add('active');
+            else label.classList.remove('active');
+            
+            // Toggle change link
+            const changeLink = label.querySelector('.change-link');
+            if (changeLink) {
+                 if (input.checked && input.value === 'yes') changeLink.classList.remove('hidden');
+                 else changeLink.classList.add('hidden');
+            }
+        }
+    });
+
+    if (transferFlow) {
+        if (isTransfer) transferFlow.classList.remove('hidden');
+        else transferFlow.classList.add('hidden');
+    }
   };
 
-  numberChoice?.addEventListener("change", toggleTransferFields);
-  toggleTransferFields();
+  transferOptions.forEach(opt => opt.addEventListener("change", toggleTransferFlow));
+  // Initial state
+  toggleTransferFlow();
 
-  providerPills.forEach((pill) => {
-    pill.addEventListener("click", () => {
+  const updateProviderState = (pill) => {
+      const isLyca = pill.innerText.includes("Lyca Mobile");
+      const input = pill.querySelector("input");
+      
       providerPills.forEach((p) => p.classList.remove("active"));
       pill.classList.add("active");
-      const input = pill.querySelector("input");
       if (input) input.checked = true;
-    });
+
+      // Toggle fields
+      if (isLyca) {
+          pacRow?.classList.add("hidden");
+          dateRow?.classList.add("hidden");
+          passcodeText?.classList.remove("hidden");
+          if (phoneInput) phoneInput.placeholder = "Enter a Lyca Mobile number";
+      } else {
+          pacRow?.classList.remove("hidden");
+          dateRow?.classList.remove("hidden");
+          passcodeText?.classList.add("hidden");
+          if (phoneInput) phoneInput.placeholder = "Number you want to keep";
+      }
+  };
+
+  providerPills.forEach((pill) => {
+    pill.addEventListener("click", () => updateProviderState(pill));
+    // Check initial state
+    if (pill.classList.contains("active")) {
+        updateProviderState(pill);
+    }
   });
 
   simOptions.forEach((opt) => {
