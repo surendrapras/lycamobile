@@ -1091,7 +1091,7 @@ body.paymonthly-checkout main h1 {
     width: 100%;
     padding: 12px 14px; /* Updated padding to 14px */
     border: 1px solid #d1d9e6;
-    border-radius: 6px;
+    border-radius: 4px;
     font-size: 14px;
     color: #344054;
     background: #fff;
@@ -1122,43 +1122,43 @@ body.paymonthly-checkout main h1 {
 }
 
 .email-verify-wrapper .verify-btn {
-  position: absolute;
-  top: 50%;
-  right: 22px; /* Moved further left */
-  transform: translateY(-50%);
-  background: transparent;
-  border: none;
-  padding: 0;
-  color: #2563eb; /* Active color */
-  font-weight: 700; /* GTEestiLCDisplayBold equivalent */
-  font-family: inherit;
-  font-size: 16px;
-  cursor: pointer;
-  height: auto;
-  width: auto;
-  text-transform: unset;
-  margin: 0; /* Fix vertical alignment */
-  background: transparent;
-  border: none;
-  color: #b3bac7;
-  font-weight: 700;
+    position: absolute;
+    top: 50%;
+    right: 22px; /* Moved further left */
+    transform: translateY(-50%);
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: #b3bac7;
+    font-weight: 700;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+    height: auto;
+    width: auto;
+    text-transform: unset;
+    margin: 0; /* Fix vertical alignment */
+    box-shadow: none;
 }
 
 .email-verify-wrapper .verify-btn:hover,
 .email-verify-wrapper .verify-btn:focus {
     transform: translateY(-50%);
-    background: transparent;
-    border: none;
     box-shadow: none;
 }
 
 .email-verify-wrapper .verify-btn:disabled {
     color: #bec6d5; /* Mui disabled color */
     cursor: default;
+    background: transparent;
+    border-color: transparent;
 }
 
 .email-verify-wrapper .verify-btn:not(:disabled) {
-    color: #2563eb;
+    background-color: #2c68d8;
+    border: 1px solid #2c68d8;
+    color: #ffffff;
 }
 
 .email-verify-wrapper.invalid input {
@@ -1168,18 +1168,23 @@ body.paymonthly-checkout main h1 {
 
 .email-error {
     display: none;
-    margin-top: 0;
+    margin-top: -1px; /* tuck under the input border */
     margin-bottom: 10px;
     padding: 10px 12px;
     background: #fef2f2;
     border: 1px solid #fca5a5;
+    border-top: none;
     border-radius: 0 0 8px 8px;
     color: #b91c1c;
     font-size: 14px;
     align-items: center;
     gap: 8px;
-    width: 100%;
+    width: calc(100% - 2px);
+    max-width: calc(100% - 2px);
     box-sizing: border-box;
+    align-self: stretch;
+    margin-left: 1px;
+    margin-right: 1px;
 }
 
 .email-error.visible {
@@ -1207,7 +1212,7 @@ body.paymonthly-checkout main h1 {
 .field-inline {
     display: grid;
     grid-template-columns: 1fr auto;
-    gap: 10px;
+    /* gap: 10px; */
     align-items: center;
 }
 
@@ -1533,7 +1538,7 @@ body.paymonthly-checkout main h1 {
 .transfer-option {
     display: block;
     border: 1px solid #d1d9e6;
-    border-radius: 6px;
+    border-radius: 4px;
     padding: 16px;
     background: #fff;
     cursor: pointer;
@@ -1820,7 +1825,7 @@ body.paymonthly-checkout main h1 {
     gap: 12px;
     padding: 16px;
     border: 1px solid #dfe5ef;
-    border-radius: 8px;
+    border-radius: 4px;
     background: #fff;
     transition: all 0.2s ease;
     position: relative;
@@ -1952,7 +1957,7 @@ body.paymonthly-checkout main h1 {
     gap: 16px;
     padding: 16px;
     border: 1px solid #D0D5DD;
-    border-radius: 8px;
+    border-radius: 4px;
     background: #FAFBFF;
     text-decoration: none;
     transition: all 0.2s ease;
