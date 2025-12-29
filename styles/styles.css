@@ -168,7 +168,7 @@ body.checkout-hide-chrome footer {
 }
 
 .checkout-page.simple {
-    max-width: 1200px;
+    /* max-width: 1200px; */
     margin: 0 auto;
     padding: 0 20px 48px;
 }
@@ -942,7 +942,7 @@ body.paymonthly-checkout main h1 {
 }
 
 .checkout-page {
-    max-width: 1180px;
+    /* max-width: 1180px; */
     margin: 0 auto;
     padding: 0 20px 40px;
 }
@@ -1620,21 +1620,80 @@ body.paymonthly-checkout main h1 {
     width: 100%;
 }
 
-.date-input-wrapper input {
-    width: 100%;
-    padding-right: 40px !important;
+.date-input-wrapper.custom-date-box {
+    border: 1px solid #d1d9e6;
+    border-radius: 6px;
+    padding: 6px 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 50px;
+    background: #fff;
+    cursor: text;
+    box-sizing: border-box;
 }
 
-.date-input-wrapper .icon-calendar {
+.date-input-wrapper.custom-date-box:focus-within {
+     border-color: #2563eb;
+     box-shadow: none;
+}
+
+.date-input-wrapper .date-label {
+    font-size: 13px;
+    color: #344054;
+    font-weight: 600; /* Updated to 600 as requested */
+    line-height: 1.2;
+}
+
+.date-input-wrapper .hidden-date-input {
     position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 20px;
-    height: 20px;
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%232563eb'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z'%3F%3E%3C/svg%3E") no-repeat center center;
-    background-size: contain;
-    pointer-events: none;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none; /* Let clicks pass to visible input/btn which trigger picker manually */
+}
+
+.date-input-wrapper input.visible-date-input {
+    width: 100%;
+    padding: 0 !important;
+    border: none !important;
+    height: auto !important;
+    font-size: 16px;
+    font-weight: 500;
+    color: #1f2a5a;
+    background: transparent;
+    outline: none !important;
+    box-shadow: none !important; /* Explicitly remove shadow */
+}
+
+.date-input-wrapper input::placeholder {
+    color: #bec6d5;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.date-input-wrapper .calendar-btn {
+    position: absolute;
+    right: 14px;
+    top: 0; 
+    bottom: 0;
+    margin: auto;
+    height: 16px; /* Match icon size */
+    transform: none;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none !important; /* Remove focus ring from button */
+}
+
+.date-input-wrapper .calendar-btn img {
+    display: block;
 }
 
 /* Ensure full width for transfer fields */
@@ -1655,4 +1714,139 @@ body.paymonthly-checkout main h1 {
     .pill-options.provider-options {
         grid-template-columns: 1fr;
     }
+}
+
+/* SIM Type Section */
+.sim-type-card .sub-heading {
+    margin: 4px 0 0;
+    color: #667085;
+    font-size: 14px;
+}
+
+.sim-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.sim-option {
+    display: block;
+    cursor: pointer;
+}
+
+.sim-option input[type="radio"] {
+    display: none;
+}
+
+.sim-option .option-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid #dfe5ef;
+    border-radius: 8px;
+    background: #fff;
+    transition: all 0.2s ease;
+    position: relative;
+    border-bottom: 1px solid #dfe5ef;
+}
+
+.sim-option.active .option-content {
+    border-color: #2563eb;
+    background: #eff6ff;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom: none;
+}
+
+.sim-option:not(.active) .option-content {
+    border-radius: 8px;
+}
+
+.sim-option img {
+    width: 24px;
+    height: 24px;
+}
+
+.sim-option span {
+    font-weight: 600;
+    color: #1f2a5a;
+    font-size: 16px;
+    flex: 1;
+}
+
+.sim-option .check-icon {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #dfe5ef; /* Unchecked state border */
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.sim-option.active .check-icon {
+    background: #006ae0;
+    border-color: #006ae0;
+}
+
+.sim-option.active .check-icon::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.sim-info {
+    display: flex;
+    gap: 12px;
+    padding: 12px 16px;
+    background: #f8fafc;
+    border: 1px solid #dfe5ef; /* Border to match container */
+    border-top: none; /* Remove top border to merge with option */
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    align-items: flex-start;
+}
+
+.sim-info.hidden {
+    display: none;
+}
+
+.sim-info .info-icon {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #667085;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    color: #667085;
+    flex-shrink: 0;
+}
+
+.sim-info p {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.5;
+    color: #98a2b3; /* Muted text color */
+}
+
+.more-info-link {
+    display: inline-block;
+    color: #2563eb;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.more-info-link:hover {
+    text-decoration: underline;
 }

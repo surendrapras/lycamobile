@@ -589,9 +589,13 @@ export function decorateCheckoutLayout(main) {
                 </div>
                 <div class="field-grid date-row">
                     <label class="field full">
-                        <div class="date-input-wrapper">
-                             <input type="text" placeholder="Port in date (DD/MM/YYYY)">
-                             <span class="icon-calendar"></span>
+                        <div class="date-input-wrapper custom-date-box">
+                             <div class="date-label">Port in date</div>
+                             <input class="visible-date-input" type="text" placeholder="DD/MM/YYYY" readonly>
+                             <input class="hidden-date-input" type="date">
+                             <button type="button" class="calendar-btn">
+                                <img src="https://www.lycamobile.co.uk/paymonthly/_next/static/media/blueCalendarIcon.037f492f.svg" alt="calendar" width="16" height="16">
+                             </button>
                         </div>
                         <small>Your number will be transferred on the requested day and not before</small>
                     </label>
@@ -601,33 +605,41 @@ export function decorateCheckoutLayout(main) {
           </div>
         </section>
 
-        <section class="checkout-card">
+        <section class="checkout-card sim-type-card">
           <div class="card-header">
             <h2>SIM type</h2>
-            <p class="muted">Choose your preferred type of SIM</p>
+            <p class="sub-heading">Choose your preferred type of SIM</p>
           </div>
-          <div class="option-list">
-            ${config.simTypes
-              .map(
-                (sim, idx) => `
-            <label class="option ${sim.toLowerCase().includes("selected") || idx === 0 ? "active" : ""}">
-              <input type="radio" name="sim-type" ${sim.toLowerCase().includes("selected") || idx === 0 ? "checked" : ""}>
-              <div class="option-body">
-                <div class="option-title">${sim.replace("(selected)", "").trim()}</div>
-                <small class="sim-note ${idx === 0 ? "" : "hidden"}">
-                  ${
-                    idx === 0
-                      ? "Your Lyca Mobile SIM must be activated in the UK, once your SIM is activated in the UK, you can use it internationally according to your mobile plan."
-                      : "A SIM card will be sent to your delivery address."
-                  }
-                </small>
+          <div class="sim-options">
+            <label class="sim-option active">
+              <input type="radio" name="sim-type" value="esim" checked>
+              <div class="option-content">
+                  <img src="https://www.lycamobile.co.uk/paymonthly/_next/static/media/esimDark.5250605d.svg" alt="eSIM">
+                  <span>eSIM</span>
+                  <div class="check-icon"></div>
               </div>
-            </label>`
-              )
-              .join("")}
-            ${buildLinkRow(config.links)}
+              <div class="sim-info">
+                  <div class="info-icon">i</div>
+                  <p>Your Lyca Mobile SIM must be activated in the UK, once your SIM is activated in the UK, you can use it internationally according to your mobile plan.</p>
+              </div>
+            </label>
+            <label class="sim-option">
+              <input type="radio" name="sim-type" value="sim">
+              <div class="option-content">
+                  <img src="https://www.lycamobile.co.uk/paymonthly/_next/static/media/Sim-card.5ed62f4a.svg" alt="SIM card">
+                  <span>SIM card</span>
+                  <div class="check-icon"></div>
+              </div>
+              <div class="sim-info hidden">
+                  <div class="info-icon">i</div>
+                  <p>A SIM card will be sent to your delivery address.</p>
+              </div>
+            </label>
           </div>
+          <a href="#" class="more-info-link">What's eSIM/Check compatibility</a>
         </section>
+
+
 
         <section class="checkout-card">
           <div class="card-header">
@@ -721,6 +733,14 @@ export function decorateCheckoutLayout(main) {
         }
     });
 
+    // Hide/Show "No" option based on "Yes" selection
+    const noOptionInput = page.querySelector('input[name="transfer-choice"][value="no"]');
+    const noOptionLabel = noOptionInput?.closest('.transfer-option');
+    if (noOptionLabel) {
+        if (isTransfer) noOptionLabel.classList.add('hidden');
+        else noOptionLabel.classList.remove('hidden');
+    }
+
     if (transferFlow) {
         if (isTransfer) transferFlow.classList.remove('hidden');
         else transferFlow.classList.add('hidden');
@@ -728,6 +748,19 @@ export function decorateCheckoutLayout(main) {
   };
 
   transferOptions.forEach(opt => opt.addEventListener("change", toggleTransferFlow));
+  
+  // Handle Change link click
+  const changeLink = page.querySelector('.change-link');
+  if (changeLink) {
+      changeLink.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation(); // Prevent label click
+          // Reset selection
+          transferOptions.forEach(opt => opt.checked = false);
+          toggleTransferFlow();
+      });
+  }
+
   // Initial state
   toggleTransferFlow();
 
@@ -761,22 +794,76 @@ export function decorateCheckoutLayout(main) {
     }
   });
 
-  simOptions.forEach((opt) => {
-    opt.addEventListener("click", () => {
-      simOptions.forEach((o) => {
-        o.classList.remove("active");
-        const radio = o.querySelector('input[type="radio"]');
-        if (radio) radio.checked = false;
-        const note = o.querySelector(".sim-note");
-        if (note) note.classList.add("hidden");
+
+
+  // New SIM Type Logic
+  const newSimOptions = [...page.querySelectorAll(".sim-option")];
+  newSimOptions.forEach(opt => {
+      opt.addEventListener("click", (e) => {
+           // Prevent double firing if clicking input directly
+           if (e.target.tagName === 'INPUT') return;
+           
+           const input = opt.querySelector('input');
+           if (input) input.checked = true;
+
+           // Update UI
+           newSimOptions.forEach(o => {
+               o.classList.remove("active");
+               const info = o.querySelector(".sim-info");
+               if (info) info.classList.add("hidden");
+           });
+           
+           opt.classList.add("active");
+           const info = opt.querySelector(".sim-info");
+           if (info) info.classList.remove("hidden");
       });
-      opt.classList.add("active");
-      const radio = opt.querySelector('input[type="radio"]');
-      if (radio) radio.checked = true;
-      const note = opt.querySelector(".sim-note");
-      if (note) note.classList.remove("hidden");
-    });
+      
+      // Handle radio change if triggered via keyboard/direct input
+      const input = opt.querySelector('input');
+      if (input) {
+          input.addEventListener('change', () => {
+              if (input.checked) {
+                  newSimOptions.forEach(o => {
+                    o.classList.remove("active");
+                     const info = o.querySelector(".sim-info");
+                    if (info) info.classList.add("hidden");
+                  });
+                  opt.classList.add("active");
+                  const info = opt.querySelector(".sim-info");
+                  if (info) info.classList.remove("hidden");
+              }
+          });
+      }
   });
+
+  // Date picker logic
+  const dateWrapper = page.querySelector(".date-input-wrapper");
+  const visibleDateInput = dateWrapper?.querySelector(".visible-date-input");
+  const hiddenDateInput = dateWrapper?.querySelector(".hidden-date-input");
+  const calendarBtn = dateWrapper?.querySelector(".calendar-btn");
+
+  if (visibleDateInput && hiddenDateInput && calendarBtn) {
+      const openPicker = () => {
+          try {
+              hiddenDateInput.showPicker();
+          } catch (e) {
+              hiddenDateInput.focus();
+          }
+      };
+
+      calendarBtn.addEventListener("click", openPicker);
+      visibleDateInput.addEventListener("click", openPicker);
+
+      hiddenDateInput.addEventListener("change", (e) => {
+          const val = e.target.value; // YYYY-MM-DD
+          if (val) {
+              const [year, month, day] = val.split("-");
+              visibleDateInput.value = `${day}/${month}/${year}`;
+          } else {
+              visibleDateInput.value = "";
+          }
+      });
+  }
 }
 
 function getCheckoutStepsFromDoc() {
