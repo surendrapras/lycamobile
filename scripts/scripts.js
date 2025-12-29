@@ -363,6 +363,9 @@ function buildCheckoutSteps() {
   const el = document.createElement("div");
   el.className = "checkout-steps";
 
+  const row = document.createElement("div");
+  row.className = "steps-row";
+
   steps.forEach((label, idx) => {
     const step = document.createElement("div");
     step.className = "step";
@@ -372,8 +375,10 @@ function buildCheckoutSteps() {
     else if (stepIndex === active + 1) step.classList.add("next");
 
     step.textContent = label;
-    el.append(step);
+    row.append(step);
   });
+
+  el.append(row);
 
   const bar = document.createElement("div");
   bar.className = "step-progress";
@@ -382,6 +387,24 @@ function buildCheckoutSteps() {
   el.append(bar);
 
   return el;
+}
+
+function extractCheckoutLogo(main) {
+  const sectionLogo =
+    main.querySelector(".section.logo, .logo") ||
+    main.querySelector('[class*="logo"]');
+  const picture =
+    sectionLogo?.querySelector("picture") || sectionLogo?.querySelector("img");
+  const fallback =
+    main.querySelector('img[alt*="logo" i]') || main.querySelector("picture");
+
+  const node = (picture || fallback)?.cloneNode(true);
+
+  if (sectionLogo && sectionLogo.parentElement) {
+    sectionLogo.remove();
+  }
+
+  return node;
 }
 
 function wrapCheckoutGroups(sectionEl) {
@@ -478,14 +501,19 @@ export function decorateCheckoutLayout(main) {
   const priceHtml = `${
     selection.oldPrice ? `<del>${selection.oldPrice}</del>` : ""
   } ${selection.newPrice ? `<strong>${selection.newPrice}</strong>` : ""}`.trim();
+  const logoNode = extractCheckoutLogo(main);
 
   const page = document.createElement("div");
   page.className = "checkout-page";
   page.innerHTML = `
-    ${buildCheckoutSteps().outerHTML}
-    <h1>My basket: Add-ons &amp; more</h1>
-    <div class="checkout-layout">
-      <div class="checkout-main">
+    <div class="checkout-hero">
+      ${logoNode ? `<div class="checkout-logo">${logoNode.outerHTML}</div>` : ""}
+      ${buildCheckoutSteps().outerHTML}
+    </div>
+    <div class="checkout-shell">
+      <h1>My basket: Add-ons &amp; more</h1>
+      <div class="checkout-layout">
+        <div class="checkout-main">
         <section class="checkout-card">
           <div class="card-header">
             <h2>Your Details</h2>
