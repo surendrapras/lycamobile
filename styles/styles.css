@@ -1443,6 +1443,13 @@ body.paymonthly-checkout main h1 {
 
     .checkout-sidebar {
         position: static;
+        width: 100%;
+        min-width: 0;
+        max-width: none;
+    }
+
+    .checkout-sidebar .summary-card {
+        width: 100%;
     }
 }
 
@@ -2044,7 +2051,7 @@ input:checked + .slider:before {
 .checkout-sidebar .summary-card {
     background: #fff;
     padding: 24px;
-    border-radius: 8px;
+    border-radius: 0;
     border: 1px solid #dfe5ef;
     box-shadow: 0 4px 10px rgb(17 24 39 / 3%);
 }
@@ -2065,8 +2072,8 @@ input:checked + .slider:before {
     padding-left: 24px;
     margin: -24px -24px 24px -24px; /* Pull to edges */
     border-bottom: 1px solid #dfe5ef;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
 .summary-row {
