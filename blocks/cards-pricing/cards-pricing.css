@@ -19,15 +19,15 @@
   align-items: stretch;
   min-height: 6.875rem;
   padding: 1rem;
-  border-radius: 0 8px 8px 8px;
+  border-radius: 0 8px 8px;
   background: #fff;
   border: 2px solid #ededed;
-  box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, .1019607843);
+  box-shadow: 4px 4px 4px 0 rgb(0 0 0 / 10.2%);
   overflow: visible !important;
 }
 
 .cards-pricing-item:hover {
-  box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, .1019607843);
+  box-shadow: 4px 4px 4px 0 rgb(0 0 0 / 10.2%);
 }
 
 .cards-pricing-promo {
@@ -227,15 +227,15 @@ body.paymonthly-sim-only-deals .cards-pricing > ul {
 body.paymonthly-sim-only-deals .cards-pricing-item {
   grid-template-columns: 280px 160px 1fr 190px;
   padding: 0;
-  border-radius: 0 8px 8px 8px;
+  border-radius: 0 8px 8px;
   border: 2px solid #ededed;
   background: #fff;
-  box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, .1019607843);
+  box-shadow: 4px 4px 4px 0 rgb(0 0 0 / 10.2%);
 }
 
 body.paymonthly-sim-only-deals .cards-pricing-item:hover {
   border-color: #00d084;
-  box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, .1019607843);
+  box-shadow: 4px 4px 4px 0 rgb(0 0 0 / 10.2%);
 }
 
 body.paymonthly-sim-only-deals .cards-pricing-promo {
@@ -259,7 +259,7 @@ body.paymonthly-sim-only-deals .cards-pricing-left {
 body.paymonthly-sim-only-deals .cards-pricing-data,
 body.paymonthly-sim-only-deals .cards-pricing-features,
 body.paymonthly-sim-only-deals .cards-pricing-actions {
-  padding: 20px 20px;
+  padding: 20px;
 }
 
 body.paymonthly-sim-only-deals .cards-pricing-data {

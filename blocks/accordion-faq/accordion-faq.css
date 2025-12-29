@@ -108,12 +108,12 @@ border-radius: 0;
 background-color: transparent;
 }
 
-body.paymonthly-sim-only-deals .accordion-faq details:first-of-type {
-border-top: 1px solid #e5e7eb;
-}
-
 body.paymonthly-sim-only-deals .accordion-faq details + details {
 margin-top: 0;
+}
+
+body.paymonthly-sim-only-deals .accordion-faq details:first-of-type {
+border-top: 1px solid #e5e7eb;
 }
 
 body.paymonthly-sim-only-deals .accordion-faq details summary {
@@ -152,16 +152,16 @@ background-color: transparent;
 
 .accordion-faq-container a.button,
 .accordion-faq-container a.button.secondary,
-.accordion-faq-container .FAQ_view_more_button__PVldP {
+.accordion-faq-container .faq-view-more-button {
 display: flex;
 align-items: center;
 justify-content: center;
 width: 16.25rem;
 height: 2.875rem;
 background: #fff;
-border: 1px solid var(--lightGrey, #bec6d5);
+border: 1px solid var(--light-grey, #bec6d5);
 border-radius: 4px;
-box-shadow: 0 1px 2px 0 var(--shadowGray, #1018280d);
+box-shadow: 0 1px 2px 0 var(--shadow-gray, #1018280d);
 color: #2c5bd7;
 font-size: 14px;
 font-weight: 500;
@@ -176,16 +176,16 @@ margin: 28px auto 0;
 .accordion-faq-container a.button:focus,
 .accordion-faq-container a.button.secondary:hover,
 .accordion-faq-container a.button.secondary:focus,
-.accordion-faq-container .FAQ_view_more_button__PVldP:hover,
-.accordion-faq-container .FAQ_view_more_button__PVldP:focus {
+.accordion-faq-container .faq-view-more-button:hover,
+.accordion-faq-container .faq-view-more-button:focus {
 background: #fff;
-border-color: var(--lightGrey, #bec6d5);
+border-color: var(--light-grey, #bec6d5);
 color: #2c5bd7;
-box-shadow: 0 1px 2px 0 var(--shadowGray, #1018280d);
+box-shadow: 0 1px 2px 0 var(--shadow-gray, #1018280d);
 text-decoration: none;
 }
 
-.accordion-faq-container .FAQ_flex_center__altAz {
+.accordion-faq-container .faq-flex-center {
 display: flex;
 justify-content: center;
 }
