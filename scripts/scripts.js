@@ -398,13 +398,16 @@ function extractCheckoutLogo(main) {
   const fallback =
     main.querySelector('img[alt*="logo" i]') || main.querySelector("picture");
 
-  const node = (picture || fallback)?.cloneNode(true);
+  const target = picture || fallback;
+  const node = target?.cloneNode(true);
+  const link = target?.closest("a");
+  const href = link ? link.href : "/";
 
   if (sectionLogo && sectionLogo.parentElement) {
     sectionLogo.remove();
   }
 
-  return node;
+  return { node, href };
 }
 
 function wrapCheckoutGroups(sectionEl) {
@@ -501,13 +504,17 @@ export function decorateCheckoutLayout(main) {
   const priceHtml = `${
     selection.oldPrice ? `<del>${selection.oldPrice}</del>` : ""
   } ${selection.newPrice ? `<strong>${selection.newPrice}</strong>` : ""}`.trim();
-  const logoNode = extractCheckoutLogo(main);
+  const { node: logoNode, href: logoHref } = extractCheckoutLogo(main);
 
   const page = document.createElement("div");
   page.className = "checkout-page";
   page.innerHTML = `
     <div class="checkout-hero">
-      ${logoNode ? `<div class="checkout-logo">${logoNode.outerHTML}</div>` : ""}
+      ${
+        logoNode
+          ? `<div class="checkout-logo"><a href="${logoHref}" target="_self">${logoNode.outerHTML}</a></div>`
+          : ""
+      }
       ${buildCheckoutSteps().outerHTML}
     </div>
     <div class="checkout-shell">
@@ -641,59 +648,90 @@ export function decorateCheckoutLayout(main) {
 
 
 
-        <section class="checkout-card">
+        <section class="checkout-card review-contract-card">
           <div class="card-header">
             <h2>Review contract details</h2>
-            <p class="muted">We have also sent these to</p>
+            <p class="sub-heading">We have also sent these to</p>
           </div>
           <div class="download-list">
-            <a class="download" href="#"><span class="icon-download"></span>Download contract information</a>
-            <a class="download" href="#"><span class="icon-download"></span>Download contract summary</a>
+            <a class="download-card" href="#">
+                <img src="https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/inline-images/download.png?VersionId=NHRY2RecjJ.GXpYopIYlIakl9q5Uq9ei" alt="download">
+                <span>Download contract information</span>
+            </a>
+            <a class="download-card" href="#">
+                <img src="https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/inline-images/download.png?VersionId=NHRY2RecjJ.GXpYopIYlIakl9q5Uq9ei" alt="download">
+                <span>Download contract summary</span>
+            </a>
           </div>
-          <a class="link-action" href="#">View other formats</a>
+          <a class="link-action view-formats" href="#">View other formats</a>
         </section>
 
         <section class="checkout-card checkout-agreement">
           <div class="card-header">
             <h2>Contract agreement</h2>
           </div>
-          <label class="toggle">
-            <input type="checkbox">
-            <span>Please confirm that you're happy with the contract summary and information before you proceed. View full <a href="#">Terms and conditions</a></span>
-          </label>
-          <button class="primary-button disabled" type="button">${config.primaryCta}</button>
+          <div class="toggle-wrapper">
+             <label class="switch">
+                <input type="checkbox" id="contract-toggle">
+                <span class="slider round"></span>
+             </label>
+             <span class="toggle-label">Please confirm that you're happy with the contract summary and information before you proceed. View full <a href="#">Terms and conditions</a></span>
+          </div>
         </section>
+        
+        <div class="checkout-actions">
+            <button class="primary-button checkout-btn disabled" type="button">Checkout now</button>
+        </div>
       </div>
 
       <aside class="checkout-sidebar">
-        <h2 class="summary-title">Order summary</h2>
-        <div class="summary-card pricing">
-          <div class="summary-row">
-            <div>
-              <div class="summary-label">Monthly cost</div>
-              ${
-                selection.subText
-                  ? `<div class="summary-note">${selection.subText}</div>`
-                  : ""
-              }
+        <!-- Card 1: Header & Cost -->
+        <div class="summary-card cost-card">
+            <h2 class="summary-title">Order summary</h2>
+            <div class="summary-row">
+                <div class="cost-label">Monthly cost</div>
+                <div class="cost-values">
+                    <span class="old-price">£18.00</span>
+                    <span class="new-price">£9.00</span>
+                </div>
             </div>
-            <div class="summary-price">${priceHtml}</div>
-          </div>
-          <div class="summary-divider"></div>
-          <ul class="summary-features">
-            <li>${selection.title}</li>
-            ${featureItems.map((item) => `<li>${item}</li>`).join("")}
-          </ul>
+            <div class="cost-note">for the first 6 months, then £18</div>
+            <div class="basket-actions">
+                <button class="delete-btn" aria-label="Remove item">
+                    <img src="https://www.lycamobile.co.uk/paymonthly/_next/static/media/trash.d2556b6a.svg" alt="remove">
+                </button>
+            </div>
         </div>
 
-        <div class="summary-card secure">
-          <div class="summary-label">Secure checkout</div>
-          <p class="muted"><a href="https://www.lycamobile.co.uk/en/esim/how-do-i-activate-my-esim/">How to activate eSIM?</a></p>
-          <ul class="summary-notes">
-            <li>Spend cap is set to £0.00. You can change this later on Lyca mobile app</li>
-            <li>Please note the cost of other services you take from us may increase or decrease while you are a Lyca customer.</li>
-          </ul>
-          <p class="muted">Need help? Find our <a href="https://www.lycamobile.co.uk/paymonthly/en/faq/">FAQ</a> related to order checkout</p>
+        <!-- Card 2: Plan Details -->
+        <div class="summary-card plan-card">
+             <h3 class="plan-name">24 month Unlimited</h3>
+             <ul class="plan-features">
+                <li>30GB EU roaming included</li>
+                <li>100 International minutes</li>
+                <li>Unlimited UK mins and text</li>
+                <li>Unlimited EU mins and text when roaming in EU (fair use policy applies)</li>
+             </ul>
+        </div>
+
+        <!-- Card 3: Secure Checkout Info -->
+        <div class="summary-card info-card">
+            <div class="info-item">
+                <img src="https://cms-pim-assets-dev.ldsvcplatform.com/POSTPAID/s3fs-public/inline-images/Group%20383184241%20%281%29.png" alt="secure">
+                <span>Secure checkout</span>
+            </div>
+            <div class="info-item">
+                 <img src="https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/image.jpg" alt="esim">
+                 <span>How to activate <a href="#">eSim?</a></span>
+            </div>
+            <div class="info-item start-align">
+                 <img src="https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/Spend%20cap-2.webp" alt="timer">
+                 <span>Spend cap is set to £0.00.<br>You can change this later on Lyca mobile app</span>
+            </div>
+            
+            <p class="service-note">Please note the cost of other services you take from us may increase or decrease while you are a Lyca customer.</p>
+            
+            <p class="help-link">Need help? Find our <a href="#">FAQ</a> related to order checkout</p>
         </div>
       </aside>
     </div>
@@ -835,6 +873,22 @@ export function decorateCheckoutLayout(main) {
           });
       }
   });
+
+  // Checkout Agreement Toggle Logic
+  const contractToggle = page.querySelector("#contract-toggle");
+  const checkoutBtn = page.querySelector(".checkout-btn");
+
+  if (contractToggle && checkoutBtn) {
+      contractToggle.addEventListener("change", (e) => {
+          if (e.target.checked) {
+              checkoutBtn.classList.remove("disabled");
+              checkoutBtn.disabled = false;
+          } else {
+              checkoutBtn.classList.add("disabled");
+              checkoutBtn.disabled = true;
+          }
+      });
+  }
 
   // Date picker logic
   const dateWrapper = page.querySelector(".date-input-wrapper");

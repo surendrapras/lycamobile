@@ -781,6 +781,10 @@ main .section.dark.cards-action-container {
     padding: 20px 0;
 }
 
+input:checked + .slider {
+    background-color: #09F68C; /* Lyca Bright Green */
+}
+
 .section.refer-section p a {
     color: #fff;
     font-size: 1.125rem;
@@ -1013,9 +1017,17 @@ body.paymonthly-checkout main h1 {
 .checkout-card {
     background: #fff;
     border: 1px solid #dfe5ef;
-    border-radius: 10px;
+    border-radius: 0; /* User requested square corners */
     padding: 18px 18px 20px;
     box-shadow: 0 4px 10px rgb(17 24 39 / 6%);
+}
+
+.checkout-sidebar .summary-card {
+    background: #fff;
+    padding: 24px;
+    border-radius: 0; /* User requested square corners */
+    border: 1px solid #dfe5ef;
+    box-shadow: 0 4px 10px rgb(17 24 39 / 3%);
 }
 
 .checkout-card .card-header {
@@ -1645,6 +1657,12 @@ body.paymonthly-checkout main h1 {
     line-height: 1.2;
 }
 
+.checkout-content {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start; /* Fixes sidebar top alignment */
+}
+
 .date-input-wrapper .hidden-date-input {
     position: absolute;
     opacity: 0;
@@ -1849,4 +1867,354 @@ body.paymonthly-checkout main h1 {
 
 .more-info-link:hover {
     text-decoration: underline;
+}
+
+/* Review Contract Details Section */
+.review-contract-card .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.review-contract-card .sub-heading {
+    margin: 0;
+    color: #667085;
+    font-size: 14px;
+}
+
+.download-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.download-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    border: 1px solid #D0D5DD;
+    border-radius: 8px;
+    background: #FAFBFF;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.download-card:hover {
+    background: #FAFBFF;
+    border-color: #D0D5DD;
+    text-decoration: none;
+}
+
+.download-card img {
+    width: 24px;
+    height: 24px;
+}
+
+.download-card span {
+    font-weight: 600;
+    color: #1f2a5a;
+    font-size: 16px;
+}
+
+.view-formats {
+    display: inline-block;
+    color: #2563eb;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.view-formats:hover {
+    text-decoration: underline;
+}
+
+
+/* Contract Agreement Section */
+.checkout-agreement {
+    margin-bottom: 24px;
+    padding: 32px;
+}
+.checkout-agreement .card-header {
+    margin-bottom: 16px;
+}
+
+.toggle-wrapper {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.toggle-label {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #667085;
+}
+
+/* Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: .4s;
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #09F68C; /* Lyca Bright Green */
+}
+
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+/* Checkout Button */
+.checkout-actions {
+    margin-top: 24px;
+}
+
+.checkout-btn {
+    width: 100%;
+    background: #CDFDE8; /* Light green background */
+    color: #A9B4C8; /* Grey text when disabled */
+    font-size: 18px;
+    font-weight: 700;
+    padding: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: not-allowed;
+    transition: all 0.2s ease;
+}
+
+.checkout-btn:not(.disabled) {
+    background: #00D775;
+    color: #fff;
+    cursor: pointer;
+}
+
+/* Order Summary Sidebar */
+.checkout-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 345px;
+    min-width: 345px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 24px; /* Fix large gap, override previous 120px */
+}
+
+.checkout-sidebar .summary-card {
+    background: #fff;
+    padding: 24px;
+    border-radius: 8px;
+    border: 1px solid #dfe5ef;
+    box-shadow: 0 4px 10px rgb(17 24 39 / 3%);
+}
+
+/* Cost Card */
+.cost-card {
+    height: 154px;
+}
+
+.cost-card .summary-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1f2a5a;
+    background-color: #FAFBFF; /* var(--white250) */
+    height: 46px;
+    display: flex;
+    align-items: center;
+    padding-left: 24px;
+    margin: -24px -24px 24px -24px; /* Pull to edges */
+    border-bottom: 1px solid #dfe5ef;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cost-label {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f2a5a;
+}
+    
+.cost-values {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #ef4444; /* Red strike price */
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.new-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1f2a5a;
+}
+
+.cost-note {
+    text-align: right;
+    font-size: 12px;
+    color: #667085;
+    margin-top: 4px;
+}
+
+.basket-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 12px;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+.delete-btn img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Plan Card */
+.plan-name {
+    font-size: 16px;
+    font-weight: 600;
+    color: #667085;
+    margin: 0 0 16px;
+}
+
+.plan-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.plan-features li {
+    position: relative;
+    padding-left: 28px;
+    margin-bottom: 12px;
+    color: #667085;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.plan-features li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 2px;
+    width: 16px;
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M13.3333 4L5.99996 11.3333L2.66663 8' stroke='%2308DC7D' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Info Card */
+.info-card {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Increased gap */
+    padding: 32px !important; /* Match padding of other cards if needed, screenshot looks spacious */
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 16px; /* Widen gap between icon and text */
+    font-size: 16px; /* Slightly larger text */
+    color: #667085;
+    font-weight: 500;
+}
+.info-item.start-align {
+    align-items: flex-start;
+}
+
+.info-item img {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.info-item a {
+    color: #2563eb;
+    text-decoration: underline;
+}
+
+.service-note {
+    font-size: 14px;
+    color: #667085;
+    line-height: 1.6;
+    margin: 8px 0;
+}
+
+.help-link {
+    font-size: 14px;
+    color: #667085; /* Base text color, link inside is blue */
+    margin: 0;
+}
+
+.help-link a {
+    font-weight: 700;
+    color: #2563eb;
+    text-decoration: none;
+}
+.help-link a:hover {
+    text-decoration: underline;
+}
+
+.checkout-logo {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    padding: 24px 0 12px;
 }
