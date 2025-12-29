@@ -169,10 +169,9 @@ function renderPlanFeatures(block) {
   const sel = readSelection();
   const rows = getRowsText(block).map((r) => (r[0] || '').trim()).filter(Boolean);
 
-  const titleText =
-    sel?.title ||
-    (block.previousElementSibling?.textContent || '').trim() ||
-    '24 month Unlimited';
+  const titleText = sel?.title
+    || (block.previousElementSibling?.textContent || '').trim()
+    || '24 month Unlimited';
 
   const features = Array.isArray(sel?.features) && sel.features.length ? sel.features : rows;
 
