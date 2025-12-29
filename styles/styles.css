@@ -1146,10 +1146,16 @@ body.paymonthly-checkout main h1 {
   top: 120px;
 }
 
+.summary-title {
+  margin: 0 0 8px;
+  font-size: 18px;
+  color: #1f2a5a;
+}
+
 .summary-card {
-  background: #f8fbff;
-  border: 1px solid #d1d9e6;
-  border-radius: 10px;
+  background: #f6f8fc;
+  border: 1px solid #d6dce5;
+  border-radius: 6px;
   padding: 16px;
   box-shadow: 0 4px 10px rgb(17 24 39 / 6%);
 }
@@ -1206,12 +1212,10 @@ body.paymonthly-checkout main h1 {
   content: '';
   position: absolute;
   left: 0;
-  top: 4px;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid #1fb35f;
-  box-shadow: inset 0 0 0 2px #fff;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  background: url('https://www.lycamobile.co.uk/paymonthly/_next/static/media/greenTick2.ebb6f697.svg') no-repeat center center / contain;
 }
 
 .summary-notes li::before {

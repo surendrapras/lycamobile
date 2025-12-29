@@ -109,7 +109,56 @@ export function decorateMain(main) {
   decorateBlocks(main);
 }
 
+const CHECKOUT_SELECTION_KEY = 'lyca.checkout.selectedPlan';
+
+function normalizePrice(price, fallback) {
+  const clean = (price || '').replace(/¶œ\s*/gi, '£').replace(/\s+/g, ' ').trim();
+  if (!clean && fallback) return fallback;
+  return clean;
+}
+
+function getCheckoutSelection() {
+  const defaults = {
+    title: '24 month Unlimited',
+    oldPrice: '£18.00',
+    newPrice: '£9.00',
+    subText: 'for the first 6 months, then £18',
+    features: [
+      '30GB EU roaming included',
+      '100 International minutes',
+      'Unlimited UK mins and text',
+      'Unlimited EU mins and text when roaming in EU (fair use policy applies)',
+    ],
+  };
+
+  try {
+    const stored = sessionStorage.getItem(CHECKOUT_SELECTION_KEY);
+    if (!stored) return defaults;
+    const parsed = JSON.parse(stored || '{}');
+    const features = Array.isArray(parsed.features) && parsed.features.length ? parsed.features : defaults.features;
+    const title = parsed.title || defaults.title;
+    return {
+      title,
+      oldPrice: normalizePrice(parsed.oldPrice, defaults.oldPrice),
+      newPrice: normalizePrice(parsed.newPrice, defaults.newPrice),
+      subText: normalizePrice(parsed.subText, defaults.subText),
+      features,
+    };
+  } catch (e) {
+    return defaults;
+  }
+}
+
 function buildCheckoutShell(main) {
+  const selection = getCheckoutSelection();
+  const featureItems = [];
+  [selection.title, ...(selection.features || [])].forEach((item) => {
+    const clean = (item || '').trim();
+    if (clean && !featureItems.includes(clean)) featureItems.push(clean);
+  });
+  const priceHtml = `${selection.oldPrice ? `<del>${selection.oldPrice}</del>` : ''} ${selection.newPrice ? `<strong>${selection.newPrice}</strong>` : ''}`.trim();
+  const featuresHtml = featureItems.map((item) => `<li>${item}</li>`).join('');
+
   const wrapper = document.createElement('div');
   wrapper.innerHTML = `
     <div class="section checkout-hero"><div><h1>My basket: Add-ons &amp; more</h1></div></div>
@@ -250,35 +299,32 @@ function buildCheckoutShell(main) {
             </section>
           </div>
 
-          <aside class="checkout-sidebar">
-            <div class="summary-card pricing">
-              <div class="summary-row">
-                <div>
-                  <div class="summary-label">Monthly cost</div>
-                  <div class="summary-note">for the first 6 months, then &pound;18</div>
-                </div>
-                <div class="summary-price"><del>&pound;18.00</del> <strong>&pound;9.00</strong></div>
-              </div>
-              <div class="summary-divider"></div>
-              <ul class="summary-features">
-                <li>24 month Unlimited</li>
-                <li>30GB EU roaming included</li>
-                <li>100 International minutes</li>
-                <li>Unlimited UK mins and text</li>
-                <li>Unlimited EU mins and text when roaming in EU (fair use policy applies)</li>
-              </ul>
-            </div>
+    <aside class="checkout-sidebar">
+      <h2 class="summary-title">Order summary</h2>
+      <div class="summary-card pricing">
+        <div class="summary-row">
+          <div>
+            <div class="summary-label">Monthly cost</div>
+            ${selection.subText ? `<div class="summary-note">${selection.subText}</div>` : ''}
+          </div>
+          <div class="summary-price">${priceHtml}</div>
+        </div>
+        <div class="summary-divider"></div>
+        <ul class="summary-features">
+          ${featuresHtml}
+        </ul>
+      </div>
 
-            <div class="summary-card secure">
-              <div class="summary-label">Secure checkout</div>
-              <p class="muted"><a href="#">How to activate eSIM?</a></p>
-              <ul class="summary-notes">
-                <li>Spend cap is set to &pound;0.00. You can change this later on Lyca mobile app</li>
-                <li>Please note the cost of other services you take from us may increase or decrease while you are a Lyca customer.</li>
-              </ul>
-              <p class="muted">Need help? Find our <a href="#">FAQ</a> related to order checkout</p>
-            </div>
-          </aside>
+      <div class="summary-card secure">
+        <div class="summary-label">Secure checkout</div>
+        <p class="muted"><a href="#">How to activate eSIM?</a></p>
+        <ul class="summary-notes">
+          <li>Spend cap is set to &pound;0.00. You can change this later on Lyca mobile app</li>
+          <li>Please note the cost of other services you take from us may increase or decrease while you are a Lyca customer.</li>
+        </ul>
+        <p class="muted">Need help? Find our <a href="#">FAQ</a> related to order checkout</p>
+      </div>
+    </aside>
         </div>
       </div>
     </div>`;
