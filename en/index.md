@@ -24,23 +24,10 @@ OR You can come on the [Download the Lyca Mobile app](#app)
 
 ## Choose a SIM only plan today
 
-+-------------------------------------------------------------+-------------------------------------------------------------+
-| **Home-Cards-Pricing**                                                                                                   |
-+-------------------------------------------------------------+-------------------------------------------------------------+
-| ![Pay Monthly Plan](./images/c95cdc54c1995eece4d1ea65ede5cd3c.png) | ![Pay As You Go Plan](./images/fddd6937cff25f56256375b56c6f8ae0.png) |
-|                                                             |                                                             |
-| **Merry Christmas**                                         | **Merry Christmas**                                         |
-| 50% OFF For the First 3 Months                              | 50% OFF For the First month                                 |
-| **6GB**                                                     | **30GB**                                                    |
-| *2.5GB EU roaming*                                          | *12GB EU roaming*                                           |
-| *100 International mins*                                    | *100 International mins*                                    |
-|                                                             |                                                             |
-| **£3**                                                      | **£5**                                                      |
-| £6                                                          | £10                                                         |
-| monthly                                                     | 30 days                                                     |
-|                                                             |                                                             |
-| [Buy now](https://www.lycamobile.co.uk/paymonthly/en/bundles/sim-only-deals/) | [Buy now](/bundles/pay-as-you-go-sim-deals/)               |
-+-------------------------------------------------------------+-------------------------------------------------------------+
+| Home-Cards-Pricing |  |
+| --- | --- |
+| ![Pay Monthly Plan](./images/c95cdc54c1995eece4d1ea65ede5cd3c.png) | **Merry Christmas**<br>50% OFF For the First 3 Months<br>**6GB**<br>*2.5GB EU roaming*<br>*100 International mins*<br>**&pound;3**<br>&pound;6<br>monthly<br>[Buy now](https://www.lycamobile.co.uk/paymonthly/en/bundles/sim-only-deals/) |
+| ![Pay As You Go Plan](./images/fddd6937cff25f56256375b56c6f8ae0.png) | **Merry Christmas**<br>50% OFF For the First month<br>**30GB**<br>*12GB EU roaming*<br>*100 International mins*<br>**&pound;5**<br>&pound;10<br>30 days<br>[Buy now](/bundles/pay-as-you-go-sim-deals/) |
 
 ---
 
@@ -154,7 +141,7 @@ OR You can come on the [Download the Lyca Mobile app](#app)
 +---------------------+--------------------------------+
 | **Metadata**                                       |
 +---------------------+--------------------------------+
-| Title               | Low Cost, High Value plans from £2.50 p/m \| Lyca Mobile UK |
+| Title               | Low Cost, High Value plans from &pound;2.50 p/m \| Lyca Mobile UK |
 +---------------------+--------------------------------+
 | Description         | Value packed sim plans from Lycamobile UK. Explore our budget friendly, pay monthly SIM deals and no contract pay as you go sim only deals. |
 +---------------------+--------------------------------+
@@ -164,3 +151,8 @@ OR You can come on the [Download the Lyca Mobile app](#app)
 +---------------------+--------------------------------+
 | footer              | /footer                         |
 +---------------------+--------------------------------+
+
+
+
+
+
