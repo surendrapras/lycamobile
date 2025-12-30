@@ -903,10 +903,13 @@ async function loadEager(doc) {
     decorateMain(main);
     decorateCheckoutLayout(main);
     document.body.classList.add('appear');
-    await Promise.all([
-      martechLoadedPromise.then(martechEager),
-      loadSection(main.querySelector('.section'), waitForFirstImage),
-    ]);
+    const section = main.querySelector('.section') || main.querySelector('.checkout-hero');
+    if (section) {
+      await Promise.all([
+        martechLoadedPromise.then(martechEager),
+        loadSection(section, waitForFirstImage),
+      ]);
+    }
   }
 
   try {
