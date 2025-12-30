@@ -271,7 +271,7 @@ function parseCheckoutConfig(main) {
 
     sectionTitleAgreement: 'Contract agreement',
     agreementToggleText: "Please confirm that you're happy with the contract summary and information before you proceed. View full",
-    
+
     // Order Summary Defaults
     summaryTitle: 'Order summary',
     summaryCostLabel: 'Monthly cost',
@@ -371,8 +371,9 @@ function parseCheckoutConfig(main) {
     summaryCostLabel: 'Monthly cost', // hardcoded for now or add to list
   };
 
-  // If summary rows exist, we might want to prioritize them over session storage defaults in some cases, 
-  // currently the logic prefers session storage if it exists (in decorateCheckoutLayout).
+  // If summary rows exist, we might want to prioritize them over session storage
+  // defaults in some cases, currently the logic prefers session storage if it
+  // exists (in decorateCheckoutLayout).
   // We will pass these as 'fallback' to the getCheckoutSelection logic or use them directly.
 
   return config;
