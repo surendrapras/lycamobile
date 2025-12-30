@@ -204,12 +204,12 @@ function buildCheckoutSteps() {
   const bar = document.createElement('div');
   bar.className = 'step-progress';
   const span = document.createElement('span');
-  
+
   // Dynamic width calculation
   const total = steps.length || 1;
   const percentage = (active / total) * 100;
   span.style.width = `${percentage}%`;
-  
+
   bar.append(span);
   el.append(bar);
 
@@ -255,22 +255,23 @@ function parseCheckoutConfig(main) {
     lastNamePlaceholder: 'Enter last name',
     emailPlaceholder: 'Enter your e-mail address',
     emailHelper: 'We need this to send you the order confirmation and dispatch updates.',
-    
+
     sectionTitleTransfer: 'Do you have a number to bring?',
-    
+
     sectionTitleSim: 'SIM type',
     sectionSubheadingSim: 'Choose your preferred type of SIM',
+    // eslint-disable-next-line max-len
     simInfoEsim: 'Your Lyca Mobile SIM must be activated in the UK, once your SIM is activated in the UK, you can use it internationally according to your mobile plan.',
     simInfoSim: 'A SIM card will be sent to your delivery address.',
-    
+
     sectionTitleReview: 'Review contract details',
     sectionSubheadingReview: 'We have also sent these to',
     downloadContractInfo: 'Download contract information',
     downloadContractSummary: 'Download contract summary',
-    
+
     sectionTitleAgreement: 'Contract agreement',
     agreementToggleText: "Please confirm that you're happy with the contract summary and information before you proceed. View full",
-    
+
     // Order Summary Defaults
     summaryTitle: 'Order summary',
     summaryCostLabel: 'Monthly cost',
@@ -281,16 +282,16 @@ function parseCheckoutConfig(main) {
     summaryCostValues: ['£18.00', '£9.00', 'for the first 6 months, then £18'],
     summaryPlanName: '24 month Unlimited',
     summaryPlanFeatures: [
-        '30GB EU roaming included', 
-        '100 International minutes', 
-        'Unlimited UK mins and text', 
-        'Unlimited EU mins and text when roaming in EU (fair use policy applies)'
+      '30GB EU roaming included',
+      '100 International minutes',
+      'Unlimited UK mins and text',
+      'Unlimited EU mins and text when roaming in EU (fair use policy applies)',
     ],
     summaryNotes: [
-        'Spend cap is set to £0.00.',
-        'You can change this later on Lyca mobile app',
-        'Please note the cost of other services you take from us may increase or decrease while you are a Lyca customer.'
-    ]
+      'Spend cap is set to £0.00.',
+      'You can change this later on Lyca mobile app',
+      'Please note the cost of other services you take from us may increase or decrease while you are a Lyca customer.',
+    ],
   };
 
   const getRows = (blockName, tableName) => {
@@ -335,26 +336,26 @@ function parseCheckoutConfig(main) {
     simTypes: splitVals(findRow(formRows, 'sim types')) || defaults.simTypes,
     links: splitVals(findRow(formRows, 'links')) || defaults.links,
     primaryCta: findRow(formRows, 'primary cta') || defaults.primaryCta,
-    
+
     // New Keys Parsing
     sectionTitleDetails: findRow(formRows, 'section title details') || defaults.sectionTitleDetails,
     firstNamePlaceholder: findRow(formRows, 'first name placeholder') || defaults.firstNamePlaceholder,
     lastNamePlaceholder: findRow(formRows, 'last name placeholder') || defaults.lastNamePlaceholder,
     emailPlaceholder: findRow(formRows, 'email placeholder') || defaults.emailPlaceholder,
     emailHelper: findRow(formRows, 'email helper') || defaults.emailHelper,
-    
+
     sectionTitleTransfer: findRow(formRows, 'section title transfer') || defaults.sectionTitleTransfer,
-    
+
     sectionTitleSim: findRow(formRows, 'section title sim') || defaults.sectionTitleSim,
     sectionSubheadingSim: findRow(formRows, 'section subheading sim') || defaults.sectionSubheadingSim,
     simInfoEsim: findRow(formRows, 'sim info esim') || defaults.simInfoEsim,
     simInfoSim: findRow(formRows, 'sim info sim') || defaults.simInfoSim,
-    
+
     sectionTitleReview: findRow(formRows, 'section title review') || defaults.sectionTitleReview,
     sectionSubheadingReview: findRow(formRows, 'section subheading review') || defaults.sectionSubheadingReview,
     downloadContractInfo: findRow(formRows, 'download contract info') || defaults.downloadContractInfo,
     downloadContractSummary: findRow(formRows, 'download contract summary') || defaults.downloadContractSummary,
-    
+
     sectionTitleAgreement: findRow(formRows, 'section title agreement') || defaults.sectionTitleAgreement,
     agreementToggleText: findRow(formRows, 'agreement toggle text') || defaults.agreementToggleText,
 
@@ -370,8 +371,9 @@ function parseCheckoutConfig(main) {
     summaryCostLabel: 'Monthly cost', // hardcoded for now or add to list
   };
 
-  // If summary rows exist, we might want to prioritize them over session storage defaults in some cases, 
-  // currently the logic prefers session storage if it exists (in decorateCheckoutLayout).
+  // If summary rows exist, we might want to prioritize them over session storage
+  // defaults in some cases, currently the logic prefers session storage if it
+  // exists (in decorateCheckoutLayout).
   // We will pass these as 'fallback' to the getCheckoutSelection logic or use them directly.
 
   return config;
@@ -395,10 +397,9 @@ export function decorateCheckoutLayout(main) {
   page.className = 'checkout-page';
   page.innerHTML = `
     <div class="checkout-hero">
-      ${logoNode
-      ? `<div class="checkout-logo"><a href="${logoHref}" target="_self">${logoNode.outerHTML}</a></div>`
-      : ''
-    }
+    ${logoNode
+    ? `<div class="checkout-logo"><a href="${logoHref}" target="_self">${logoNode.outerHTML}</a></div>`
+    : ''}
       ${buildCheckoutSteps().outerHTML}
     </div>
     <div class="checkout-shell">
@@ -587,7 +588,7 @@ export function decorateCheckoutLayout(main) {
         <div class="summary-card plan-card">
              <h3 class="plan-name">${config.summaryPlanName}</h3>
              <ul class="plan-features">
-                ${config.summaryPlanFeatures.map(f => `<li>${f}</li>`).join('')}
+                ${config.summaryPlanFeatures.map((f) => `<li>${f}</li>`).join('')}
              </ul>
         </div>
 
@@ -621,7 +622,9 @@ export function decorateCheckoutLayout(main) {
     newPrice: selection.newPrice || config.summaryCostValues[1],
     subText: selection.subText || config.summaryCostValues[2],
     title: selection.title || config.summaryPlanName,
-    features: (selection.features && selection.features.length) ? selection.features : config.summaryPlanFeatures
+    features: (selection.features && selection.features.length)
+      ? selection.features
+      : config.summaryPlanFeatures,
   };
 
   if (displaySelection) {
@@ -636,8 +639,8 @@ export function decorateCheckoutLayout(main) {
     if (planNameEl && displaySelection.title) planNameEl.textContent = displaySelection.title;
 
     const planFeaturesEl = page.querySelector('.plan-features');
-    // Ensure we don't duplicate if already populated by template? 
-    // Template populated it with config.summaryPlanFeatures. 
+    // Ensure we don't duplicate if already populated by template?
+    // Template populated it with config.summaryPlanFeatures.
     // If session storage differs, we wipe and re-add.
     if (planFeaturesEl && displaySelection.features.length) {
       planFeaturesEl.innerHTML = '';
@@ -846,7 +849,6 @@ export function decorateCheckoutLayout(main) {
     });
   }
 }
-
 
 /**
  * Loads everything needed to get to LCP.
