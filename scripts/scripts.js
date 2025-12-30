@@ -204,6 +204,12 @@ function buildCheckoutSteps() {
   const bar = document.createElement('div');
   bar.className = 'step-progress';
   const span = document.createElement('span');
+  
+  // Dynamic width calculation
+  const total = steps.length || 1;
+  const percentage = (active / total) * 100;
+  span.style.width = `${percentage}%`;
+  
   bar.append(span);
   el.append(bar);
 
@@ -242,61 +248,166 @@ function parseCheckoutConfig(main) {
       'FAQ',
     ],
     primaryCta: 'Checkout now',
+
+    // New Authorable Keys
+    sectionTitleDetails: 'Your Details',
+    firstNamePlaceholder: 'Enter first name',
+    lastNamePlaceholder: 'Enter last name',
+    emailPlaceholder: 'Enter your e-mail address',
+    emailHelper: 'We need this to send you the order confirmation and dispatch updates.',
+    
+    sectionTitleTransfer: 'Do you have a number to bring?',
+    
+    sectionTitleSim: 'SIM type',
+    sectionSubheadingSim: 'Choose your preferred type of SIM',
+    simInfoEsim: 'Your Lyca Mobile SIM must be activated in the UK, once your SIM is activated in the UK, you can use it internationally according to your mobile plan.',
+    simInfoSim: 'A SIM card will be sent to your delivery address.',
+    
+    sectionTitleReview: 'Review contract details',
+    sectionSubheadingReview: 'We have also sent these to',
+    downloadContractInfo: 'Download contract information',
+    downloadContractSummary: 'Download contract summary',
+    
+    sectionTitleAgreement: 'Contract agreement',
+    agreementToggleText: "Please confirm that you're happy with the contract summary and information before you proceed. View full",
+    
+    // Order Summary Defaults
+    summaryTitle: 'Order summary',
+    summaryCostLabel: 'Monthly cost',
+    summarySecureCheckout: 'Secure checkout',
+    summaryActivateEsim: 'How to activate eSIM?',
+    summaryHelp: 'Need help? Find our FAQ related to order checkout',
+    // Fallback values if table is missing
+    summaryCostValues: ['£18.00', '£9.00', 'for the first 6 months, then £18'],
+    summaryPlanName: '24 month Unlimited',
+    summaryPlanFeatures: [
+        '30GB EU roaming included', 
+        '100 International minutes', 
+        'Unlimited UK mins and text', 
+        'Unlimited EU mins and text when roaming in EU (fair use policy applies)'
+    ],
+    summaryNotes: [
+        'Spend cap is set to £0.00.',
+        'You can change this later on Lyca mobile app',
+        'Please note the cost of other services you take from us may increase or decrease while you are a Lyca customer.'
+    ]
   };
 
-  const table = [...main.querySelectorAll('table')].find((tbl) => tbl.textContent.toLowerCase().includes('checkout form'));
-  if (!table) return defaults;
+  const getRows = (blockName, tableName) => {
+    let rows = [];
+    // Check for AEM Block structure (divs)
+    const block = main.querySelector(`.${blockName}`);
+    if (block) {
+      rows = [...block.children].map((row) => {
+        const cells = [...row.children];
+        return {
+          label: cells[0]?.textContent?.trim() || '',
+          value: cells[1]?.textContent?.trim() || '',
+        };
+      });
+    } else {
+      // Fallback to raw Table structure
+      const table = [...main.querySelectorAll('table')].find((tbl) => tbl.innerText.toLowerCase().includes(tableName));
+      if (table) {
+        rows = [...table.querySelectorAll('tr')].map((tr) => {
+          const cells = [...tr.querySelectorAll('td,th')].map((c) => c.textContent.trim());
+          return { label: cells[0] || '', value: cells[1] || '' };
+        });
+      }
+    }
+    return rows;
+  };
 
-  const rows = [...table.querySelectorAll('tr')].map((tr) => {
-    const cells = [...tr.querySelectorAll('td,th')].map((c) => c.textContent.trim());
-    return { label: cells[0] || '', value: cells[1] || '' };
-  });
+  const formRows = getRows('checkout-form', 'checkout form');
+  const summaryRows = getRows('order-summary', 'order summary');
 
-  const findRow = (key) => rows.find((r) => r.label.toLowerCase().includes(key))?.value || '';
+  const findRow = (rows, key) => rows.find((r) => r.label.toLowerCase().includes(key))?.value || '';
   const splitVals = (val) => val
     .split('|')
     .map((s) => s.trim())
     .filter(Boolean);
 
-  return {
-    titles: splitVals(findRow('title options')) || defaults.titles,
-    emailVerifyLabel:
-      findRow('email verify label') || defaults.emailVerifyLabel,
-    numberOptions:
-      splitVals(findRow('number bring options')) || defaults.numberOptions,
-    providers: splitVals(findRow('providers')) || defaults.providers,
-    simTypes: splitVals(findRow('sim types')) || defaults.simTypes,
-    links: splitVals(findRow('links')) || defaults.links,
-    primaryCta: findRow('primary cta') || defaults.primaryCta,
+  const config = {
+    titles: splitVals(findRow(formRows, 'title options')) || defaults.titles,
+    emailVerifyLabel: findRow(formRows, 'email verify label') || defaults.emailVerifyLabel,
+    numberOptions: splitVals(findRow(formRows, 'number bring options')) || defaults.numberOptions,
+    providers: splitVals(findRow(formRows, 'providers')) || defaults.providers,
+    simTypes: splitVals(findRow(formRows, 'sim types')) || defaults.simTypes,
+    links: splitVals(findRow(formRows, 'links')) || defaults.links,
+    primaryCta: findRow(formRows, 'primary cta') || defaults.primaryCta,
+    
+    // New Keys Parsing
+    sectionTitleDetails: findRow(formRows, 'section title details') || defaults.sectionTitleDetails,
+    firstNamePlaceholder: findRow(formRows, 'first name placeholder') || defaults.firstNamePlaceholder,
+    lastNamePlaceholder: findRow(formRows, 'last name placeholder') || defaults.lastNamePlaceholder,
+    emailPlaceholder: findRow(formRows, 'email placeholder') || defaults.emailPlaceholder,
+    emailHelper: findRow(formRows, 'email helper') || defaults.emailHelper,
+    
+    sectionTitleTransfer: findRow(formRows, 'section title transfer') || defaults.sectionTitleTransfer,
+    
+    sectionTitleSim: findRow(formRows, 'section title sim') || defaults.sectionTitleSim,
+    sectionSubheadingSim: findRow(formRows, 'section subheading sim') || defaults.sectionSubheadingSim,
+    simInfoEsim: findRow(formRows, 'sim info esim') || defaults.simInfoEsim,
+    simInfoSim: findRow(formRows, 'sim info sim') || defaults.simInfoSim,
+    
+    sectionTitleReview: findRow(formRows, 'section title review') || defaults.sectionTitleReview,
+    sectionSubheadingReview: findRow(formRows, 'section subheading review') || defaults.sectionSubheadingReview,
+    downloadContractInfo: findRow(formRows, 'download contract info') || defaults.downloadContractInfo,
+    downloadContractSummary: findRow(formRows, 'download contract summary') || defaults.downloadContractSummary,
+    
+    sectionTitleAgreement: findRow(formRows, 'section title agreement') || defaults.sectionTitleAgreement,
+    agreementToggleText: findRow(formRows, 'agreement toggle text') || defaults.agreementToggleText,
+
+    // Order Summary Parsing
+    summaryCostValues: splitVals(findRow(summaryRows, 'monthly cost')) || defaults.summaryCostValues,
+    summaryPlanName: findRow(summaryRows, 'plan name') || defaults.summaryPlanName,
+    summaryPlanFeatures: splitVals(findRow(summaryRows, 'plan features')) || defaults.summaryPlanFeatures,
+    summarySecureCheckout: findRow(summaryRows, 'secure checkout') || defaults.summarySecureCheckout,
+    summaryActivateEsim: findRow(summaryRows, 'how to activate esim') || defaults.summaryActivateEsim,
+    summaryNotes: splitVals(findRow(summaryRows, 'notes')) || defaults.summaryNotes,
+    summaryHelp: findRow(summaryRows, 'need help') || defaults.summaryHelp,
+    summaryTitle: 'Order summary', // Usually the block name, but can be hardcoded or metadata
+    summaryCostLabel: 'Monthly cost', // hardcoded for now or add to list
   };
+
+  // If summary rows exist, we might want to prioritize them over session storage defaults in some cases, 
+  // currently the logic prefers session storage if it exists (in decorateCheckoutLayout).
+  // We will pass these as 'fallback' to the getCheckoutSelection logic or use them directly.
+
+  return config;
 }
 
 export function decorateCheckoutLayout(main) {
   if (!document.body.classList.contains('paymonthly-checkout')) return;
-  if (main.querySelector('.checkout-page')) return;
+
+  // safer than checking ".checkout-page" because authored content might accidentally contain it
+  if (main.dataset.checkoutDecorated === 'true') return;
+  main.dataset.checkoutDecorated = 'true';
 
   const config = parseCheckoutConfig(main);
   const selection = getCheckoutSelection();
   const { node: logoNode, href: logoHref } = extractCheckoutLogo(main);
 
+  // ✅ authorable H1 from metadata (falls back to old hardcoded text)
+  const checkoutTitle = getMetadata('checkout-title') || 'My basket: Add-ons & more';
+
   const page = document.createElement('div');
   page.className = 'checkout-page';
   page.innerHTML = `
     <div class="checkout-hero">
-      ${
-  logoNode
-    ? `<div class="checkout-logo"><a href="${logoHref}" target="_self">${logoNode.outerHTML}</a></div>`
-    : ''
-}
+      ${logoNode
+      ? `<div class="checkout-logo"><a href="${logoHref}" target="_self">${logoNode.outerHTML}</a></div>`
+      : ''
+    }
       ${buildCheckoutSteps().outerHTML}
     </div>
     <div class="checkout-shell">
-      <h1>My basket: Add-ons &amp; more</h1>
+      <h1>${checkoutTitle}</h1>
       <div class="checkout-layout">
         <div class="checkout-main">
           <section class="checkout-card">
             <div class="card-header">
-              <h2>Your Details</h2>
+              <h2>${config.sectionTitleDetails}</h2>
             </div>
             <div class="field-grid three name-row">
               <label class="field">
@@ -306,40 +417,40 @@ export function decorateCheckoutLayout(main) {
                 </select>
               </label>
               <label class="field">
-                <input type="text" placeholder="Enter first name" aria-label="First name">
+                <input type="text" placeholder="${config.firstNamePlaceholder}" aria-label="First name">
               </label>
               <label class="field">
-                <input type="text" placeholder="Enter last name" aria-label="Last name">
+                <input type="text" placeholder="${config.lastNamePlaceholder}" aria-label="Last name">
               </label>
             </div>
             <div class="field-grid email-row">
               <label class="field full">
                 <div class="field-inline email-verify-wrapper">
-                  <input type="email" placeholder="Enter your e-mail address" aria-label="Enter your e-mail address">
+                  <input type="email" placeholder="${config.emailPlaceholder}" aria-label="Enter your e-mail address">
                   <button class="ghost-button verify-btn" type="button" disabled>${config.emailVerifyLabel}</button>
                 </div>
-                <small>We need this to send you the order confirmation and dispatch updates.</small>
+                <small>${config.emailHelper}</small>
               </label>
             </div>
           </section>
 
         <section class="checkout-card number-transfer-card">
           <div class="card-header">
-            <h2>Do you have a number to bring?</h2>
+            <h2>${config.sectionTitleTransfer}</h2>
           </div>
-          
+
           <div class="number-transfer-options">
              <label class="transfer-option">
                 <input type="radio" name="transfer-choice" value="yes">
                 <div class="option-content">
-                    <span>I have a number to transfer</span>
+                    <span>${config.numberOptions?.[0] || 'I have a number to transfer'}</span>
                     <span class="change-link hidden">Change</span>
                 </div>
              </label>
              <label class="transfer-option">
                 <input type="radio" name="transfer-choice" value="no">
                 <div class="option-content">
-                    <span>No, I want a new number</span>
+                    <span>${config.numberOptions?.[1] || 'No, I want a new number'}</span>
                 </div>
              </label>
           </div>
@@ -387,8 +498,8 @@ export function decorateCheckoutLayout(main) {
 
         <section class="checkout-card sim-type-card">
           <div class="card-header">
-            <h2>SIM type</h2>
-            <p class="sub-heading">Choose your preferred type of SIM</p>
+            <h2>${config.sectionTitleSim}</h2>
+            <p class="sub-heading">${config.sectionSubheadingSim}</p>
           </div>
           <div class="sim-options">
             <label class="sim-option active">
@@ -400,7 +511,7 @@ export function decorateCheckoutLayout(main) {
               </div>
               <div class="sim-info">
                   <div class="info-icon">i</div>
-                  <p>Your Lyca Mobile SIM must be activated in the UK, once your SIM is activated in the UK, you can use it internationally according to your mobile plan.</p>
+                  <p>${config.simInfoEsim}</p>
               </div>
             </label>
             <label class="sim-option">
@@ -412,63 +523,60 @@ export function decorateCheckoutLayout(main) {
               </div>
               <div class="sim-info hidden">
                   <div class="info-icon">i</div>
-                  <p>A SIM card will be sent to your delivery address.</p>
+                  <p>${config.simInfoSim}</p>
               </div>
             </label>
           </div>
-          <a href="#" class="more-info-link">What's eSIM/Check compatibility</a>
+          <a href="#" class="more-info-link">${config.links?.[0] || "What's eSIM/Check compatibility"}</a>
         </section>
-
-
 
         <section class="checkout-card review-contract-card">
           <div class="card-header">
-            <h2>Review contract details</h2>
-            <p class="sub-heading">We have also sent these to</p>
+            <h2>${config.sectionTitleReview}</h2>
+            <p class="sub-heading">${config.sectionSubheadingReview}</p>
           </div>
           <div class="download-list">
             <a class="download-card" href="#">
                 <img src="https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/inline-images/download.png?VersionId=NHRY2RecjJ.GXpYopIYlIakl9q5Uq9ei" alt="download">
-                <span>Download contract information</span>
+                <span>${config.downloadContractInfo}</span>
             </a>
             <a class="download-card" href="#">
                 <img src="https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/inline-images/download.png?VersionId=NHRY2RecjJ.GXpYopIYlIakl9q5Uq9ei" alt="download">
-                <span>Download contract summary</span>
+                <span>${config.downloadContractSummary}</span>
             </a>
           </div>
-          <a class="link-action view-formats" href="#">View other formats</a>
+          <a class="link-action view-formats" href="#">${config.links?.[1] || 'View other formats'}</a>
         </section>
 
         <section class="checkout-card checkout-agreement">
           <div class="card-header">
-            <h2>Contract agreement</h2>
+            <h2>${config.sectionTitleAgreement}</h2>
           </div>
           <div class="toggle-wrapper">
              <label class="switch">
                 <input type="checkbox" id="contract-toggle">
                 <span class="slider round"></span>
              </label>
-             <span class="toggle-label">Please confirm that you're happy with the contract summary and information before you proceed. View full <a href="#">Terms and conditions</a></span>
+             <span class="toggle-label">${config.agreementToggleText} <a href="#">${config.links?.[2] || 'Terms and conditions'}</a></span>
           </div>
         </section>
-        
+
         <div class="checkout-actions">
-            <button class="primary-button checkout-btn disabled" type="button">Checkout now</button>
+            <button class="primary-button checkout-btn disabled" type="button">${config.primaryCta}</button>
         </div>
       </div>
 
       <aside class="checkout-sidebar">
-        <!-- Card 1: Header & Cost -->
         <div class="summary-card cost-card">
-            <h2 class="summary-title">Order summary</h2>
+            <h2 class="summary-title">${config.summaryTitle}</h2>
             <div class="summary-row">
-                <div class="cost-label">Monthly cost</div>
+                <div class="cost-label">${config.summaryCostLabel}</div>
                 <div class="cost-values">
-                    <span class="old-price">£18.00</span>
-                    <span class="new-price">£9.00</span>
+                    <span class="old-price">${config.summaryCostValues[0]}</span>
+                    <span class="new-price">${config.summaryCostValues[1]}</span>
                 </div>
             </div>
-            <div class="cost-note">for the first 6 months, then £18</div>
+            <div class="cost-note">${config.summaryCostValues[2] || ''}</div>
             <div class="basket-actions">
                 <button class="delete-btn" aria-label="Remove item">
                     <img src="https://www.lycamobile.co.uk/paymonthly/_next/static/media/trash.d2556b6a.svg" alt="remove">
@@ -476,35 +584,29 @@ export function decorateCheckoutLayout(main) {
             </div>
         </div>
 
-        <!-- Card 2: Plan Details -->
         <div class="summary-card plan-card">
-             <h3 class="plan-name">24 month Unlimited</h3>
+             <h3 class="plan-name">${config.summaryPlanName}</h3>
              <ul class="plan-features">
-                <li>30GB EU roaming included</li>
-                <li>100 International minutes</li>
-                <li>Unlimited UK mins and text</li>
-                <li>Unlimited EU mins and text when roaming in EU (fair use policy applies)</li>
+                ${config.summaryPlanFeatures.map(f => `<li>${f}</li>`).join('')}
              </ul>
         </div>
 
-        <!-- Card 3: Secure Checkout Info -->
         <div class="summary-card info-card">
             <div class="info-item">
                 <img src="https://cms-pim-assets-dev.ldsvcplatform.com/POSTPAID/s3fs-public/inline-images/Group%20383184241%20%281%29.png" alt="secure">
-                <span>Secure checkout</span>
+                <span>${config.summarySecureCheckout}</span>
             </div>
             <div class="info-item">
                  <img src="https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/image.jpg" alt="esim">
-                 <span>How to activate <a href="#">eSim?</a></span>
+                 <span>${config.summaryActivateEsim}</span>
             </div>
             <div class="info-item start-align">
                  <img src="https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/Spend%20cap-2.webp" alt="timer">
-                 <span>Spend cap is set to £0.00.<br>You can change this later on Lyca mobile app</span>
+                 <span>${config.summaryNotes.join('<br>')}</span>
             </div>
-            
-            <p class="service-note">Please note the cost of other services you take from us may increase or decrease while you are a Lyca customer.</p>
-            
-            <p class="help-link">Need help? Find our <a href="#">FAQ</a> related to order checkout</p>
+
+            <p class="service-note">${config.summaryNotes[2] || ''}</p>
+            <p class="help-link">${config.summaryHelp}</p>
         </div>
       </aside>
     </div>
@@ -512,22 +614,34 @@ export function decorateCheckoutLayout(main) {
 
   main.replaceChildren(page);
 
-  // apply selected plan details (if available)
-  if (selection) {
+  // apply selected plan details (priority: session storage > authoring config)
+  // We want session storage to override if present, otherwise default to config
+  const displaySelection = {
+    oldPrice: selection.oldPrice || config.summaryCostValues[0],
+    newPrice: selection.newPrice || config.summaryCostValues[1],
+    subText: selection.subText || config.summaryCostValues[2],
+    title: selection.title || config.summaryPlanName,
+    features: (selection.features && selection.features.length) ? selection.features : config.summaryPlanFeatures
+  };
+
+  if (displaySelection) {
     const oldPriceEl = page.querySelector('.old-price');
     const newPriceEl = page.querySelector('.new-price');
     const noteEl = page.querySelector('.cost-note');
-    if (oldPriceEl) oldPriceEl.textContent = selection.oldPrice || '';
-    if (newPriceEl) newPriceEl.textContent = selection.newPrice || '';
-    if (noteEl && selection.subText) noteEl.textContent = selection.subText;
+    if (oldPriceEl) oldPriceEl.textContent = displaySelection.oldPrice || '';
+    if (newPriceEl) newPriceEl.textContent = displaySelection.newPrice || '';
+    if (noteEl && displaySelection.subText) noteEl.textContent = displaySelection.subText;
 
     const planNameEl = page.querySelector('.plan-name');
-    if (planNameEl && selection.title) planNameEl.textContent = selection.title;
+    if (planNameEl && displaySelection.title) planNameEl.textContent = displaySelection.title;
 
     const planFeaturesEl = page.querySelector('.plan-features');
-    if (planFeaturesEl && Array.isArray(selection.features) && selection.features.length) {
+    // Ensure we don't duplicate if already populated by template? 
+    // Template populated it with config.summaryPlanFeatures. 
+    // If session storage differs, we wipe and re-add.
+    if (planFeaturesEl && displaySelection.features.length) {
       planFeaturesEl.innerHTML = '';
-      selection.features.forEach((feature) => {
+      displaySelection.features.forEach((feature) => {
         const li = document.createElement('li');
         li.textContent = feature;
         planFeaturesEl.append(li);
@@ -535,12 +649,11 @@ export function decorateCheckoutLayout(main) {
     }
   }
 
-  // interactions
+  // interactions (unchanged from your version)
   const transferOptions = [...page.querySelectorAll('input[name="transfer-choice"]')];
   const transferFlow = page.querySelector('.transfer-flow');
   const providerPills = [...page.querySelectorAll('.provider-options .pill')];
 
-  // Elements for dynamic visibility
   const pacRow = page.querySelector('.pac-row');
   const dateRow = page.querySelector('.date-row');
   const passcodeText = page.querySelector('.passcode-text');
@@ -550,14 +663,12 @@ export function decorateCheckoutLayout(main) {
     const selected = page.querySelector('input[name="transfer-choice"]:checked');
     const isTransfer = selected && selected.value === 'yes';
 
-    // Update active classes on main options
     transferOptions.forEach((input) => {
       const label = input.closest('.transfer-option');
       if (label) {
         if (input.checked) label.classList.add('active');
         else label.classList.remove('active');
 
-        // Toggle change link
         const changeLink = label.querySelector('.change-link');
         if (changeLink) {
           if (input.checked && input.value === 'yes') changeLink.classList.remove('hidden');
@@ -566,7 +677,6 @@ export function decorateCheckoutLayout(main) {
       }
     });
 
-    // Hide/Show "No" option based on "Yes" selection
     const noOptionInput = page.querySelector('input[name="transfer-choice"][value="no"]');
     const noOptionLabel = noOptionInput?.closest('.transfer-option');
     if (noOptionLabel) {
@@ -582,22 +692,16 @@ export function decorateCheckoutLayout(main) {
 
   transferOptions.forEach((opt) => opt.addEventListener('change', toggleTransferFlow));
 
-  // Handle Change link click
   const changeLink = page.querySelector('.change-link');
   if (changeLink) {
     changeLink.addEventListener('click', (e) => {
       e.preventDefault();
-      e.stopPropagation(); // Prevent label click
-      // Reset selection
-      transferOptions.forEach((opt) => {
-        // eslint-disable-next-line no-param-reassign
-        opt.checked = false;
-      });
+      e.stopPropagation();
+      transferOptions.forEach((opt) => { opt.checked = false; });
       toggleTransferFlow();
     });
   }
 
-  // Initial state
   toggleTransferFlow();
 
   const updateProviderState = (pill) => {
@@ -608,7 +712,6 @@ export function decorateCheckoutLayout(main) {
     pill.classList.add('active');
     if (input) input.checked = true;
 
-    // Toggle fields
     if (isLyca) {
       pacRow?.classList.add('hidden');
       dateRow?.classList.add('hidden');
@@ -624,23 +727,17 @@ export function decorateCheckoutLayout(main) {
 
   providerPills.forEach((pill) => {
     pill.addEventListener('click', () => updateProviderState(pill));
-    // Check initial state
-    if (pill.classList.contains('active')) {
-      updateProviderState(pill);
-    }
+    if (pill.classList.contains('active')) updateProviderState(pill);
   });
 
-  // New SIM Type Logic
   const newSimOptions = [...page.querySelectorAll('.sim-option')];
   newSimOptions.forEach((opt) => {
     opt.addEventListener('click', (e) => {
-      // Prevent double firing if clicking input directly
       if (e.target.tagName === 'INPUT') return;
 
       const input = opt.querySelector('input');
       if (input) input.checked = true;
 
-      // Update UI
       newSimOptions.forEach((o) => {
         o.classList.remove('active');
         const info = o.querySelector('.sim-info');
@@ -652,7 +749,6 @@ export function decorateCheckoutLayout(main) {
       if (info) info.classList.remove('hidden');
     });
 
-    // Handle radio change if triggered via keyboard/direct input
     const input = opt.querySelector('input');
     if (input) {
       input.addEventListener('change', () => {
@@ -670,7 +766,6 @@ export function decorateCheckoutLayout(main) {
     }
   });
 
-  // Checkout validation: email + contract agreement
   const contractToggle = page.querySelector('#contract-toggle');
   const checkoutBtn = page.querySelector('.checkout-btn');
   const emailInput = page.querySelector('.email-verify-wrapper input[type="email"]');
@@ -699,9 +794,7 @@ export function decorateCheckoutLayout(main) {
     const emailOk = emailInput ? isEmailValid(emailInput.value) : false;
     const ready = emailOk;
 
-    if (verifyBtn) {
-      verifyBtn.disabled = !emailOk;
-    }
+    if (verifyBtn) verifyBtn.disabled = !emailOk;
 
     if (emailWrapper) {
       const showError = emailInput && emailInput.value.trim() && !emailOk;
@@ -725,13 +818,10 @@ export function decorateCheckoutLayout(main) {
     emailInput.addEventListener('blur', updateCheckoutState);
   }
 
-  if (contractToggle) {
-    contractToggle.addEventListener('change', updateCheckoutState);
-  }
+  if (contractToggle) contractToggle.addEventListener('change', updateCheckoutState);
 
   updateCheckoutState();
 
-  // Date picker logic
   const dateWrapper = page.querySelector('.date-input-wrapper');
   const visibleDateInput = dateWrapper?.querySelector('.visible-date-input');
   const hiddenDateInput = dateWrapper?.querySelector('.hidden-date-input');
@@ -739,11 +829,7 @@ export function decorateCheckoutLayout(main) {
 
   if (visibleDateInput && hiddenDateInput && calendarBtn) {
     const openPicker = () => {
-      try {
-        hiddenDateInput.showPicker();
-      } catch (e) {
-        hiddenDateInput.focus();
-      }
+      try { hiddenDateInput.showPicker(); } catch (e) { hiddenDateInput.focus(); }
     };
 
     calendarBtn.addEventListener('click', openPicker);
@@ -760,6 +846,7 @@ export function decorateCheckoutLayout(main) {
     });
   }
 }
+
 
 /**
  * Loads everything needed to get to LCP.

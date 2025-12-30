@@ -965,11 +965,9 @@ body.paymonthly-checkout main h1 {
 }
 
 .checkout-steps .steps-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     align-items: center;
-    justify-items: center;
-    max-width: none;
+    justify-content: space-between;
     width: 100%;
     margin: 0;
     gap: 12px;
@@ -979,6 +977,8 @@ body.paymonthly-checkout main h1 {
     font-size: 16px;
     font-weight: 600;
     color: #a9b4c8;
+    flex: 1;
+    text-align: center;
 }
 
 .checkout-steps .step.active {
@@ -998,10 +998,10 @@ body.paymonthly-checkout main h1 {
 
 .checkout-steps .step-progress span {
     display: block;
-    width: 33.3333%;
     height: 100%;
     background: linear-gradient(90deg, #08dc7d 0%, #006ae0 50%);
     border-radius: 0 3px 3px 0;
+    transition: width 0.3s ease;
 }
 
 .checkout-layout {
