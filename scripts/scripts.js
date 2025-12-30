@@ -273,25 +273,30 @@ function parseCheckoutConfig(main) {
 
 export function decorateCheckoutLayout(main) {
   if (!document.body.classList.contains('paymonthly-checkout')) return;
-  if (main.querySelector('.checkout-page')) return;
+
+  // safer than checking ".checkout-page" because authored content might accidentally contain it
+  if (main.dataset.checkoutDecorated === 'true') return;
+  main.dataset.checkoutDecorated = 'true';
 
   const config = parseCheckoutConfig(main);
   const selection = getCheckoutSelection();
   const { node: logoNode, href: logoHref } = extractCheckoutLogo(main);
 
+  // ✅ authorable H1 from metadata (falls back to old hardcoded text)
+  const checkoutTitle = getMetadata('checkout-title') || 'My basket: Add-ons & more';
+
   const page = document.createElement('div');
   page.className = 'checkout-page';
   page.innerHTML = `
     <div class="checkout-hero">
-      ${
-  logoNode
-    ? `<div class="checkout-logo"><a href="${logoHref}" target="_self">${logoNode.outerHTML}</a></div>`
-    : ''
-}
+      ${logoNode
+      ? `<div class="checkout-logo"><a href="${logoHref}" target="_self">${logoNode.outerHTML}</a></div>`
+      : ''
+    }
       ${buildCheckoutSteps().outerHTML}
     </div>
     <div class="checkout-shell">
-      <h1>My basket: Add-ons &amp; more</h1>
+      <h1>${checkoutTitle}</h1>
       <div class="checkout-layout">
         <div class="checkout-main">
           <section class="checkout-card">
@@ -327,19 +332,19 @@ export function decorateCheckoutLayout(main) {
           <div class="card-header">
             <h2>Do you have a number to bring?</h2>
           </div>
-          
+
           <div class="number-transfer-options">
              <label class="transfer-option">
                 <input type="radio" name="transfer-choice" value="yes">
                 <div class="option-content">
-                    <span>I have a number to transfer</span>
+                    <span>${config.numberOptions?.[0] || 'I have a number to transfer'}</span>
                     <span class="change-link hidden">Change</span>
                 </div>
              </label>
              <label class="transfer-option">
                 <input type="radio" name="transfer-choice" value="no">
                 <div class="option-content">
-                    <span>No, I want a new number</span>
+                    <span>${config.numberOptions?.[1] || 'No, I want a new number'}</span>
                 </div>
              </label>
           </div>
@@ -416,10 +421,8 @@ export function decorateCheckoutLayout(main) {
               </div>
             </label>
           </div>
-          <a href="#" class="more-info-link">What's eSIM/Check compatibility</a>
+          <a href="#" class="more-info-link">${config.links?.[0] || "What's eSIM/Check compatibility"}</a>
         </section>
-
-
 
         <section class="checkout-card review-contract-card">
           <div class="card-header">
@@ -436,7 +439,7 @@ export function decorateCheckoutLayout(main) {
                 <span>Download contract summary</span>
             </a>
           </div>
-          <a class="link-action view-formats" href="#">View other formats</a>
+          <a class="link-action view-formats" href="#">${config.links?.[1] || 'View other formats'}</a>
         </section>
 
         <section class="checkout-card checkout-agreement">
@@ -448,17 +451,16 @@ export function decorateCheckoutLayout(main) {
                 <input type="checkbox" id="contract-toggle">
                 <span class="slider round"></span>
              </label>
-             <span class="toggle-label">Please confirm that you're happy with the contract summary and information before you proceed. View full <a href="#">Terms and conditions</a></span>
+             <span class="toggle-label">Please confirm that you're happy with the contract summary and information before you proceed. View full <a href="#">${config.links?.[2] || 'Terms and conditions'}</a></span>
           </div>
         </section>
-        
+
         <div class="checkout-actions">
-            <button class="primary-button checkout-btn disabled" type="button">Checkout now</button>
+            <button class="primary-button checkout-btn disabled" type="button">${config.primaryCta}</button>
         </div>
       </div>
 
       <aside class="checkout-sidebar">
-        <!-- Card 1: Header & Cost -->
         <div class="summary-card cost-card">
             <h2 class="summary-title">Order summary</h2>
             <div class="summary-row">
@@ -476,18 +478,11 @@ export function decorateCheckoutLayout(main) {
             </div>
         </div>
 
-        <!-- Card 2: Plan Details -->
         <div class="summary-card plan-card">
              <h3 class="plan-name">24 month Unlimited</h3>
-             <ul class="plan-features">
-                <li>30GB EU roaming included</li>
-                <li>100 International minutes</li>
-                <li>Unlimited UK mins and text</li>
-                <li>Unlimited EU mins and text when roaming in EU (fair use policy applies)</li>
-             </ul>
+             <ul class="plan-features"></ul>
         </div>
 
-        <!-- Card 3: Secure Checkout Info -->
         <div class="summary-card info-card">
             <div class="info-item">
                 <img src="https://cms-pim-assets-dev.ldsvcplatform.com/POSTPAID/s3fs-public/inline-images/Group%20383184241%20%281%29.png" alt="secure">
@@ -501,10 +496,9 @@ export function decorateCheckoutLayout(main) {
                  <img src="https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/Spend%20cap-2.webp" alt="timer">
                  <span>Spend cap is set to £0.00.<br>You can change this later on Lyca mobile app</span>
             </div>
-            
+
             <p class="service-note">Please note the cost of other services you take from us may increase or decrease while you are a Lyca customer.</p>
-            
-            <p class="help-link">Need help? Find our <a href="#">FAQ</a> related to order checkout</p>
+            <p class="help-link">Need help? Find our <a href="#">${config.links?.[3] || 'FAQ'}</a> related to order checkout</p>
         </div>
       </aside>
     </div>
@@ -535,12 +529,11 @@ export function decorateCheckoutLayout(main) {
     }
   }
 
-  // interactions
+  // interactions (unchanged from your version)
   const transferOptions = [...page.querySelectorAll('input[name="transfer-choice"]')];
   const transferFlow = page.querySelector('.transfer-flow');
   const providerPills = [...page.querySelectorAll('.provider-options .pill')];
 
-  // Elements for dynamic visibility
   const pacRow = page.querySelector('.pac-row');
   const dateRow = page.querySelector('.date-row');
   const passcodeText = page.querySelector('.passcode-text');
@@ -550,14 +543,12 @@ export function decorateCheckoutLayout(main) {
     const selected = page.querySelector('input[name="transfer-choice"]:checked');
     const isTransfer = selected && selected.value === 'yes';
 
-    // Update active classes on main options
     transferOptions.forEach((input) => {
       const label = input.closest('.transfer-option');
       if (label) {
         if (input.checked) label.classList.add('active');
         else label.classList.remove('active');
 
-        // Toggle change link
         const changeLink = label.querySelector('.change-link');
         if (changeLink) {
           if (input.checked && input.value === 'yes') changeLink.classList.remove('hidden');
@@ -566,7 +557,6 @@ export function decorateCheckoutLayout(main) {
       }
     });
 
-    // Hide/Show "No" option based on "Yes" selection
     const noOptionInput = page.querySelector('input[name="transfer-choice"][value="no"]');
     const noOptionLabel = noOptionInput?.closest('.transfer-option');
     if (noOptionLabel) {
@@ -582,22 +572,16 @@ export function decorateCheckoutLayout(main) {
 
   transferOptions.forEach((opt) => opt.addEventListener('change', toggleTransferFlow));
 
-  // Handle Change link click
   const changeLink = page.querySelector('.change-link');
   if (changeLink) {
     changeLink.addEventListener('click', (e) => {
       e.preventDefault();
-      e.stopPropagation(); // Prevent label click
-      // Reset selection
-      transferOptions.forEach((opt) => {
-        // eslint-disable-next-line no-param-reassign
-        opt.checked = false;
-      });
+      e.stopPropagation();
+      transferOptions.forEach((opt) => { opt.checked = false; });
       toggleTransferFlow();
     });
   }
 
-  // Initial state
   toggleTransferFlow();
 
   const updateProviderState = (pill) => {
@@ -608,7 +592,6 @@ export function decorateCheckoutLayout(main) {
     pill.classList.add('active');
     if (input) input.checked = true;
 
-    // Toggle fields
     if (isLyca) {
       pacRow?.classList.add('hidden');
       dateRow?.classList.add('hidden');
@@ -624,23 +607,17 @@ export function decorateCheckoutLayout(main) {
 
   providerPills.forEach((pill) => {
     pill.addEventListener('click', () => updateProviderState(pill));
-    // Check initial state
-    if (pill.classList.contains('active')) {
-      updateProviderState(pill);
-    }
+    if (pill.classList.contains('active')) updateProviderState(pill);
   });
 
-  // New SIM Type Logic
   const newSimOptions = [...page.querySelectorAll('.sim-option')];
   newSimOptions.forEach((opt) => {
     opt.addEventListener('click', (e) => {
-      // Prevent double firing if clicking input directly
       if (e.target.tagName === 'INPUT') return;
 
       const input = opt.querySelector('input');
       if (input) input.checked = true;
 
-      // Update UI
       newSimOptions.forEach((o) => {
         o.classList.remove('active');
         const info = o.querySelector('.sim-info');
@@ -652,7 +629,6 @@ export function decorateCheckoutLayout(main) {
       if (info) info.classList.remove('hidden');
     });
 
-    // Handle radio change if triggered via keyboard/direct input
     const input = opt.querySelector('input');
     if (input) {
       input.addEventListener('change', () => {
@@ -670,7 +646,6 @@ export function decorateCheckoutLayout(main) {
     }
   });
 
-  // Checkout validation: email + contract agreement
   const contractToggle = page.querySelector('#contract-toggle');
   const checkoutBtn = page.querySelector('.checkout-btn');
   const emailInput = page.querySelector('.email-verify-wrapper input[type="email"]');
@@ -699,9 +674,7 @@ export function decorateCheckoutLayout(main) {
     const emailOk = emailInput ? isEmailValid(emailInput.value) : false;
     const ready = emailOk;
 
-    if (verifyBtn) {
-      verifyBtn.disabled = !emailOk;
-    }
+    if (verifyBtn) verifyBtn.disabled = !emailOk;
 
     if (emailWrapper) {
       const showError = emailInput && emailInput.value.trim() && !emailOk;
@@ -725,13 +698,10 @@ export function decorateCheckoutLayout(main) {
     emailInput.addEventListener('blur', updateCheckoutState);
   }
 
-  if (contractToggle) {
-    contractToggle.addEventListener('change', updateCheckoutState);
-  }
+  if (contractToggle) contractToggle.addEventListener('change', updateCheckoutState);
 
   updateCheckoutState();
 
-  // Date picker logic
   const dateWrapper = page.querySelector('.date-input-wrapper');
   const visibleDateInput = dateWrapper?.querySelector('.visible-date-input');
   const hiddenDateInput = dateWrapper?.querySelector('.hidden-date-input');
@@ -739,11 +709,7 @@ export function decorateCheckoutLayout(main) {
 
   if (visibleDateInput && hiddenDateInput && calendarBtn) {
     const openPicker = () => {
-      try {
-        hiddenDateInput.showPicker();
-      } catch (e) {
-        hiddenDateInput.focus();
-      }
+      try { hiddenDateInput.showPicker(); } catch (e) { hiddenDateInput.focus(); }
     };
 
     calendarBtn.addEventListener('click', openPicker);
@@ -760,6 +726,7 @@ export function decorateCheckoutLayout(main) {
     });
   }
 }
+
 
 /**
  * Loads everything needed to get to LCP.
