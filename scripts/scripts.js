@@ -204,6 +204,12 @@ function buildCheckoutSteps() {
   const bar = document.createElement('div');
   bar.className = 'step-progress';
   const span = document.createElement('span');
+  
+  // Dynamic width calculation
+  const total = steps.length || 1;
+  const percentage = (active / total) * 100;
+  span.style.width = `${percentage}%`;
+  
   bar.append(span);
   el.append(bar);
 
@@ -244,13 +250,30 @@ function parseCheckoutConfig(main) {
     primaryCta: 'Checkout now',
   };
 
-  const table = [...main.querySelectorAll('table')].find((tbl) => tbl.textContent.toLowerCase().includes('checkout form'));
-  if (!table) return defaults;
+  let rows = [];
+  
+  // Check for AEM Block structure (divs)
+  const block = main.querySelector('.checkout-form');
+  if (block) {
+    rows = [...block.children].map((row) => {
+      const cells = [...row.children];
+      return {
+        label: cells[0]?.textContent?.trim() || '',
+        value: cells[1]?.textContent?.trim() || '',
+      };
+    });
+  } else {
+    // Fallback to raw Table structure
+    const table = [...main.querySelectorAll('table')].find((tbl) => tbl.innerText.toLowerCase().includes('checkout form'));
+    if (table) {
+      rows = [...table.querySelectorAll('tr')].map((tr) => {
+        const cells = [...tr.querySelectorAll('td,th')].map((c) => c.textContent.trim());
+        return { label: cells[0] || '', value: cells[1] || '' };
+      });
+    }
+  }
 
-  const rows = [...table.querySelectorAll('tr')].map((tr) => {
-    const cells = [...tr.querySelectorAll('td,th')].map((c) => c.textContent.trim());
-    return { label: cells[0] || '', value: cells[1] || '' };
-  });
+  if (!rows.length) return defaults;
 
   const findRow = (key) => rows.find((r) => r.label.toLowerCase().includes(key))?.value || '';
   const splitVals = (val) => val
