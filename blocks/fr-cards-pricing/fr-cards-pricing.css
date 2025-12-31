@@ -1,17 +1,19 @@
 .fr-cards-pricing {
-    --green100: #00D775;
-    --backGround: #ffffff;
+    --green100: #00d775;
+    --background: #fff;
     --gray200: #667085;
-    --fontSize16: 16px;
-    --shadowDarkGray: rgba(0,0,0,0.1); /* Assumption based on name, adjust if needed */
-    --plainWhite: #ffffff;
-    --fontSize18: 18px;
+    --font-size-16: 16px;
+    --shadow-dark-gray: rgb(0 0 0 / 10%); /* Assumption based on name, adjust if needed */
+    --plain-white: #fff;
+    --font-size-18: 18px;
     --lh20: 20px;
     --lh24: 24px;
+
     padding: 3rem 1rem;
-    font-family: 'Roboto', sans-serif;
+    font-family: Roboto, sans-serif;
     background-color: transparent;
 }
+
 /* Toggle Styling - Matching tabs-contract reference */
 .fr-cards-pricing .pricing-toggle-container {
     display: flex;
@@ -52,7 +54,7 @@
 
 .fr-cards-pricing .toggle-btn.active {
     background-color: #1f2a5a;
-    color: #ffffff;
+    color: #fff;
 }
 
 /* Cards Container */
@@ -67,10 +69,10 @@
 
 /* Card Styling */
 .fr-cards-pricing .pricing-card {
-    background: var(--plainWhite);
+    background: var(--plain-white);
     border-radius: 12px;
     padding: 0;
-    box-shadow: -10px 10px 40px 0 var(--shadowDarkGray);
+    box-shadow: -10px 10px 40px 0 var(--shadow-dark-gray);
     width: 100%;
     max-width: 400px; /* 25rem approx */
     min-height: 388px;
@@ -112,12 +114,12 @@
 }
 
 .fr-cards-pricing .card-title {
-    font-size: var(--fontSize18);
+    font-size: var(--font-size-18);
     color: var(--gray200);
     margin: 0;
     font-weight: 500;
     line-height: var(--lh24);
-    font-family: 'GTEestiLCDisplayMedium', 'Roboto', sans-serif;
+    font-family: GTEestiLCDisplayMedium, Roboto, sans-serif;
     max-width: 70%;
 }
 
@@ -209,7 +211,7 @@
     align-items: flex-start;
     gap: 10px;
     margin: 0 0 8px 10px;
-    font-size: var(--fontSize16);
+    font-size: var(--font-size-16);
     color: var(--gray200);
     font-weight: 400;
     line-height: var(--lh20);
@@ -257,7 +259,7 @@
 
 .fr-cards-pricing .button.primary {
     background-color: var(--green100);
-    color: var(--backGround);
+    color: var(--background);
     font-weight: 700;
     width: 100%;
     text-align: center;
@@ -282,7 +284,7 @@
 }
 
 /* Responsive */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .fr-cards-pricing .pricing-card {
         max-width: 100%;
     }
