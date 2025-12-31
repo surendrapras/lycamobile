@@ -1,12 +1,11 @@
-
 export default function decorate(block) {
   // Container for the toggle
   const toggleContainer = document.createElement('div');
   toggleContainer.className = 'pricing-toggle-container';
-  
+
   const toggleBtn1 = document.createElement('button');
   toggleBtn1.textContent = '24 mois';
-  toggleBtn1.className = 'toggle-btn active'; // Default active
+  toggleBtn1.className = 'toggle-btn active';
   toggleBtn1.dataset.period = '24';
 
   const toggleBtn2 = document.createElement('button');
@@ -15,7 +14,7 @@ export default function decorate(block) {
   toggleBtn2.dataset.period = '1';
 
   toggleContainer.append(toggleBtn1, toggleBtn2);
-  
+
   // Container for cards
   const cardsContainer = document.createElement('div');
   cardsContainer.className = 'pricing-cards-container';
@@ -23,88 +22,89 @@ export default function decorate(block) {
   // Parse rows
   [...block.children].forEach((row) => {
     const cells = [...row.children];
-    if (cells.length < 5) return; // Skip invalid rows
+    if (cells.length < 5) {
+      return;
+    }
 
-    // Column Mapping based on index.md
-    const titleHTML = cells[0].innerHTML;
-    const priceHTML = cells[1].innerHTML;
-    const dataHTML = cells[2].innerHTML;
-    const featuresHTML = cells[3].innerHTML;
-    const linkContainer = cells[4];
+    const [titleCell, priceCell, dataCell, featuresCell, linkContainer] = cells;
+    const titleHTML = titleCell.innerHTML;
+    const priceHTML = priceCell.innerHTML;
+    const dataHTML = dataCell.innerHTML;
+    const featuresHTML = featuresCell.innerHTML;
+
     let link = linkContainer.querySelector('a');
     if (!link && linkContainer.textContent.trim()) {
-        link = document.createElement('a');
-        link.href = '#';
-        link.textContent = linkContainer.textContent.trim();
+      link = document.createElement('a');
+      link.href = '#';
+      link.textContent = linkContainer.textContent.trim();
     }
-    
+
     // Determine period
-    const text = (cells[0].textContent + cells[1].textContent).toLowerCase();
-    const isOneMonth = text.includes('sans engagement');
-    const period = isOneMonth ? '1' : '24';
-    
+    const text = (titleCell.textContent + priceCell.textContent).toLowerCase();
+    const period = text.includes('sans engagement') ? '1' : '24';
+    const hiddenClass = period === '24' ? '' : 'hidden';
+
     // Create card
     const card = document.createElement('div');
-    card.className = `pricing-card period-${period} ${period === '24' ? '' : 'hidden'}`;
-    
+    card.className = `pricing-card period-${period} ${hiddenClass}`;
     card.innerHTML = `
-        <div class="card-header">
-            <div class="card-top-row">
-                <h3 class="card-title">${titleHTML}</h3>
-            <div class="card-icons">
-                    <img src="https://pim-assets-paym.globalldplatform.com/_default_upload_bucket/eSIM%201%20%285%29_3.png" alt="eSIM" width="24" height="24">
-                    <img src="https://pim-assets-paym.globalldplatform.com/_default_upload_bucket/5G%201%20%285%29_1.png" alt="5G" width="24" height="24">
-                </div>
-            </div>
-            <div class="card-details-row">
-                <div class="card-data-badge">
-                     <span class="data-amount">${dataHTML}</span>
-                     <span class="data-label">data</span>
-                </div>
-                 <div class="card-price">
-                    ${priceHTML}
-                    <span class="price-period">par mois</span>
-                </div>
-            </div>
+      <div class="card-header">
+        <div class="card-top-row">
+          <h3 class="card-title">${titleHTML}</h3>
+          <div class="card-icons">
+            <img src="https://pim-assets-paym.globalldplatform.com/_default_upload_bucket/eSIM%201%20%285%29_3.png" alt="eSIM" width="24" height="24">
+            <img src="https://pim-assets-paym.globalldplatform.com/_default_upload_bucket/5G%201%20%285%29_1.png" alt="5G" width="24" height="24">
+          </div>
         </div>
-        <div class="card-features">
-            ${featuresHTML}
-            <a href="#" class="view-more">Voir plus</a>
+        <div class="card-details-row">
+          <div class="card-data-badge">
+            <span class="data-amount">${dataHTML}</span>
+            <span class="data-label">data</span>
+          </div>
+          <div class="card-price">
+            ${priceHTML}
+            <span class="price-period">par mois</span>
+          </div>
         </div>
-        <div class="card-action">
-             ${link ? link.outerHTML : ''}
-        </div>
+      </div>
+      <div class="card-features">
+        ${featuresHTML}
+        <a href="#" class="view-more">Voir plus</a>
+      </div>
+      <div class="card-action">
+        ${link ? link.outerHTML : ''}
+      </div>
     `;
 
-    // Add buttons class
+    // Add button class
     const btn = card.querySelector('.card-action a');
-    if(btn) btn.className = 'button primary';
+    if (btn) {
+      btn.className = 'button primary';
+    }
 
     cardsContainer.append(card);
   });
 
-  // Event Listeners for Toggle
+  // Event listeners for toggle
   const toggleBtns = [toggleBtn1, toggleBtn2];
-  toggleBtns.forEach(btn => {
+  toggleBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
-        // Toggle Active Class
-        toggleBtns.forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
+      toggleBtns.forEach((toggleBtn) => toggleBtn.classList.remove('active'));
+      btn.classList.add('active');
 
-        // Show/Hide Cards
-        const period = btn.dataset.period;
-        const allCards = cardsContainer.querySelectorAll('.pricing-card');
-        allCards.forEach(c => {
-            if(c.classList.contains(`period-${period}`)) {
-                c.classList.remove('hidden');
-            } else {
-                c.classList.add('hidden');
-            }
-        });
+      const { period } = btn.dataset;
+      const allCards = cardsContainer.querySelectorAll('.pricing-card');
+      allCards.forEach((card) => {
+        if (card.classList.contains(`period-${period}`)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
     });
   });
 
-  block.textContent = ''; // Clear original content
+  block.textContent = '';
   block.append(toggleContainer, cardsContainer);
 
   // Normalize feature bullets: remove leading asterisks and inject tick icons
@@ -116,8 +116,9 @@ export default function decorate(block) {
       const text = features.textContent || '';
       const lines = text
         .split(/\r?\n/)
-        .map((line) => line.replace(/^[*\\s]+/, '').trim())
+        .map((line) => line.replace(/^[*\s]+/, '').trim())
         .filter((line) => line && line.toLowerCase() !== 'voir plus');
+
       if (lines.length) {
         const ul = document.createElement('ul');
         lines.forEach((line) => {
@@ -132,7 +133,7 @@ export default function decorate(block) {
 
     const items = [...features.querySelectorAll('li')];
     items.forEach((li) => {
-      const cleaned = li.textContent.replace(/^[*\\s]+/, '').trim();
+      const cleaned = li.textContent.replace(/^[*\s]+/, '').trim();
       li.textContent = cleaned;
       if (!li.querySelector('.feature-tick')) {
         const tick = document.createElement('img');
