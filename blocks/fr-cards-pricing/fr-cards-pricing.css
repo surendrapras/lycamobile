@@ -1,0 +1,268 @@
+.fr-cards-pricing {
+    --green100: #00D775;
+    --backGround: #ffffff;
+    --gray200: #667085;
+    --shadowDarkGray: rgba(0,0,0,0.1); /* Assumption based on name, adjust if needed */
+    --plainWhite: #ffffff;
+    --fontSize18: 18px;
+    --lh24: 24px;
+    padding: 3rem 1rem;
+    font-family: 'Roboto', sans-serif;
+    background-color: transparent;
+}
+/* Ensure Section Header is visible and matches design (overriding global inclusive white) */
+main .section:has(.fr-cards-pricing) h1,
+main .section:has(.fr-cards-pricing) h2 {
+    color: var(--gray200);
+    text-align: center; /* Match the centered design */
+}
+
+/* Toggle Styling - Matching tabs-contract reference */
+.fr-cards-pricing .pricing-toggle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Ensure items are vertically centered */
+    gap: 0;
+    margin-bottom: 2rem;
+    background: #fff;
+    border-radius: 999px;
+    width: 401px;
+    height: 59px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1.5px solid #1f2a5a; /* Exact match to reference */
+    overflow: hidden;
+    padding: 4px; /* Essential for the gap/pill look */
+    box-sizing: border-box; /* Ensure padding doesn't expand width if global reset is missing */
+}
+
+.fr-cards-pricing .toggle-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0; /* Reset margin */
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f2a5a;
+    cursor: pointer;
+    border-radius: 999px; /* Match container radius logic */
+    transition: all 0.3s ease;
+    flex: 1; /* Use flex 1 instead of fixed width */
+    height: 100%;
+    display: flex;
+    align-items: center; /* Center text vertically */
+    justify-content: center; /* Center text horizontally */
+    line-height: 1; /* reset line-height */
+}
+
+.fr-cards-pricing .toggle-btn.active {
+    background-color: #1f2a5a;
+    color: #ffffff;
+}
+
+/* Cards Container */
+.fr-cards-pricing .pricing-cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Card Styling */
+.fr-cards-pricing .pricing-card {
+    background: var(--plainWhite);
+    border-radius: 12px;
+    padding: 0;
+    box-shadow: -10px 10px 40px 0 var(--shadowDarkGray);
+    width: 100%;
+    max-width: 400px; /* 25rem approx */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: visible !important; /* User request - allows shadows/popouts and prevents clipping at bottom */
+    position: relative;
+    text-align: left;
+}
+
+.fr-cards-pricing .pricing-card:hover {
+    outline: 2px solid var(--green100);
+}
+
+.fr-cards-pricing .pricing-card.hidden {
+    display: none;
+}
+
+/* Header Section */
+.fr-cards-pricing .card-header {
+    background-color: #FFF7F2;
+    padding: 2rem;
+    padding-bottom: 0.5rem;
+    position: relative;
+}
+
+.fr-cards-pricing .card-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem; /* Drastically reduced margin */
+}
+
+.fr-cards-pricing .card-title {
+    font-size: var(--fontSize18);
+    color: var(--gray200);
+    margin: 0;
+    font-weight: 500;
+    line-height: var(--lh24);
+    font-family: 'GTEestiLCDisplayMedium', 'Roboto', sans-serif;
+    max-width: 70%;
+}
+
+.fr-cards-pricing .card-icons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.fr-cards-pricing .card-icons img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.fr-cards-pricing .card-details-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align tops of the numbers */
+}
+
+.fr-cards-pricing .card-data-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.fr-cards-pricing .data-amount {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #001736;
+    line-height: 1;
+    margin: 0; /* Ensure no top margin */
+}
+
+.fr-cards-pricing .data-label {
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 5px;
+    text-transform: lowercase;
+}
+
+.fr-cards-pricing .card-price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    color: #001736;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    position: static;
+    margin: 0; /* Ensure no top margin */
+}
+
+.fr-cards-pricing .price-period {
+    display: block;
+    font-size: 0.9rem;
+    color: #777;
+    font-weight: 400;
+    margin-top: 4px;
+}
+
+/* Features Section */
+.fr-cards-pricing .card-features {
+    padding: 1rem 2rem;
+    background: #fff;
+    flex-grow: 1;
+}
+
+.fr-cards-pricing .card-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.fr-cards-pricing .card-features li {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    color: #444;
+    line-height: 1.4;
+}
+
+.fr-cards-pricing .card-features li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 14px;
+    height: 10px;
+    border: none;
+    transform: none;
+    background-image: url('https://www.lycamobile.fr/abo/_next/static/media/greenTick2.ebb6f697.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.fr-cards-pricing .view-more {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #0070d2;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Action Section */
+.fr-cards-pricing .card-action {
+    padding: 1.5rem 2rem 2rem;
+    background: #fff;
+}
+
+.fr-cards-pricing .button.primary {
+    background-color: var(--green100);
+    color: var(--backGround);
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    padding: 8px 14px;
+    border-radius: 4px;
+    display: flex; /* Changed to flex for centering */
+    align-items: center; /* Vertically center */
+    justify-content: center; /* Horizontally center */
+    visibility: visible;
+    opacity: 1;
+    text-decoration: none;
+    border: 1px solid var(--green100);
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    min-height: 48px;
+}
+
+.fr-cards-pricing .button.primary:hover {
+    background-color: #00c068;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .fr-cards-pricing .pricing-card {
+        max-width: 100%;
+    }
+    
+    .fr-cards-pricing .toggle-btn {
+        min-width: auto;
+        padding: 10px 20px;
+    }
+}
