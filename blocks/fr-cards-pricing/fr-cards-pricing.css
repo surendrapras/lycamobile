@@ -1,0 +1,327 @@
+.fr-cards-pricing {
+    --green100: #00d775;
+    --background: #fff;
+    --gray200: #667085;
+    --font-size-16: 16px;
+    --shadow-dark-gray: rgb(0 0 0 / 10%); /* Assumption based on name, adjust if needed */
+    --plain-white: #fff;
+    --font-size-18: 18px;
+    --lh20: 20px;
+    --lh24: 24px;
+
+    padding: 3rem 1rem;
+    font-family: Roboto, sans-serif;
+    background-color: transparent;
+}
+
+/* Toggle Styling - Matching tabs-contract reference */
+.fr-cards-pricing .pricing-toggle-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Ensure items are vertically centered */
+    gap: 0;
+    margin-bottom: 2rem;
+    background: #fff;
+    border-radius: 999px;
+    width: 401px;
+    height: 59px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1.5px solid #1f2a5a; /* Exact match to reference */
+    overflow: hidden;
+    padding: 4px; /* Essential for the gap/pill look */
+    box-sizing: border-box; /* Ensure padding doesn't expand width if global reset is missing */
+}
+
+.fr-cards-pricing .toggle-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0; /* Reset margin */
+    font-size: 16px;
+    font-weight: 700;
+    color: #1f2a5a;
+    cursor: pointer;
+    border-radius: 999px; /* Match container radius logic */
+    transition: all 0.3s ease;
+    flex: 1; /* Use flex 1 instead of fixed width */
+    height: 100%;
+    display: flex;
+    align-items: center; /* Center text vertically */
+    justify-content: center; /* Center text horizontally */
+    line-height: 1; /* reset line-height */
+}
+
+.fr-cards-pricing .toggle-btn.active {
+    background-color: #1f2a5a;
+    color: #fff;
+}
+
+/* Cards Container */
+.fr-cards-pricing .pricing-cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Card Styling */
+.fr-cards-pricing .pricing-card {
+    background: var(--plain-white);
+    border-radius: 12px;
+    padding: 0;
+    box-shadow: -10px 10px 40px 0 var(--shadow-dark-gray);
+    width: 100%;
+    max-width: 400px; /* 25rem approx */
+    min-height: 388px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden; /* Contain within target height */
+    box-sizing: border-box;
+    position: relative;
+    text-align: left;
+}
+
+.fr-cards-pricing .pricing-card:hover {
+    outline: 2px solid var(--green100);
+}
+
+.fr-cards-pricing .pricing-card.hidden {
+    display: none;
+}
+
+/* Header Section */
+.fr-cards-pricing .card-header {
+    background-color: #FFF7F2;
+    min-height: 168px;
+    padding: 18px 22px 10px;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 4px;
+}
+
+.fr-cards-pricing .card-top-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0;
+}
+
+.fr-cards-pricing .card-title {
+    font-size: var(--font-size-18);
+    color: var(--gray200);
+    margin: 0;
+    font-weight: 500;
+    line-height: var(--lh24);
+    font-family: GTEestiLCDisplayMedium, Roboto, sans-serif;
+    max-width: 70%;
+}
+
+.fr-cards-pricing .card-icons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.fr-cards-pricing .card-icons img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.fr-cards-pricing .card-details-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Align price stack and data stack at baseline */
+    gap: 8px;
+    margin-top: 2px;
+}
+
+.fr-cards-pricing .card-data-badge {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.fr-cards-pricing .data-amount {
+    font-size: 2rem;
+    font-weight: 900;
+    color: #001736;
+    line-height: 1;
+    margin: 0; /* Ensure no top margin */
+}
+
+.fr-cards-pricing .data-label {
+    font-size: 0.95rem;
+    color: #757f90;
+    margin-top: 6px;
+    text-transform: capitalize;
+}
+
+.fr-cards-pricing .card-price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: right;
+    color: #001736;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    position: static;
+    margin: 0; /* Ensure no top margin */
+}
+
+.fr-cards-pricing .price-period {
+    display: block;
+    font-size: 0.9rem;
+    color: #777;
+    font-weight: 400;
+    margin-top: 6px;
+}
+
+/* Features Section */
+.fr-cards-pricing .card-features {
+    min-height: 105px;
+    flex: 1;
+    padding: 12px 20px;
+    background: #fff;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.fr-cards-pricing .card-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.fr-cards-pricing .card-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0 0 8px 10px;
+    font-size: var(--font-size-16);
+    color: var(--gray200);
+    font-weight: 400;
+    line-height: var(--lh20);
+    font-family: GTEestiLCDisplayRegular, var(--body-font-family);
+    list-style: none;
+}
+
+.fr-cards-pricing .card-features li.has-tick::before {
+    content: none;
+}
+
+/* Hide leading asterisk characters from imported content */
+.fr-cards-pricing .card-features li::first-letter {
+    color: transparent;
+    margin-right: -10px;
+    opacity: 0;
+}
+
+.fr-cards-pricing .feature-tick {
+    width: 14px;
+    height: 10px;
+    margin-top: 4px;
+    flex-shrink: 0;
+}
+
+.fr-cards-pricing .view-more {
+    display: inline-block;
+    margin-top: auto;
+    align-self: flex-end;
+    color: #0070d2;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+/* Action Section */
+.fr-cards-pricing .card-action {
+    min-height: 115px;
+    padding: 14px 20px 16px;
+    background: #fff;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-end;
+}
+
+.fr-cards-pricing .button.primary {
+    background-color: var(--green100);
+    color: var(--background);
+    font-weight: 700;
+    width: 100%;
+    text-align: center;
+    padding: 8px 14px;
+    border-radius: 4px;
+    display: flex; /* Changed to flex for centering */
+    align-items: center; /* Vertically center */
+    justify-content: center; /* Horizontally center */
+    visibility: visible;
+    opacity: 1;
+    text-decoration: none;
+    border: 1px solid var(--green100);
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: background-color 0.2s;
+    cursor: pointer;
+    min-height: 48px;
+}
+
+.fr-cards-pricing .button.primary:hover {
+    background-color: #00c068;
+}
+
+/* Responsive */
+@media (width <= 768px) {
+    .fr-cards-pricing .pricing-card {
+        max-width: 100%;
+    }
+    
+    .fr-cards-pricing .toggle-btn {
+        min-width: auto;
+        padding: 10px 20px;
+    }
+}
+
+/* Features Section Styling (Les + de Lyca) */
+.section.features-section {
+    width: 100%;
+    background-color: #F4FAFF;
+    padding: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.section.features-section h1,
+.section.features-section h2 {
+    text-align: center;
+    color: #1f2a5a;
+    margin-bottom: 2rem;
+}
+
+/* Center content inside the columns block */
+.section.features-section .columns > div {
+    justify-content: center;
+    gap: 2rem;
+}
+
+.section.features-section .columns > div > div {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

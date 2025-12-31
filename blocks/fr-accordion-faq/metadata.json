@@ -1,0 +1,35 @@
+{
+  "variantName": "fr-accordion-faq",
+  "baseBlock": "accordion",
+  "version": "1.0.0",
+  "created": "2025-12-31T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.lycamobile.fr/abo",
+    "originPage": "Pay monthly FAQ section",
+    "blockPosition": "faq"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "faq",
+    "imagePattern": "noimg"
+  },
+  "contentPattern": {
+    "structure": "expandable questions and answers",
+    "buttonCount": 1,
+    "imageCount": 0
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "FAQ sections",
+      "help documentation",
+      "product questions",
+      "support content"
+    ],
+    "notSuitableFor": [
+      "navigation menus",
+      "content with images",
+      "complex nested structures"
+    ]
+  }
+}

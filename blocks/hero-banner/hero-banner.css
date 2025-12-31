@@ -4,22 +4,6 @@ main .section.hero-banner-container {
 }
 
 main .section.hero-banner-container > div {
-    max-width: 1248px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.hero-banner-title {
-    margin: 0;
-    font-weight: 800;
-    color: var(--color-secondary-blue);
-    font-size: clamp(36px, 4.5vw, 64px);
-    line-height: 1.05;
-}
-
-.hero-banner-subtitle {
-    margin: 16px auto 0;
-    max-width: 980px;
     color: #667085;
     font-weight: 500;
     font-size: 20px;
