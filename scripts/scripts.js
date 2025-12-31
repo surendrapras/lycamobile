@@ -391,7 +391,7 @@ export function decorateCheckoutLayout(main) {
 
   const config = parseCheckoutConfig(main);
   const selection = getCheckoutSelection();
-  
+
   // URL Parameter Override
   const params = new URLSearchParams(window.location.search);
   const urlPlan = params.get('plan');
@@ -403,7 +403,7 @@ export function decorateCheckoutLayout(main) {
     if (urlPrice) {
       selection.newPrice = urlPrice;
       selection.oldPrice = ''; // Hide old price when overridden
-      
+
       if (urlPeriod === '1') {
         selection.subText = '(sans engagement)';
       } else if (urlPeriod === '24') {
@@ -411,7 +411,7 @@ export function decorateCheckoutLayout(main) {
       } else {
         selection.subText = '';
       }
-      
+
       // Persist selection to session storage so it survives reloads
       sessionStorage.setItem(CHECKOUT_SELECTION_KEY, JSON.stringify(selection));
     }
@@ -648,14 +648,15 @@ export function decorateCheckoutLayout(main) {
   main.replaceChildren(page);
 
   // Force clear old price and english/french subtext for FR pages as requested
-  if (window.location.pathname.includes('/fr/') || window.location.pathname.includes('/abo/')) {
-      selection.oldPrice = '';
-      if (!selection.subText 
-          || selection.subText.includes('for the first 6 months')
-          || selection.subText.includes('mois')
-          || selection.subText.includes('pour')) {
-          selection.subText = '';
-      }
+  if (window.location.pathname.includes('/fr/')
+    || window.location.pathname.includes('/abo/')) {
+    selection.oldPrice = '';
+    if (!selection.subText
+        || selection.subText.includes('for the first 6 months')
+        || selection.subText.includes('mois')
+        || selection.subText.includes('pour')) {
+      selection.subText = '';
+    }
   }
 
   // apply selected plan details (priority: session storage > authoring config)
@@ -676,7 +677,9 @@ export function decorateCheckoutLayout(main) {
     const noteEl = page.querySelector('.cost-note');
     if (oldPriceEl) oldPriceEl.textContent = displaySelection.oldPrice || '';
     if (newPriceEl) newPriceEl.textContent = displaySelection.newPrice || '';
-    if (noteEl && displaySelection.subText !== undefined) noteEl.textContent = displaySelection.subText;
+    if (noteEl && displaySelection.subText !== undefined) {
+      noteEl.textContent = displaySelection.subText;
+    }
 
     const planNameEl = page.querySelector('.plan-name');
     if (planNameEl && displaySelection.title) planNameEl.textContent = displaySelection.title;
