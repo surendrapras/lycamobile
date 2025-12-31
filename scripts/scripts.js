@@ -411,6 +411,9 @@ export function decorateCheckoutLayout(main) {
       } else {
         selection.subText = '';
       }
+      
+      // Persist selection to session storage so it survives reloads
+      sessionStorage.setItem(CHECKOUT_SELECTION_KEY, JSON.stringify(selection));
     }
     // Clean URL query params
     const newUrl = window.location.pathname;
