@@ -5,7 +5,7 @@ description: Nos meilleurs forfaits mensuels
 title: Forfaits Mensuels
 ---
 
-# Nos meilleurs forfaits mensuels, Lycamobile: pas cher du tout!
+# Nos meilleurs forfaits mensuels, <span class="hero-highlight">Lycamobile:</span> pas cher du tout!
 C'est vous qui choisissez, forfait mensuel avec ou sans engagement!
 
 <div class="fr-cards-pricing">

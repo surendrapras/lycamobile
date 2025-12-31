@@ -106,4 +106,48 @@ export default function decorate(block) {
 
   block.textContent = ''; // Clear original content
   block.append(toggleContainer, cardsContainer);
+
+  // Normalize feature bullets: remove leading asterisks and inject tick icons
+  cardsContainer.querySelectorAll('.card-features').forEach((features) => {
+    const viewMore = features.querySelector('.view-more');
+    const listItems = [...features.querySelectorAll('li')];
+
+    if (!listItems.length) {
+      const text = features.textContent || '';
+      const lines = text
+        .split(/\r?\n/)
+        .map((line) => line.replace(/^[*\\s]+/, '').trim())
+        .filter((line) => line && line.toLowerCase() !== 'voir plus');
+      if (lines.length) {
+        const ul = document.createElement('ul');
+        lines.forEach((line) => {
+          const li = document.createElement('li');
+          li.textContent = line;
+          ul.append(li);
+        });
+        features.innerHTML = '';
+        features.append(ul);
+      }
+    }
+
+    const items = [...features.querySelectorAll('li')];
+    items.forEach((li) => {
+      const cleaned = li.textContent.replace(/^[*\\s]+/, '').trim();
+      li.textContent = cleaned;
+      if (!li.querySelector('.feature-tick')) {
+        const tick = document.createElement('img');
+        tick.className = 'feature-tick';
+        tick.src = 'https://www.lycamobile.fr/abo/_next/static/media/greenTick2.ebb6f697.svg';
+        tick.alt = 'greenTick';
+        tick.width = 14;
+        tick.height = 10;
+        li.classList.add('has-tick');
+        li.prepend(tick);
+      }
+    });
+
+    if (viewMore && !features.contains(viewMore)) {
+      features.append(viewMore);
+    }
+  });
 }

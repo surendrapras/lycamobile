@@ -2,9 +2,11 @@
     --green100: #00D775;
     --backGround: #ffffff;
     --gray200: #667085;
+    --fontSize16: 16px;
     --shadowDarkGray: rgba(0,0,0,0.1); /* Assumption based on name, adjust if needed */
     --plainWhite: #ffffff;
     --fontSize18: 18px;
+    --lh20: 20px;
     --lh24: 24px;
     padding: 3rem 1rem;
     font-family: 'Roboto', sans-serif;
@@ -71,10 +73,12 @@
     box-shadow: -10px 10px 40px 0 var(--shadowDarkGray);
     width: 100%;
     max-width: 400px; /* 25rem approx */
+    min-height: 388px;
+    height: auto;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    overflow: visible !important; /* User request - allows shadows/popouts and prevents clipping at bottom */
+    overflow: hidden; /* Contain within target height */
+    box-sizing: border-box;
     position: relative;
     text-align: left;
 }
@@ -90,16 +94,21 @@
 /* Header Section */
 .fr-cards-pricing .card-header {
     background-color: #FFF7F2;
-    padding: 2rem;
-    padding-bottom: 0.5rem;
+    min-height: 168px;
+    padding: 18px 22px 10px;
     position: relative;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 4px;
 }
 
 .fr-cards-pricing .card-top-row {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    margin-bottom: 0.5rem; /* Drastically reduced margin */
+    margin-bottom: 0;
 }
 
 .fr-cards-pricing .card-title {
@@ -126,7 +135,9 @@
 .fr-cards-pricing .card-details-row {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start; /* Align tops of the numbers */
+    align-items: flex-end; /* Align price stack and data stack at baseline */
+    gap: 8px;
+    margin-top: 2px;
 }
 
 .fr-cards-pricing .card-data-badge {
@@ -144,10 +155,10 @@
 }
 
 .fr-cards-pricing .data-label {
-    font-size: 0.9rem;
-    color: #777;
-    margin-top: 5px;
-    text-transform: lowercase;
+    font-size: 0.95rem;
+    color: #757f90;
+    margin-top: 6px;
+    text-transform: capitalize;
 }
 
 .fr-cards-pricing .card-price {
@@ -168,48 +179,66 @@
     font-size: 0.9rem;
     color: #777;
     font-weight: 400;
-    margin-top: 4px;
+    margin-top: 6px;
 }
 
 /* Features Section */
 .fr-cards-pricing .card-features {
-    padding: 1rem 2rem;
+    min-height: 105px;
+    flex: 1;
+    padding: 12px 20px;
     background: #fff;
-    flex-grow: 1;
+    box-sizing: border-box;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .fr-cards-pricing .card-features ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .fr-cards-pricing .card-features li {
-    position: relative;
-    padding-left: 25px;
-    margin-bottom: 10px;
-    font-size: 0.9rem;
-    color: #444;
-    line-height: 1.4;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 0 0 8px 10px;
+    font-size: var(--fontSize16);
+    color: var(--gray200);
+    font-weight: 400;
+    line-height: var(--lh20);
+    font-family: GTEestiLCDisplayRegular, var(--body-font-family);
+    list-style: none;
 }
 
-.fr-cards-pricing .card-features li::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 4px;
+.fr-cards-pricing .card-features li.has-tick::before {
+    content: none;
+}
+
+/* Hide leading asterisk characters from imported content */
+.fr-cards-pricing .card-features li::first-letter {
+    color: transparent;
+    margin-right: -10px;
+    opacity: 0;
+}
+
+.fr-cards-pricing .feature-tick {
     width: 14px;
     height: 10px;
-    border: none;
-    transform: none;
-    background-image: url('https://www.lycamobile.fr/abo/_next/static/media/greenTick2.ebb6f697.svg');
-    background-size: contain;
-    background-repeat: no-repeat;
+    margin-top: 4px;
+    flex-shrink: 0;
 }
 
 .fr-cards-pricing .view-more {
     display: inline-block;
-    margin-top: 1rem;
+    margin-top: auto;
+    align-self: flex-end;
     color: #0070d2;
     text-decoration: none;
     font-size: 0.9rem;
@@ -218,8 +247,12 @@
 
 /* Action Section */
 .fr-cards-pricing .card-action {
-    padding: 1.5rem 2rem 2rem;
+    min-height: 115px;
+    padding: 14px 20px 16px;
     background: #fff;
+    box-sizing: border-box;
+    display: flex;
+    align-items: flex-end;
 }
 
 .fr-cards-pricing .button.primary {
