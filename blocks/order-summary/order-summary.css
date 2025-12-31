@@ -1,0 +1,35 @@
+
+.order-summary {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Subtle shadow matching design */
+    font-family: Roboto, sans-serif;
+    position: sticky;
+    top: 2rem; /* Fix to top as requested in previous conversations */
+}
+
+.order-summary > div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.order-summary > div:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.order-summary > div > div:first-child {
+    font-weight: 500;
+    color: #667085;
+}
+
+.order-summary > div > div:last-child {
+    font-weight: 700;
+    color: #001736;
+    text-align: right;
+}

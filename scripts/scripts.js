@@ -368,7 +368,7 @@ function parseCheckoutConfig(main) {
     summaryNotes: splitVals(findRow(summaryRows, 'notes')) || defaults.summaryNotes,
     summaryHelp: findRow(summaryRows, 'need help') || defaults.summaryHelp,
     summaryTitle: 'Order summary', // Usually the block name, but can be hardcoded or metadata
-    summaryCostLabel: 'Monthly cost', // hardcoded for now or add to list
+    summaryCostLabel: (window.location.pathname.includes('/fr/') || window.location.pathname.includes('/abo/')) ? 'Frais mensuel' : 'Monthly cost',
   };
 
   // If summary rows exist, we might want to prioritize them over session storage
@@ -382,12 +382,41 @@ function parseCheckoutConfig(main) {
 export function decorateCheckoutLayout(main) {
   if (!document.body.classList.contains('paymonthly-checkout')) return;
 
+  // Hide header and footer for checkout flow
+  document.body.classList.add('checkout-hide-chrome');
+
   // safer than checking ".checkout-page" because authored content might accidentally contain it
   if (main.dataset.checkoutDecorated === 'true') return;
   main.dataset.checkoutDecorated = 'true';
 
   const config = parseCheckoutConfig(main);
   const selection = getCheckoutSelection();
+  
+  // URL Parameter Override
+  const params = new URLSearchParams(window.location.search);
+  const urlPlan = params.get('plan');
+  const urlPrice = params.get('price');
+  const urlPeriod = params.get('period');
+
+  if (urlPlan || urlPrice) {
+    if (urlPlan) selection.title = urlPlan;
+    if (urlPrice) {
+      selection.newPrice = urlPrice;
+      selection.oldPrice = ''; // Hide old price when overridden
+      
+      if (urlPeriod === '1') {
+        selection.subText = '(sans engagement)';
+      } else if (urlPeriod === '24') {
+        selection.subText = '';
+      } else {
+        selection.subText = '';
+      }
+    }
+    // Clean URL query params
+    const newUrl = window.location.pathname;
+    window.history.replaceState({}, '', newUrl);
+  }
+
   const { node: logoNode, href: logoHref } = extractCheckoutLogo(main);
 
   // ✅ authorable H1 from metadata (falls back to old hardcoded text)
@@ -615,12 +644,23 @@ export function decorateCheckoutLayout(main) {
 
   main.replaceChildren(page);
 
+  // Force clear old price and english/french subtext for FR pages as requested
+  if (window.location.pathname.includes('/fr/') || window.location.pathname.includes('/abo/')) {
+      selection.oldPrice = '';
+      if (!selection.subText 
+          || selection.subText.includes('for the first 6 months')
+          || selection.subText.includes('mois')
+          || selection.subText.includes('pour')) {
+          selection.subText = '';
+      }
+  }
+
   // apply selected plan details (priority: session storage > authoring config)
   // We want session storage to override if present, otherwise default to config
   const displaySelection = {
-    oldPrice: selection.oldPrice || config.summaryCostValues[0],
+    oldPrice: selection.oldPrice !== undefined ? selection.oldPrice : config.summaryCostValues[0],
     newPrice: selection.newPrice || config.summaryCostValues[1],
-    subText: selection.subText || config.summaryCostValues[2],
+    subText: selection.subText !== undefined ? selection.subText : config.summaryCostValues[2],
     title: selection.title || config.summaryPlanName,
     features: (selection.features && selection.features.length)
       ? selection.features
@@ -633,7 +673,7 @@ export function decorateCheckoutLayout(main) {
     const noteEl = page.querySelector('.cost-note');
     if (oldPriceEl) oldPriceEl.textContent = displaySelection.oldPrice || '';
     if (newPriceEl) newPriceEl.textContent = displaySelection.newPrice || '';
-    if (noteEl && displaySelection.subText) noteEl.textContent = displaySelection.subText;
+    if (noteEl && displaySelection.subText !== undefined) noteEl.textContent = displaySelection.subText;
 
     const planNameEl = page.querySelector('.plan-name');
     if (planNameEl && displaySelection.title) planNameEl.textContent = displaySelection.title;
