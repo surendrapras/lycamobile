@@ -35,14 +35,31 @@ export default function decorate(block) {
     let link = linkContainer.querySelector('a');
     if (!link && linkContainer.textContent.trim()) {
       link = document.createElement('a');
-      link.href = '#';
+      link.href = '/abo/fr/bundles/sim-only-deals/checkout';
       link.textContent = linkContainer.textContent.trim();
+    } else if (link) {
+      // Ensure existing links also point to the correct checkout
+      link.href = '/abo/fr/bundles/sim-only-deals/checkout';
     }
 
     // Determine period
     const text = (titleCell.textContent + priceCell.textContent).toLowerCase();
     const period = text.includes('sans engagement') ? '1' : '24';
     const hiddenClass = period === '24' ? '' : 'hidden';
+
+    // Construct query parameters
+    const params = new URLSearchParams();
+    params.append('plan', titleCell.textContent.trim());
+    params.append('price', priceCell.textContent.trim());
+    params.append('data', dataCell.textContent.trim());
+    params.append('period', period);
+    // Append params to the link
+    if (link) {
+      const url = new URL(link.href, window.location.origin);
+      // Add new params while preserving existing ones if any (though we reset href above)
+      params.forEach((value, key) => url.searchParams.set(key, value));
+      link.href = url.toString();
+    }
 
     // Create card
     const card = document.createElement('div');
