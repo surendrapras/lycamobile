@@ -534,9 +534,16 @@ main .section.light-gradient {
 }
 
 main .section.light-blue {
-    background-color: var(--background-light);
+    background-color: #F4FAFF !important; /* User requested specific blue */
     margin: 0;
     padding: var(--spacing-xl) 0;
+}
+
+/* Ensure paymonthly page H1 is visible (overriding global white) */
+/* Using :where() to keep specificity low allow authoring overrides */
+body.paymonthly-page main .section h1,
+main .section:has(.fr-cards-pricing) h1 {
+    color: var(--color-text-secondary); /* Default visible color */
 }
 
 main .section.announcement {
@@ -2286,4 +2293,36 @@ input:checked + .slider:before {
     display: flex;
     justify-content: center;
     padding: 24px 0 12px;
+}
+
+/* Features Section Styling (Les + de Lyca) */
+main .section:has(.columns) {
+    width: 100%;
+    background-color: #F4FAFF;
+    padding: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+main .section:has(.columns) h1,
+main .section:has(.columns) h2 {
+    text-align: center;
+    color: #1f2a5a;
+    margin-bottom: 2rem;
+}
+
+/* Center content inside the columns block in this section */
+main .section:has(.columns) .columns > div {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+main .section:has(.columns) .columns > div > div {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

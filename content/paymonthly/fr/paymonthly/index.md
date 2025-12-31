@@ -67,7 +67,7 @@ C'est vous qui choisissez, forfait mensuel avec ou sans engagement!
 
 # Les + de Lyca
 
-<div class="columns">
+<div class="columns-features">
   <div>
     <div>
       <picture><img src="/icons/heart.svg" alt="Heart"></picture>
@@ -84,6 +84,14 @@ C'est vous qui choisissez, forfait mensuel avec ou sans engagement!
       <h3>La 5G rapide et incluse</h3>
       <p>Lyca utilise le réseau Bouygues Telecom pour vous assurer une connexion rapide et fiable, ainsi qu'une couverture optimale.</p>
     </div>
+  </div>
+  </div>
+</div>
+
+<div class="section-metadata">
+  <div>
+    <div>style</div>
+    <div>light-blue, columns-features-container</div>
   </div>
 </div>
 

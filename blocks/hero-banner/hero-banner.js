@@ -1,5 +1,5 @@
-function getText(el) {
-  return el?.textContent?.trim() || '';
+function getHTML(el) {
+  return el?.innerHTML?.trim() || '';
 }
 
 function getFirstPicture(root) {
@@ -15,13 +15,12 @@ export default function decorate(block) {
   const subtitleCell = rows[1] || null;
   const mediaCell = rows[2] || block;
 
-  const title = getText(titleCell.querySelector('h1, h2, h3'))
-    || getText(titleCell.querySelector('p'))
-    || getText(titleCell)
-    || getText(document.querySelector('main h1'))
+  const title = getHTML(titleCell.querySelector('h1, h2, h3'))
+    || getHTML(titleCell.querySelector('p'))
+    || getHTML(titleCell)
     || '';
 
-  const subtitle = getText(subtitleCell?.querySelector('p')) || getText(subtitleCell) || '';
+  const subtitle = getHTML(subtitleCell?.querySelector('p')) || getHTML(subtitleCell) || '';
 
   const picture = getFirstPicture(mediaCell) || getFirstPicture(block);
 
@@ -33,11 +32,11 @@ export default function decorate(block) {
 
   const h1 = document.createElement('h1');
   h1.className = 'hero-banner-title';
-  h1.textContent = title;
+  h1.innerHTML = title;
 
   const p = document.createElement('p');
   p.className = 'hero-banner-subtitle';
-  p.textContent = subtitle;
+  p.innerHTML = subtitle;
 
   const media = document.createElement('div');
   media.className = 'hero-banner-media';
