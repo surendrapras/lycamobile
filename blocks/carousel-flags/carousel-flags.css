@@ -41,7 +41,12 @@ padding: 0;
 display: flex;
 scroll-behavior: smooth;
 scroll-snap-type: x mandatory;
-overflow: scroll clip;
+overflow-x: auto;
+overflow-y: hidden;
+-ms-overflow-style: none;
+scrollbar-width: none;
+gap: 8px;
+padding: 0 60px;
 }
 
 .carousel-flags .carousel-flags-slides::-webkit-scrollbar {
@@ -49,17 +54,16 @@ display: none;
 }
 
 .carousel-flags .carousel-flags-slide {
-/* flex: 0 0 100%; */
-scroll-snap-align: start;
+flex: 0 0 140px;
+scroll-snap-align: center;
 display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
 gap: var(--spacing-s);
 position: relative;
-width: 100%;
 min-height: 160px;
-padding: var(--spacing-l);
+padding: 16px 8px;
 }
 
 .carousel-flags .carousel-flags-slide:has(.carousel-flags-slide-content[data-align='center']) {
@@ -182,6 +186,7 @@ right: 0;
 }
 
 .carousel-flags .carousel-flags-slide {
+flex: 0 0 160px;
 min-height: 180px;
 }
 
@@ -192,5 +197,11 @@ width: 100px;
 
 .carousel-flags .carousel-flags-slide .carousel-flags-slide-content {
 font-size: var(--body-font-size-l);
+}
+}
+
+@media (width >= 900px) {
+.carousel-flags .carousel-flags-slide {
+flex: 0 0 180px;
 }
 }
