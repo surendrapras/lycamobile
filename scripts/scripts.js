@@ -14,10 +14,6 @@ import {
   getMetadata,
 } from './aem.js';
 
-if (window.location.pathname.includes('/paymonthly/')) {
- document.body.classList.add('paymonthly-page');
-}
-
 import {
   initMartech,
   martechEager,
@@ -25,6 +21,10 @@ import {
   martechDelayed,
   // eslint-disable-next-line import/no-relative-packages
 } from '../plugins/martech/src/index.js';
+
+if (window.location.pathname.includes('/paymonthly/')) {
+  document.body.classList.add('paymonthly-page');
+}
 
 /**
  * Builds hero block and prepends to main in a new section.
@@ -916,7 +916,6 @@ export function decorateCheckoutLayout(main) {
 }
 
 function createEventPayload(base) {
-  console.log('darubhai butlegger',base)
   return {
     xdm: {
       eventType: base.eventName,
