@@ -4,6 +4,11 @@ max-width: 1100px;
 margin: 0 auto;
 }
 
+.accordion-faq-container > div {
+max-width: 980px;
+margin: 0 auto;
+}
+
 .accordion-faq-container h2 {
 text-align: center;
 }
@@ -90,39 +95,68 @@ border-top: 1px solid #e5e7eb;
 background-color: var(--background-color);
 }
 
-body.paymonthly-sim-only-deals .accordion-faq {
+body.paymonthly-sim-only-deals .accordion-faq,
+body.paymonthly-page .accordion-faq,
+body.paymonthly .accordion-faq {
 padding: 0;
 max-width: 980px;
 }
 
-body.paymonthly-sim-only-deals .accordion-faq-container h2 {
+body.paymonthly-sim-only-deals .accordion-faq-container h2,
+body.paymonthly-page .accordion-faq-container h2,
+body.paymonthly .accordion-faq-container h2 {
 font-size: 28px;
 color: #1f2a5a;
 margin-bottom: 24px;
 }
 
-body.paymonthly-sim-only-deals .accordion-faq details {
+body.paymonthly-sim-only-deals .accordion-faq details,
+body.paymonthly-page .accordion-faq details,
+body.paymonthly .accordion-faq details {
 border: none;
 border-bottom: 1px solid #e5e7eb;
 border-radius: 0;
 background-color: transparent;
 }
 
-body.paymonthly-sim-only-deals .accordion-faq details + details {
+body.paymonthly-sim-only-deals .accordion-faq details + details,
+body.paymonthly-page .accordion-faq details + details,
+body.paymonthly .accordion-faq details + details {
 margin-top: 0;
 }
 
-body.paymonthly-sim-only-deals .accordion-faq details:first-of-type {
+body.paymonthly-sim-only-deals .accordion-faq details:hover,
+body.paymonthly-page .accordion-faq details:hover,
+body.paymonthly .accordion-faq details:hover {
+box-shadow: none;
+}
+
+body.paymonthly-sim-only-deals .accordion-faq details:first-of-type,
+body.paymonthly-page .accordion-faq details:first-of-type,
+body.paymonthly .accordion-faq details:first-of-type {
 border-top: 1px solid #e5e7eb;
 }
 
-body.paymonthly-sim-only-deals .accordion-faq details summary {
+body.paymonthly-sim-only-deals .accordion-faq details summary,
+body.paymonthly-page .accordion-faq details summary,
+body.paymonthly .accordion-faq details summary {
 padding: 22px 48px 22px 0;
 font-size: 16px;
 color: #344054;
 }
 
-body.paymonthly-sim-only-deals .accordion-faq details summary::after {
+body.paymonthly-sim-only-deals .accordion-faq details summary h3,
+body.paymonthly-page .accordion-faq details summary h3,
+body.paymonthly .accordion-faq details summary h3 {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+body.paymonthly-sim-only-deals .accordion-faq details summary::after,
+body.paymonthly-page .accordion-faq details summary::after,
+body.paymonthly .accordion-faq details summary::after {
 width: 32px;
 height: 32px;
 font-size: 22px;
@@ -133,19 +167,27 @@ background-color: #fff;
 right: 0;
 }
 
-body.paymonthly-sim-only-deals .accordion-faq details[open] summary {
+body.paymonthly-sim-only-deals .accordion-faq details[open] summary,
+body.paymonthly-page .accordion-faq details[open] summary,
+body.paymonthly .accordion-faq details[open] summary {
 background-color: transparent;
 }
 
-body.paymonthly-sim-only-deals .accordion-faq details[open] summary::after {
+body.paymonthly-sim-only-deals .accordion-faq details[open] summary::after,
+body.paymonthly-page .accordion-faq details[open] summary::after,
+body.paymonthly .accordion-faq details[open] summary::after {
 content: '-';
 }
 
-body.paymonthly-sim-only-deals .accordion-faq details .accordion-faq-item-body {
+body.paymonthly-sim-only-deals .accordion-faq details .accordion-faq-item-body,
+body.paymonthly-page .accordion-faq details .accordion-faq-item-body,
+body.paymonthly .accordion-faq details .accordion-faq-item-body {
 padding: 0 0 22px;
 }
 
-body.paymonthly-sim-only-deals .accordion-faq details[open] .accordion-faq-item-body {
+body.paymonthly-sim-only-deals .accordion-faq details[open] .accordion-faq-item-body,
+body.paymonthly-page .accordion-faq details[open] .accordion-faq-item-body,
+body.paymonthly .accordion-faq details[open] .accordion-faq-item-body {
 border-top: none;
 background-color: transparent;
 }
@@ -190,12 +232,16 @@ display: flex;
 justify-content: center;
 }
 
-body.paymonthly-sim-only-deals .accordion-faq details p {
+body.paymonthly-sim-only-deals .accordion-faq details p,
+body.paymonthly-page .accordion-faq details p,
+body.paymonthly .accordion-faq details p {
 font-size: 14px;
 line-height: 1.6;
 color: #475467;
 }
 
-body.paymonthly-sim-only-deals .accordion-faq-container > div[style] {
+body.paymonthly-sim-only-deals .accordion-faq-container > div[style],
+body.paymonthly-page .accordion-faq-container > div[style],
+body.paymonthly .accordion-faq-container > div[style] {
 margin: 28px 0 0 !important;
 }

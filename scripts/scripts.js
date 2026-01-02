@@ -14,6 +14,10 @@ import {
   getMetadata,
 } from './aem.js';
 
+if (window.location.pathname.includes('/paymonthly/')) {
+ document.body.classList.add('paymonthly-page');
+}
+
 import {
   initMartech,
   martechEager,
