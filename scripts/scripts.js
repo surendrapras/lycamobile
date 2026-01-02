@@ -896,9 +896,32 @@ export function decorateCheckoutLayout(main) {
   }
 }
 
- 
-  function sendLandingPageEvent(language) {
-	  alert("Inside sendLandingPageEvent");
+function createEventPayload(base) {
+  return {
+    xdm: {
+      eventType: base.eventName,
+      web: {
+        webPageDetails: {
+          URL: window.location.href,
+          ...base.web.webPageDetails,
+        },
+      },
+      _acsapac: {
+        Currency: base.currency,
+        platform: '',
+        country: base.country,
+        eventType: base.eventName,
+        revenue_local: '',
+        planName: '',
+        language: base.language,
+      },
+    },
+  };
+}
+
+function sendLandingPageEvent(language) {
+  // eslint-disable-next-line no-console
+  console.log('Inside sendLandingPageEvent');
   const currency = language === 'FR' ? 'Euro' : 'Pound';
   const country = language === 'FR' ? 'FR' : 'GB';
 
@@ -910,7 +933,8 @@ export function decorateCheckoutLayout(main) {
     web: { webPageDetails: { name: 'Home Page', siteSection: 'Home' } },
   }));
 }
- function sendPLPEvent(language) {
+
+function sendPLPEvent(language) {
   const currency = language === 'FR' ? 'Euro' : 'Pound';
   const country = language === 'FR' ? 'FR' : 'GB';
 
@@ -934,28 +958,6 @@ function sendCheckoutEvent(language) {
     eventName: 'Web.CheckoutPageView',
     web: { webPageDetails: { name: 'Checkout Page', siteSection: 'Checkout' } },
   }));
-}
-function createEventPayload(base) {
-  return {
-    xdm: {
-      eventType: 'web.webpagedetails.pageViews',
-      web: {
-        webPageDetails: {
-          URL: window.location.href,
-          ...base.web.webPageDetails,
-        },
-      },
-      _acsapac: {
-        Currency: base.currency,
-        platform: '',
-        country: base.country,
-        eventType: base.eventName,
-        revenue_local: '',
-        planName: '',
-        language: base.language,
-      },
-    },
-  };
 }
 /**
  * Loads everything needed to get to LCP.
@@ -1009,31 +1011,33 @@ async function loadEager(doc) {
   if (main) {
     decorateMain(main);
     decorateCheckoutLayout(main);
-	await martechLoadedPromise;
-	const template = (getMetadata('template') || '').trim().toLowerCase();
+    await martechLoadedPromise;
+    const pageTemplate = (getMetadata('template') || '').trim().toLowerCase();
     const language = (getMetadata('language') || 'EN').toUpperCase();
-    alert("template"+template);
-    alert("language"+language);
-  
-   try {
-	await martechLoadedPromise;
-    switch (template) {
-      case 'landing':
-        sendLandingPageEvent(language);
-        break;
-      case 'plp':
-        sendPLPEvent(language);
-        break;
-      case 'checkout':
-        sendCheckoutEvent(language);
-        break;
-      default:
-        break;
-    }
-  } catch (e) {
     // eslint-disable-next-line no-console
-    console.error('Failed to send tracking event:', e);
-  }
+    console.log(`template ${pageTemplate}`);
+    // eslint-disable-next-line no-console
+    console.log(`language ${language}`);
+
+    try {
+      await martechLoadedPromise;
+      switch (pageTemplate) {
+        case 'landing':
+          sendLandingPageEvent(language);
+          break;
+        case 'plp':
+          sendPLPEvent(language);
+          break;
+        case 'checkout':
+          sendCheckoutEvent(language);
+          break;
+        default:
+          break;
+      }
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error('Failed to send tracking event:', e);
+    }
     document.body.classList.add('appear');
     const section = main.querySelector('.section') || main.querySelector('.checkout-hero');
     if (section) {
