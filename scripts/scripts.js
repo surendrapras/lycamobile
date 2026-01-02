@@ -974,13 +974,20 @@ function sendCheckoutEvent(language) {
 
   const selection = getCheckoutSelection();
 
+  const rawPrice = selection.newPrice || '0';
+  const numericPrice = parseFloat(rawPrice.replace(/[^\d.]/g, '')) || 0;
+
+  // Approximate conversion rates
+  const rate = currency === 'Pound' ? 1.27 : 1.08;
+  const revenueUsd = (numericPrice * rate).toFixed(2);
+
   window.alloy('sendEvent', createEventPayload({
     currency,
     country,
     language,
     eventName: 'Checkout Page View',
-    revenue_usd: selection.newPrice,
-    planAmount: selection.newPrice,
+    revenue_usd: revenueUsd,
+    planAmount: numericPrice.toFixed(2), // Send as string/number without symbol
     planName: selection.title,
     web: { webPageDetails: { name: 'Checkout Page', siteSection: 'Checkout' } },
   }));
