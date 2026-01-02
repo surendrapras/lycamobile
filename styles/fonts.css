@@ -7,7 +7,7 @@
 
 /* GT-Eesti LC Display Light - for thin/elegant headings */
 @font-face {
-  font-family: 'GT-Eesti-LC-Display';
+  font-family: GT-Eesti-LC-Display;
   font-style: normal;
   font-weight: 300;
   font-display: swap;
@@ -16,7 +16,7 @@
 
 /* GT-Eesti LC Display Regular */
 @font-face {
-  font-family: 'GT-Eesti-LC-Display';
+  font-family: GT-Eesti-LC-Display;
   font-style: normal;
   font-weight: 400;
   font-display: swap;
@@ -25,7 +25,7 @@
 
 /* GT-Eesti LC Display Medium */
 @font-face {
-  font-family: 'GT-Eesti-LC-Display';
+  font-family: GT-Eesti-LC-Display;
   font-style: normal;
   font-weight: 500;
   font-display: swap;
@@ -34,7 +34,7 @@
 
 /* GT-Eesti LC Display Bold */
 @font-face {
-  font-family: 'GT-Eesti-LC-Display';
+  font-family: GT-Eesti-LC-Display;
   font-style: normal;
   font-weight: 700;
   font-display: swap;

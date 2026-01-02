@@ -14,7 +14,7 @@
 /* Center the heading with thin/elegant font style matching original */
 .section.carousel-flags-container h2 {
   text-align: center;
-  font-family: 'GT-Eesti-LC-Display', -apple-system, blinkmacsystemfont, sans-serif;
+  font-family: GT-Eesti-LC-Display, -apple-system, blinkmacsystemfont, sans-serif;
   font-size: 24px;
   font-weight: 300;
   color: var(--color-text-primary);
