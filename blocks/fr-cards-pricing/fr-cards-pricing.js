@@ -53,13 +53,12 @@ export default function decorate(block) {
     params.append('price', priceCell.textContent.trim());
     params.append('data', dataCell.textContent.trim());
     params.append('period', period);
-    
     // Append params to the link
     if (link) {
-        const url = new URL(link.href, window.location.origin);
-        // Add new params while preserving existing ones if any (though we reset href above)
-        params.forEach((value, key) => url.searchParams.set(key, value));
-        link.href = url.toString();
+      const url = new URL(link.href, window.location.origin);
+      // Add new params while preserving existing ones if any (though we reset href above)
+      params.forEach((value, key) => url.searchParams.set(key, value));
+      link.href = url.toString();
     }
 
     // Create card
