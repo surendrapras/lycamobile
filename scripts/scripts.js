@@ -653,7 +653,7 @@ export function decorateCheckoutLayout(main) {
     '/abo/fr/bundles/sim-only-deals/checkout',
     '/paymonthly/en/checkout/checkout',
   ];
-  
+
   if (footerRoutes.some((route) => window.location.pathname.includes(route))) {
     const footerHTML = `
       <div class="basketFooter_basket_footer__UXk12" id="footer">
