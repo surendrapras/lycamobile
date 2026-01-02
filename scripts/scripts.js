@@ -959,6 +959,9 @@ function sendCheckoutEvent(language) {
     web: { webPageDetails: { name: 'Checkout Page', siteSection: 'Checkout' } },
   }));
 }
+// Module-level variable to share martech promise between loadEager and loadLazy
+let martechLoadedPromise;
+
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -979,7 +982,7 @@ async function loadEager(doc) {
   decorateTemplateAndTheme();
 
   // Martech Plugin initialization
-  const martechLoadedPromise = initMartech(
+  martechLoadedPromise = initMartech(
     // 1. WebSDK Configuration
     // Docs: https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/commands/configure/overview#configure-js
     {
@@ -1010,7 +1013,7 @@ async function loadEager(doc) {
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
-    decorateCheckoutLayout(main);    
+    decorateCheckoutLayout(main);
     document.body.classList.add('appear');
     const section = main.querySelector('.section') || main.querySelector('.checkout-hero');
     if (section) {
@@ -1040,28 +1043,27 @@ async function loadLazy(doc) {
 
   const main = doc.querySelector('main');
   await loadSections(main);
-  await martechLoadedPromise;
-    const pageTemplate = (getMetadata('template') || '').trim().toLowerCase();
-    const language = (getMetadata('language') || 'EN').toUpperCase();
-    try {
-      await martechLoadedPromise;
-      switch (pageTemplate) {
-        case 'landing':
-          sendLandingPageEvent(language);
-          break;
-        case 'plp':
-          sendPLPEvent(language);
-          break;
-        case 'checkout':
-          sendCheckoutEvent(language);
-          break;
-        default:
-          break;
-      }
-    } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error('Failed to send tracking event:', e);
+  const pageTemplate = (getMetadata('template') || '').trim().toLowerCase();
+  const language = (getMetadata('language') || 'EN').toUpperCase();
+  try {
+    await martechLoadedPromise;
+    switch (pageTemplate) {
+      case 'landing':
+        sendLandingPageEvent(language);
+        break;
+      case 'plp':
+        sendPLPEvent(language);
+        break;
+      case 'checkout':
+        sendCheckoutEvent(language);
+        break;
+      default:
+        break;
     }
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error('Failed to send tracking event:', e);
+  }
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
