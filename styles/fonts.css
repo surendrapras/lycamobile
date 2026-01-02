@@ -2,9 +2,44 @@
 
 /*
  * Lycamobile uses GTEestiLCDisplay custom font family
- * Since we don't have access to the font files, we'll use system fonts
- * that closely match the characteristics of the original
+ * Loading from local font files
  */
+
+/* GT-Eesti LC Display Light - for thin/elegant headings */
+@font-face {
+  font-family: 'GT-Eesti-LC-Display';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/GT-Eesti-LC-Display-Light.otf') format('opentype');
+}
+
+/* GT-Eesti LC Display Regular */
+@font-face {
+  font-family: 'GT-Eesti-LC-Display';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/GT-Eesti-LC-Display-Regular.otf') format('opentype');
+}
+
+/* GT-Eesti LC Display Medium */
+@font-face {
+  font-family: 'GT-Eesti-LC-Display';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/GT-Eesti-LC-Display-Medium.otf') format('opentype');
+}
+
+/* GT-Eesti LC Display Bold */
+@font-face {
+  font-family: 'GT-Eesti-LC-Display';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/GT-Eesti-LC-Display-Bold.otf') format('opentype');
+}
 
 /* Fallback font stack for body text (GTEestiLCDisplayRegular) */
 @font-face {
