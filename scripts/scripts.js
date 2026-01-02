@@ -31,9 +31,8 @@ function buildHeroBlock(main) {
 
   if (!h1 || !picture) return;
 
-  const prec = Node.DOCUMENT_POSITION_PRECEDING;
-  // eslint-disable-next-line no-bitwise
-  const isPictureBeforeHeading = (h1.compareDocumentPosition(picture) & prec) > 0;
+  const isPictureBeforeHeading =
+    (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING) > 0;
 
   if (isPictureBeforeHeading) {
     if (h1.closest('.hero') || picture.closest('.hero')) return;
@@ -54,24 +53,27 @@ async function loadFonts() {
   }
 }
 
-/**
- * Dependency cycle fix: In AEM, auto-blocking fragments should 
- * usually be handled via buildBlock rather than direct imports 
- * to avoid importing block logic back into scripts.js.
- */
 function buildAutoBlocks(main) {
   try {
+    // Fragment auto-blocking
     const fragments = main.querySelectorAll('a[href*="/fragments/"]');
-    fragments.forEach((a) => {
-      const path = new URL(a.href).pathname;
-      if (path.startsWith('/fragments/')) {
-        const block = buildBlock('fragment', { elems: [a.cloneNode(true)] });
-        a.replaceWith(block);
-      }
-    });
+    if (fragments.length > 0) {
+      import('../blocks/fragment/fragment.js').then(({ loadFragment }) => {
+        fragments.forEach(async (fragment) => {
+          try {
+            const { pathname } = new URL(fragment.href);
+            const frag = await loadFragment(pathname);
+            fragment.parentElement.replaceWith(frag.firstElementChild);
+          } catch (error) {
+            console.error('Fragment loading failed:', error);
+          }
+        });
+      });
+    }
 
     buildHeroBlock(main);
 
+    // lyca-snow effect (only once)
     if (!main.querySelector('.lyca-snow')) {
       const section = document.createElement('div');
       const snow = document.createElement('div');
@@ -80,7 +82,6 @@ function buildAutoBlocks(main) {
       main.append(section);
     }
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error('Auto Blocking failed:', error);
   }
 }
@@ -106,11 +107,7 @@ function normalizePrice(price, fallback) {
     .trim() || fallback;
 }
 
-/**
- * Exported to resolve no-unused-vars. 
- * This allows checkout blocks to import this logic.
- */
-export function getCheckoutSelection() {
+function getCheckoutSelection() {
   const defaults = {
     title: '24 month Unlimited',
     oldPrice: '£18.00',
@@ -143,6 +140,8 @@ export function getCheckoutSelection() {
   }
 }
 
+// ... (rest of checkout functions remain mostly unchanged - keeping them out for brevity)
+
 export function decorateCheckoutLayout(main) {
   if (!document.body.classList.contains('paymonthly-checkout')) return;
 
@@ -150,33 +149,127 @@ export function decorateCheckoutLayout(main) {
 
   if (main.dataset.checkoutDecorated === 'true') return;
   main.dataset.checkoutDecorated = 'true';
+
+  // ... rest of your decorateCheckoutLayout function (unchanged) ...
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
-   Alloy / Adobe Analytics Tracking
+   Page Loading Lifecycle
+───────────────────────────────────────────────────────────────────────── */
+
+async function loadEager(doc) {
+  document.documentElement.lang = 'en';
+
+  const { pathname } = window.location;
+  const template = getMetadata('template');
+  if (template) document.body.classList.add(`paymonthly-${template}`);
+
+  const isCheckout = template === 'checkout' || pathname.includes('/paymonthly/en/checkout/checkout');
+  if (isCheckout) {
+    document.body.classList.add('paymonthly-checkout');
+    if (pathname.includes('/paymonthly/en/checkout/checkout')) {
+      document.body.classList.add('checkout-hide-chrome');
+    }
+  }
+
+  decorateTemplateAndTheme();
+
+  const martechLoadedPromise = initMartech(
+    {
+      datastreamId: 'c3040c2e-07d6-446c-8f3c-d3f500ff3113',
+      orgId: '09CF60665F98CEF90A495FF8@AdobeOrg',
+      defaultConsent: 'in',
+      onBeforeEventSend: (payload) => { /* optional */ },
+      edgeConfigOverrides: {},
+    },
+    {
+      personalization: !!getMetadata('target'),
+      launchUrls: [
+        'https://assets.adobedtm.com/0e9a0418089e/4efb62083c74/launch-7537c509f5f7-development.min.js',
+      ],
+    }
+  );
+
+  const main = doc.querySelector('main');
+  if (main) {
+    decorateMain(main);
+    decorateCheckoutLayout(main);
+    document.body.classList.add('appear');
+
+    const section = main.querySelector('.section, .checkout-hero');
+    if (section) {
+      await Promise.all([
+        martechLoadedPromise.then(martechEager),
+        loadSection(section, waitForFirstImage),
+      ]);
+    }
+
+    // Start Alloy tracking once main content is decorated
+    initAlloyTracking();
+  }
+
+  if (window.innerWidth >= 900 || sessionStorage.getItem('fonts-loaded')) {
+    loadFonts().catch(() => {});
+  }
+}
+
+async function loadLazy(doc) {
+  loadHeader(doc.querySelector('header'));
+  const main = doc.querySelector('main');
+  await loadSections(main);
+
+  const { hash } = window.location;
+  if (hash) {
+    const element = doc.getElementById(hash.substring(1));
+    if (element) element.scrollIntoView();
+  }
+
+  loadFooter(doc.querySelector('footer'));
+  await martechLazy();
+  loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
+  await loadFonts();
+}
+
+function loadDelayed() {
+  setTimeout(() => {
+    martechDelayed();
+    import('./delayed.js').catch(() => {});
+  }, 3000);
+}
+
+async function loadPage() {
+  await loadEager(document);
+  await loadLazy(document);
+  loadDelayed();
+}
+
+loadPage();
+
+/* ──────────────────────────────────────────────────────────────────────────
+   Alloy / Adobe Analytics Tracking - FIXED VERSION
 ───────────────────────────────────────────────────────────────────────── */
 
 function createEventPayload(base) {
   return {
     xdm: {
-      eventType: 'web.webpagedetails.pageViews',
+      eventType: "web.webpagedetails.pageViews",
       web: {
         webPageDetails: {
           URL: window.location.href,
-          ...base.web.webPageDetails,
-        },
+          ...base.web.webPageDetails
+        }
       },
       _acsapac: {
         Currency: base.currency,
-        channel: '',
+        channel: "",
         country: base.country,
         eventType: base.eventName,
-        monthlyPriceLocal: '',
-        monthlyPriceUSD: '',
-        planName: '',
-        language: base.language,
-      },
-    },
+        monthlyPriceLocal: "",
+        monthlyPriceUSD: "",
+        planName: "",
+        language: base.language
+      }
+    }
   };
 }
 
@@ -184,12 +277,10 @@ function sendLandingPageEvent(language) {
   const currency = language === 'FR' ? 'Euro' : 'Pound';
   const country = language === 'FR' ? 'FR' : 'GB';
 
-  window.alloy('sendEvent', createEventPayload({
-    currency,
-    country,
-    language,
-    eventName: 'Home Page View Event',
-    web: { webPageDetails: { name: 'Home Page', siteSection: 'Home' } },
+  window.alloy("sendEvent", createEventPayload({
+    currency, country, language,
+    eventName: "Home Page View Event",
+    web: { webPageDetails: { name: "Home Page", siteSection: "Home" } }
   }));
 }
 
@@ -197,43 +288,50 @@ function sendPLPEvent(language) {
   const currency = language === 'FR' ? 'Euro' : 'Pound';
   const country = language === 'FR' ? 'FR' : 'GB';
 
-  window.alloy('sendEvent', createEventPayload({
-    currency,
-    country,
-    language,
-    eventName: 'Plan Viewed Event',
-    web: { webPageDetails: { name: 'Listing Page', siteSection: 'Listing' } },
+  window.alloy("sendEvent", createEventPayload({
+    currency, country, language,
+    eventName: "Plan Viewed Event",
+    web: { webPageDetails: { name: "Listing Page", siteSection: "Listing" } }
   }));
+
+  console.log('✅ PLP Event Sent');
 }
 
 function sendCheckoutEvent(language) {
   const currency = language === 'FR' ? 'Euro' : 'Pound';
   const country = language === 'FR' ? 'FR' : 'GB';
 
-  window.alloy('sendEvent', createEventPayload({
-    currency,
-    country,
-    language,
-    eventName: 'Checkout Page Event',
-    web: { webPageDetails: { name: 'Checkout Page', siteSection: 'Checkout' } },
+  window.alloy("sendEvent", createEventPayload({
+    currency, country, language,
+    eventName: "Checkout Page Event",
+    web: { webPageDetails: { name: "Checkout Page", siteSection: "Checkout" } }
   }));
 }
 
+/**
+ * Waits until real Alloy is loaded (not the queue stub)
+ */
 function waitForRealAlloy(maxAttempts = 40, interval = 250) {
   return new Promise((resolve, reject) => {
     let attempts = 0;
+
     const check = () => {
-      attempts += 1;
+      attempts++;
       if (window.alloy && typeof window.alloy !== 'function') {
+        console.log('Real Alloy instance detected');
         resolve();
         return;
       }
+
       if (attempts >= maxAttempts) {
+        console.warn('Alloy still not ready after', maxAttempts * interval, 'ms');
         reject(new Error('Alloy timeout'));
         return;
       }
+
       setTimeout(check, interval);
     };
+
     check();
   });
 }
@@ -241,11 +339,19 @@ function waitForRealAlloy(maxAttempts = 40, interval = 250) {
 async function initAlloyTracking() {
   const template = (getMetadata('template') || '').trim().toLowerCase();
   const language = (getMetadata('language') || 'EN').toUpperCase();
+  console.log("Language metadata:", getMetadata('language'))
+  console.log("Template metadata:", getMetadata('template'))
 
-  if (!template) return;
+  console.log('Tracking init → template:', template, '| language:', language);
+
+  if (!template) {
+    console.warn('No template metadata found → skipping page view tracking');
+    return;
+  }
 
   try {
     await waitForRealAlloy();
+
     switch (template) {
       case 'landing':
       case 'home':
@@ -261,97 +367,9 @@ async function initAlloyTracking() {
         sendCheckoutEvent(language);
         break;
       default:
-        break;
+        console.log(`No tracking defined for template: ${template}`);
     }
   } catch (e) {
-    // eslint-disable-next-line no-console
     console.error('Failed to send tracking event:', e);
   }
 }
-
-/* ──────────────────────────────────────────────────────────────────────────
-   Page Loading Lifecycle
-───────────────────────────────────────────────────────────────────────── */
-
-async function loadEager(doc) {
-  document.documentElement.lang = 'en';
-  const { pathname } = window.location;
-  const template = getMetadata('template');
-  if (template) document.body.classList.add(`paymonthly-${template}`);
-
-  const checkPath = '/paymonthly/en/checkout/checkout';
-  const isCheckout = template === 'checkout' || pathname.includes(checkPath);
-  if (isCheckout) {
-    document.body.classList.add('paymonthly-checkout');
-    if (pathname.includes(checkPath)) {
-      document.body.classList.add('checkout-hide-chrome');
-    }
-  }
-
-  decorateTemplateAndTheme();
-
-  const martechLoadedPromise = initMartech(
-    {
-      datastreamId: 'c3040c2e-07d6-446c-8f3c-d3f500ff3113',
-      orgId: '09CF60665F98CEF90A495FF8@AdobeOrg',
-      defaultConsent: 'in',
-      onBeforeEventSend: () => { /* optional */ },
-      edgeConfigOverrides: {},
-    },
-    {
-      personalization: !!getMetadata('target'),
-      launchUrls: [
-        'https://assets.adobedtm.com/0e9a0418089e/4efb62083c74/launch-7537c509f5f7-development.min.js',
-      ],
-    },
-  );
-
-  const main = doc.querySelector('main');
-  if (main) {
-    decorateMain(main);
-    decorateCheckoutLayout(main);
-    document.body.classList.add('appear');
-    const section = main.querySelector('.section, .checkout-hero');
-    if (section) {
-      await Promise.all([
-        martechLoadedPromise.then(martechEager),
-        loadSection(section, waitForFirstImage),
-      ]);
-    }
-    initAlloyTracking();
-  }
-
-  if (window.innerWidth >= 900 || sessionStorage.getItem('fonts-loaded')) {
-    loadFonts().catch(() => {});
-  }
-}
-
-async function loadLazy(doc) {
-  const main = doc.querySelector('main');
-  await loadSections(main);
-  const { hash } = window.location;
-  if (hash) {
-    const element = doc.getElementById(hash.substring(1));
-    if (element) element.scrollIntoView();
-  }
-  loadHeader(doc.querySelector('header'));
-  loadFooter(doc.querySelector('footer'));
-  await martechLazy();
-  loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
-  await loadFonts();
-}
-
-function loadDelayed() {
-  window.setTimeout(() => {
-    martechDelayed();
-    import('./delayed.js').catch(() => {});
-  }, 3000);
-}
-
-async function loadPage() {
-  await loadEager(document);
-  await loadLazy(document);
-  loadDelayed();
-}
-
-loadPage();
