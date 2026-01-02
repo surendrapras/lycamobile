@@ -916,6 +916,7 @@ export function decorateCheckoutLayout(main) {
 }
 
 function createEventPayload(base) {
+  console.log('darubhai butlegger',base)
   return {
     xdm: {
       eventType: base.eventName,
@@ -931,7 +932,9 @@ function createEventPayload(base) {
         country: base.country,
         eventType: base.eventName,
         revenue_local: '',
-        planName: '',
+        revenue_usd: base.revenue_usd || '',
+        planAmount: base.planAmount || '',
+        planName: base.planName || '',
         language: base.language,
       },
     },
@@ -948,7 +951,7 @@ function sendLandingPageEvent(language) {
     currency,
     country,
     language,
-    eventName: 'Web.HomePageView',
+    eventName: 'Home Page View',
     web: { webPageDetails: { name: 'Home Page', siteSection: 'Home' } },
   }));
 }
@@ -961,7 +964,7 @@ function sendPLPEvent(language) {
     currency,
     country,
     language,
-    eventName: 'Web.PlanViewed',
+    eventName: 'Listing Page View',
     web: { webPageDetails: { name: 'Listing Page', siteSection: 'Listing' } },
   }));
 }
@@ -970,11 +973,16 @@ function sendCheckoutEvent(language) {
   const currency = language === 'FR' ? 'Euro' : 'Pound';
   const country = language === 'FR' ? 'FR' : 'GB';
 
+  const selection = getCheckoutSelection();
+
   window.alloy('sendEvent', createEventPayload({
     currency,
     country,
     language,
-    eventName: 'Web.CheckoutPageView',
+    eventName: 'Checkout Page View',
+    revenue_usd: selection.newPrice,
+    planAmount: selection.newPrice,
+    planName: selection.title,
     web: { webPageDetails: { name: 'Checkout Page', siteSection: 'Checkout' } },
   }));
 }
