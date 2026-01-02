@@ -19,7 +19,7 @@ import {
   martechEager,
   martechLazy,
   martechDelayed,
-} from '@adobe/aem-martech/src/index.js';
+} from '../plugins/martech/src/index.js';
 
 /* ──────────────────────────────────────────────────────────────────────────
    Hero & Auto Blocks
