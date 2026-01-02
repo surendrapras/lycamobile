@@ -22,6 +22,10 @@ import {
   // eslint-disable-next-line import/no-relative-packages
 } from '../plugins/martech/src/index.js';
 
+if (window.location.pathname.includes('/paymonthly/')) {
+  document.body.classList.add('paymonthly-page');
+}
+
 /**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
@@ -645,6 +649,21 @@ export function decorateCheckoutLayout(main) {
     </div>
   `;
 
+  const footerRoutes = [
+    '/abo/fr/bundles/sim-only-deals/checkout',
+    '/paymonthly/en/checkout/checkout',
+  ];
+
+  if (footerRoutes.some((route) => window.location.pathname.includes(route))) {
+    const footerHTML = `
+      <div class="basketFooter_basket_footer__UXk12" id="footer">
+        <img id="footer-brand-logo" data-testid="test-footer-brand-logo" alt="arrowToggle" width="68" height="27" decoding="async" data-nimg="1" style="color: transparent;" loading="lazy" src="https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/2024-07/image%204.png?VersionId=5TG4CWBbfGl12_XNGqSwqr_D7aQoh0Uq">
+        <p>© 2026 LycaMobile UK Limited &nbsp;| All Rights Reserved</p>
+      </div>
+    `;
+    page.insertAdjacentHTML('beforeend', footerHTML);
+  }
+
   main.replaceChildren(page);
 
   // Force clear old price and english/french subtext for FR pages as requested
@@ -912,7 +931,9 @@ function createEventPayload(base) {
         country: base.country,
         eventType: base.eventName,
         revenue_local: '',
-        planName: '',
+        revenue_usd: base.revenue_usd || '',
+        planAmount: base.planAmount || '',
+        planName: base.planName || '',
         language: base.language,
       },
     },
@@ -929,7 +950,7 @@ function sendLandingPageEvent(language) {
     currency,
     country,
     language,
-    eventName: 'Web.HomePageView',
+    eventName: 'Home Page View',
     web: { webPageDetails: { name: 'Home Page', siteSection: 'Home' } },
   }));
 }
@@ -942,7 +963,7 @@ function sendPLPEvent(language) {
     currency,
     country,
     language,
-    eventName: 'Web.PlanViewed',
+    eventName: 'Listing Page View',
     web: { webPageDetails: { name: 'Listing Page', siteSection: 'Listing' } },
   }));
 }
@@ -951,11 +972,16 @@ function sendCheckoutEvent(language) {
   const currency = language === 'FR' ? 'Euro' : 'Pound';
   const country = language === 'FR' ? 'FR' : 'GB';
 
+  const selection = getCheckoutSelection();
+
   window.alloy('sendEvent', createEventPayload({
     currency,
     country,
     language,
-    eventName: 'Web.CheckoutPageView',
+    eventName: 'Checkout Page View',
+    revenue_usd: selection.newPrice,
+    planAmount: selection.newPrice,
+    planName: selection.title,
     web: { webPageDetails: { name: 'Checkout Page', siteSection: 'Checkout' } },
   }));
 }

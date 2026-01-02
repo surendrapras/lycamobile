@@ -15,18 +15,20 @@
 .cards-blog > ul > li {
   border: none;
   background-color: var(--background-color);
-  border-radius: var(--border-radius-lg);
+  border-radius: 14px !important;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgb(0 0 0 / 8%);
+  box-shadow: 0 3px 8px rgb(0 0 0 / 24%) !important;
   display: flex;
   flex-direction: column;
+  min-height: 400px;
+  padding: 0 !important;
 }
 
 .cards-blog > ul > li:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgb(0 0 0 / 12%);
+  box-shadow: 0 8px 16px rgb(0 0 0 / 12%) !important;
 }
 
 .cards-blog .cards-blog-card-body {
@@ -34,7 +36,7 @@
 }
 
 .cards-blog .cards-blog-card-body p {
-  margin: 8px 0;
+  margin: 5px 0;
 }
 
 .cards-blog .cards-blog-card-body strong {
@@ -49,46 +51,7 @@
 .cards-blog .cards-blog-card-body p:last-child {
   color: var(--color-text-secondary);
   font-size: var(--body-font-size-xs);
-  margin-top: var(--spacing-s);
-}
-
-/* Handle case where date and author are in separate card-body divs */
-
-/* When there are multiple card-body divs, combine date and author on same line */
-.cards-blog > ul > li:has(.cards-blog-card-body + .cards-blog-card-body) {
-  display: block;
-}
-
-/* Keep first card-body block but remove bottom padding to bring elements closer */
-.cards-blog > ul > li:has(.cards-blog-card-body + .cards-blog-card-body) > div:nth-of-type(2) {
-  padding-bottom: 0;
-}
-
-/* Make the second card-body (nth-of-type(3)) inline so it flows with the date */
-.cards-blog > ul > li:has(.cards-blog-card-body + .cards-blog-card-body) > div:nth-of-type(3) {
-  display: inline;
-  padding: 0;
-  padding-left: 20px;
-  margin: 0;
-  margin-top: -19px;
-  vertical-align: baseline;
-}
-
-/* Make paragraphs in the second card-body inline */
-.cards-blog > ul > li:has(.cards-blog-card-body + .cards-blog-card-body) > div:nth-of-type(3) p {
-  display: inline;
-  margin: 0;
-}
-
-/* Make the date paragraph (last p in first card-body, which is nth-of-type(2)) display inline */
-.cards-blog > ul > li:has(.cards-blog-card-body + .cards-blog-card-body) > div:nth-of-type(2) p:last-child {
-  display: inline;
-  margin: 0;
-}
-
-/* Add the pipe separator before the author */
-.cards-blog > ul > li:has(.cards-blog-card-body + .cards-blog-card-body) > div:nth-of-type(3) p::before {
-  content: ' | ';
+  margin-top: auto;
 }
 
 .cards-blog .cards-blog-card-image {

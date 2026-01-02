@@ -971,7 +971,6 @@ body.paymonthly-checkout {
 
 body.paymonthly-checkout main {
     margin-top: 0;
-    padding: 0 0 80px;
 }
 
 body.paymonthly-checkout main h1 {
@@ -981,14 +980,6 @@ body.paymonthly-checkout main h1 {
     padding: 0 20px;
     color: #21254f;
 }
-/* 
-.checkout-page {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 0 20px 40px;
-    box-sizing: border-box;
-    max-width: 1180px;
-} */
 
 .checkout-steps {
     display: flex;
@@ -1042,7 +1033,7 @@ body.paymonthly-checkout main h1 {
 
 .checkout-layout {
     display: grid;
-    grid-template-columns: 1.8fr 1fr;
+    grid-template-columns: 1.2fr 1fr;
     gap: 18px;
     align-items: start;
 }
@@ -2406,4 +2397,19 @@ main .section:has(.columns-features) .columns-features p {
     font-weight: 400;
     font-family: GTEestiLCDisplayRegular, var(--body-font-family);
     color: #344054;
+}
+
+.basketFooter_basket_footer__UXk12 {
+    display: flex;
+    justify-content: center;
+    gap: 31px;
+    align-items: center;
+    height: 103px;
+    background-color: #21254F;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 400;
+    font-family: GTEestiLCDisplayRegular, sans-serif;
+    line-height: 1.758rem;
+    width: 100%;
 }
