@@ -167,3 +167,7 @@ width: 100px;
 font-size: var(--body-font-size-l);
 }
 }
+
+.carousel-flags-container .default-content-wrapper {
+  text-align: center;
+}

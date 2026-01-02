@@ -10,6 +10,19 @@ export default function decorate(block) {
       if (div.children.length === 1 && div.querySelector('picture')) div.className = 'cards-blog-card-image';
       else div.className = 'cards-blog-card-body';
     });
+
+    // Merge author column if present to ensure "Date | Author" format
+    const bodies = li.querySelectorAll('.cards-blog-card-body');
+    if (bodies.length > 1) {
+      const [mainBody, authorBody] = bodies;
+      const dateP = mainBody.querySelector('p:last-child');
+      const authorP = authorBody.querySelector('p');
+      if (dateP && authorP) {
+        dateP.textContent += ` | ${authorP.textContent}`;
+      }
+      authorBody.remove();
+    }
+
     ul.append(li);
   });
   ul.querySelectorAll('picture > img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
