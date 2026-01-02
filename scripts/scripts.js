@@ -649,6 +649,21 @@ export function decorateCheckoutLayout(main) {
     </div>
   `;
 
+  const footerRoutes = [
+    '/abo/fr/bundles/sim-only-deals/checkout',
+    '/paymonthly/en/checkout/checkout',
+  ];
+  
+  if (footerRoutes.some((route) => window.location.pathname.includes(route))) {
+    const footerHTML = `
+      <div class="basketFooter_basket_footer__UXk12" id="footer">
+        <img id="footer-brand-logo" data-testid="test-footer-brand-logo" alt="arrowToggle" width="68" height="27" decoding="async" data-nimg="1" style="color: transparent;" loading="lazy" src="https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/2024-07/image%204.png?VersionId=5TG4CWBbfGl12_XNGqSwqr_D7aQoh0Uq">
+        <p>© 2026 LycaMobile UK Limited &nbsp;| All Rights Reserved</p>
+      </div>
+    `;
+    page.insertAdjacentHTML('beforeend', footerHTML);
+  }
+
   main.replaceChildren(page);
 
   // Force clear old price and english/french subtext for FR pages as requested
