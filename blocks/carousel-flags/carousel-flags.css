@@ -1,4 +1,24 @@
 /* stylelint-disable */
+
+/* Section background styling to match original site */
+.section.carousel-flags-container {
+  background: linear-gradient(180deg, #f0f4f8 0%, #e8eef3 100%);
+  padding: 48px 24px;
+}
+
+.section.carousel-flags-container > div {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Center the heading */
+.section.carousel-flags-container h2 {
+  text-align: center;
+  font-size: var(--heading-font-size-m);
+  color: var(--color-text-primary);
+  margin-bottom: 32px;
+}
+
 .carousel-flags .carousel-flags-slides-container {
 position: relative;
 }
