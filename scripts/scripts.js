@@ -19,7 +19,7 @@ import {
   martechEager,
   martechLazy,
   martechDelayed,
-} from '../plugins/martech/src/index.js';
+} from '@adobe/aem-martech/src/index.js';
 
 /* ──────────────────────────────────────────────────────────────────────────
    Hero & Auto Blocks
@@ -31,8 +31,9 @@ function buildHeroBlock(main) {
 
   if (!h1 || !picture) return;
 
+  const prec = Node.DOCUMENT_POSITION_PRECEDING;
   // eslint-disable-next-line no-bitwise
-  const isPictureBeforeHeading = (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING) > 0;
+  const isPictureBeforeHeading = (h1.compareDocumentPosition(picture) & prec) > 0;
 
   if (isPictureBeforeHeading) {
     if (h1.closest('.hero') || picture.closest('.hero')) return;
@@ -53,28 +54,24 @@ async function loadFonts() {
   }
 }
 
+/**
+ * Dependency cycle fix: In AEM, auto-blocking fragments should 
+ * usually be handled via buildBlock rather than direct imports 
+ * to avoid importing block logic back into scripts.js.
+ */
 function buildAutoBlocks(main) {
   try {
-    // Fragment auto-blocking
     const fragments = main.querySelectorAll('a[href*="/fragments/"]');
-    if (fragments.length > 0) {
-      import('../blocks/fragment/fragment.js').then(({ loadFragment }) => {
-        fragments.forEach(async (fragment) => {
-          try {
-            const { pathname } = new URL(fragment.href);
-            const frag = await loadFragment(pathname);
-            fragment.parentElement.replaceWith(frag.firstElementChild);
-          } catch (error) {
-            // eslint-disable-next-line no-console
-            console.error('Fragment loading failed:', error);
-          }
-        });
-      });
-    }
+    fragments.forEach((a) => {
+      const path = new URL(a.href).pathname;
+      if (path.startsWith('/fragments/')) {
+        const block = buildBlock('fragment', { elems: [a.cloneNode(true)] });
+        a.replaceWith(block);
+      }
+    });
 
     buildHeroBlock(main);
 
-    // lyca-snow effect (only once)
     if (!main.querySelector('.lyca-snow')) {
       const section = document.createElement('div');
       const snow = document.createElement('div');
@@ -109,7 +106,11 @@ function normalizePrice(price, fallback) {
     .trim() || fallback;
 }
 
-function getCheckoutSelection() {
+/**
+ * Exported to resolve no-unused-vars. 
+ * This allows checkout blocks to import this logic.
+ */
+export function getCheckoutSelection() {
   const defaults = {
     title: '24 month Unlimited',
     oldPrice: '£18.00',
@@ -221,22 +222,18 @@ function sendCheckoutEvent(language) {
 function waitForRealAlloy(maxAttempts = 40, interval = 250) {
   return new Promise((resolve, reject) => {
     let attempts = 0;
-
     const check = () => {
       attempts += 1;
       if (window.alloy && typeof window.alloy !== 'function') {
         resolve();
         return;
       }
-
       if (attempts >= maxAttempts) {
         reject(new Error('Alloy timeout'));
         return;
       }
-
       setTimeout(check, interval);
     };
-
     check();
   });
 }
@@ -245,26 +242,26 @@ async function initAlloyTracking() {
   const template = (getMetadata('template') || '').trim().toLowerCase();
   const language = (getMetadata('language') || 'EN').toUpperCase();
 
-  if (!template) {
-    return;
-  }
+  if (!template) return;
 
   try {
     await waitForRealAlloy();
-
     switch (template) {
       case 'landing':
+      case 'home':
         sendLandingPageEvent(language);
         break;
+      case 'plp':
+      case 'plans':
       case 'listing':
         sendPLPEvent(language);
         break;
       case 'checkout':
+      case 'paymonthly-checkout':
         sendCheckoutEvent(language);
         break;
       default:
-        // eslint-disable-next-line no-console
-        console.log(`No tracking defined for template: ${template}`);
+        break;
     }
   } catch (e) {
     // eslint-disable-next-line no-console
@@ -278,15 +275,15 @@ async function initAlloyTracking() {
 
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
-
   const { pathname } = window.location;
   const template = getMetadata('template');
   if (template) document.body.classList.add(`paymonthly-${template}`);
 
-  const isCheckout = template === 'checkout' || pathname.includes('/paymonthly/en/checkout/checkout');
+  const checkPath = '/paymonthly/en/checkout/checkout';
+  const isCheckout = template === 'checkout' || pathname.includes(checkPath);
   if (isCheckout) {
     document.body.classList.add('paymonthly-checkout');
-    if (pathname.includes('/paymonthly/en/checkout/checkout')) {
+    if (pathname.includes(checkPath)) {
       document.body.classList.add('checkout-hide-chrome');
     }
   }
@@ -314,7 +311,6 @@ async function loadEager(doc) {
     decorateMain(main);
     decorateCheckoutLayout(main);
     document.body.classList.add('appear');
-
     const section = main.querySelector('.section, .checkout-hero');
     if (section) {
       await Promise.all([
@@ -322,7 +318,6 @@ async function loadEager(doc) {
         loadSection(section, waitForFirstImage),
       ]);
     }
-
     initAlloyTracking();
   }
 
@@ -332,16 +327,14 @@ async function loadEager(doc) {
 }
 
 async function loadLazy(doc) {
-  loadHeader(doc.querySelector('header'));
   const main = doc.querySelector('main');
   await loadSections(main);
-
   const { hash } = window.location;
   if (hash) {
     const element = doc.getElementById(hash.substring(1));
     if (element) element.scrollIntoView();
   }
-
+  loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
   await martechLazy();
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
@@ -349,7 +342,7 @@ async function loadLazy(doc) {
 }
 
 function loadDelayed() {
-  setTimeout(() => {
+  window.setTimeout(() => {
     martechDelayed();
     import('./delayed.js').catch(() => {});
   }, 3000);
