@@ -1,6 +1,6 @@
-/* Match original site's blog section width of 1248px */
+/* Match original site's blog content width (1248px container - 160px padding = 1088px) */
 .section.cards-blog-container > div {
-  max-width: 1248px;
+  max-width: 1088px;
 }
 
 .cards-blog > ul {
