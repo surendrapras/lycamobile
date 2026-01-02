@@ -971,7 +971,6 @@ body.paymonthly-checkout {
 
 body.paymonthly-checkout main {
     margin-top: 0;
-    /* padding: 0 0 80px; */
 }
 
 body.paymonthly-checkout main h1 {
@@ -981,14 +980,6 @@ body.paymonthly-checkout main h1 {
     padding: 0 20px;
     color: #21254f;
 }
-/* 
-.checkout-page {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 0 20px 40px;
-    box-sizing: border-box;
-    max-width: 1180px;
-} */
 
 .checkout-steps {
     display: flex;
