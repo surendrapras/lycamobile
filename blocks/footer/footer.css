@@ -57,6 +57,7 @@ footer .footer h2 {
   font-size: 15px;
   font-weight: 700;
   margin: 0 0 16px;
+  padding-left: 0;
   position: relative;
   text-transform: none;
 }

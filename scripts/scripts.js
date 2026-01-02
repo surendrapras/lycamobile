@@ -915,6 +915,72 @@ export function decorateCheckoutLayout(main) {
   }
 }
 
+function createEventPayload(base) {
+  return {
+    xdm: {
+      eventType: base.eventName,
+      web: {
+        webPageDetails: {
+          URL: window.location.href,
+          ...base.web.webPageDetails,
+        },
+      },
+      _acsapac: {
+        Currency: base.currency,
+        platform: 'WEB',
+        country: base.country,
+        eventType: base.eventName,
+        revenue_local: '',
+        planName: '',
+        language: base.language,
+      },
+    },
+  };
+}
+
+function sendLandingPageEvent(language) {
+  // eslint-disable-next-line no-console
+  console.log('Inside sendLandingPageEvent');
+  const currency = language === 'FR' ? 'Euro' : 'Pound';
+  const country = language === 'FR' ? 'FR' : 'GB';
+
+  window.alloy('sendEvent', createEventPayload({
+    currency,
+    country,
+    language,
+    eventName: 'Web.HomePageView',
+    web: { webPageDetails: { name: 'Home Page', siteSection: 'Home' } },
+  }));
+}
+
+function sendPLPEvent(language) {
+  const currency = language === 'FR' ? 'Euro' : 'Pound';
+  const country = language === 'FR' ? 'FR' : 'GB';
+
+  window.alloy('sendEvent', createEventPayload({
+    currency,
+    country,
+    language,
+    eventName: 'Web.PlanViewed',
+    web: { webPageDetails: { name: 'Listing Page', siteSection: 'Listing' } },
+  }));
+}
+
+function sendCheckoutEvent(language) {
+  const currency = language === 'FR' ? 'Euro' : 'Pound';
+  const country = language === 'FR' ? 'FR' : 'GB';
+
+  window.alloy('sendEvent', createEventPayload({
+    currency,
+    country,
+    language,
+    eventName: 'Web.CheckoutPageView',
+    web: { webPageDetails: { name: 'Checkout Page', siteSection: 'Checkout' } },
+  }));
+}
+// Module-level variable to share martech promise between loadEager and loadLazy
+let martechLoadedPromise;
+
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -935,7 +1001,7 @@ async function loadEager(doc) {
   decorateTemplateAndTheme();
 
   // Martech Plugin initialization
-  const martechLoadedPromise = initMartech(
+  martechLoadedPromise = initMartech(
     // 1. WebSDK Configuration
     // Docs: https://experienceleague.adobe.com/en/docs/experience-platform/web-sdk/commands/configure/overview#configure-js
     {
@@ -996,6 +1062,27 @@ async function loadLazy(doc) {
 
   const main = doc.querySelector('main');
   await loadSections(main);
+  const pageTemplate = (getMetadata('template') || '').trim().toLowerCase();
+  const language = (getMetadata('language') || 'EN').toUpperCase();
+  try {
+    await martechLoadedPromise;
+    switch (pageTemplate) {
+      case 'landing':
+        sendLandingPageEvent(language);
+        break;
+      case 'plp':
+        sendPLPEvent(language);
+        break;
+      case 'checkout':
+        sendCheckoutEvent(language);
+        break;
+      default:
+        break;
+    }
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.error('Failed to send tracking event:', e);
+  }
 
   const { hash } = window.location;
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
