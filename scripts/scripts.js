@@ -908,7 +908,7 @@ function createEventPayload(base) {
       },
       _acsapac: {
         Currency: base.currency,
-        platform: '',
+        platform: 'WEB',
         country: base.country,
         eventType: base.eventName,
         revenue_local: '',
