@@ -1,73 +1,84 @@
 /* stylelint-disable */
+.cards-support-container {
+  background-color: #eff8ff;
+  padding: 80px 0;
+}
+
 .cards-support-container h2 {
-text-align: center;
+  text-align: center;
+  margin-bottom: 40px;
 }
 
 .cards-support > ul {
-list-style: none;
-margin: 0;
-padding: 0;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  gap: 24px;
+  flex-wrap: wrap !important;
+  width: 100% !important;
+  max-width: 1200px !important;
 }
 
 .cards-support > ul > li {
-background-color: var(--background-color);
-display: flex;
-overflow: hidden;
-cursor: pointer;
-text-align: center;
-justify-content: center;
+  background-color: transparent;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex: 0 1 auto !important;
+  width: 200px !important;
+  margin: 10px;
 }
 
 .cards-support .button-container a.button:any-link, button {
-border: none;
-background-color: unset;
+  border: none;
+  background-color: unset;
+  color: var(--color-text-main);
+  font-weight: 600;
 
-&:hover {
-background-color: transparent;
-}
+  &:hover {
+    background-color: transparent;
+    color: var(--color-secondary-blue);
+  }
 }
 
 .cards-support .cards-support-card-body {
-padding: 20px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
 .cards-support .cards-support-card-body p {
-margin: 0;
+  margin: 0;
 }
 
+/* Link styling */
 .cards-support .cards-support-card-body a {
-color: var(--color-secondary-blue);
-font-size: var(--body-font-size-s);
-font-weight: 500;
-text-decoration: none;
-display: block;
+  color: var(--color-text-main);
+  font-size: var(--body-font-size-s);
+  font-weight: 600;
+  text-decoration: none;
+  display: block;
+  line-height: normal;
 }
 
 .cards-support .cards-support-card-body a:hover {
-color: var(--color-accent-blue);
-text-decoration: none;
+  color: var(--color-secondary-blue);
 }
 
-.cards-support .cards-support-card-image {
-line-height: 0;
-background-color: #e0f2fe;
-padding: var(--spacing-l);
-display: flex;
-align-items: center;
-justify-content: center;
-}
-
+/* Image styling - assuming images are the icons */
 .cards-support > ul > li img {
-width: 80px;
-height: 80px;
-object-fit: contain;
-display: block;
-margin: 0 auto;
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%; /* Ensure circular if they are square images */
 }
 
-@media (width >= 900px) {
-.cards-support > ul {
-grid-template-columns: repeat(4, 1fr);
-gap: 24px;
-}
-}
+

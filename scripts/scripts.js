@@ -98,13 +98,28 @@ function buildAutoBlocks(main) {
       section.append(snow);
       main.append(section);
     }
-    // auto block lyca-snow
-    if (!main.querySelector('.lyca-snow')) {
-      const section = document.createElement('div');
-      const snow = document.createElement('div');
-      snow.className = 'lyca-snow';
-      section.append(snow);
-      main.append(section);
+
+    // Auto-block French newsletter
+    const frenchNewsletterHeading = Array.from(main.querySelectorAll('h2')).find(
+      (h) => h.textContent.includes('Inscrivez-vous pour accéder à nos offres exclusives'),
+    );
+
+    if (frenchNewsletterHeading) {
+      const block = document.createElement('div');
+      block.className = 'form-newsletter';
+
+      const elementsToMove = [frenchNewsletterHeading];
+      let sibling = frenchNewsletterHeading.nextElementSibling;
+      while (sibling && sibling.tagName === 'P') {
+        elementsToMove.push(sibling);
+        sibling = sibling.nextElementSibling;
+      }
+
+      // Insert block before the heading (which is the first element to move)
+      if (frenchNewsletterHeading.parentNode) {
+        frenchNewsletterHeading.parentNode.insertBefore(block, frenchNewsletterHeading);
+        elementsToMove.forEach((el) => block.append(el));
+      }
     }
   } catch (error) {
     // eslint-disable-next-line no-console

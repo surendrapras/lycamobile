@@ -3,9 +3,21 @@ import { toClassName } from '../../scripts/aem.js';
 function decorateLycaPhoneInput(block) {
   if (!block.closest('.lyca-section')) return;
 
+  const triggers = [
+    'enter your mobile number',
+    'entrez le numéro lyca & commencez',
+  ];
+
   const triggerP = [...block.querySelectorAll('p')]
-    .find((p) => p.textContent.trim().toLowerCase() === 'enter your mobile number');
+    .find((p) => triggers.includes(p.textContent.trim().toLowerCase()));
+
   if (!triggerP) return;
+
+  const isFrench = window.location.pathname.includes('/fr/');
+  const prefix = isFrench ? '+33' : '+44';
+  const placeholder = isFrench
+    ? 'Entrez le numéro Lyca & commencez'
+    : 'Enter lyca number & get started';
 
   const uid = `lyca-phone-${Math.random().toString(16).slice(2)}`;
 
@@ -13,15 +25,15 @@ function decorateLycaPhoneInput(block) {
   form.className = 'lyca-phone';
   form.setAttribute('novalidate', '');
   form.innerHTML = `
-    <span class="lyca-phone-prefix" aria-hidden="true">+44</span>
-    <label class="visually-hidden" for="${uid}">Enter your mobile number</label>
+    <span class="lyca-phone-prefix" aria-hidden="true">${prefix}</span>
+    <label class="visually-hidden" for="${uid}">${placeholder}</label>
     <input
       id="${uid}"
       class="lyca-phone-input"
       type="tel"
       inputmode="tel"
       autocomplete="tel"
-      placeholder="Enter lyca number &amp; get started"
+      placeholder="${placeholder}"
     />
     <button class="lyca-phone-submit" type="submit" aria-label="Continue">
       <span aria-hidden="true">→</span>

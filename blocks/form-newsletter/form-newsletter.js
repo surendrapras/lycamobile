@@ -86,9 +86,14 @@ export default function decorate(block) {
   input.id = inputId;
   input.name = 'email';
   input.type = 'email';
-  input.placeholder = 'Enter your email address';
+  input.placeholder = placeholderText; // Fix: Use the parsed placeholder text
   input.autocomplete = 'email';
   input.inputMode = 'email';
+
+  // Apply specific styling for French newsletter if detected
+  if (headingText.includes('Inscrivez-vous')) {
+    block.closest('.section').classList.add('french-newsletter');
+  }
   input.required = true;
 
   const btn = document.createElement('button');

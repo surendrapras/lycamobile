@@ -602,6 +602,12 @@ main .metadata {
     display: none;
 }
 
+/* French Newsletter specific style */
+main .section.french-newsletter {
+    background-color: #eff8ff;
+    padding: var(--spacing-xl) 0;
+}
+
 .cards-action-container .default-content-wrapper {
     text-align: center;
 }
@@ -816,6 +822,7 @@ main .section.dark.cards-action-container {
     background-color: #006ae0;
     margin: 0;
     padding: 20px 0;
+    gap: 16px;
 }
 
 input:checked + .slider {
@@ -827,8 +834,13 @@ input:checked + .slider {
     font-size: 1.125rem;
 }
 .section.refer-section p img {
-    width: 78px;
-    height: auto;
+    width: auto;
+    height: 48px;
+}
+
+.section.refer-section p picture:last-of-type img {
+    width: 15px;
+    height: 15px;
 }
 
 @media only screen and (max-width: 768px) {
