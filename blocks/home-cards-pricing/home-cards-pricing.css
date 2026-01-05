@@ -129,3 +129,7 @@
 .home-cards-pricing>ul>li:nth-child(2) .home-cards-pricing-card-body h2 {
     color: #fff;
 }
+
+.home-cards-pricing-container .default-content-wrapper {
+    text-align: center;
+}

@@ -602,6 +602,12 @@ main .metadata {
     display: none;
 }
 
+/* French Newsletter specific style */
+main .section.french-newsletter {
+    background-color: #eff8ff;
+    padding: var(--spacing-xl) 0;
+}
+
 .cards-action-container .default-content-wrapper {
     text-align: center;
 }

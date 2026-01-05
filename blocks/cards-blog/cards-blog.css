@@ -72,3 +72,9 @@
     gap: 24px;
   }
 }
+
+.cards-blog-container .default-content-wrapper {
+    text-align: center;
+    max-width: 1088px;
+    margin: 0 auto;
+}
