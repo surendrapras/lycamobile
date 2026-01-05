@@ -181,7 +181,7 @@ export default async function decorate(block) {
       if (text === 'login') {
         li.classList.add('nav-tools-account');
         a.setAttribute('aria-label', 'Account');
-        a.innerHTML = '<span class="nav-tools-icon-circle"><img src="https://www.lycamobile.co.uk/_next/static/media/Account.ec46a854.svg" alt="" loading="lazy"></span><span class="nav-tools-chevron" aria-hidden="true"></span>';
+        a.innerHTML = '<span class="nav-tools-icon-circle"><img src="https://www.lycamobile.co.uk/_next/static/media/Account.ec46a854.svg" alt="" loading="lazy"></span>';
       }
 
       if (text === 'cart') {
@@ -207,7 +207,8 @@ export default async function decorate(block) {
       const a = document.createElement('a');
       a.href = switchUrl;
       a.setAttribute('aria-label', 'Language');
-      a.innerHTML = `<span class="nav-tools-lang-code">${langCode}</span><img class="nav-tools-flag" src="${flagImg}" alt="flag" loading="lazy">`;
+
+      a.innerHTML = `<span class="nav-tools-lang-code">${langCode}</span><span class="nav-tools-icon-circle"><img src="${flagImg}" alt="${langCode}" loading="lazy"></span>`;
 
       li.appendChild(a);
       toolsUl.appendChild(li);
