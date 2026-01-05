@@ -198,9 +198,9 @@ export default async function decorate(block) {
       const a = document.createElement('a');
       a.href = '/en/';
       a.setAttribute('aria-label', 'Language');
-      
+
       const ukFlagSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><clipPath id="s"><circle cx="30" cy="30" r="30"/></clipPath><g clip-path="url(#s)"><path d="M0 0v60h60V0z" fill="#012169"/><path d="M0 0l60 60m0-60L0 60" stroke="#fff" stroke-width="6"/><path d="M0 0l60 60m0-60L0 60" stroke="#C8102E" stroke-width="4"/><path d="M30 0v60M0 30h60" stroke="#fff" stroke-width="10"/><path d="M30 0v60M0 30h60" stroke="#C8102E" stroke-width="6"/></g></svg>';
-      
+
       a.innerHTML = `<span class="nav-tools-lang-code">EN</span><span class="nav-tools-icon-circle">${ukFlagSvg}</span>`;
 
       li.appendChild(a);
