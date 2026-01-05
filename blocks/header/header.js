@@ -174,7 +174,7 @@ export default async function decorate(block) {
 
       const text = a.textContent.trim().toLowerCase();
 
-      if (text === 'quick top up') {
+      if (text === 'quick top up' || text === 'recharge éclair') {
         li.classList.add('nav-tools-cta');
       }
 
@@ -195,8 +195,17 @@ export default async function decorate(block) {
       const li = document.createElement('li');
       li.className = 'nav-tools-lang';
 
+      // Detect current language from URL path
+      const path = window.location.pathname;
+      const isFrench = path.startsWith('/fr/') || path === '/fr';
+      const langCode = isFrench ? 'FR' : 'EN';
+      const flagImg = isFrench
+        ? '/icons/flag-fr.svg'
+        : '/icons/flag-uk.svg';
+      const switchUrl = isFrench ? '/en/' : '/fr/';
+
       const a = document.createElement('a');
-      a.href = '/en/';
+      a.href = switchUrl;
       a.setAttribute('aria-label', 'Language');
 
       const ukFlagSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><clipPath id="s"><circle cx="30" cy="30" r="30"/></clipPath><g clip-path="url(#s)"><path d="M0 0v60h60V0z" fill="#012169"/><path d="M0 0l60 60m0-60L0 60" stroke="#fff" stroke-width="6"/><path d="M0 0l60 60m0-60L0 60" stroke="#C8102E" stroke-width="4"/><path d="M30 0v60M0 30h60" stroke="#fff" stroke-width="10"/><path d="M30 0v60M0 30h60" stroke="#C8102E" stroke-width="6"/></g></svg>';

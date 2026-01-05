@@ -205,6 +205,23 @@ header nav .nav-sections ul > li > ul > li {
     font-weight: 400;
 }
 
+/* language selector */
+header nav .nav-tools .nav-tools-lang a {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    color: #21254f;
+    font-weight: 600;
+}
+
+header nav .nav-tools .nav-tools-flag {
+    width: 20px;
+    height: 14px;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
 /* mobile expanded tools */
 @media (width < 900px) {
     header nav[aria-expanded="true"] .nav-tools ul {
@@ -382,8 +399,10 @@ header nav .nav-sections ul > li > ul > li {
     }
 
     header nav .nav-tools .nav-tools-flag {
-        font-size: 16px;
-        line-height: 1;
+        width: 24px;
+        height: 16px;
+        object-fit: cover;
+        border-radius: 2px;
     }
 
     header nav .nav-tools .nav-tools-cta a:hover {
