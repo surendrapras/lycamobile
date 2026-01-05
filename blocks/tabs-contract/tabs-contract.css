@@ -227,6 +227,7 @@ body.paymonthly-sim-only-deals .custom-select-trigger {
   max-width: 1200px;
   margin: 0 auto 24px;
   width: 100%;
+
   /* Ensure it has height for absolute positioning to work against */
   min-height: 48px;
 }
