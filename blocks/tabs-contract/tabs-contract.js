@@ -117,21 +117,21 @@ export default async function decorate(block) {
   if (window.location.pathname.endsWith('/paymonthly/en/bundles/sim-only-deals/paymonthly')) {
     block.classList.add('has-sorting');
 
-    // Create a wrapper for relative positioning context if needed, 
+    // Create a wrapper for relative positioning context if needed,
     // but block usually suffices if we style it right.
     // However, let's keep the structure clean.
-    
+
     const sortContainer = document.createElement('div');
     sortContainer.className = 'sort-container';
 
     // SVG Icons
-    const filterIcon = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M6 12H18M10 18H14" stroke="#1F2A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-    const chevronIcon = `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 10L12 15L17 10" fill="#000000" fill-opacity="0.54"/></svg>`; // Standard MUI chevron look
-    
+    const filterIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 6H20M6 12H18M10 18H14" stroke="#1F2A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    const chevronIcon = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 10L12 15L17 10" fill="#000000" fill-opacity="0.54"/></svg>'; // Standard MUI chevron look
+
     // Sort Icons (Purple/Blue #1F2A5A)
-    const starIcon = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="#1F2A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-    const lowHighIcon = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 19V5M5 12L12 5L19 12" stroke="#1F2A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-    const highLowIcon = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 5V19M19 12L12 19L5 12" stroke="#1F2A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+    const starIcon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="#1F2A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    const lowHighIcon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 19V5M5 12L12 5L19 12" stroke="#1F2A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+    const highLowIcon = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 5V19M19 12L12 19L5 12" stroke="#1F2A5A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 
     // Dropdown HTML
     sortContainer.innerHTML = `
@@ -179,25 +179,28 @@ export default async function decorate(block) {
         if (!ul) return;
 
         const items = Array.from(ul.children);
-        
+
         // Save original order if not saved
         if (!ul.dataset.originalOrder) {
-            items.forEach((item, index) => item.dataset.originalIndex = index);
-            ul.dataset.originalOrder = 'true';
+          items.forEach((item, index) => {
+            item.dataset.originalIndex = index;
+          });
+          ul.dataset.originalOrder = 'true';
         }
 
         if (order === 'recommended') {
-           items.sort((a, b) => parseInt(a.dataset.originalIndex, 10) - parseInt(b.dataset.originalIndex, 10));
+          items.sort((a, b) => parseInt(a.dataset.originalIndex, 10)
+            - parseInt(b.dataset.originalIndex, 10));
         } else {
-            items.sort((a, b) => {
-                const priceA = getPrice(a);
-                const priceB = getPrice(b);
-                return order === 'low-to-high' ? priceA - priceB : priceB - priceA;
-            });
+          items.sort((a, b) => {
+            const priceA = getPrice(a);
+            const priceB = getPrice(b);
+            return order === 'low-to-high' ? priceA - priceB : priceB - priceA;
+          });
         }
-        
+
         // Re-append in new order
-        items.forEach(item => ul.appendChild(item));
+        items.forEach((item) => ul.appendChild(item));
       });
     };
 
@@ -206,33 +209,33 @@ export default async function decorate(block) {
     const select = wrapperSelect.querySelector('.custom-select');
 
     select.addEventListener('click', () => {
-        select.classList.toggle('open');
+      select.classList.toggle('open');
     });
 
     const options = wrapperSelect.querySelectorAll('.custom-option');
-    options.forEach(option => {
-        option.addEventListener('click', function() {
-            if (!this.classList.contains('selected')) {
-                // Update specific selected class
-                options.forEach(opt => opt.classList.remove('selected'));
-                this.classList.add('selected');
+    options.forEach((option) => {
+      option.addEventListener('click', function onClick() {
+        if (!this.classList.contains('selected')) {
+          // Update specific selected class
+          options.forEach((opt) => opt.classList.remove('selected'));
+          this.classList.add('selected');
 
-                // Update Active Icon in Trigger
-                const iconHtml = this.querySelector('.option-icon').innerHTML;
-                const triggerActiveIcon = select.querySelector('.custom-select__trigger .trigger-active-icon');
-                triggerActiveIcon.innerHTML = iconHtml;
+          // Update Active Icon in Trigger
+          const iconHtml = this.querySelector('.option-icon').innerHTML;
+          const triggerActiveIcon = select.querySelector('.custom-select__trigger .trigger-active-icon');
+          triggerActiveIcon.innerHTML = iconHtml;
 
-                const value = this.getAttribute('data-value');
-                sortCards(value);
-            }
-        });
-    });
-    
-    // Close dropdown when clicking outside
-    document.addEventListener('click', function(e) {
-        if (!select.contains(e.target)) {
-            select.classList.remove('open');
+          const value = this.getAttribute('data-value');
+          sortCards(value);
         }
+      });
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!select.contains(e.target)) {
+        select.classList.remove('open');
+      }
     });
   }
 }

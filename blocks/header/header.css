@@ -340,7 +340,8 @@ header nav .nav-sections ul > li > ul > li {
         text-decoration: none;
     }
 
-    header nav .nav-tools .nav-tools-icon-circle img {
+    header nav .nav-tools .nav-tools-icon-circle img,
+    header nav .nav-tools .nav-tools-icon-circle svg {
         width: 26px;
         height: 26px;
 
