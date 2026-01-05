@@ -22,7 +22,7 @@ export default function decorate(block) {
   if (pics.length >= 5) {
     // pics[0] is the main static image (Left Column)
     // pics[1] is the authored image (Right Column, currently small)
-    
+
     const authoredImg = pics[1];
 
     // Find the left column wrapper

@@ -107,7 +107,7 @@ function buildAutoBlocks(main) {
     if (frenchNewsletterHeading) {
       const block = document.createElement('div');
       block.className = 'form-newsletter';
-      
+
       const elementsToMove = [frenchNewsletterHeading];
       let sibling = frenchNewsletterHeading.nextElementSibling;
       while (sibling && sibling.tagName === 'P') {
