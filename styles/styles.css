@@ -822,6 +822,7 @@ main .section.dark.cards-action-container {
     background-color: #006ae0;
     margin: 0;
     padding: 20px 0;
+    gap: 16px;
 }
 
 input:checked + .slider {
@@ -833,8 +834,13 @@ input:checked + .slider {
     font-size: 1.125rem;
 }
 .section.refer-section p img {
-    width: 78px;
-    height: auto;
+    width: auto;
+    height: 48px;
+}
+
+.section.refer-section p picture:last-of-type img {
+    width: 15px;
+    height: 15px;
 }
 
 @media only screen and (max-width: 768px) {
