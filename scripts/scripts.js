@@ -932,6 +932,7 @@ function createEventPayload(base) {
         eventType: base.eventName,
         revenue_local: '',
         revenue_usd: base.revenue_usd || '',
+        planAmountUsd: base.planAmountUsd || '',
         planAmount: base.planAmount || '',
         planName: base.planName || '',
         language: base.language,
@@ -973,12 +974,12 @@ function sendCheckoutEvent(language) {
   const country = language === 'FR' ? 'FR' : 'GB';
 
   const selection = getCheckoutSelection();
-
+  
   const rawPrice = selection.newPrice || '0';
   const numericPrice = parseFloat(rawPrice.replace(/[^\d.]/g, '')) || 0;
-
+  
   // Approximate conversion rates
-  const rate = currency === 'Pound' ? 1.27 : 1.08;
+  const rate = currency === 'Pound' ? 1.27 : 1.08; 
   const revenueUsd = (numericPrice * rate).toFixed(2);
 
   window.alloy('sendEvent', createEventPayload({
@@ -986,7 +987,8 @@ function sendCheckoutEvent(language) {
     country,
     language,
     eventName: 'Checkout Page View',
-    revenue_usd: revenueUsd,
+    revenue_usd: '',
+    planAmountUsd: revenueUsd,
     planAmount: numericPrice.toFixed(2), // Send as string/number without symbol
     planName: selection.title,
     web: { webPageDetails: { name: 'Checkout Page', siteSection: 'Checkout' } },
