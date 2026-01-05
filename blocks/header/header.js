@@ -199,13 +199,15 @@ export default async function decorate(block) {
       const path = window.location.pathname;
       const isFrench = path.startsWith('/fr/') || path === '/fr';
       const langCode = isFrench ? 'FR' : 'EN';
-      const flag = isFrench ? '🇫🇷' : '🇬🇧';
+      const flagImg = isFrench
+        ? 'https://www.lycamobile.fr/_next/static/media/flagFR.3a498eed.svg'
+        : 'https://www.lycamobile.co.uk/_next/static/media/flagUK.a0f55c8d.svg';
       const switchUrl = isFrench ? '/en/' : '/fr/';
 
       const a = document.createElement('a');
       a.href = switchUrl;
       a.setAttribute('aria-label', 'Language');
-      a.innerHTML = `<span class="nav-tools-lang-code">${langCode}</span><span class="nav-tools-flag" aria-hidden="true">${flag}</span>`;
+      a.innerHTML = `<span class="nav-tools-lang-code">${langCode}</span><img class="nav-tools-flag" src="${flagImg}" alt="flag" loading="lazy">`;
 
       li.appendChild(a);
       toolsUl.appendChild(li);
