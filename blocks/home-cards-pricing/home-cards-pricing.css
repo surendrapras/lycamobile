@@ -1,4 +1,5 @@
 .home-cards-pricing>ul {
+    margin-top: 30px;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -8,13 +9,11 @@
 }
 
 .home-cards-pricing>ul>li {
-    border-radius: 16px;
     overflow: hidden;
     position: relative;
     display: flex;
     flex-direction: column;
     text-align: center;
-    border: 1px solid #e5e7eb;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -32,16 +31,22 @@
 }
 
 .home-cards-pricing-card-image {
-    background: transparent;
-    padding: 20px 20px 0;
+    padding: 0;
     display: flex;
     justify-content: center;
 }
 
+.home-cards-pricing-card-image * {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
 .home-cards-pricing-card-image img {
-    max-width: 100%;
+    width: 100%;
     height: auto;
-    object-fit: contain;
+    object-fit: cover;
+    display: block;
 }
 
 .home-cards-pricing>ul>li:nth-child(1) {
