@@ -200,8 +200,8 @@ export default async function decorate(block) {
       const isFrench = path.startsWith('/fr/') || path === '/fr';
       const langCode = isFrench ? 'FR' : 'EN';
       const flagImg = isFrench
-        ? 'https://www.lycamobile.fr/_next/static/media/flagFR.3a498eed.svg'
-        : 'https://www.lycamobile.co.uk/_next/static/media/flagUK.a0f55c8d.svg';
+        ? '/icons/flag-fr.svg'
+        : '/icons/flag-uk.svg';
       const switchUrl = isFrench ? '/en/' : '/fr/';
 
       const a = document.createElement('a');
