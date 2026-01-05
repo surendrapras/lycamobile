@@ -99,7 +99,6 @@ function buildAutoBlocks(main) {
       main.append(section);
     }
 
-
     // Auto-block French newsletter
     const frenchNewsletterHeading = Array.from(main.querySelectorAll('h2')).find(
       (h) => h.textContent.includes('Inscrivez-vous pour accéder à nos offres exclusives'),
