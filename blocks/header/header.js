@@ -174,7 +174,7 @@ export default async function decorate(block) {
 
       const text = a.textContent.trim().toLowerCase();
 
-      if (text === 'quick top up') {
+      if (text === 'quick top up' || text === 'recharge éclair') {
         li.classList.add('nav-tools-cta');
       }
 
@@ -195,10 +195,17 @@ export default async function decorate(block) {
       const li = document.createElement('li');
       li.className = 'nav-tools-lang';
 
+      // Detect current language from URL path
+      const path = window.location.pathname;
+      const isFrench = path.startsWith('/fr/') || path === '/fr';
+      const langCode = isFrench ? 'FR' : 'EN';
+      const flag = isFrench ? '🇫🇷' : '🇬🇧';
+      const switchUrl = isFrench ? '/en/' : '/fr/';
+
       const a = document.createElement('a');
-      a.href = '/en/';
+      a.href = switchUrl;
       a.setAttribute('aria-label', 'Language');
-      a.innerHTML = '<span class="nav-tools-lang-code">EN</span><span class="nav-tools-flag" aria-hidden="true">🇬🇧</span>';
+      a.innerHTML = `<span class="nav-tools-lang-code">${langCode}</span><span class="nav-tools-flag" aria-hidden="true">${flag}</span>`;
 
       li.appendChild(a);
       toolsUl.appendChild(li);
