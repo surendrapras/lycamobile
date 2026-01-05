@@ -137,7 +137,7 @@ export default async function decorate(block) {
     sortContainer.innerHTML = `
       <div class="custom-select-wrapper">
           <div class="custom-select">
-              <div class="custom-select__trigger">
+              <div class="custom-select-trigger">
                   <span class="trigger-active-icon">${starIcon}</span>
                   <span class="trigger-separator"></span>
                   <span class="trigger-filter-icon">${filterIcon}</span>
@@ -222,7 +222,7 @@ export default async function decorate(block) {
 
           // Update Active Icon in Trigger
           const iconHtml = this.querySelector('.option-icon').innerHTML;
-          const triggerActiveIcon = select.querySelector('.custom-select__trigger .trigger-active-icon');
+          const triggerActiveIcon = select.querySelector('.custom-select-trigger .trigger-active-icon'); // Changed from double underscore
           triggerActiveIcon.innerHTML = iconHtml;
 
           const value = this.getAttribute('data-value');

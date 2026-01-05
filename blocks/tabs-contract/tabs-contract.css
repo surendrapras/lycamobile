@@ -38,11 +38,7 @@ transition: all 0.3s ease;
 cursor: pointer;
 }
 
-.tabs-contract .tabs-contract-list button:hover {
-/* background-color: var(--background-light);
-transform: translateY(-2px);
-box-shadow: var(--shadow-md); */
-}
+
 
 .tabs-contract .tabs-contract-list button p {
 margin: 0;
@@ -55,11 +51,7 @@ border-color: var(--color-secondary-blue);
 cursor: default;
 }
 
-.tabs-contract .tabs-contract-list button[aria-selected='true']:hover {
-/* transform: none;
-box-shadow: none;
-background-color: var(--color-secondary-blue); */
-}
+
 
 body.paymonthly-sim-only-deals .tabs-contract {
 margin: 0;
@@ -92,205 +84,206 @@ color: #fff;
 }
 
 /* Sorting Dropdown Styles */
+
 /* Sorting Dropdown Styles - Robust Component Scoping */
 
-/* Wrapper handles the layout context */
-.tabs-contract.has-sorting .tabs-common-wrapper {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto 24px;
-    width: 100%;
-    /* Ensure it has height for absolute positioning to work against */
-    min-height: 48px;
-}
-
-/* Sort Container - Default Desktop (Side-by-Side) */
-.tabs-contract.has-sorting .sort-container {
-    display: flex;
-    justify-content: flex-end;
-    position: absolute;
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    width: auto;
-    margin: 0;
-    padding: 0;
-    z-index: 10;
-    pointer-events: none; /* Let clicks pass through container area if transparent */
-}
-
-.tabs-contract.has-sorting .sort-container > * {
-    pointer-events: auto;
-}
-
-.tabs-contract.has-sorting {
-    position: relative;
-}
-
-.tabs-contract.has-sorting .custom-select-wrapper {
-    margin-right: 0;
-}
-
-/* Specific override to ensure tabs margin doesn't conflict */
-.tabs-contract.has-sorting .tabs-contract-list {
-    margin-bottom: 0;
-}
-
-/* Mobile: Stacked Logic (< 768px to be safe again, or 600px if user prefers) 
-   User had issues, so let's stick to 600px for now, but ensure the Stacked css is solid */
-@media (max-width: 600px) {
-    .tabs-contract.has-sorting .tabs-common-wrapper {
-        flex-direction: column;
-        justify-content: flex-start;
-        height: auto;
-    }
-
-    .tabs-contract.has-sorting .sort-container {
-        position: relative;
-        top: auto;
-        right: auto;
-        transform: none;
-        width: 100%;
-        justify-content: center;
-        margin-top: 15px;
-        z-index: 5;
-    }
-    
-    .tabs-contract.has-sorting .sort-container .custom-select-wrapper {
-        width: 100%; /* Full width dropdown on mobile? Or centered? Let's keep auto but centered */
-    }
-}
-
 .custom-select-wrapper {
-    position: relative;
-    user-select: none;
-    width: auto;
-    font-family: var(--body-font-family);
-    min-width: 120px;
+  position: relative;
+  user-select: none;
+  width: auto;
+  font-family: var(--body-font-family);
+  min-width: 120px;
 }
 
 .custom-select {
-    position: relative;
-    display: flex;
-    flex-direction: column;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
-.custom-select__trigger {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 4px 12px;
-    font-size: 16px;
-    font-weight: 500;
-    color: #1F2A5A;
-    line-height: 24px;
-    background: #EFF8FF;
-    border: 1px solid #90CBF9; /* Light Blue Border */
-    border-radius: 4px;
-    cursor: pointer;
-    transition: all 0.2s;
-    gap: 8px;
-    height: 34px; /* Match tab height roughly */
-    box-sizing: border-box;
+.custom-select-trigger {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 12px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1F2A5A;
+  line-height: 24px;
+  background: #EFF8FF;
+  border: 1px solid #90CBF9; /* Light Blue Border */
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  gap: 8px;
+  height: 34px; /* Match tab height roughly */
+  box-sizing: border-box;
 }
 
-body.paymonthly-sim-only-deals .custom-select__trigger {
-    background-color: #EFF8FF;
-    border-radius: 4px;
-    color: #1F2A5A;
+body.paymonthly-sim-only-deals .custom-select-trigger {
+  background-color: #EFF8FF;
+  border-radius: 4px;
+  color: #1F2A5A;
 }
 
-.custom-select.open .custom-select__trigger {
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-    border-bottom-color: transparent;
+.custom-select.open .custom-select-trigger {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-color: transparent;
 }
 
 .trigger-active-icon,
 .trigger-filter-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .trigger-separator {
-    /* Optional: if we want a line later, for now just gap */
-    display: none; 
+  /* Optional: if we want a line later, for now just gap */
+  display: none;
 }
 
 .trigger-arrow {
-    display: flex;
-    align-items: center;
-    margin-left: 4px;
+  display: flex;
+  align-items: center;
+  margin-left: 4px;
 }
 
 .custom-options {
-    position: absolute;
-    display: block;
-    top: 100%;
-    left: 0;
-    right: 0;
-    border: 1px solid #90CBF9;
-    border-top: 0;
-    background: #fff;
-    transition: all 0.3s;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    z-index: 20;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    padding: 0;
-    width: 260px; /* List is wider than trigger */
-    right: 0; 
-    left: auto; /* Align right side of list with trigger */
+  position: absolute;
+  display: block;
+  top: 100%;
+  border: 1px solid #90CBF9;
+  border-top: 0;
+  background: #fff;
+  transition: all 0.3s;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  z-index: 20;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 10%);
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+  padding: 0;
+  width: 260px; /* List is wider than trigger */
+  right: 0;
+  left: auto; /* Align right side of list with trigger */
 }
+
 /* If trigger is small, options might need to be wider and aligned right or left */
 
 .custom-select.open .custom-options {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: all;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
 }
 
 .custom-option {
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding: 12px 15px;
-    font-size: 16px;
-    color: #1f2a5a;
-    cursor: pointer;
-    transition: all 0.2s;
-    background-color: #fff;
-    border-bottom: 1px solid #eee;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  font-size: 16px;
+  color: #1f2a5a;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
 }
+
 .custom-option:nth-child(even) {
-    background-color: #fafafa;
+  background-color: #fafafa;
 }
 
 .custom-option:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .custom-option:hover {
-    background-color: #e6f0ff;
+  background-color: #e6f0ff;
 }
 
 .custom-option.selected {
-    background-color: #EFF8FF; 
-    color: #1F2A5A;
+  background-color: #EFF8FF;
+  color: #1F2A5A;
 }
 
 .option-icon {
-    display: flex;
-    align-items: center;
-    margin-right: 10px;
-    width: 24px;
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  width: 24px;
+  justify-content: center;
+}
+
+/* Wrapper handles the layout context */
+.tabs-contract.has-sorting .tabs-common-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto 24px;
+  width: 100%;
+  /* Ensure it has height for absolute positioning to work against */
+  min-height: 48px;
+}
+
+/* Sort Container - Default Desktop (Side-by-Side) */
+.tabs-contract.has-sorting .sort-container {
+  display: flex;
+  justify-content: flex-end;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  width: auto;
+  margin: 0;
+  padding: 0;
+  z-index: 10;
+  pointer-events: none; /* Let clicks pass through container area if transparent */
+}
+
+.tabs-contract.has-sorting .sort-container > * {
+  pointer-events: auto;
+}
+
+.tabs-contract.has-sorting {
+  position: relative;
+}
+
+.tabs-contract.has-sorting .custom-select-wrapper {
+  margin-right: 0;
+}
+
+/* Specific override to ensure tabs margin doesn't conflict */
+body.paymonthly-sim-only-deals .tabs-contract.has-sorting .tabs-contract-list {
+  margin-bottom: 0;
+}
+
+/* Mobile: Stacked Logic (< 768px to be safe again, or 600px if user prefers)
+   User had issues, so let's stick to 600px for now, but ensure the Stacked css is solid */
+@media (width <= 600px) {
+  .tabs-contract.has-sorting .tabs-common-wrapper {
+    flex-direction: column;
+    justify-content: flex-start;
+    height: auto;
+  }
+
+  .tabs-contract.has-sorting .sort-container {
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: none;
+    width: 100%;
     justify-content: center;
+    margin-top: 15px;
+    z-index: 5;
+  }
+
+  .tabs-contract.has-sorting .sort-container .custom-select-wrapper {
+    width: 100%; /* Full width dropdown on mobile? Or centered? Let's keep auto but centered */
+  }
 }
