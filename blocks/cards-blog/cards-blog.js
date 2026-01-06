@@ -27,4 +27,15 @@ export default function decorate(block) {
   });
   ul.querySelectorAll('picture > img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
   block.replaceChildren(ul);
+
+  const container = block.closest('.cards-blog-container');
+  if (container) {
+    const title = container.querySelector('.default-content-wrapper > p:first-child');
+    if (title) {
+      const hasAuthorMarkup = title.hasAttribute('style')
+        || title.classList.length > 0
+        || title.querySelector('span, font, [style], [class]');
+      if (hasAuthorMarkup) container.classList.add('cards-blog-title-authored');
+    }
+  }
 }
