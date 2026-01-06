@@ -944,6 +944,8 @@ function createEventPayload(base) {
         Currency: base.currency,
         platform: 'WEB',
         country: base.country,
+        campaign_name: new URLSearchParams(window.location.search).get('campaignName') || '',
+        campaign_medium: new URLSearchParams(window.location.search).get('campaignmedium') || '',
         eventType: base.eventName,
         revenue_local: '',
         revenue_usd: base.revenue_usd || '',
