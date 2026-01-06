@@ -197,7 +197,10 @@ export default async function decorate(block) {
 
       // Detect current language from URL path
       const path = window.location.pathname;
-      const isFrench = path.startsWith('/fr/') || path === '/fr';
+      const isFrench = path.startsWith('/fr/')
+        || path === '/fr'
+        || path.startsWith('/abo/fr/')
+        || path === '/abo/fr';
       const langCode = isFrench ? 'FR' : 'EN';
       const flagImg = isFrench
         ? '/icons/flag-fr.svg'

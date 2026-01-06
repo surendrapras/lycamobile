@@ -78,3 +78,17 @@
     max-width: 1088px;
     margin: 0 auto;
 }
+
+.cards-blog-container:not(.cards-blog-title-authored) .default-content-wrapper > p:first-child {
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-xl-mobile);
+  font-weight: 700;
+  line-height: var(--line-height-tight);
+  color: var(--color-secondary-blue);
+}
+
+@media (width >= 900px) {
+  .cards-blog-container:not(.cards-blog-title-authored) .default-content-wrapper > p:first-child {
+    font-size: var(--heading-font-size-xl);
+  }
+}
