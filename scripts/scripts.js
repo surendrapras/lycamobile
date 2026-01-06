@@ -673,7 +673,7 @@ export function decorateCheckoutLayout(main) {
     const footerHTML = `
       <div class="basketFooter_basket_footer__UXk12" id="footer">
         <img id="footer-brand-logo" data-testid="test-footer-brand-logo" alt="arrowToggle" width="68" height="27" decoding="async" data-nimg="1" style="color: transparent;" loading="lazy" src="https://cms-assets-paym.globalldplatform.com/uk/s3fs-public/2024-07/image%204.png?VersionId=5TG4CWBbfGl12_XNGqSwqr_D7aQoh0Uq">
-        <p>© 2026 LycaMobile UK Limited &nbsp;| All Rights Reserved</p>
+        <p>© 2026 Lycamobile sarl &nbsp;| Tous droits réservés</p>
       </div>
     `;
     page.insertAdjacentHTML('beforeend', footerHTML);
